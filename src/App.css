@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background-color: #455A64;
+}
+
+.Table>div:hover {
+  transform: scale(1.5);
+}
