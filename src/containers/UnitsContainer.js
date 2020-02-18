@@ -6,7 +6,6 @@ class UnitsContainer extends Component {
     super(props);
     this.state = {
       dataPens: [],
-      dataUnits: [],
       id: 1
     };
     this.updateState = this.updateState.bind(this);
@@ -29,20 +28,11 @@ class UnitsContainer extends Component {
     );
   };
 
-  // TODO: it should first change ID and then render, not render previous id and then change id
   render() {
     return (
       <div className="App">
-        {this.state.dataPens.map((data, index) => (
-          <UnitsTable
-            key={`unit${index}`}
-            index={data.id}
-            size={data.size}
-            isolated={data.isolated ? "TAK" : "NIE"}
-          ></UnitsTable>
-        ))}
-
         <select
+          className="penSelect"
           id="pens"
           onChange={this.updateState.bind(this)}
           value={this.state.id}
@@ -54,6 +44,14 @@ class UnitsContainer extends Component {
           <option value="5">5</option>
           <option value="6">6</option>
         </select>
+        {this.state.dataPens.map((data, index) => (
+          <UnitsTable
+            key={`unit${index}`}
+            index={data.id}
+            size={data.size}
+            isolated={data.isolated ? "TAK" : "NIE"}
+          ></UnitsTable>
+        ))}
       </div>
     );
   }

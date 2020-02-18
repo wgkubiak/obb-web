@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./UnitsTable.css";
+import UnitsContent from "./../UnitsContent/UnitsContent";
 
 class UnitsTable extends Component {
   constructor(props) {
@@ -12,12 +13,7 @@ class UnitsTable extends Component {
   render() {
     return (
       <div className="UnitsTable">
-        <h4>
-          {this.props.index}
-          <br />
-          (Rozmiar: {this.props.size}m) Izolatka: {this.props.isolated}
-        </h4>
-        <p>Miejsce na tabelę</p>
+        <UnitsContent id={this.props.index} />
       </div>
     );
   }
