@@ -3,9 +3,13 @@
 }
 
 body {
-  background-color: rgb(240, 221, 221);
+  background-color: rgb(231, 229, 229);
 }
 
+.addBtn {
+  margin-left: 2px;
+}
 .penSelect {
   margin-top: 10px;
+  margin-right: 2px;
 }

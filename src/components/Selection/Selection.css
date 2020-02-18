@@ -1,0 +1,27 @@
+.Selection {
+    width: 20em;
+    height: 14em;
+    z-index: 2;
+    position: fixed;
+    background-color: rgb(231, 229, 229);
+    left: 0; 
+    right: 0;
+    top: 20%; 
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
+.Selection > h4 {
+    top: 20%;
+    margin-top: 1em;
+}
+
+.btnContainer {
+    position: relative;
+    height: 100%;
+}
+
+.btnContainer > Button {
+    width: 80%;
+    margin-top: 0.5em;
+}

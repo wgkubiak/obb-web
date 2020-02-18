@@ -1,14 +1,23 @@
 import React, { Component } from "react";
 import "./UnitsContent.css";
 import { Table } from "react-bootstrap";
+import Selection from "./../Selection/Selection";
 
 class UnitsContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
       dataUnits: [],
-      id: this.props.id
+      id: this.props.id,
+      idPig: '',
+      showSelection: false
     };
+    this.toggleSelection = this.toggleSelection.bind(this);
+  }
+
+  toggleSelection = () => {
+    const { showSelection } = this.state;
+    this.setState({ showSelection: !showSelection })
   }
 
   getUnitsData = id => {
@@ -29,7 +38,8 @@ class UnitsContent extends Component {
   }
 
   showForm = id => {
-    alert(`${id}`);
+    this.setState({idPig: id}, () => 
+    this.toggleSelection());
   };
 
   render() {
@@ -58,6 +68,7 @@ class UnitsContent extends Component {
             ))}
           </tbody>
         </Table>
+            { this.state.showSelection && <Selection id={this.state.idPig}/> }
       </div>
     );
   }
