@@ -6,10 +6,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 const app = () => {
+    const showUnits = true;
+    const showGlobal = false;
+    const showMeasures = false;
+    const showForage = false;
+    
     return (
       <div className="App">
         <Navbar />
-        <UnitsContainer />        
+        {showUnits && <UnitsContainer />}       
       </div>
     )
 }
