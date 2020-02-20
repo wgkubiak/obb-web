@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
-import UnitsTable from "../components/UnitsTable/UnitsTable";
+import UnitsTable from "./../components/UnitsTable/UnitsTable";
+import AddUnitForm from "./../components/AddUnitForm/AddUnitForm";
 
 class UnitsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       dataPens: [],
-      id: 1
+      id: 1,
+      showAddUnitForm: false
     };
     this.updateState = this.updateState.bind(this);
+    this.toggleAddUnitForm = this.toggleAddUnitForm.bind(this);
   }
 
   getPensData = id => {
@@ -29,6 +32,15 @@ class UnitsContainer extends Component {
     );
   };
 
+  toggleAddUnitForm = () => {
+    const { showAddUnitForm } = this.state;
+    this.setState({ showAddUnitForm: !showAddUnitForm })
+  }
+
+  showForm = () => {
+    this.toggleAddUnitForm();
+  };
+
   render() {
     return (
       <div className="App">
@@ -46,7 +58,7 @@ class UnitsContainer extends Component {
             <option value="5">5</option>
             <option value="6">6</option>
           </select>
-          <Button className="addBtn" variant="secondary">
+          <Button className="addBtn" variant="secondary" onClick={this.toggleAddUnitForm}>
             DODAJ
           </Button>
         </div>
@@ -58,6 +70,7 @@ class UnitsContainer extends Component {
             isolated={data.isolated ? "TAK" : "NIE"}
           ></UnitsTable>
         ))}
+        { this.state.showAddUnitForm && <AddUnitForm />}        
       </div>
     );
   }
