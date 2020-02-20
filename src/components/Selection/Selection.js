@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Selection.css";
 import { Button } from "react-bootstrap";
+import DeleteButton from "./../DeleteButton/DeleteButton";
 
 class Selection extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class Selection extends Component {
           <Button variant="dark">Wyświetl badania</Button>
           <Button variant="primary">Dodaj badanie</Button>
           <Button variant="danger">Zgon/Sprzedaż</Button>
+          <DeleteButton id={this.props.id} reloadHandler={this.props.reloadHandler}/>
         </div>
       </div>
     );

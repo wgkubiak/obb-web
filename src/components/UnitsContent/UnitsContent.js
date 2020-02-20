@@ -21,7 +21,7 @@ class UnitsContent extends Component {
   }
 
   getUnitsData = id => {
-    fetch(`http://localhost:3000/active-pigs/${id}`)
+    fetch(`https://obb-api.herokuapp.com/active-pigs/${id}`)
       .then(res => res.json())
       .then(res => this.setState({ dataUnits: res }))
       .catch(e => e);
@@ -65,10 +65,11 @@ class UnitsContent extends Component {
                 <td>{data.pigShoppingDate.substring(0, 10)}</td>
                 <td>{data.pigShoppingPrice}</td>
               </tr>
+              
             ))}
           </tbody>
         </Table>
-            { this.state.showSelection && <Selection id={this.state.idPig}/> }
+            { this.state.showSelection && <Selection id={this.state.idPig} reloadHandler={this.props.reloadHandler}/> }
       </div>
     );
   }

@@ -13,6 +13,7 @@ class UnitsContainer extends Component {
     };
     this.updateState = this.updateState.bind(this);
     this.toggleAddUnitForm = this.toggleAddUnitForm.bind(this);
+    this.updateStateByID = this.updateStateByID.bind(this);
   }
 
   getPensData = id => {
@@ -28,6 +29,12 @@ class UnitsContainer extends Component {
 
   updateState = event => {
     this.setState({ id: event.target.value }, () =>
+      this.getPensData(this.state.id)
+    );
+  };
+
+  updateStateByID = id => {
+    this.setState({ id: id }, () =>
       this.getPensData(this.state.id)
     );
   };
@@ -68,6 +75,7 @@ class UnitsContainer extends Component {
             index={data.id}
             size={data.size}
             isolated={data.isolated ? "TAK" : "NIE"}
+            reloadHandler={this.updateStateByID}
           ></UnitsTable>
         ))}
         { this.state.showAddUnitForm && <AddUnitForm />}        
