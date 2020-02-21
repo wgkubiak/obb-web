@@ -48,7 +48,7 @@ class Selection extends Component {
               deleteInfoHandler={this.showDeleteInfoHandler}
             />
           )}
-          {this.state.showDeleteInfo && <h4>Obiekt usunięto</h4>}
+          {this.state.showDeleteInfo && <h4 className="deleted-unit-info">Obiekt usunięto</h4>}
         </div>
       </div>
     );

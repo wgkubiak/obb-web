@@ -13,7 +13,7 @@ class UnitsTable extends Component {
   render() {
     return (
       <div className="UnitsTable">
-        <UnitsContent id={this.props.index} reloadHandler={this.props.reloadHandler} />
+        <UnitsContent id={this.props.index} idPen={this.props.idPen} reloadHandler={this.props.reloadHandler} />
       </div>
     );
   }

@@ -69,7 +69,7 @@ class UnitsContent extends Component {
             ))}
           </tbody>
         </Table>
-            { this.state.showSelection && <Selection id={this.state.idPig} idPen={this.state.id} showSelection={this.toggleSelection} reloadHandler={this.props.reloadHandler}/> }
+            { this.state.showSelection && <Selection id={this.state.idPig} idPen={this.props.idPen} showSelection={this.toggleSelection} reloadHandler={this.props.reloadHandler}/> }
       </div>
     );
   }

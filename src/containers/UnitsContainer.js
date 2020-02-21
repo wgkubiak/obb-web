@@ -72,6 +72,7 @@ class UnitsContainer extends Component {
         {this.state.dataPens.map((data, index) => (
           <UnitsTable
             key={`unit${index}`}
+            idPen={this.state.id}
             index={data.id}
             size={data.size}
             isolated={data.isolated ? "TAK" : "NIE"}
