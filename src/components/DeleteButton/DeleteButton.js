@@ -17,7 +17,7 @@ class DeleteButton extends Component {
     fetch(`https://obb-api.herokuapp.com/delete-pig/${this.props.id}`, {
       method: 'DELETE',
     })
-    .then(this.props.reloadHandler(this.props.idPen));
+    .then(this.props.reloadHandler(5))
   }
 
   
@@ -28,8 +28,8 @@ class DeleteButton extends Component {
   render() {
     return(
       <div className="DeleteButton">
-        <Button variant="danger" onClick={this.remove}>
-          X
+        <Button variant="dark" onClick={this.remove}>
+          Usuń obiekt
         </Button>
       </div>
     )

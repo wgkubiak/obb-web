@@ -12,12 +12,20 @@ class Selection extends Component {
   render() {
     return (
       <div className="Selection">
-        <h4>Obiekt: <b>#{this.props.id}</b></h4>
+        <Button className="hide-selection" variant="success" onClick={this.props.showSelection}>X</Button>
+        <h4>
+          Obiekt: <b>#{this.props.id}</b>
+        </h4>
         <div className="btnContainer">
-          <Button variant="dark">Wyświetl badania</Button>
-          <Button variant="primary">Dodaj badanie</Button>
-          <Button variant="danger">Zgon/Sprzedaż</Button>
-          <DeleteButton id={this.props.id} idPen={this.props.idPen} reloadHandler={this.props.reloadHandler}/>
+          <Button variant="success">Wyświetl badania</Button>
+          <Button variant="success">Dodaj badanie</Button>
+          <Button variant="success">Zgon/Sprzedaż</Button>
+          <DeleteButton
+            id={this.props.id}
+            idPen={this.props.idPen}
+            showSelection={this.props.showSelection}
+            reloadHandler={this.props.reloadHandler}
+          />
         </div>
       </div>
     );

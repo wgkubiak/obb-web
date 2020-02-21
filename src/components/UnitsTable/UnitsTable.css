@@ -9,6 +9,7 @@
   width: 80%;
   border: 0.1em solid #26323800;
   transition-duration: 0.5s;
+  border-radius: 0.25em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
