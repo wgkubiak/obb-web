@@ -6,26 +6,49 @@ import DeleteButton from "./../DeleteButton/DeleteButton";
 class Selection extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      showDeleteInfo: false
+    };
+    this.showDeleteInfoHandler = this.showDeleteInfoHandler.bind(this);
   }
+
+  showDeleteInfoHandler = () => {
+    this.setState({ showDeleteInfo: true });
+  };
 
   render() {
     return (
       <div className="Selection">
-        <Button className="hide-selection" variant="success" onClick={this.props.showSelection}>X</Button>
+        <Button
+          className="hide-selection"
+          variant="success"
+          onClick={this.props.showSelection}
+        >
+          Ukryj
+        </Button>
         <h4>
           Obiekt: <b>#{this.props.id}</b>
         </h4>
         <div className="btnContainer">
-          <Button variant="success">Wyświetl badania</Button>
-          <Button variant="success">Dodaj badanie</Button>
-          <Button variant="success">Zgon/Sprzedaż</Button>
-          <DeleteButton
-            id={this.props.id}
-            idPen={this.props.idPen}
-            showSelection={this.props.showSelection}
-            reloadHandler={this.props.reloadHandler}
-          />
+          {!this.state.showDeleteInfo && (
+            <Button variant="success">Wyświetl badania</Button>
+          )}
+          {!this.state.showDeleteInfo && (
+            <Button variant="success">Dodaj badanie</Button>
+          )}
+          {!this.state.showDeleteInfo && (
+            <Button variant="success">Zgon/Sprzedaż</Button>
+          )}
+          {!this.state.showDeleteInfo && (
+            <DeleteButton
+              id={this.props.id}
+              idPen={this.props.idPen}
+              showSelection={this.props.showSelection}
+              reloadHandler={this.props.reloadHandler}
+              deleteInfoHandler={this.showDeleteInfoHandler}
+            />
+          )}
+          {this.state.showDeleteInfo && <h4>Obiekt usunięto</h4>}
         </div>
       </div>
     );
