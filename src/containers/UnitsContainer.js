@@ -17,7 +17,7 @@ class UnitsContainer extends Component {
   }
 
   getPensData = id => {
-    fetch(`http://localhost:3000/pens/${id}`)
+    fetch(`https://obb-api.herokuapp.com/pens/${id}`)
       .then(res => res.json())
       .then(res => this.setState({ dataPens: res }))
       .catch(e => e);

@@ -17,7 +17,7 @@ class Selection extends Component {
           <Button variant="dark">Wyświetl badania</Button>
           <Button variant="primary">Dodaj badanie</Button>
           <Button variant="danger">Zgon/Sprzedaż</Button>
-          <DeleteButton id={this.props.id} reloadHandler={this.props.reloadHandler}/>
+          <DeleteButton id={this.props.id} idPen={this.props.idPen} reloadHandler={this.props.reloadHandler}/>
         </div>
       </div>
     );
