@@ -40,6 +40,9 @@ class Selection extends Component {
             <Button variant="success">Zgon/Sprzedaż</Button>
           )}
           {!this.state.showDeleteInfo && (
+            <Button variant="success">Edytuj</Button>
+          )}
+          {!this.state.showDeleteInfo && (
             <DeleteButton
               id={this.props.id}
               idPen={this.props.idPen}

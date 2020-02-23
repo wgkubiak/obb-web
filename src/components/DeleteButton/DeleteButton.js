@@ -28,7 +28,7 @@ class DeleteButton extends Component {
   render() {
     return (
       <div className="DeleteButton">
-        <Button variant="dark" onClick={this.remove}>
+        <Button variant="danger" onClick={this.remove}>
           Usuń obiekt
         </Button>
       </div>

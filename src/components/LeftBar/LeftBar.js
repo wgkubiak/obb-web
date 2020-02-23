@@ -13,7 +13,6 @@ class LeftBar extends Component {
       <div className="LeftBar">
         <h1 className="list-header">OBB-Sys</h1>
         <ListGroup
-          defaultActiveKey="#obb"
           className="list-container"
           variant="flush"
           defaultActiveKey="#obb-groups"
