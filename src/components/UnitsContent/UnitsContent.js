@@ -48,7 +48,7 @@ class UnitsContent extends Component {
         <Table bordered hover variant="dark">
           <thead>
             <tr>
-              <th>ID</th>
+              <th>Id</th>
               <th>Płeć</th>
               <th>Data zakupu</th>
               <th>Cena</th>

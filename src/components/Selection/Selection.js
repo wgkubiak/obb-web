@@ -27,9 +27,9 @@ class Selection extends Component {
         >
           Ukryj
         </Button>
-        <FiEdit3 className="edit-icon"/>
+        <FiEdit3 className="edit-icon" />
         <h4>
-         <b>#{this.props.id}</b>
+          <strong>#{this.props.id}</strong>
         </h4>
         <div className="btnContainer">
           {!this.state.showDeleteInfo && (
@@ -41,9 +41,7 @@ class Selection extends Component {
           {!this.state.showDeleteInfo && (
             <Button variant="dark">Zgon/Sprzedaż</Button>
           )}
-          {!this.state.showDeleteInfo && (
-            <Button variant="dark">Edytuj</Button>
-          )}
+          {!this.state.showDeleteInfo && <Button variant="dark">Edytuj</Button>}
           {!this.state.showDeleteInfo && (
             <DeleteButton
               id={this.props.id}
@@ -53,7 +51,9 @@ class Selection extends Component {
               deleteInfoHandler={this.showDeleteInfoHandler}
             />
           )}
-          {this.state.showDeleteInfo && <h4 className="deleted-unit-info">Obiekt usunięto</h4>}
+          {this.state.showDeleteInfo && (
+            <h4 className="deleted-unit-info">Obiekt usunięto</h4>
+          )}
         </div>
       </div>
     );

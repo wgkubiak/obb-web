@@ -1,22 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 import "./UnitsTable.css";
 import UnitsContent from "./../UnitsContent/UnitsContent";
 
-class UnitsTable extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: []
-    };
-  }
-
-  render() {
-    return (
-      <div className="UnitsTable">
-        <UnitsContent id={this.props.index} idPen={this.props.idPen} reloadHandler={this.props.reloadHandler} />
-      </div>
-    );
-  }
-}
+const UnitsTable = props => {
+  return (
+    <div className="UnitsTable">
+      <UnitsContent
+        id={props.index}
+        idPen={props.idPen}
+        reloadHandler={props.reloadHandler}
+      />
+    </div>
+  );
+};
 
 export default UnitsTable;
