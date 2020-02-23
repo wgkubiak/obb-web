@@ -1,0 +1,9 @@
+.LeftBar {
+    width: 20%;
+    height: 100%;
+    position: fixed;
+    background-color: #121212;
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25), 0 6px 20px 0 rgba(0, 0, 0, 0.20);
+    font-family: 'Lato'
+}

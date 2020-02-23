@@ -50,7 +50,7 @@ class UnitsContainer extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="UnitsContainer">
         <div>
           <select
             className="penSelect"

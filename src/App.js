@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Header from "./containers/Header";
 import UnitsContainer from "./containers/UnitsContainer";
+import LeftBar from "./components/LeftBar/LeftBar";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.css";
@@ -38,7 +39,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header unitsHandler={this.showUnitsHandler} forageHandler={this.showForageHandler} globalHandler={this.showGlobalHandler}/>
+        <LeftBar unitsHandler={this.showUnitsHandler} forageHandler={this.showForageHandler} globalHandler={this.showGlobalHandler}/>
         {this.state.showUnits && <UnitsContainer />}
       </div>
     );

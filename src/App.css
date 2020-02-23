@@ -13,3 +13,10 @@ body {
   margin-top: 10px;
   margin-right: 2px;
 }
+
+.UnitsContainer {
+  width: 80%;
+  position: absolute;
+  left: 20%;
+  margin: auto
+}
