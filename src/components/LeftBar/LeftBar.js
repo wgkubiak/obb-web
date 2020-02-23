@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { ListGroup } from "react-bootstrap";
 import "./LeftBar.css";
+import { MdDns, MdWeb, MdEqualizer } from "react-icons/md";
+import {GiWaterDrop} from "react-icons/gi";
+import {FaShoppingCart} from "react-icons/fa";
+import {TiUserDelete} from "react-icons/ti";
 
 class LeftBar extends Component {
   constructor(props) {
@@ -23,6 +27,7 @@ class LeftBar extends Component {
             variant="dark"
             onClick={this.props.unitsHandler}
           >
+            <MdDns className="bar-icon"/>
             Grupy
           </ListGroup.Item>
           <ListGroup.Item
@@ -31,6 +36,7 @@ class LeftBar extends Component {
             variant="dark"
             onClick={this.props.globalHandler}
           >
+            <MdEqualizer className="bar-icon"/>
             Globalne
           </ListGroup.Item>
           <ListGroup.Item
@@ -39,7 +45,36 @@ class LeftBar extends Component {
             variant="dark"
             onClick={this.props.forageHandler}
           >
+            <MdWeb className="bar-icon"/>
             Paśnik
+          </ListGroup.Item>
+          <ListGroup.Item
+            action
+            href="#obb-water"
+            variant="dark"
+            onClick={this.props.forageHandler}
+          >
+            <GiWaterDrop className="bar-icon"/>
+            Woda
+          </ListGroup.Item>
+          
+          <ListGroup.Item
+            action
+            href="#obb-sold"
+            variant="dark"
+            onClick={this.props.forageHandler}
+          >
+            <FaShoppingCart className="bar-icon"/>
+            Sprzedaż
+          </ListGroup.Item>
+          <ListGroup.Item
+            action
+            href="#obb-death"
+            variant="dark"
+            onClick={this.props.forageHandler}
+          >
+            <TiUserDelete className="bar-icon"/>
+            Zgon
           </ListGroup.Item>
         </ListGroup>
       </div>

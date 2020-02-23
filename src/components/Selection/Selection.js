@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./Selection.css";
 import { Button } from "react-bootstrap";
 import DeleteButton from "./../DeleteButton/DeleteButton";
+import { FiEdit3 } from "react-icons/fi";
 
 class Selection extends Component {
   constructor(props) {
@@ -21,26 +22,27 @@ class Selection extends Component {
       <div className="Selection">
         <Button
           className="hide-selection"
-          variant="success"
+          variant="dark"
           onClick={this.props.showSelection}
         >
           Ukryj
         </Button>
+        <FiEdit3 className="edit-icon"/>
         <h4>
-          Obiekt: <b>#{this.props.id}</b>
+         <b>#{this.props.id}</b>
         </h4>
         <div className="btnContainer">
           {!this.state.showDeleteInfo && (
-            <Button variant="success">Wyświetl badania</Button>
+            <Button variant="dark">Wyświetl badania</Button>
           )}
           {!this.state.showDeleteInfo && (
-            <Button variant="success">Dodaj badanie</Button>
+            <Button variant="dark">Dodaj badanie</Button>
           )}
           {!this.state.showDeleteInfo && (
-            <Button variant="success">Zgon/Sprzedaż</Button>
+            <Button variant="dark">Zgon/Sprzedaż</Button>
           )}
           {!this.state.showDeleteInfo && (
-            <Button variant="success">Edytuj</Button>
+            <Button variant="dark">Edytuj</Button>
           )}
           {!this.state.showDeleteInfo && (
             <DeleteButton
