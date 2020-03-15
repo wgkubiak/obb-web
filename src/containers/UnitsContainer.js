@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
-import UnitsTable from "./../components/UnitsTable/UnitsTable";
-import AddUnitForm from "./../components/AddUnitForm/AddUnitForm";
+import TableContent from "../components/Pigs/TableContent";
+import AddForm from "./../components/Pigs/AddForm";
 
 class UnitsContainer extends Component {
   constructor(props) {
@@ -9,10 +9,10 @@ class UnitsContainer extends Component {
     this.state = {
       dataPens: [],
       id: 1,
-      showAddUnitForm: false
+      showAddForm: false
     };
     this.updateState = this.updateState.bind(this);
-    this.toggleAddUnitForm = this.toggleAddUnitForm.bind(this);
+    this.toggleAddForm = this.toggleAddForm.bind(this);
     this.updateStateByID = this.updateStateByID.bind(this);
   }
 
@@ -34,18 +34,16 @@ class UnitsContainer extends Component {
   };
 
   updateStateByID = id => {
-    this.setState({ id: id }, () =>
-      this.getPensData(this.state.id)
-    );
+    this.setState({ id: id }, () => this.getPensData(this.state.id));
   };
 
-  toggleAddUnitForm = () => {
-    const { showAddUnitForm } = this.state;
-    this.setState({ showAddUnitForm: !showAddUnitForm })
-  }
+  toggleAddForm = () => {
+    const { showAddForm } = this.state;
+    this.setState({ showAddForm: !showAddForm });
+  };
 
   showForm = () => {
-    this.toggleAddUnitForm();
+    this.toggleAddForm();
   };
 
   render() {
@@ -65,21 +63,31 @@ class UnitsContainer extends Component {
             <option value="5">5</option>
             <option value="6">6</option>
           </select>
-          <Button className="addBtn" variant="secondary" onClick={this.toggleAddUnitForm}>
+          <Button
+            className="addBtn"
+            variant="secondary"
+            onClick={this.toggleAddForm}
+          >
             DODAJ
           </Button>
         </div>
         {this.state.dataPens.map((data, index) => (
-          <UnitsTable
+          <TableContent
             key={`unit${index}`}
             idPen={this.state.id}
             index={data.id}
             size={data.size}
             isolated={data.isolated ? "TAK" : "NIE"}
             reloadHandler={this.updateStateByID}
-          ></UnitsTable>
+          ></TableContent>
         ))}
-        { this.state.showAddUnitForm && <AddUnitForm id={this.state.id} showAddUnitHandler={this.toggleAddUnitForm} reloadHandler={this.updateStateByID}/>}
+        {this.state.showAddForm && (
+          <AddForm
+            id={this.state.id}
+            showAddUnitHandler={this.toggleAddForm}
+            reloadHandler={this.updateStateByID}
+          />
+        )}
       </div>
     );
   }

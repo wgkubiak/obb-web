@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import UnitsContainer from "./containers/UnitsContainer";
-import LeftBar from "./components/LeftBar/LeftBar";
+import Navbar from "./components/Navbar/Navbar";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -19,10 +19,14 @@ class App extends Component {
     this.showForageHandler = this.showForageHandler.bind(this);
     this.showGlobalHandler = this.showGlobalHandler.bind(this);
   }
-  
+
   toggleComponent = (unit, forage, global) => {
-    this.setState({ showUnits: unit }, () => this.setState( { showForage: forage}, () => this.setState( { showGlobal: global})))
-  }
+    this.setState({ showUnits: unit }, () =>
+      this.setState({ showForage: forage }, () =>
+        this.setState({ showGlobal: global })
+      )
+    );
+  };
 
   showUnitsHandler = () => {
     this.toggleComponent(true, false, false);
@@ -30,20 +34,24 @@ class App extends Component {
 
   showForageHandler = () => {
     this.toggleComponent(false, true, false);
-  }
+  };
 
   showGlobalHandler = () => {
     this.toggleComponent(false, false, true);
-  }
+  };
 
   render() {
     return (
       <div className="App">
-        <LeftBar unitsHandler={this.showUnitsHandler} forageHandler={this.showForageHandler} globalHandler={this.showGlobalHandler}/>
+        <Navbar
+          unitsHandler={this.showUnitsHandler}
+          forageHandler={this.showForageHandler}
+          globalHandler={this.showGlobalHandler}
+        />
         {this.state.showUnits && <UnitsContainer />}
       </div>
     );
   }
-};
+}
 
 export default App;

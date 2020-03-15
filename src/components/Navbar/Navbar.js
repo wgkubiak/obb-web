@@ -1,14 +1,13 @@
 import React from "react";
 import { ListGroup } from "react-bootstrap";
-import "./LeftBar.css";
 import { MdDns, MdWeb, MdEqualizer } from "react-icons/md";
 import { GiWaterDrop } from "react-icons/gi";
 import { FaShoppingCart } from "react-icons/fa";
 import { TiUserDelete } from "react-icons/ti";
 
-const LeftBar = props => {
+const Navbar = props => {
   return (
-    <div className="LeftBar">
+    <header className="LeftBar">
       <h1 className="list-header">OBB-Sys</h1>
       <ListGroup
         className="list-container"
@@ -71,8 +70,8 @@ const LeftBar = props => {
           Zgon
         </ListGroup.Item>
       </ListGroup>
-    </div>
+    </header>
   );
 };
 
-export default LeftBar;
+export default Navbar;
