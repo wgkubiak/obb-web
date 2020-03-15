@@ -79,7 +79,7 @@ class UnitsContainer extends Component {
             reloadHandler={this.updateStateByID}
           ></UnitsTable>
         ))}
-        { this.state.showAddUnitForm && <AddUnitForm />}        
+        { this.state.showAddUnitForm && <AddUnitForm id={this.state.id} showAddUnitHandler={this.toggleAddUnitForm} reloadHandler={this.updateStateByID}/>}
       </div>
     );
   }

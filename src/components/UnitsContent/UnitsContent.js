@@ -18,7 +18,7 @@ class UnitsContent extends Component {
   toggleSelection = () => {
     const { showSelection } = this.state;
     this.setState({ showSelection: !showSelection })
-  }
+  };
 
   getUnitsData = id => {
     fetch(`https://obb-api.herokuapp.com/active-pigs/${id}`)
@@ -65,11 +65,17 @@ class UnitsContent extends Component {
                 <td>{data.pigShoppingDate.substring(0, 10)}</td>
                 <td>{data.pigShoppingPrice}</td>
               </tr>
-              
             ))}
           </tbody>
         </Table>
-            { this.state.showSelection && <Selection id={this.state.idPig} idPen={this.props.idPen} showSelection={this.toggleSelection} reloadHandler={this.props.reloadHandler}/> }
+            { this.state.showSelection &&
+            <Selection
+                id={this.state.idPig}
+                idPen={this.props.idPen}
+                showSelection={this.toggleSelection}
+                reloadHandler={this.props.reloadHandler}
+            />
+            }
       </div>
     );
   }
