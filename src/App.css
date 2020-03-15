@@ -116,6 +116,10 @@ body {
   margin-top: 1em;
 }
 
+.table td {
+  width: 25em;
+}
+
 .UnitsContainer {
   width: 80%;
   position: absolute;

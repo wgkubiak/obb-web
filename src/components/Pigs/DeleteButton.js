@@ -6,6 +6,7 @@ const DeleteButton = props => {
     fetch(`https://obb-api.herokuapp.com/delete-pig/${props.id}`, {
       method: "DELETE"
     })
+    //TODO: Reload after remove
       .then(props.reloadHandler(props.idPen))
       .then(props.deleteInfoHandler());
   };

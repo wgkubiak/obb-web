@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Form, Button } from "react-bootstrap";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -13,13 +13,16 @@ const AddForm = props => {
   const [shoppingDate, setShoppingDate] = useState(defaultDate);
   const [price, setPrice] = useState("0");
 
-  const data = {
-    idPen: props.id,
-    id: identifier,
-    pigGender: gender === "Samiec" ? "m" : "f",
-    pigShoppingDate: shoppingDate,
-    pigShoppingPrice: price
-  };
+  const data = useMemo(
+    () => ({
+      idPen: props.id,
+      id: identifier,
+      pigGender: gender === "Samiec" ? "m" : "f",
+      pigShoppingDate: shoppingDate,
+      pigShoppingPrice: price
+    }),
+    [props.id, identifier, gender, shoppingDate, price]
+  );
 
   const submitHandler = event => {
     event.preventDefault();
@@ -37,7 +40,7 @@ const AddForm = props => {
         console.log("Success:", data);
       })
       .then(
-        // TODO: make this synchronous
+        //TODO: Reload after POST
         props.reloadHandler(props.id)
       )
       .then(props.showAddUnitHandler())

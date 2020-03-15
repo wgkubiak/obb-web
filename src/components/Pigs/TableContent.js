@@ -25,7 +25,7 @@ const TableContent = props => {
 
   useEffect(() => {
     getUnitsData(props.idPen);
-  }, [dataUnits, props.idPen]);
+  }, [props.idPen]);
 
   return (
     <div className="UnitsTable">
