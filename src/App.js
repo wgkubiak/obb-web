@@ -1,57 +1,34 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import UnitsContainer from "./containers/UnitsContainer";
 import Navbar from "./components/Navbar/Navbar";
-
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import "./App.css";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showUnits: true,
-      showForage: false,
-      showGlobal: false
-    };
-    this.toggleComponent = this.toggleComponent.bind(this);
-    this.showUnitsHandler = this.showUnitsHandler.bind(this);
-    this.showForageHandler = this.showForageHandler.bind(this);
-    this.showGlobalHandler = this.showGlobalHandler.bind(this);
+const App = () => {
+  const [showUnits, setShowUnits] = useState(true);
+  const [showForage, setShowForage] = useState(false);
+  const [showGlobal, setShowGlobal] = useState(false);
+
+  const toggleComponent = (unit, forage, global) => {
+    setShowUnits(unit);
+    setShowForage(forage);
+    setShowGlobal(global);
   }
 
-  toggleComponent = (unit, forage, global) => {
-    this.setState({ showUnits: unit }, () =>
-      this.setState({ showForage: forage }, () =>
-        this.setState({ showGlobal: global })
-      )
-    );
-  };
+  const showUnitsHandler = () => toggleComponent(true, false, false);
+  const showForageHandler = () => toggleComponent(false, true, false);
+  const showGlobalHandler = () => toggleComponent(false, false, true);
 
-  showUnitsHandler = () => {
-    this.toggleComponent(true, false, false);
-  };
-
-  showForageHandler = () => {
-    this.toggleComponent(false, true, false);
-  };
-
-  showGlobalHandler = () => {
-    this.toggleComponent(false, false, true);
-  };
-
-  render() {
-    return (
+  return (
       <div className="App">
         <Navbar
-          unitsHandler={this.showUnitsHandler}
-          forageHandler={this.showForageHandler}
-          globalHandler={this.showGlobalHandler}
+          unitsHandler={showUnitsHandler}
+          forageHandler={showForageHandler}
+          globalHandler={showGlobalHandler}
         />
-        {this.state.showUnits && <UnitsContainer />}
+        {showUnits && <UnitsContainer />}
       </div>
-    );
-  }
+  );
 }
 
 export default App;
