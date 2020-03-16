@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
-import TableContent from "../components/Pigs/TableContent";
-import AddForm from "./../components/Pigs/AddForm";
+import TableContent from "../components/Units/TableContent";
+import AddForm from "./../components/Forms/AddForm";
 
 const UnitsContainer = ({ initId = 1, initForm = false }) => {
   const [dataPens, setDataPens] = useState([]);

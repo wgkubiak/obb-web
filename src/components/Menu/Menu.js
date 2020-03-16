@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
+import DeleteButton from "../Buttons/DeleteButton";
 import { FiEdit3 } from "react-icons/fi";
-import DeleteButton from "./../Pigs/DeleteButton";
 
 const Menu = (props, { initShow = false }) => {
   const [show, setShow] = useState(initShow);
@@ -9,7 +9,7 @@ const Menu = (props, { initShow = false }) => {
   const showInfoHandler = () => {
     setShow(true);
   };
-  
+
   return (
     <div className="Selection">
       <Button
@@ -26,11 +26,20 @@ const Menu = (props, { initShow = false }) => {
       <div className="btnContainer">
         {!show && (
           <>
-            <Button variant="dark">Wyświetl badania</Button>
-            <Button variant="dark">Edytuj dane</Button>
-            <Button variant="dark">Wycofaj do kojca</Button>
+            {(props.mode === "pigs" || props.mode === "dead") && (
+              <Button variant="dark">Wyświetl badania</Button>
+            )}
+            {props.mode === "pigs" && (
+              <Button variant="dark">Dodaj badanie</Button>
+            )}
+            {props.mode === "pigs" && (
+              <Button variant="dark">Zgon/Sprzedaż</Button>
+            )}
+            {(props.mode === "pigs" || props.mode) === "dead" && <Button variant="dark">Edytuj</Button>}
+            {props.mode === "dead" && <Button variant="dark">Wycofaj do kojca</Button>}
             <DeleteButton
               id={props.id}
+              idPen={props.idPen}
               showSelection={props.showSelection}
               reloadHandler={props.reloadHandler}
               deleteInfoHandler={showInfoHandler}

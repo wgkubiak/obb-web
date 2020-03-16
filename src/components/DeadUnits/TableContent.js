@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button } from "react-bootstrap";
-import Menu from "./Menu";
+import Menu from "./../Menu/Menu";
 
 import shortid from "shortid";
 
@@ -65,7 +65,7 @@ const TableContent = props => {
   return (
     <div className="UnitsTable">
       <div className="TableContent">
-        <Table bordered variant="dark">
+        <Table bordered hover variant="dark">
           <thead>
             <tr>
               <th>Data zgonu</th>
@@ -95,6 +95,7 @@ const TableContent = props => {
       </Button>
       {showMenu && (
           <Menu
+            mode="dead"
             id={idPig}
             showMenu={toggleMenu}
             reloadHandler={props.reloadHandler}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 import { Table } from "react-bootstrap";
 import shortid from "shortid";
-import Menu from "./Menu";
+import Menu from "../Menu/Menu";
 
 const TableContent = props => {
   const [dataUnits, setDataUnits] = useState([]);
@@ -53,6 +53,7 @@ const TableContent = props => {
         </Table>
         {showMenu && (
           <Menu
+            mode="pigs"
             id={idPig}
             idPen={props.idPen}
             showMenu={toggleMenu}
