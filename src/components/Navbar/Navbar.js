@@ -45,7 +45,7 @@ const Navbar = props => {
           action
           href="#obb-water"
           variant="dark"
-          onClick={props.forageHandler}
+          onClick={props.waterHandler}
         >
           <GiWaterDrop className="bar-icon" />
           Woda
@@ -55,7 +55,7 @@ const Navbar = props => {
           action
           href="#obb-sold"
           variant="dark"
-          onClick={props.forageHandler}
+          onClick={props.soldHandler}
         >
           <FaShoppingCart className="bar-icon" />
           Sprzedaż
@@ -64,7 +64,7 @@ const Navbar = props => {
           action
           href="#obb-death"
           variant="dark"
-          onClick={props.forageHandler}
+          onClick={props.deadHandler}
         >
           <TiUserDelete className="bar-icon" />
           Zgon

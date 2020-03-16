@@ -6,10 +6,15 @@ const DeleteButton = props => {
     fetch(`https://obb-api.herokuapp.com/delete-pig/${props.id}`, {
       method: "DELETE"
     })
+    .then(props.deleteInfoHandler());
     //TODO: Reload after remove
-      .then(props.reloadHandler(props.idPen))
-      .then(props.deleteInfoHandler());
   };
+
+  // const removeHandler = async () => {
+  //   await remove().then(
+  //     props.reloadHandler(props.idPen)
+  //   );
+  // }
 
   return (
     <div className="DeleteButton">

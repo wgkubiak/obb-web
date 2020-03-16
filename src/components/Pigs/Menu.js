@@ -9,7 +9,7 @@ const Menu = (props, { initShow = false }) => {
   const showInfoHandler = () => {
     setShow(true);
   };
-
+  
   return (
     <div className="Selection">
       <Button
