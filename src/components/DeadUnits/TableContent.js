@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button } from "react-bootstrap";
+import Menu from "./Menu";
+
+import shortid from "shortid";
+
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
-const TableContent = ({ initId = 1 }) => {
+const TableContent = props => {
   const [data, setData] = useState([]);
   const [unlimitedData, setUnlimitedData] = useState([]);
+  const [showMenu, setShowMenu] = useState(false);
+  const [idPig, setIdPig] = useState("");
 
   const getData = () => {
     fetch(`https://obb-api.herokuapp.com/dead-pigs-limited`)
@@ -21,11 +27,19 @@ const TableContent = ({ initId = 1 }) => {
       .catch(e => e);
   };
 
-
   useEffect(() => {
-    getData();
-    getUnlimitedData();
-  });
+      getData();
+      getUnlimitedData();
+  }, [props.isOn]);
+
+  const showForm = id => {
+    setIdPig(id);
+    toggleMenu();
+  };
+
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
+  };
 
   const generatePDF = () => {
     const doc = new jsPDF();
@@ -64,7 +78,7 @@ const TableContent = ({ initId = 1 }) => {
           </thead>
           <tbody>
             {data.map((data, index) => (
-              <tr key={`${data.idPen}key`}>
+              <tr key={`${data.idPen}${shortid.generate()}key`} onClick={showForm.bind(this, data.id)}>
                 <td>{data.pigDeathDate.substring(0, 10)}</td>
                 <td>{data.idPen}</td>
                 <td>{data.id}</td>
@@ -76,9 +90,16 @@ const TableContent = ({ initId = 1 }) => {
           </tbody>
         </Table>
       </div>
-      <Button onClick={generatePDF} variant="dark">
+      <Button onClick={() => generatePDF()} variant="dark">
         Wygeneruj PDF z większą ilością danych
       </Button>
+      {showMenu && (
+          <Menu
+            id={idPig}
+            showMenu={toggleMenu}
+            reloadHandler={props.reloadHandler}
+          />
+      )}
     </div>
   );
 };

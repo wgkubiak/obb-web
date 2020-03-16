@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from "react";
 import { Table } from "react-bootstrap";
+import shortid from "shortid";
 import Menu from "./Menu";
 
 const TableContent = props => {
@@ -41,7 +42,7 @@ const TableContent = props => {
           </thead>
           <tbody>
             {dataUnits.map((data, index) => (
-              <tr key={`${data.id}key`} onClick={showForm.bind(this, data.id)}>
+              <tr key={`${data.id}${shortid.generate()}key`} onClick={showForm.bind(this, data.id)}>
                 <td>{data.id}</td>
                 <td>{data.pigGender === "m" ? "Samiec" : "Samica"}</td>
                 <td>{data.pigShoppingDate.substring(0, 10)}</td>

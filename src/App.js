@@ -41,7 +41,7 @@ const App = () => {
           deadHandler={showDeadHandler}
         />
         {showUnits && <UnitsContainer />}
-        {showDead && <DeadUnitsContainer />}
+        {showDead && <DeadUnitsContainer isOn={showDead}/>}
       </div>
   );
 }

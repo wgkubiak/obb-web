@@ -1,10 +1,10 @@
 import React from "react";
-import TableContent from "./../components/DeadPigs/TableContent";
+import TableContent from "./../components/DeadUnits/TableContent";
 
-const DeadUnitsContainer = () => {
+const DeadUnitsContainer = props => {
     return(
         <div className="UnitsContainer">
-            <TableContent/>
+            <TableContent mode="dead" isOn={props.isOn}/>
         </div>
     )
 }
