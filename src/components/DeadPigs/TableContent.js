@@ -5,16 +5,26 @@ import "jspdf-autotable";
 
 const TableContent = ({ initId = 1 }) => {
   const [data, setData] = useState([]);
+  const [unlimitedData, setUnlimitedData] = useState([]);
 
-  const getData = id => {
-    fetch(`https://obb-api.herokuapp.com/out-pigs`)
+  const getData = () => {
+    fetch(`https://obb-api.herokuapp.com/dead-pigs-limited`)
       .then(res => res.json())
       .then(res => setData(res))
       .catch(e => e);
   };
 
+  const getUnlimitedData = () => {
+    fetch(`https://obb-api.herokuapp.com/dead-pigs`)
+      .then(res => res.json())
+      .then(res => setUnlimitedData(res))
+      .catch(e => e);
+  };
+
+
   useEffect(() => {
     getData();
+    getUnlimitedData();
   });
 
   const generatePDF = () => {
@@ -25,7 +35,7 @@ const TableContent = ({ initId = 1 }) => {
     doc.autoTable({
       startY: 25,
       head: [["Data zgonu", "Kojec", "ID", "Plec", "Data zakupu", "Cena"]],
-      body: data.map((data, index) => [
+      body: unlimitedData.map((data, index) => [
         `${data.pigDeathDate.substring(0, 10)}`,
         `${data.idPen}`,
         `${data.id}`,
@@ -38,7 +48,6 @@ const TableContent = ({ initId = 1 }) => {
     doc.save("dead-units.pdf");
   };
 
-  //TODO: API deaths descending, limit 25
   return (
     <div className="UnitsTable">
       <div className="TableContent">
