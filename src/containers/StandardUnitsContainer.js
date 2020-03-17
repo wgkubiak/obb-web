@@ -6,22 +6,21 @@ import AddButton from "./../components/Buttons/AddButton";
 import Head from "./../components/Table/Head";
 import Body from "./../components/Table/Body";
 import Menu from "./../components/Menu/Menu";
+import EditUnitForm from "./../components/Forms/EditUnitForm";
 
 const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
+  const _date = new Date();
+
   const [dataUnits, setDataUnits] = useState([]);
-  const [idPig, setIdPig] = useState("");
   const [showMenu, setShowMenu] = useState(false);
-
-  // const [dataPens, setDataPens] = useState([]);
   const [id, setId] = useState(initId);
-  const [showAddForm, setShowAddForm] = useState(initForm);
+  const [idPig, setIdPig] = useState("");
+  const [gender, setGender] = useState("");
+  const [date, setDate] = useState(_date);
+  const [price, setPrice] = useState('0');
 
-  // const getPensData = id => {
-  //   fetch(`https://obb-api.herokuapp.com/pens/${id}`)
-  //     .then(res => res.json())
-  //     .then(res => setDataPens(res))
-  //     .catch(e => e);
-  // };
+  const [showAddForm, setShowAddForm] = useState(initForm);
+  const [editMenu, setEditMenu] = useState(false);
 
   const getUnitsData = id => {
     fetch(`https://obb-api.herokuapp.com/active-pigs/${id}`)
@@ -31,17 +30,31 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
   };
 
   useEffect(() => {
-    // getPensData(id);
     getUnitsData(id);
   }, [id]);
 
-  const showForm = id => {
+  const showForm = (pen, id, gender, date, price) => {
+    setId(pen);
     setIdPig(id);
+    setGender(gender);
+    setDate(date);
+    setPrice(price);
+
     toggleMenu();
   };
 
+  const toggleEdit = () => {
+    setEditMenu(!editMenu);
+    setShowAddForm(false);
+  }
+
+  const hideEdit = () => {
+    setEditMenu(false);
+  }
+
   const toggleMenu = () => {
     setShowMenu(!showMenu);
+    setShowAddForm(false);
   };
 
   const updateState = event => {
@@ -54,6 +67,7 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
 
   const toggleAddForm = () => {
     setShowAddForm(!showAddForm);
+    setShowMenu(false);
   };
 
   return (
@@ -85,7 +99,7 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
                 <Body
                   key={`${data.id}${shortid.generate()}`}
                   data={data}
-                  showForm={showForm.bind(this, data.id)}
+                  showForm={showForm.bind(this, data.idPen, data.id, data.pigGender, data.pigShoppingDate, data.pigShoppingPrice)}
                 />
               ))}
             </tbody>
@@ -96,6 +110,8 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
               id={idPig}
               idPen={id}
               showMenu={toggleMenu}
+              showEdit={toggleEdit}
+              showEditHandler={hideEdit}
               //reloadHandler={props.reloadHandler}
             />
           )}
@@ -106,6 +122,18 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
           id={id}
           showAddUnitHandler={toggleAddForm}
           reloadHandler={updateStateByID}
+        />
+      )}
+     {editMenu && (
+        <EditUnitForm
+          id={id}
+          idPig={idPig}
+          gender={gender}
+          date={date}
+          price={price}
+          showEditHandler={toggleEdit}
+          reloadHandler={updateStateByID}
+          showMenuHandler={toggleMenu}
         />
       )}
     </div>

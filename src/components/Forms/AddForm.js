@@ -51,8 +51,15 @@ const AddForm = props => {
 
   return (
     <div className="AddUnitForm">
+      <Button
+        className="hide-selection"
+        variant="dark"
+        onClick={props.showAddUnitHandler}
+      >
+        Ukryj
+      </Button>
       <Form>
-        <Form.Group controlId="exampleForm.ControlInput1">
+        <Form.Group controlId="exampleForm.ControlInput1" className="add-input">
           <Form.Label>ID</Form.Label>
           <Form.Control
             type="text"
@@ -60,7 +67,7 @@ const AddForm = props => {
             onChange={event => setIdentifier(event.target.value)}
           />
         </Form.Group>
-        <Form.Group controlId="exampleForm.ControlSelect1">
+        <Form.Group controlId="exampleForm.ControlSelect1" className="add-input">
           <Form.Label>Płeć</Form.Label>
           <Form.Control
             as="select"
@@ -70,7 +77,7 @@ const AddForm = props => {
             <option>Samica</option>
           </Form.Control>
         </Form.Group>
-        <Form.Group controlId="exampleForm.ControlInput1">
+        <Form.Group controlId="exampleForm.ControlInput1" className="add-input">
           <Form.Label>Cena</Form.Label>
           <Form.Control
             type="text"
@@ -78,7 +85,7 @@ const AddForm = props => {
             onChange={event => setPrice(event.target.value)}
           />
         </Form.Group>
-        <Form.Group controlId="exampleForm.ControlSelect1">
+        <Form.Group controlId="exampleForm.ControlSelect1" className="add-input">
           <Form.Label>Data zakupu</Form.Label>
           <DatePicker
             className="date-picker"

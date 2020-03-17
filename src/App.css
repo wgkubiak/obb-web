@@ -18,10 +18,6 @@ body {
   top: 20%;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 2em;
-  padding-bottom: 2em;
-  padding-left: 1em;
-  padding-right: 1em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -165,7 +161,23 @@ input, label {
   padding-bottom: 2em;
 }
 
-#sold-dead--selection, #sold-dead--price-input {
+.EditUnitForm {
+  width: 20em;
+  height: 30em;
+  z-index: 2;
+  position: fixed;
+  background-color: #d1d9ff;
+  left: 40%;
+  right: 0;
+  top: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0.3em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
+  padding-bottom: 2em;
+}
+
+#sold-dead--selection, #sold-dead--price-input, .edit-input, .add-input {
   width: 80%;
   left: 50%;
   transform: translate(-50%, 0%);

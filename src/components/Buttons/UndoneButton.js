@@ -30,8 +30,8 @@ const UndoneButton = props => {
         Wycofaj do kojca
       </Button>
       <Modal show={showModal} onHide={handleModalClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Czy jesteś pewny?!</Modal.Title>
+        <Modal.Header>
+          <Modal.Title>Czy jesteś pewna/y?!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           Próba przeniesienia jednostki #{props.id} do kojca

@@ -15,12 +15,19 @@ const Menu = (props, { initShow = false }) => {
     setShow(true);
   };
 
+  const hideEverything = () => {
+    props.showMenu();
+    if(props.showEditHandler !== undefined && props.showEditHandler !== null) {
+      props.showEditHandler();
+    }
+  }
+
   return (
     <div className="Selection">
       <Button
         className="hide-selection"
         variant="dark"
-        onClick={props.showMenu}
+        onClick={hideEverything}
       >
         Ukryj
       </Button>
@@ -41,7 +48,7 @@ const Menu = (props, { initShow = false }) => {
               <Button variant="dark" onClick={showDeadSoldHandler}>Zgon/Sprzedaż</Button>
             )}
             {(props.mode === "pigs" || props.mode === "dead" || props.mode === "sold") && (
-              <Button variant="dark">Edytuj</Button>
+              <Button variant="dark" onClick={props.showEdit}>Edytuj</Button>
             )}
             {(props.mode === "dead" || props.mode === "sold") && (
               <UndoneButton id={props.id} mode={props.mode}></UndoneButton>

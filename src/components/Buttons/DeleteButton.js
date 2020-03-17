@@ -29,8 +29,8 @@ const DeleteButton = props => {
       </Button>
 
       <Modal show={showModal} onHide={handleModalClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Czy jesteś pewny?!</Modal.Title>
+        <Modal.Header>
+          <Modal.Title>Czy jesteś pewna/y?!</Modal.Title>
         </Modal.Header>
         <Modal.Body>Próba usunięcia jednostki #{props.id}</Modal.Body>
         <Modal.Footer>
