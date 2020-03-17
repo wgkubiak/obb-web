@@ -43,6 +43,7 @@ const Menu = (props, { initShow = false }) => {
             )}
             <DeleteButton
               id={props.id}
+              url="https://obb-api.herokuapp.com/delete-pig/"
               idPen={props.idPen}
               showSelection={props.showSelection}
               reloadHandler={props.reloadHandler}

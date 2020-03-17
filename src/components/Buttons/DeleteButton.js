@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 
 const DeleteButton = props => {
   const remove = () => {
-    fetch(`https://obb-api.herokuapp.com/delete-pig/${props.id}`, {
+    fetch(`${props.url}${props.id}`, {
       method: "DELETE"
     })
     .then(props.deleteInfoHandler());
@@ -19,7 +19,7 @@ const DeleteButton = props => {
   return (
     <div className="DeleteButton">
       <Button variant="danger" onClick={remove}>
-        Usuń obiekt
+        Usuń
       </Button>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import GeneratePDFButton from "./../Buttons/GeneratePDFButton";
 import Menu from "./../Menu/Menu";
 
