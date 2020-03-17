@@ -46,7 +46,7 @@ const DeadUnitsContainer = props => {
     const doc = new jsPDF();
     const date = new Date();
 
-    doc.text(`${props.mode} - ${date.toString().substring(0, 15)}`, 10, 20);
+    doc.text(`Raport sprzedazy - ${date.toString().substring(0, 15)}`, 10, 20);
     doc.autoTable({
       startY: 25,
       head: [

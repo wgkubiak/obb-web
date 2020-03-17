@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import DeleteButton from "../Buttons/DeleteButton";
+import UndoneButton from "../Buttons/UndoneButton";
+import SoldDeadForm from "../Forms/SoldDeadForm";
 import { FiEdit3 } from "react-icons/fi";
 
 const Menu = (props, { initShow = false }) => {
   const [show, setShow] = useState(initShow);
+  const [showDeadSoldForm, setShowDeadSoldForm] = useState(false);
+
+  const showDeadSoldHandler = () => setShowDeadSoldForm(!showDeadSoldForm);
 
   const showInfoHandler = () => {
     setShow(true);
@@ -33,13 +38,13 @@ const Menu = (props, { initShow = false }) => {
               <Button variant="dark">Dodaj badanie</Button>
             )}
             {props.mode === "pigs" && (
-              <Button variant="dark">Zgon/Sprzedaż</Button>
+              <Button variant="dark" onClick={showDeadSoldHandler}>Zgon/Sprzedaż</Button>
             )}
             {(props.mode === "pigs" || props.mode === "dead" || props.mode === "sold") && (
               <Button variant="dark">Edytuj</Button>
             )}
             {(props.mode === "dead" || props.mode === "sold") && (
-              <Button variant="dark">Wycofaj do kojca</Button>
+              <UndoneButton id={props.id} mode={props.mode}></UndoneButton>
             )}
             <DeleteButton
               id={props.id}
@@ -52,6 +57,7 @@ const Menu = (props, { initShow = false }) => {
           </>
         )}
         {show && <h4 className="deleted-unit-info">Obiekt usunięto</h4>}
+        {showDeadSoldForm && <SoldDeadForm id={props.id} showHandler={showDeadSoldHandler}/>}
       </div>
     </div>
   );
