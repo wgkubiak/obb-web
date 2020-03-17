@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import StandardUnitsContainer from "./containers/StandardUnitsContainer";
+import SoldUnitsContainer from "./containers/SoldUnitsContainer";
 import DeadUnitsContainer from "./containers/DeadUnitsContainer";
 import Navbar from "./components/Navbar/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,7 +11,7 @@ const App = () => {
   // const [showForage, setShowForage] = useState(false);
   // const [showGlobal, setShowGlobal] = useState(false);
   // const [showWater, setShowWater] = useState(false);
-  // const [showSold, setShowSold] = useState(false);
+  const [showSold, setShowSold] = useState(false);
   const [showDead, setShowDead] = useState(false);
 
   const toggleComponent = (unit, forage, global, water, sold, dead) => {
@@ -18,7 +19,7 @@ const App = () => {
     // setShowForage(forage || false);
     // setShowGlobal(global || false);
     // setShowWater(water || false);
-    // setShowSold(sold || false);
+    setShowSold(sold || false);
     setShowDead(dead || false);
   };
 
@@ -42,7 +43,8 @@ const App = () => {
         deadHandler={showDeadHandler}
       />
       {showUnits && <StandardUnitsContainer />}
-      {showDead && <DeadUnitsContainer isOn={showDead} />}
+      {showSold && <SoldUnitsContainer isOn={showSold}/>}
+      {showDead && <DeadUnitsContainer isOn={showDead}/>}
     </div>
   );
 };

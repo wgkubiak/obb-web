@@ -35,10 +35,10 @@ const Menu = (props, { initShow = false }) => {
             {props.mode === "pigs" && (
               <Button variant="dark">Zgon/Sprzedaż</Button>
             )}
-            {(props.mode === "pigs" || props.mode) === "dead" && (
+            {(props.mode === "pigs" || props.mode === "dead" || props.mode === "sold") && (
               <Button variant="dark">Edytuj</Button>
             )}
-            {props.mode === "dead" && (
+            {(props.mode === "dead" || props.mode === "sold") && (
               <Button variant="dark">Wycofaj do kojca</Button>
             )}
             <DeleteButton
