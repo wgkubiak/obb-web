@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button } from "react-bootstrap";
+import GeneratePDFButton from "./../Buttons/GeneratePDFButton";
 import Menu from "./../Menu/Menu";
 
 import shortid from "shortid";
@@ -28,8 +29,8 @@ const TableContent = props => {
   };
 
   useEffect(() => {
-      getData();
-      getUnlimitedData();
+    getData();
+    getUnlimitedData();
   }, [props.isOn]);
 
   const showForm = id => {
@@ -49,7 +50,7 @@ const TableContent = props => {
     doc.autoTable({
       startY: 25,
       head: [["Data zgonu", "Kojec", "ID", "Plec", "Data zakupu", "Cena"]],
-      body: unlimitedData.map((data, index) => [
+      body: unlimitedData.map(data => [
         `${data.pigDeathDate.substring(0, 10)}`,
         `${data.idPen}`,
         `${data.id}`,
@@ -78,7 +79,10 @@ const TableContent = props => {
           </thead>
           <tbody>
             {data.map((data, index) => (
-              <tr key={`${data.idPen}${shortid.generate()}key`} onClick={showForm.bind(this, data.id)}>
+              <tr
+                key={`${data.idPen}${shortid.generate()}key`}
+                onClick={showForm.bind(this, data.id)}
+              >
                 <td>{data.pigDeathDate.substring(0, 10)}</td>
                 <td>{data.idPen}</td>
                 <td>{data.id}</td>
@@ -90,16 +94,14 @@ const TableContent = props => {
           </tbody>
         </Table>
       </div>
-      <Button onClick={() => generatePDF()} variant="dark">
-        Wygeneruj PDF z większą ilością danych
-      </Button>
+      <GeneratePDFButton generatePDFHandler={generatePDF} />
       {showMenu && (
-          <Menu
-            mode="dead"
-            id={idPig}
-            showMenu={toggleMenu}
-            reloadHandler={props.reloadHandler}
-          />
+        <Menu
+          mode="dead"
+          id={idPig}
+          showMenu={toggleMenu}
+          reloadHandler={props.reloadHandler}
+        />
       )}
     </div>
   );

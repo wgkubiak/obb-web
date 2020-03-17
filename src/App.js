@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UnitsContainer from "./containers/UnitsContainer";
+import StandardUnitsContainer from "./containers/StandardUnitsContainer";
 import DeadUnitsContainer from "./containers/DeadUnitsContainer";
 import Navbar from "./components/Navbar/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -20,30 +20,31 @@ const App = () => {
     // setShowWater(water || false);
     // setShowSold(sold || false);
     setShowDead(dead || false);
-  }
+  };
 
   const showUnitsHandler = () => toggleComponent(true);
   const showForageHandler = () => toggleComponent(false, true);
   const showGlobalHandler = () => toggleComponent(false, false, true);
   const showWaterHandler = () => toggleComponent(false, false, false, true);
-  const showSoldHandler = () => toggleComponent(false, false, false, false, true);
-  const showDeadHandler = () => toggleComponent(false, false, false, false, false, true);
-  
+  const showSoldHandler = () =>
+    toggleComponent(false, false, false, false, true);
+  const showDeadHandler = () =>
+    toggleComponent(false, false, false, false, false, true);
 
   return (
-      <div className="App">
-        <Navbar
-          unitsHandler={showUnitsHandler}
-          forageHandler={showForageHandler}
-          globalHandler={showGlobalHandler}
-          waterHandler={showWaterHandler}
-          soldHandler={showSoldHandler}
-          deadHandler={showDeadHandler}
-        />
-        {showUnits && <UnitsContainer />}
-        {showDead && <DeadUnitsContainer isOn={showDead}/>}
-      </div>
+    <div className="App">
+      <Navbar
+        unitsHandler={showUnitsHandler}
+        forageHandler={showForageHandler}
+        globalHandler={showGlobalHandler}
+        waterHandler={showWaterHandler}
+        soldHandler={showSoldHandler}
+        deadHandler={showDeadHandler}
+      />
+      {showUnits && <StandardUnitsContainer />}
+      {showDead && <DeadUnitsContainer isOn={showDead} />}
+    </div>
   );
-}
+};
 
 export default App;
