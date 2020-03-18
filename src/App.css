@@ -298,7 +298,7 @@ option {
 .table-dark td,
 .table-dark th,
 .table-dark thead th {
-  border: none;
+  border: 1px solid #d3d3d3 !important;
 }
 
 .table-dark tr:hover {
