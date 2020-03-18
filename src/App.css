@@ -51,6 +51,11 @@ button:hover {
   background-color: #db5351 !important;
 }
 
+.chartjs-render-monitor {
+  margin-top: 5em;
+  
+}
+
 .date-picker {
   width: 100%;
   text-align: center;
@@ -116,6 +121,44 @@ button:hover {
 .global-chart {
   width: 20% !important;
   height: 20% !important;
+}
+
+.chart {
+  position: relative;
+  width: 100% !important;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.chart--temperature, .chart--wetness, .chart--nhthree, .chart--htwos, .chart--cotwo {
+  width: 40em;
+  height: 20em;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-top: 1em;
+  margin: 0 auto;
+}
+
+.chart--temperature {
+  order: 1
+}
+
+.chart--wetness {
+  order: 2
+}
+
+.chart--nhthree {
+  order: 3
+}
+
+.chart--htwos {
+  order: 4
+}
+
+.chart--cotwo {
+  order: 5
 }
 
 .hide-selection {
