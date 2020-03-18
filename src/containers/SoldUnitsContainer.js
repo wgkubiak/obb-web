@@ -124,6 +124,7 @@ const DeadUnitsContainer = props => {
             showMenu={toggleMenu}
             showEdit={toggleEdit}
             hideMenu={hideMenu}
+            url="https://obb-api.herokuapp.com/delete-pig/"
             show={showEdit}
             reloadHandler={props.reloadHandler}
           />

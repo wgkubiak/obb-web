@@ -99,6 +99,7 @@ const DeadUnitsContainer = props => {
           {showMenu && (
             <Menu
               mode="dead"
+              url="https://obb-api.herokuapp.com/delete-pig/"
               id={idPig}
               showMenu={toggleMenu}
               showEdit={toggleEdit}

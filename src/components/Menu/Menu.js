@@ -45,7 +45,7 @@ const Menu = (props, { initShow = false }) => {
             {props.mode === "pigs" && (
               <Button variant="dark" onClick={props.showDeadSoldHandler}>Zgon/Sprzedaż</Button>
             )}
-            {(props.mode === "pigs") && (
+            {(props.mode === "pigs" || props.mode === "global") && (
               <Button variant="dark" onClick={props.showEditHandler}>Edytuj</Button>
             )}
             {(props.mode === "sold") && (
@@ -56,10 +56,10 @@ const Menu = (props, { initShow = false }) => {
             )}
             {(props.mode === "dead" || props.mode === "sold") && (
               <UndoneButton id={props.id} mode={props.mode} hideEverythingHandler={hideEverything}></UndoneButton>
-            )}
-            <DeleteButton
+            )}          
+              <DeleteButton
               id={props.id}
-              url="https://obb-api.herokuapp.com/delete-pig/"
+              url={props.url}
               idPen={props.idPen}
               showSelection={props.showSelection}
               reloadHandler={props.reloadHandler}

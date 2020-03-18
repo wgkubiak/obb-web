@@ -116,6 +116,7 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
               mode="pigs"
               id={idPig}
               idPen={id}
+              url="https://obb-api.herokuapp.com/delete-pig/"
               deadSoldMode={showDeadSoldForm}
               showMenu={toggleMenu}
               showDeadSoldHandler={showDeadSoldHandler}

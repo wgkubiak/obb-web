@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import GlobalChart from "./../components/Charts/GlobalChart";
-import {Table} from "react-bootstrap";
+import { Table, Modal, Button, Spinner } from "react-bootstrap";
 import Body from "./../components/Table/Body";
 import Head from "./../components/Table/Head";
 import AddButton from "./../components/Buttons/AddButton";
@@ -9,23 +9,127 @@ import shortid from "shortid";
 
 const GlobalDataContainer = () => {
   const [data, setData] = useState([]);
+  const [showForm, setShowForm] = useState(false);
+  const [id, setId] = useState("");
+  const [measureDate, setMeasureDate] = useState("");
+  const [measureTime, setMeasureTime] = useState("");
+  const [nh, setNh] = useState("");
+  const [htwo, setHTwo] = useState("");
+  const [co, setCO] = useState("");
+  const [temp, setTemp] = useState("");
+  const [wet, setWet] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [showChart, setShowChart] = useState(false);
+  
+  const [datesData, setDatesData] = useState([]);
+  const [nhData, setNHData] = useState([]);
+  const [htwoData, setHTwoData] = useState([]);
+  const [coData, setCOData] = useState([]);
+  const [tempData, setTempData] = useState([]);
+  const [wetData, setWetData] = useState([]);
+
+  const [sorted, setSorted] = useState(false);
+
+  const handleModalClose = () => setShowModal(false);
+  const handleModalShow = () => setShowModal(true);
 
   const getData = async () => {
-    await fetch(`https://obb-api.herokuapp.com/global`)
+    await fetch(`https://obb-api.herokuapp.com/global-latest`)
       .then(res => res.json())
       .then(res => setData(res))
       .catch(e => e);
   };
 
+  const remove = () => {
+    fetch(`https://obb-api.herokuapp.com/delete-global/${id}`, {
+      method: "DELETE"
+    })
+      .then(handleModalClose())
+      .then(setShowForm(false));
+  };
+
   useEffect(() => {
     getData();
-  }, []);
+    sortData();
+    setShowChart(true);
+  }, [sorted]);
 
-  const toggleAddForm = () => alert("Tutaj będzie form");
+  const toggleAddForm = () => {
+    alert("Dodawanie");
+    setSorted(false)
+  };
+
+  const sortData = () => {
+    const datesContainer = [];
+    const nhContainer = [];
+    const htwoContainer = [];
+    const coContainer = [];
+    const tempContainer = [];
+    const wetContainer = [];
+
+    Object.keys(data).map(item => {
+      Object.keys(data[item]).map(element => {
+        switch (element) {
+          case "measureDate":
+            datesContainer.push(data[item][element].substring(5, 10));
+            break;
+          case "nhThree":
+            nhContainer.push(data[item][element]);
+            break;
+          case "hTwoS":
+            htwoContainer.push(data[item][element]);
+            break;
+          case "coTwo":
+            coContainer.push(data[item][element]);
+            break;
+          case "temperature":
+            tempContainer.push(data[item][element]);
+            break;
+          case "wetness":
+            wetContainer.push(data[item][element]);
+            break;
+          default:
+            break;
+        }
+      }); 
+    });
+    
+
+    setDatesData(datesContainer);
+    setNHData(nhContainer);
+    setHTwoData(htwoContainer);
+    setCOData(coContainer);
+    setTempData(tempContainer);
+    setWetData(wetContainer);
+ 
+    // TODO: make it a little bit better
+    setTimeout(() => {
+      setSorted(true);
+      console.log(sorted);
+    }, 4000)
+  };
+
+  const showFormHandler = (id, mDate, mTime, nh, htwo, co, temp, wet) => {
+    setId(id);
+    setMeasureDate(mDate);
+    setMeasureTime(mTime);
+    setNh(nh);
+    setHTwo(htwo);
+    setCO(co);
+    setTemp(temp);
+    setWet(wet);
+
+    toggleForm();
+  };
+
+  const toggleForm = () => {
+    setShowForm(!showForm);
+    //setShowAddForm(false);
+  };
 
   return (
-    <div className="UnitsContainer" style={{marginTop: "1em" }}>
-      <AddButton toggleHandler={toggleAddForm}/>
+    <div className="UnitsContainer" style={{ marginTop: "1em" }}>
+      <AddButton toggleHandler={toggleAddForm} />
       {/* TODO toggleAddForm - Add global measure */}
       <div className="UnitsTable">
         <div className="TableContent">
@@ -33,7 +137,7 @@ const GlobalDataContainer = () => {
             <thead>
               <Head
                 data={[
-                  "ID pomiaru",               
+                  "ID pomiaru",
                   "Data pomiaru",
                   "Czas",
                   "NH3",
@@ -49,99 +153,116 @@ const GlobalDataContainer = () => {
                 <Body
                   key={`${data.id}${shortid.generate()}`}
                   data={data}
-                  // showForm={showForm.bind(
-                  //   this,
-                  //   data.measureDate,
-                  //   data.measureTime,
-                  //   data.temperature,
-                  //   data.wetness,
-                  //   data.nhThree,
-                  //   data.hTwoS,
-                  //   data.coTwo
-                  // )}
+                  showForm={showFormHandler.bind(
+                    this,
+                    data.id,
+                    data.measureDate,
+                    data.measureTime,
+                    data.nhThree,
+                    data.hTwoS,
+                    data.coTwo,
+                    data.remperature,
+                    data.wetness
+                  )}
                 />
               ))}
             </tbody>
           </Table>
         </div>
-        <GeneratePDFButton generatePDFHandler={() => alert("Tutaj wygeneruje pdf")} />  
+        <GeneratePDFButton
+          generatePDFHandler={() => alert("Tutaj wygeneruje pdf")}
+        />
         {/* generatePDF */}
-        {/* {showMenu && (
-          <Menu
-            mode="sold"
-            id={idPig}
-            price={price}
-            showMenu={toggleMenu}
-            showEdit={toggleEdit}
-            hideMenu={hideMenu}
-            show={showEdit}
-            reloadHandler={props.reloadHandler}
-          />
-        )} */}
+        {showForm && (
+          <>
+            <Button
+              variant="danger"
+              className="button--delete"
+              onClick={handleModalShow}
+            >
+              Usuń pomiar #{id}
+            </Button>
+            <Button
+              variant="danger"
+              className="button--delete"
+              onClick={handleModalShow}
+            >
+              Edytuj pomiar #{id}
+            </Button>
+
+            <Modal show={showModal} onHide={handleModalClose}>
+              <Modal.Header>
+                <Modal.Title>Czy jesteś pewna/y?!</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>Próba usunięcia pomiaru nr. #{id}</Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleModalClose}>
+                  Nie
+                </Button>
+                <Button variant="primary" onClick={remove}>
+                  Tak, usuń
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          </>
+        )}
       </div>
-      <div className="chart">
+      {!sorted && (
+         <Button variant="primary" disabled>
+         <Spinner
+           as="span"
+           animation="grow"
+           size="sm"
+           role="status"
+           aria-hidden="true"
+         />
+         Wczytuję dane...
+       </Button>
+      )}
+      {showChart && (
+        <div className="chart">
         <GlobalChart
           chartClass="chart--temperature"
           chartID="global-chart"
           mode="line"
           chartLabel="Temperatura"
-          dates={["2020-01-01", "2020-01-02", "2020-01-03"]}
-          data={[21.2, 22.1, 21.9]}
+          dates={datesData}
+          data={tempData}
         />
         <GlobalChart
           chartClass="chart--wetness"
           chartID="global-chart"
           mode="line"
           chartLabel="Wilgotność (55-70)"
-          dates={[
-            "2020-01-02",
-            "2020-01-03",
-            "2020-01-04",
-            "2020-01-05",
-            "2020-01-06",
-            "2020-01-07"
-          ]}
-          data={[53, 68, 69, 64, 61, 60]}
+          dates={datesData}
+          data={wetData}
         />
         <GlobalChart
           chartClass="chart--nhthree"
           chartID="global-chart"
           mode="line"
           chartLabel="NH3 (0 - 20)"
-          dates={[
-            "2020-01-02",
-            "2020-01-03",
-            "2020-01-04",
-            "2020-01-05",
-            "2020-01-06",
-            "2020-01-07"
-          ]}
-          data={[2, 15, 4, 11, 14, 14]}
+          dates={datesData}
+          data={nhData}
         />
         <GlobalChart
           chartClass="chart--htwos"
           chartID="global-chart"
           mode="line"
           chartLabel="H2S (0-2)"
-          dates={[
-            "2020-01-02",
-            "2020-01-03",
-            "2020-01-04",
-            "2020-01-05",
-            "2020-01-06",
-            "2020-01-07"
-          ]}
-          data={[0, 0, 1, 2, 0, 2]}
+          dates={datesData}
+          data={htwoData}
         />
         <GlobalChart
           chartClass="chart--cotwo"
           chartID="global-chart"
           mode="line"
           chartLabel="CO2 (500-3000)"
-          dates={["2020-01-01", "2020-01-02", "2020-01-03"]}
-          data={[1500, 4500, 3000, 1500, 1500, 2000]}
+          dates={datesData}
+          data={coData}
         />
       </div>
+      )}
     </div>
   );
 };

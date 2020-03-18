@@ -126,7 +126,7 @@ button:hover {
 .chart {
   position: relative;
   width: 100% !important;
-  height: auto;
+  height: 80em;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -135,6 +135,7 @@ button:hover {
 .chart--temperature, .chart--wetness, .chart--nhthree, .chart--htwos, .chart--cotwo {
   width: 40em;
   height: 20em;
+  margin-top: 5em;
   margin-left: 1em;
   margin-right: 1em;
   margin: 0 auto;

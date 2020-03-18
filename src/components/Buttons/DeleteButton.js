@@ -42,7 +42,6 @@ const DeleteButton = props => {
           </Button>
         </Modal.Footer>
       </Modal>
-
     </div>
   );
 };

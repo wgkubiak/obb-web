@@ -4,7 +4,7 @@ import Chart from "chart.js";
 const GlobalChart = props => {
   const ref = React.createRef();
 
-  useEffect(() => {
+  useEffect(() => {  
     const _ref = ref.current.getContext("2d");
     new Chart(_ref, {
       type: props.mode,
@@ -14,11 +14,13 @@ const GlobalChart = props => {
           {
             label: props.chartLabel,
             data: Object.values(props.data),
-            backgroundColor: "#ec625f"
+            backgroundColor: "#90A4AE"
           }
         ]
       },
-      options: {}
+      options: {
+        responsive: true
+      }
     });
   }, [ref, props.chartLabel, props.data, props.dates, props.mode]);
 
