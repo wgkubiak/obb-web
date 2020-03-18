@@ -21,7 +21,8 @@ const UndoneButton = props => {
       .then(data => {
         console.log("Success:", data);
       })
-      .then(handleModalClose());
+      .then(handleModalClose())
+      .then(props.hideEverythingHandler());
   };
 
   return (

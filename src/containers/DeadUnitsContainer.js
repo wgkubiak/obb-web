@@ -4,7 +4,6 @@ import GeneratePDFButton from "./../components/Buttons/GeneratePDFButton";
 import Head from "./../components/Table/Head";
 import Body from "./../components/Table/Body";
 import Menu from "./../components/Menu/Menu";
-import NoData from "./../components/Info/NoData";
 import shortid from "shortid";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
@@ -14,12 +13,10 @@ const DeadUnitsContainer = props => {
   const [unlimitedData, setUnlimitedData] = useState([]);
   const [showMenu, setShowMenu] = useState(false);
   const [idPig, setIdPig] = useState("");
-  
-  const [showTable, setShowTable] = useState(false);
-  const [showText, setShowText] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
 
-  const getData = async () => {
-    await fetch(`https://obb-api.herokuapp.com/dead-pigs-limited`)
+  const getData = () => {
+    fetch(`https://obb-api.herokuapp.com/dead-pigs-limited`)
       .then(res => res.json())
       .then(res => setData(res))
       .catch(e => e);
@@ -33,17 +30,9 @@ const DeadUnitsContainer = props => {
   };
 
   useEffect(() => {
-    getData().then(() => {
-      if (Array.isArray(data) && data.length) {
-        setShowTable(true);
-        setShowText(false);
-      } else {
-        setShowTable(false);
-        setShowText(true);
-      }
-    });
+    getData();
     getUnlimitedData();
-  }, [data.length]);
+  }, []);
 
   const showForm = id => {
     setIdPig(id);
@@ -54,6 +43,9 @@ const DeadUnitsContainer = props => {
     setShowMenu(!showMenu);
   };
 
+  const toggleEdit = () => {
+    setShowEdit(!showEdit);
+  };
   const generatePDF = () => {
     const doc = new jsPDF();
     const date = new Date();
@@ -77,7 +69,6 @@ const DeadUnitsContainer = props => {
 
   return (
     <div className="UnitsContainer">
-      {showTable && (
         <div className="UnitsTable">
           <div className="TableContent">
             <Table bordered hover variant="dark">
@@ -110,14 +101,12 @@ const DeadUnitsContainer = props => {
               mode="dead"
               id={idPig}
               showMenu={toggleMenu}
+              showEdit={toggleEdit}
+              showDead={showEdit}
               reloadHandler={props.reloadHandler}
             />
           )}
         </div>
-      )}
-      {showText && 
-        <NoData/>
-      }
     </div>
   );
 };

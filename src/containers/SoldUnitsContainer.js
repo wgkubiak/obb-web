@@ -13,9 +13,11 @@ const DeadUnitsContainer = props => {
   const [unlimitedData, setUnlimitedData] = useState([]);
   const [showMenu, setShowMenu] = useState(false);
   const [idPig, setIdPig] = useState("");
+  const [price, setPrice] = useState("");
+  const [showEdit, setShowEdit] = useState(false);
 
-  const getData = () => {
-    fetch(`https://obb-api.herokuapp.com/sold-pigs-limited`)
+  const getData = async () => {
+    await fetch(`https://obb-api.herokuapp.com/sold-pigs-limited`)
       .then(res => res.json())
       .then(res => setData(res))
       .catch(e => e);
@@ -28,19 +30,29 @@ const DeadUnitsContainer = props => {
       .catch(e => e);
   };
 
-  useEffect(() => {
-    getData();
-    getUnlimitedData();
-  }, [props.isOn]);
-
-  const showForm = id => {
+  const showForm = (id, price) => {
     setIdPig(id);
+    setPrice(price);
     toggleMenu();
   };
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
+
+  const hideMenu = () => {
+    setShowMenu(false);
+    setShowEdit(false);
+  };
+
+  const toggleEdit = () => {
+    setShowEdit(!showEdit);
+  };
+
+  useEffect(() => {
+    getData();
+    getUnlimitedData();
+  }, []);
 
   const generatePDF = () => {
     const doc = new jsPDF();
@@ -97,7 +109,7 @@ const DeadUnitsContainer = props => {
                 <Body
                   key={`${data.id}${shortid.generate()}`}
                   data={data}
-                  showForm={showForm.bind(this, data.id)}
+                  showForm={showForm.bind(this, data.id, data.pigSellingCost)}
                 />
               ))}
             </tbody>
@@ -108,7 +120,11 @@ const DeadUnitsContainer = props => {
           <Menu
             mode="sold"
             id={idPig}
+            price={price}
             showMenu={toggleMenu}
+            showEdit={toggleEdit}
+            hideMenu={hideMenu}
+            show={showEdit}
             reloadHandler={props.reloadHandler}
           />
         )}

@@ -43,6 +43,9 @@ const SoldDeadForm = props => {
       .then(data => {
         console.log("Success:", data);
       })
+      .then(
+        props.hideEverythingHandler()
+      )
       .catch(error => {
         console.error("Error:", error);
       });

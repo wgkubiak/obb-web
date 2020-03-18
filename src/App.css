@@ -75,10 +75,47 @@ button:hover {
   margin-top: 1em;
 }
 
+.EditUnitForm {
+  width: 20em;
+  height: 30em;
+  z-index: 2;
+  position: fixed;
+  background-color: #ffffff;
+  left: 40%;
+  right: 0;
+  top: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0.3em;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
+  padding-bottom: 2em;
+}
+
+.EditDeadUnitForm {
+  width: 20em;
+  height: 15em;
+  z-index: 2;
+  position: fixed;
+  background-color: #ffffff;
+  left: 40%;
+  right: 0;
+  top: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0.3em;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
+  padding-bottom: 2em;
+}
+
 .form-control {
   text-align: center;
   background-color: #ffffff;
   color: #212121
+}
+
+.global-chart {
+  width: 20% !important;
+  height: 20% !important;
 }
 
 .hide-selection {
@@ -179,21 +216,6 @@ option {
   padding-bottom: 2em;
 }
 
-.EditUnitForm {
-  width: 20em;
-  height: 30em;
-  z-index: 2;
-  position: fixed;
-  background-color: #ffffff;
-  left: 40%;
-  right: 0;
-  top: 20%;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 0.3em;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
-  padding-bottom: 2em;
-}
 
 #sold-dead--selection, #sold-dead--price-input, .edit-input, .add-input {
   width: 80%;

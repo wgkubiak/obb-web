@@ -21,6 +21,7 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
 
   const [showAddForm, setShowAddForm] = useState(initForm);
   const [editMenu, setEditMenu] = useState(false);
+  const [showDeadSoldForm, setShowDeadSoldForm] = useState(false);
 
   const getUnitsData = id => {
     fetch(`https://obb-api.herokuapp.com/active-pigs/${id}`)
@@ -46,6 +47,7 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
   const toggleEdit = () => {
     setEditMenu(!editMenu);
     setShowAddForm(false);
+    setShowDeadSoldForm(false);
   }
 
   const hideEdit = () => {
@@ -69,6 +71,11 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
     setShowAddForm(!showAddForm);
     setShowMenu(false);
   };
+
+  const showDeadSoldHandler = () => {
+    setShowDeadSoldForm(!showDeadSoldForm);
+    hideEdit();
+  }
 
   return (
     <div className="UnitsContainer">
@@ -109,9 +116,11 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
               mode="pigs"
               id={idPig}
               idPen={id}
+              deadSoldMode={showDeadSoldForm}
               showMenu={toggleMenu}
+              showDeadSoldHandler={showDeadSoldHandler}
               showEditHandler={toggleEdit}
-              hideEditHandler={hideEdit}
+              hideEditHandler={hideEdit}        
               //reloadHandler={props.reloadHandler}
             />
           )}
@@ -134,6 +143,7 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
           showEditHandler={toggleEdit}
           reloadHandler={updateStateByID}
           showMenuHandler={toggleMenu}
+          showDeadSoldHandler={showDeadSoldHandler}
         />
       )}
     </div>
