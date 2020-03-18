@@ -9,8 +9,11 @@ const Menu = (props, { initShow = false }) => {
   const [show, setShow] = useState(initShow);
   const [showDeadSoldForm, setShowDeadSoldForm] = useState(false);
 
-  const showDeadSoldHandler = () => setShowDeadSoldForm(!showDeadSoldForm);
-
+  const showDeadSoldHandler = () => {
+    setShowDeadSoldForm(!showDeadSoldForm);
+    props.showEditHandler();
+  }
+  //TODO: if u click on zgon/sprzedaz and back with edytuj, it fails. Fix this flow
   const showInfoHandler = () => {
     setShow(true);
   };
@@ -48,7 +51,7 @@ const Menu = (props, { initShow = false }) => {
               <Button variant="dark" onClick={showDeadSoldHandler}>Zgon/Sprzedaż</Button>
             )}
             {(props.mode === "pigs" || props.mode === "dead" || props.mode === "sold") && (
-              <Button variant="dark" onClick={props.showEdit}>Edytuj</Button>
+              <Button variant="dark" onClick={props.showEditHandler}>Edytuj</Button>
             )}
             {(props.mode === "dead" || props.mode === "sold") && (
               <UndoneButton id={props.id} mode={props.mode}></UndoneButton>

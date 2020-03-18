@@ -4,6 +4,7 @@ import GeneratePDFButton from "./../components/Buttons/GeneratePDFButton";
 import Head from "./../components/Table/Head";
 import Body from "./../components/Table/Body";
 import Menu from "./../components/Menu/Menu";
+import NoData from "./../components/Info/NoData";
 import shortid from "shortid";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
@@ -13,9 +14,12 @@ const DeadUnitsContainer = props => {
   const [unlimitedData, setUnlimitedData] = useState([]);
   const [showMenu, setShowMenu] = useState(false);
   const [idPig, setIdPig] = useState("");
+  
+  const [showTable, setShowTable] = useState(false);
+  const [showText, setShowText] = useState(false);
 
-  const getData = () => {
-    fetch(`https://obb-api.herokuapp.com/dead-pigs-limited`)
+  const getData = async () => {
+    await fetch(`https://obb-api.herokuapp.com/dead-pigs-limited`)
       .then(res => res.json())
       .then(res => setData(res))
       .catch(e => e);
@@ -29,9 +33,17 @@ const DeadUnitsContainer = props => {
   };
 
   useEffect(() => {
-    getData();
+    getData().then(() => {
+      if (Array.isArray(data) && data.length) {
+        setShowTable(true);
+        setShowText(false);
+      } else {
+        setShowTable(false);
+        setShowText(true);
+      }
+    });
     getUnlimitedData();
-  }, [props.isOn]);
+  }, [data.length]);
 
   const showForm = id => {
     setIdPig(id);
@@ -65,42 +77,47 @@ const DeadUnitsContainer = props => {
 
   return (
     <div className="UnitsContainer">
-      <div className="UnitsTable">
-        <div className="TableContent">
-          <Table bordered hover variant="dark">
-            <thead>
-              <Head
-                data={[
-                  "Kojec",
-                  "ID",
-                  "Płeć",
-                  "Data zakupu",
-                  "Cena",
-                  "Data zgonu"
-                ]}
-              />
-            </thead>
-            <tbody>
-              {data.map((data, index) => (
-                <Body
-                  key={`${data.id}${shortid.generate()}`}
-                  data={data}
-                  showForm={showForm.bind(this, data.id)}
+      {showTable && (
+        <div className="UnitsTable">
+          <div className="TableContent">
+            <Table bordered hover variant="dark">
+              <thead>
+                <Head
+                  data={[
+                    "Kojec",
+                    "ID",
+                    "Płeć",
+                    "Data zakupu",
+                    "Cena",
+                    "Data zgonu"
+                  ]}
                 />
-              ))}
-            </tbody>
-          </Table>
+              </thead>
+              <tbody>
+                {data.map((data, index) => (
+                  <Body
+                    key={`${data.id}${shortid.generate()}`}
+                    data={data}
+                    showForm={showForm.bind(this, data.id)}
+                  />
+                ))}
+              </tbody>
+            </Table>
+          </div>
+          <GeneratePDFButton generatePDFHandler={generatePDF} />
+          {showMenu && (
+            <Menu
+              mode="dead"
+              id={idPig}
+              showMenu={toggleMenu}
+              reloadHandler={props.reloadHandler}
+            />
+          )}
         </div>
-        <GeneratePDFButton generatePDFHandler={generatePDF} />
-        {showMenu && (
-          <Menu
-            mode="dead"
-            id={idPig}
-            showMenu={toggleMenu}
-            reloadHandler={props.reloadHandler}
-          />
-        )}
-      </div>
+      )}
+      {showText && 
+        <NoData/>
+      }
     </div>
   );
 };

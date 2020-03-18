@@ -1,15 +1,17 @@
 body {
-  background-color: #d1d9ff;
+  background-color: white;
   font-family: "Ubuntu", sans-serif;
 }
 
 .addBtn {
   margin-left: 2px;
   border: none;
+  color: #ffffff !important
 }
 
 .AddUnitForm {
-  background-color: #d1d9ff;
+  background-color: #ffffff;
+  color: #212121;
   position: absolute;
   width: 20em;
   height: 24em;
@@ -41,17 +43,19 @@ body {
 }
 
 button {
-  background-color: #6f79a8 !important;
+  background-color: #ec625f !important;
   border: none !important;
 }
 
 button:hover {
-  background-color: #5c6bc0 !important;
+  background-color: #db5351 !important;
 }
 
 .date-picker {
   width: 100%;
   text-align: center;
+  background-color: #ffffff;
+  color: #212121
 }
 
 .DeleteButton {
@@ -62,7 +66,7 @@ button:hover {
 }
 
 .deleted-unit-info {
-  color: red;
+  color: rgb(230, 59, 59);
 }
 
 .edit-icon {
@@ -73,13 +77,15 @@ button:hover {
 
 .form-control {
   text-align: center;
+  background-color: #ffffff;
+  color: #212121
 }
 
 .hide-selection {
   position: relative;
   top: 0;
   width: 100%;
-  background-color: #292b2c;
+  background-color: #ffffff;
   margin-right: auto;
   right: 0;
   border-radius: 0;
@@ -93,19 +99,26 @@ input, label {
   width: 20%;
   height: 100%;
   position: fixed;
-  background-color: #9fa8da;
+  background-color: #ec625f;
   color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.25), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
   font-family: "Ubuntu", sans-serif;
 }
 
 .list-group-item {
-  background-color: #d1d9ff;
+  background-color: #ec625f;
+  color: white;
+}
+
+.list-group-item:hover {
+  background-color: #ffffff !important;
+  color: #212121 !important;
 }
 
 .list-group-item.active {
-  background-color: #6f79a8 !important;
+  background-color:  #ffffff !important;
   border: none !important;
+  color: #212121 !important
 }
 
 .list-header {
@@ -125,8 +138,13 @@ input, label {
 }
 
 #pens {
-  background-color: #6f79a8;
-  color: white;
+  background-color: white;
+  color: #212121;
+}
+
+option {
+  background-color: #ffffff;
+  color: #212121
 }
 
 .Selection {
@@ -134,14 +152,14 @@ input, label {
   height: 22.5em;
   z-index: 2;
   position: fixed;
-  background-color: rgb(231, 229, 229);
+  background-color: #ffffff;
   left: 0;
   right: 0;
   top: 20%;
   margin-left: auto;
   margin-right: auto;
   border-radius: 0.3em;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
+  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
 }
 
 
@@ -150,14 +168,14 @@ input, label {
   height: 22.5em;
   z-index: 2;
   position: fixed;
-  background-color: #d1d9ff;
+  background-color: #ffffff;
   left: 40%;
   right: 0;
   top: 20%;
   margin-left: auto;
   margin-right: auto;
   border-radius: 0.3em;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
   padding-bottom: 2em;
 }
 
@@ -166,14 +184,14 @@ input, label {
   height: 30em;
   z-index: 2;
   position: fixed;
-  background-color: #d1d9ff;
+  background-color: #ffffff;
   left: 40%;
   right: 0;
   top: 20%;
   margin-left: auto;
   margin-right: auto;
   border-radius: 0.3em;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
   padding-bottom: 2em;
 }
 
@@ -182,10 +200,12 @@ input, label {
   left: 50%;
   transform: translate(-50%, 0%);
   position: relative;
+  color: #212121
 }
 
 .Selection {
-  background-color: #d1d9ff;
+  background-color: #ffffff;
+  color: #212121
 }
 
 .Selection > h4 {
@@ -197,14 +217,23 @@ input, label {
 .table th {
   width: 25em;
   font-family: "Ubuntu", sans-serif;
-  background-color: #d1d9ff !important;
-  color: #000000;
+  
+}
+
+.table td {
+  background-color: #ffffff !important;
+  color: #212121;
+}
+
+.table th {
+  background-color: #ec625f !important;
+  color: #ffffff;
 }
 
 .table-dark td,
 .table-dark th,
 .table-dark thead th {
-  border-color: #6f79a8;
+  border: none;
 }
 
 .table-dark tr:hover {
@@ -219,14 +248,14 @@ input, label {
 }
 
 .UnitsTable {
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding-top: 0em;
+  padding-bottom: 0em;
   margin: 0 auto;
   margin-bottom: 1em !important;
   margin-top: 1em !important;
-  background-color: #9fa8da;
+  background-color: #ffffff;
   width: 80%;
-  border: 0.1em solid #26323800;
+  border: 0em solid #26323800;
   transition-duration: 0.5s;
   border-radius: 0.25em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25), 0 6px 20px 0 rgba(0, 0, 0, 0.2);

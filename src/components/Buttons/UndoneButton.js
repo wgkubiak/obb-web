@@ -25,7 +25,7 @@ const UndoneButton = props => {
   };
 
   return (
-    <div className="UndoneBtn">
+    <>
       <Button variant="dark" onClick={handleModalShow}>
         Wycofaj do kojca
       </Button>
@@ -45,7 +45,7 @@ const UndoneButton = props => {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </>
   );
 };
 

@@ -110,8 +110,8 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
               id={idPig}
               idPen={id}
               showMenu={toggleMenu}
-              showEdit={toggleEdit}
-              showEditHandler={hideEdit}
+              showEditHandler={toggleEdit}
+              hideEditHandler={hideEdit}
               //reloadHandler={props.reloadHandler}
             />
           )}
