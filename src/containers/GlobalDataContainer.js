@@ -85,7 +85,7 @@ const GlobalDataContainer = () => {
     });
 
     new Chart(_hTwoSRef, {
-      type: "line",
+      type: "bar",
       data: {
         labels: [
           "2020-01-02",
