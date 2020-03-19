@@ -5,6 +5,7 @@ import Body from "./../components/Table/Body";
 import Head from "./../components/Table/Head";
 import AddButton from "./../components/Buttons/AddButton";
 import AddGlobalForm from "./../components/Forms/AddGlobalForm";
+import EditGlobalForm from "./../components/Forms/EditGlobalForm";
 import GeneratePDF from "../components/Actions/GeneratePDF";
 import shortid from "shortid";
 
@@ -20,9 +21,8 @@ const GlobalDataContainer = () => {
   const [co, setCO] = useState("");
   const [temp, setTemp] = useState("");
   const [wet, setWet] = useState("");
-  const [showModal, setShowModal] = useState(false);
   const [showChart, setShowChart] = useState(false);
-  const [showButtons, setShowButtons] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
   const [datesData, setDatesData] = useState([]);
   const [nhData, setNHData] = useState([]);
   const [htwoData, setHTwoData] = useState([]);
@@ -31,9 +31,6 @@ const GlobalDataContainer = () => {
   const [wetData, setWetData] = useState([]);
 
   const [sorted, setSorted] = useState(false);
-
-  const handleModalClose = () => setShowModal(false);
-  const handleModalShow = () => setShowModal(true);
 
   const getData = async () => {
     await fetch(`https://obb-api.herokuapp.com/global-latest`)
@@ -47,14 +44,6 @@ const GlobalDataContainer = () => {
       .then(res => res.json())
       .then(res => setUnlData(res))
       .catch(e => e);
-  };
-
-  const remove = () => {
-    fetch(`https://obb-api.herokuapp.com/delete-global/${id}`, {
-      method: "DELETE"
-    })
-      .then(handleModalClose())
-      .then(setShowForm(false));
   };
 
   useEffect(() => {
@@ -131,8 +120,9 @@ const GlobalDataContainer = () => {
   };
 
   const toggleForm = () => {
-    setShowButtons(!showButtons);
+    setShowEdit(!showEdit);
   };
+
   return (
     <div className="UnitsContainer" style={{ marginTop: "1em" }}>
       <AddButton toggleHandler={toggleAddForm} />
@@ -166,7 +156,7 @@ const GlobalDataContainer = () => {
                     data.nhThree,
                     data.hTwoS,
                     data.coTwo,
-                    data.remperature,
+                    data.temperature,
                     data.wetness
                   )}
                 />
@@ -184,39 +174,6 @@ const GlobalDataContainer = () => {
             .substring(0, 10)
             .replace(/\s/g, "")}`}
         />
-        {showButtons && (
-          <>
-            <Button
-              variant="danger"
-              className="button--delete"
-              onClick={handleModalShow}
-            >
-              Usuń pomiar #{id}
-            </Button>
-            <Button
-              variant="danger"
-              className="button--delete"
-              onClick={handleModalShow}
-            >
-              Edytuj pomiar #{id}
-            </Button>
-
-            <Modal show={showModal} onHide={handleModalClose}>
-              <Modal.Header>
-                <Modal.Title>Czy jesteś pewna/y?!</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>Próba usunięcia pomiaru nr. #{id}</Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleModalClose}>
-                  Nie
-                </Button>
-                <Button variant="primary" onClick={remove}>
-                  Tak, usuń
-                </Button>
-              </Modal.Footer>
-            </Modal>
-          </>
-        )}
       </div>
       {!sorted && (
         <Button variant="primary" disabled>
@@ -286,6 +243,7 @@ const GlobalDataContainer = () => {
       )}
 
       {showForm && <AddGlobalForm showAddGlobalHandler={toggleAddForm} />}
+      {showEdit && <EditGlobalForm id={id} nh={nh} htwo={htwo} co={co} temp={temp} wet={wet} toggleEditHandler={toggleForm}/>}
     </div>
   );
 };
