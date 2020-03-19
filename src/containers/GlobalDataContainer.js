@@ -5,10 +5,8 @@ import Body from "./../components/Table/Body";
 import Head from "./../components/Table/Head";
 import AddButton from "./../components/Buttons/AddButton";
 import AddGlobalForm from "./../components/Forms/AddGlobalForm";
-import GeneratePDFButton from "./../components/Buttons/GeneratePDFButton";
+import GeneratePDF from "../components/Actions/GeneratePDF";
 import shortid from "shortid";
-import jsPDF from "jspdf";
-import "jspdf-autotable";
 
 const GlobalDataContainer = () => {
   const [data, setData] = useState([]);
@@ -46,10 +44,10 @@ const GlobalDataContainer = () => {
 
   const getUnlimitedData = () => {
     fetch(`https://obb-api.herokuapp.com/global`)
-    .then(res => res.json())
-    .then(res => setUnlData(res))
-    .catch(e => e);
-  }
+      .then(res => res.json())
+      .then(res => setUnlData(res))
+      .catch(e => e);
+  };
 
   const remove = () => {
     fetch(`https://obb-api.herokuapp.com/delete-global/${id}`, {
@@ -68,29 +66,6 @@ const GlobalDataContainer = () => {
 
   const toggleAddForm = () => {
     setShowForm(!showForm);
-  };
-
-  const generatePDF = () => {
-    const doc = new jsPDF();
-    const date = new Date();
-
-    doc.text(`Raport pomiarow`, 10, 20);
-    doc.autoTable({
-      startY: 25,
-      head: [["ID", "Data", "Godz", "NH3", "H2S", "CO2", "Temp", "Wilg"]],
-      body: unlData.map(data => [
-        `${data.id}`,
-        `${data.measureDate.substring(0, 10)}`,
-        `${data.measureTime}`,
-        `${data.nhThree}`,
-        `${data.hTwoS}`,
-        `${data.coTwo}`,
-        `${data.temperature}`,
-        `${data.wetness}`
-      ])
-    });
-
-    doc.save("global-data-units.pdf");
   };
 
   const sortData = () => {
@@ -161,7 +136,6 @@ const GlobalDataContainer = () => {
   return (
     <div className="UnitsContainer" style={{ marginTop: "1em" }}>
       <AddButton toggleHandler={toggleAddForm} />
-      {/* TODO toggleAddForm - Add global measure */}
       <div className="UnitsTable">
         <div className="TableContent">
           <Table bordered hover variant="dark">
@@ -200,10 +174,16 @@ const GlobalDataContainer = () => {
             </tbody>
           </Table>
         </div>
-        <GeneratePDFButton
-          generatePDFHandler={generatePDF}
+        <GeneratePDF
+          header={["ID", "Data", "Godz", "NH3", "H2S", "CO2", "Temp", "Wilg"]}
+          fileheader="Raport globalnych pomiarow"
+          mode="global"
+          unlData={unlData}
+          filename={`RaportGlobalny-${new Date()
+            .toString()
+            .substring(0, 10)
+            .replace(/\s/g, "")}`}
         />
-        {/* generatePDF */}
         {showButtons && (
           <>
             <Button
@@ -305,7 +285,7 @@ const GlobalDataContainer = () => {
         </div>
       )}
 
-      {showForm && <AddGlobalForm showAddGlobalHandler={toggleAddForm}/>}
+      {showForm && <AddGlobalForm showAddGlobalHandler={toggleAddForm} />}
     </div>
   );
 };

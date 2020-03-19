@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
-import GeneratePDFButton from "./../components/Buttons/GeneratePDFButton";
+import GeneratePDF from "../components/Actions/GeneratePDF";
 import Head from "./../components/Table/Head";
 import Body from "./../components/Table/Body";
 import Menu from "./../components/Menu/Menu";
 import shortid from "shortid";
-import jsPDF from "jspdf";
-import "jspdf-autotable";
 
 const DeadUnitsContainer = props => {
   const [data, setData] = useState([]);
@@ -46,68 +44,57 @@ const DeadUnitsContainer = props => {
   const toggleEdit = () => {
     setShowEdit(!showEdit);
   };
-  const generatePDF = () => {
-    const doc = new jsPDF();
-    const date = new Date();
-
-    doc.text(`Raport zgonow - ${date.toString().substring(0, 15)}`, 10, 20);
-    doc.autoTable({
-      startY: 25,
-      head: [["Data zgonu", "Kojec", "ID", "Plec", "Data zakupu", "Cena"]],
-      body: unlimitedData.map(data => [
-        `${data.pigDeathDate.substring(0, 10)}`,
-        `${data.idPen}`,
-        `${data.id}`,
-        `${data.pigGender === "m" ? "Samiec" : "Samica"}`,
-        `${data.pigShoppingDate.substring(0, 10)}`,
-        `${data.pigShoppingPrice}`
-      ])
-    });
-
-    doc.save("dead-units.pdf");
-  };
 
   return (
     <div className="UnitsContainer">
-        <div className="UnitsTable">
-          <div className="TableContent">
-            <Table bordered hover variant="dark">
-              <thead>
-                <Head
-                  data={[
-                    "Kojec",
-                    "ID",
-                    "Płeć",
-                    "Data zakupu",
-                    "Cena",
-                    "Data zgonu"
-                  ]}
+      <div className="UnitsTable">
+        <div className="TableContent">
+          <Table bordered hover variant="dark">
+            <thead>
+              <Head
+                data={[
+                  "Kojec",
+                  "ID",
+                  "Płeć",
+                  "Data zakupu",
+                  "Cena",
+                  "Data zgonu"
+                ]}
+              />
+            </thead>
+            <tbody>
+              {data.map((data, index) => (
+                <Body
+                  key={`${data.id}${shortid.generate()}`}
+                  data={data}
+                  showForm={showForm.bind(this, data.id)}
                 />
-              </thead>
-              <tbody>
-                {data.map((data, index) => (
-                  <Body
-                    key={`${data.id}${shortid.generate()}`}
-                    data={data}
-                    showForm={showForm.bind(this, data.id)}
-                  />
-                ))}
-              </tbody>
-            </Table>
-          </div>
-          <GeneratePDFButton generatePDFHandler={generatePDF} />
-          {showMenu && (
-            <Menu
-              mode="dead"
-              url="https://obb-api.herokuapp.com/delete-pig/"
-              id={idPig}
-              showMenu={toggleMenu}
-              showEdit={toggleEdit}
-              showDead={showEdit}
-              reloadHandler={props.reloadHandler}
-            />
-          )}
+              ))}
+            </tbody>
+          </Table>
         </div>
+        <GeneratePDF
+          header={["Data zgonu", "Kojec", "ID", "Plec", "Data zakupu", "Cena"]}
+          fileheader="Raport zgonow"
+          mode="dead"
+          unlData={unlimitedData}
+          filename={`RaportZgonow-${new Date()
+            .toString()
+            .substring(0, 10)
+            .replace(/\s/g, "")}`}
+        />
+        {showMenu && (
+          <Menu
+            mode="dead"
+            url="https://obb-api.herokuapp.com/delete-pig/"
+            id={idPig}
+            showMenu={toggleMenu}
+            showEdit={toggleEdit}
+            showDead={showEdit}
+            reloadHandler={props.reloadHandler}
+          />
+        )}
+      </div>
     </div>
   );
 };

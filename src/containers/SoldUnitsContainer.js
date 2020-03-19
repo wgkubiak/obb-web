@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
-import GeneratePDFButton from "./../components/Buttons/GeneratePDFButton";
+import GeneratePDF from "./../components/Actions/GeneratePDF";
 import Head from "./../components/Table/Head";
 import Body from "./../components/Table/Body";
 import Menu from "./../components/Menu/Menu";
 import shortid from "shortid";
-import jsPDF from "jspdf";
-import "jspdf-autotable";
 
 const DeadUnitsContainer = props => {
   const [data, setData] = useState([]);
@@ -54,38 +52,6 @@ const DeadUnitsContainer = props => {
     getUnlimitedData();
   }, []);
 
-  const generatePDF = () => {
-    const doc = new jsPDF();
-    const date = new Date();
-
-    doc.text(`Raport sprzedazy - ${date.toString().substring(0, 15)}`, 10, 20);
-    doc.autoTable({
-      startY: 25,
-      head: [
-        [
-          "Data sprzedazy",
-          "Kwota sprzedazy",
-          "Data zakupu",
-          "Cena",
-          "ID",
-          "Plec",
-          "Kojec"
-        ]
-      ],
-      body: unlimitedData.map(data => [
-        `${data.pigSaleDate.substring(0, 10)}`,
-        `${data.pigSellingCost}`,
-        `${data.pigShoppingDate.substring(0, 10)}`,
-        `${data.pigShoppingPrice}`,
-        `${data.id}`,
-        `${data.pigGender === "m" ? "Samiec" : "Samica"}`,
-        `${data.idPen}`
-      ])
-    });
-
-    doc.save("sold-units.pdf");
-  };
-
   return (
     <div className="UnitsContainer">
       <div className="UnitsTable">
@@ -115,7 +81,24 @@ const DeadUnitsContainer = props => {
             </tbody>
           </Table>
         </div>
-        <GeneratePDFButton generatePDFHandler={generatePDF} />
+        <GeneratePDF
+          header={[
+            "Data sprzedazy",
+            "Kwota sprzedazy",
+            "Data zakupu",
+            "Cena",
+            "ID",
+            "Plec",
+            "Kojec"
+          ]}
+          fileheader="Raport sprzedazy"
+          mode="sold"
+          unlData={unlimitedData}
+          filename={`RaportSprzedazy-${new Date()
+            .toString()
+            .substring(0, 10)
+            .replace(/\s/g, "")}`}
+        />
         {showMenu && (
           <Menu
             mode="sold"
