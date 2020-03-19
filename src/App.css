@@ -210,6 +210,33 @@ button:hover {
   order: 5
 }
 
+.exam {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 20;
+}
+
+.exam--transparent {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(128, 128, 128, 0.4);
+  z-index: 25;
+}
+
+.exam--container {
+  position: absolute;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  border-radius: 0.5em;
+  z-index: 30;
+}
+
 .hide-selection {
   position: relative;
   top: 0;

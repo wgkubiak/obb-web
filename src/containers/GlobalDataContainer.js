@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import GlobalChart from "./../components/Charts/GlobalChart";
-import { Table, Modal, Button, Spinner } from "react-bootstrap";
+import { Table, Button, Spinner } from "react-bootstrap";
 import Body from "./../components/Table/Body";
 import Head from "./../components/Table/Head";
 import AddButton from "./../components/Buttons/AddButton";

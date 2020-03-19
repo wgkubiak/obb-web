@@ -37,7 +37,7 @@ const Menu = (props, { initShow = false }) => {
         {!show && (
           <>
             {(props.mode === "pigs" || props.mode === "dead" || props.mode === "sold") && (
-              <Button variant="dark">Wyświetl badania</Button>
+              <Button variant="dark" onClick={props.showExams}>Wyświetl badania</Button>
             )}
             {props.mode === "pigs" && (
               <Button variant="dark">Dodaj badanie</Button>

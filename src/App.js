@@ -3,6 +3,7 @@ import StandardUnitsContainer from "./containers/StandardUnitsContainer";
 import GlobalDataContainer from "./containers/GlobalDataContainer";
 import SoldUnitsContainer from "./containers/SoldUnitsContainer";
 import DeadUnitsContainer from "./containers/DeadUnitsContainer";
+import ExamContainer from "./containers/ExamContainer";
 import Navbar from "./components/Navbar/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -14,6 +15,9 @@ const App = () => {
   // const [showWater, setShowWater] = useState(false);
   const [showSold, setShowSold] = useState(false);
   const [showDead, setShowDead] = useState(false);
+  const [showExams, setShowExams] = useState(false);
+
+  const [unitID, setUnitID] = useState("");
 
   const toggleComponent = (unit, forage, global, water, sold, dead) => {
     setShowUnits(unit);
@@ -33,6 +37,10 @@ const App = () => {
   const showDeadHandler = () =>
     toggleComponent(false, false, false, false, false, true);
 
+  const toggleExams = () => setShowExams(!showExams);
+
+  const setUnit = id => setUnitID(id);
+
   return (
     <div className="App">
       <Navbar
@@ -43,10 +51,11 @@ const App = () => {
         soldHandler={showSoldHandler}
         deadHandler={showDeadHandler}
       />
-      {showGlobal && <GlobalDataContainer/>}
-      {showUnits && <StandardUnitsContainer/>}
-      {showSold && <SoldUnitsContainer isOn={showSold}/>}
-      {showDead && <DeadUnitsContainer isOn={showDead}/>}
+      {showGlobal && <GlobalDataContainer />}
+      {showUnits && <StandardUnitsContainer toggleExams={toggleExams} setUnitID={setUnit}/>}
+      {showSold && <SoldUnitsContainer isOn={showSold} />}
+      {showDead && <DeadUnitsContainer isOn={showDead} />}
+      {showExams && <ExamContainer toggleExams={toggleExams} unitID={unitID}/>}
     </div>
   );
 };

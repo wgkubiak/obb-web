@@ -23,6 +23,7 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
   const [editMenu, setEditMenu] = useState(false);
   const [showDeadSoldForm, setShowDeadSoldForm] = useState(false);
 
+
   const getUnitsData = id => {
     fetch(`https://obb-api.herokuapp.com/active-pigs/${id}`)
       .then(res => res.json())
@@ -37,6 +38,7 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
   const showForm = (pen, id, gender, date, price) => {
     setId(pen);
     setIdPig(id);
+    props.setUnitID(id);
     setGender(gender);
     setDate(date);
     setPrice(price);
@@ -118,6 +120,7 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
               idPen={id}
               url="https://obb-api.herokuapp.com/delete-pig/"
               deadSoldMode={showDeadSoldForm}
+              showExams={props.toggleExams}
               showMenu={toggleMenu}
               showDeadSoldHandler={showDeadSoldHandler}
               showEditHandler={toggleEdit}
