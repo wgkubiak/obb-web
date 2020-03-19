@@ -19,10 +19,18 @@ const GlobalChart = props => {
         ]
       },
       options: {
-        responsive: true
+        responsive: true,
+        scales: {
+          yAxes: [{
+              ticks: {
+                  suggestedMin: props.miny,
+                  suggestedMax: props.maxy
+              }
+          }]
+      }
       }
     });
-  }, [ref, props.chartLabel, props.data, props.dates, props.mode]);
+  }, [ref, props.chartLabel, props.data, props.dates, props.mode, props.miny, props.maxy]);
 
 
   return (
