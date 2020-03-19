@@ -7,9 +7,12 @@ import AddButton from "./../components/Buttons/AddButton";
 import AddGlobalForm from "./../components/Forms/AddGlobalForm";
 import GeneratePDFButton from "./../components/Buttons/GeneratePDFButton";
 import shortid from "shortid";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 const GlobalDataContainer = () => {
   const [data, setData] = useState([]);
+  const [unlData, setUnlData] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [id, setId] = useState("");
   const [measureDate, setMeasureDate] = useState("");
@@ -41,6 +44,13 @@ const GlobalDataContainer = () => {
       .catch(e => e);
   };
 
+  const getUnlimitedData = () => {
+    fetch(`https://obb-api.herokuapp.com/global`)
+    .then(res => res.json())
+    .then(res => setUnlData(res))
+    .catch(e => e);
+  }
+
   const remove = () => {
     fetch(`https://obb-api.herokuapp.com/delete-global/${id}`, {
       method: "DELETE"
@@ -51,12 +61,36 @@ const GlobalDataContainer = () => {
 
   useEffect(() => {
     getData();
+    getUnlimitedData();
     sortData();
     setShowChart(true);
   }, [sorted]);
 
   const toggleAddForm = () => {
     setShowForm(!showForm);
+  };
+
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    const date = new Date();
+
+    doc.text(`Raport pomiarow`, 10, 20);
+    doc.autoTable({
+      startY: 25,
+      head: [["ID", "Data", "Godz", "NH3", "H2S", "CO2", "Temp", "Wilg"]],
+      body: unlData.map(data => [
+        `${data.id}`,
+        `${data.measureDate.substring(0, 10)}`,
+        `${data.measureTime}`,
+        `${data.nhThree}`,
+        `${data.hTwoS}`,
+        `${data.coTwo}`,
+        `${data.temperature}`,
+        `${data.wetness}`
+      ])
+    });
+
+    doc.save("global-data-units.pdf");
   };
 
   const sortData = () => {
@@ -167,7 +201,7 @@ const GlobalDataContainer = () => {
           </Table>
         </div>
         <GeneratePDFButton
-          generatePDFHandler={() => alert("Tutaj wygeneruje pdf")}
+          generatePDFHandler={generatePDF}
         />
         {/* generatePDF */}
         {showButtons && (
