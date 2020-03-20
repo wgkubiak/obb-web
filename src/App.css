@@ -1,17 +1,17 @@
 body {
-  background-color: white;
+  background-color: #212121;
   font-family: "Ubuntu", sans-serif;
 }
 
 .addBtn {
   margin-left: 2px;
   border: none;
-  color: #ffffff !important
+  color: #eeeeee !important
 }
 
 .AddGlobalForm {
-  background-color: #ffffff;
-  color: #212121;
+  background-color: #343434;
+  color: #eeeeee;
   position: fixed;
   width: 20em;
   height: 44em;
@@ -20,21 +20,21 @@ body {
   top: 20%;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 }
 
 .AddUnitForm {
-  background-color: #ffffff;
-  color: #212121;
+  background-color: #343434;
+  color: #eeeeee;
   position: fixed;
   width: 20em;
-  height: 24em;
+  height: 30em;
   left: 0;
   right: 0;
   top: 20%;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 }
 
 .App {
@@ -54,15 +54,17 @@ body {
 .btnContainer > button {
   width: 80%;
   margin-top: 0.5em;
+  outline: none;
 }
 
 button {
-  background-color: #ec625f !important;
+  background-color: #00adb5 !important;
   border: none !important;
+  outline: none;
 }
 
 button:hover {
-  background-color: #db5351 !important;
+  background-color: #019199 !important;
 }
 
 .button--delete-global {
@@ -70,6 +72,7 @@ button:hover {
   position: relative;
   left: 50%;
   transform: translate(-50%, 0%);
+  outline: none;
 }
 
 .button--edit-global {
@@ -77,6 +80,7 @@ button:hover {
   position: relative;
   left: 50%;
   transform: translate(-50%, 0%);
+  outline: none;
 }
 
 .chartjs-render-monitor {
@@ -87,7 +91,7 @@ button:hover {
 .date-picker {
   width: 100%;
   text-align: center;
-  background-color: #ffffff;
+  background-color: #eeeeee;
   color: #212121
 }
 
@@ -100,6 +104,7 @@ button:hover {
   right: 0px;
   width: 100%;
   margin-top: 0.5em;
+  outline: none;
 }
 
 .deleted-unit-info {
@@ -117,14 +122,15 @@ button:hover {
   height: 30em;
   z-index: 2;
   position: fixed;
-  background-color: #ffffff;
+  background-color: #343434;
+  color: #eeeeee;
   left: 40%;
   right: 0;
   top: 20%;
   margin-left: auto;
   margin-right: auto;
   border-radius: 0.3em;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
   padding-bottom: 2em;
 }
 
@@ -133,20 +139,20 @@ button:hover {
   height: 15em;
   z-index: 2;
   position: fixed;
-  background-color: #ffffff;
+  background-color: #343434;
   left: 40%;
   right: 0;
   top: 20%;
   margin-left: auto;
   margin-right: auto;
   border-radius: 0.3em;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
   padding-bottom: 2em;
 }
 
 .EditGlobalForm {
-  background-color: #ffffff;
-  color: #212121;
+  background-color: #343434;
+  color: #eeeeee;
   position: fixed;
   width: 20em;
   height: 44em;
@@ -155,39 +161,55 @@ button:hover {
   top: 10%;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 }
-
-
 
 
 .form-control {
   text-align: center;
-  background-color: #ffffff;
-  color: #212121
+  background-color: #343434;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0em !important;
+  color: #eeeeee
 }
 
 .global-chart {
   width: 20% !important;
   height: 20% !important;
+  background-color: #343434 !important;
+}
+
+.card-title {
+  color: #00adb5 !important;
+  font-size: 1em
+}
+
+.card-text {
+  font-size: 0.8em
 }
 
 .chart {
   position: relative;
   width: 100% !important;
-  height: 80em;
+  height: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-bottom: 5em
 }
 
 .chart--temperature, .chart--wetness, .chart--nhthree, .chart--htwos, .chart--cotwo {
   width: 40em;
-  height: 20em;
-  margin-top: 5em;
+  height: 26em;
+  margin-top: 2em !important;
   margin-left: 1em;
   margin-right: 1em;
   margin: 0 auto;
+  background-color: #343434;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 0.5em;
 }
 
 .chart--temperature {
@@ -221,13 +243,13 @@ button:hover {
   position: fixed;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(128, 128, 128, 0.4);
+  background-color: #212121a9;
   z-index: 25;
 }
 
 .exam--container {
   position: absolute;
-  background-color: white;
+  background-color: #212121;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -237,6 +259,27 @@ button:hover {
   z-index: 30;
 }
 
+.exam--container > h1 {
+  margin-top: 2vh;
+  color: white
+}
+
+.exam--container > button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 5%;
+  height: 3em !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  color: white;
+  background-color: #212121 !important;
+  border-top-right-radius: 1em;
+  outline: none;
+}
+
+.exam--container > button:hover {
+  background-color: #202020 !important;
+}
 .exam--container--cards {
   position: relative;
   top: 0%;
@@ -254,15 +297,10 @@ button:hover {
 .exam--container--cards-data {
   text-align: left;
   align-self: auto;
-  background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  background-color: #343434;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+  color: white;
   transition: 100ms;
-}
-
-.exam--container--cards-data:hover {
-  color: #212121;
-  background-color: #e7e7e7;
-  transform: translateY(-5px);
 }
 
 .exam--result-card-small {
@@ -279,10 +317,16 @@ button:hover {
   position: relative;
   top: 0;
   width: 100%;
-  background-color: #ffffff;
+  background-color: #212121 !important;
+  height: 3em !important;
   margin-right: auto;
   right: 0;
   border-radius: 0;
+  text-transform: uppercase;
+}
+
+.hide-selection:hover {
+  background-color: #202020 !important;
 }
 
 input, label {
@@ -293,26 +337,26 @@ input, label {
   width: 20%;
   height: 100%;
   position: fixed;
-  background-color: #ec625f;
+  background-color: #343434;
   color: white;
   box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.25), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
   font-family: "Ubuntu", sans-serif;
 }
 
 .list-group-item {
-  background-color: #ec625f;
+  background-color: #343434;
   color: white;
 }
 
 .list-group-item:hover {
-  background-color: #ffffff !important;
-  color: #212121 !important;
+  background-color: #212121 !important;
+  color: #eeeeee !important;
 }
 
 .list-group-item.active {
-  background-color:  #ffffff !important;
+  background-color:  #00adb5 !important;
   border: none !important;
-  color: #212121 !important
+  color: #eeeeee !important
 }
 
 .list-header {
@@ -326,18 +370,34 @@ input, label {
   outline: 0;
 }
 
+.modal-content {
+  background-color: #343434 !important;
+  color: #eeeeee !important
+}
+
+.modal-body {
+  border-bottom: none;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+.modal-header {
+  background-color: #212121 !important;
+}
 .penSelect {
   margin-top: 10px;
   margin-right: 2px;
 }
 
 #pens {
-  background-color: white;
-  color: #212121;
+  background-color: #343434;
+  color: #eeeeee;
 }
 
 option {
-  background-color: #ffffff;
+  background-color: #eeeeee;
   color: #212121
 }
 
@@ -346,14 +406,14 @@ option {
   height: 22.5em;
   z-index: 2;
   position: fixed;
-  background-color: #ffffff;
+  background-color: #181818;
   left: 0;
   right: 0;
   top: 20%;
   margin-left: auto;
   margin-right: auto;
   border-radius: 0.3em;
-  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 }
 
 
@@ -362,29 +422,40 @@ option {
   height: 22.5em;
   z-index: 2;
   position: fixed;
-  background-color: #ffffff;
+  background-color: #343434;
   left: 40%;
   right: 0;
   top: 20%;
   margin-left: auto;
   margin-right: auto;
   border-radius: 0.3em;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
   padding-bottom: 2em;
 }
 
-
-#sold-dead--selection, #sold-dead--price-input, .edit-input, .add-input {
+#sold-dead--selection, #sold-dead--price-input {
   width: 80%;
   left: 50%;
   transform: translate(-50%, 0%);
   position: relative;
-  color: #212121;
+  color: #eeeeee;
+  font-style: italic;
+  margin-top: 1em;
+}
+
+.edit-input, .add-input {
+  width: 80%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  position: relative;
+  color: #019199;
+  font-style: italic;
+  margin-top: 1em;
 }
 
 .Selection {
-  background-color: #ffffff;
-  color: #212121
+  background-color: #343434;
+  color: #eeeeee
 }
 
 .Selection > h4 {
@@ -392,27 +463,30 @@ option {
   margin-top: 1em;
 }
 
+.TableContent, .UnitsTable {
+  background-color: #343434 !important;
+}
+
 .table td,
 .table th {
   width: 25em;
   font-family: "Ubuntu", sans-serif;
-  
 }
 
 .table td {
-  background-color: #ffffff !important;
-  color: #212121;
+  background-color: #343434 !important;
+  color: #eeeeee;
 }
 
 .table th {
-  background-color: #ec625f !important;
-  color: #ffffff;
+  background-color: #343434 !important;
+  color: #eeeeee;
 }
 
 .table-dark td,
 .table-dark th,
 .table-dark thead th {
-  border: 1px solid #d3d3d3 !important;
+  border: 1px solid #383838 !important;
 }
 
 .table-dark tr:hover {
@@ -432,12 +506,12 @@ option {
   margin: 0 auto;
   margin-bottom: 1em !important;
   margin-top: 1em !important;
-  background-color: #ffffff;
+  background-color: #eeeeee;
   width: 80%;
   border: 0em solid #26323800;
   transition-duration: 0.5s;
   border-radius: 0.25em;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
   font-family: "Lato";
   font-size: 1em;
 }
@@ -446,4 +520,5 @@ option {
   width: 100%;
   border-radius: 0px;
   height: 3em;
+  outline: none;
 }

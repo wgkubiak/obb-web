@@ -14,7 +14,7 @@ const GlobalChart = props => {
           {
             label: props.chartLabel,
             data: Object.values(props.data),
-            backgroundColor: "#90A4AE"
+            backgroundColor: "#00adb5"
           }
         ]
       },

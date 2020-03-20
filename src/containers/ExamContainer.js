@@ -21,8 +21,8 @@ const showPartOfString = (string, l) => {
     <div className="exam">
       <div className="exam--transparent"></div>
       <div className="exam--container">
-        <button onClick={props.toggleExams}>SCHOWAJ</button>
-        <h1>{props.unitID}</h1>
+        <button onClick={props.toggleExams}>X</button>
+        <h1>#{props.unitID}</h1>
         <div className="exam--container--cards">
           <Card className="exam--container--cards-data exam--result-card-small">
             <Card.Body>
