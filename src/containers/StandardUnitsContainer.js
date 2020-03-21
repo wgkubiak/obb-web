@@ -120,6 +120,7 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
               showExams={props.toggleExams}
               showMenu={toggleMenu}
               showDeadSoldHandler={showDeadSoldHandler}
+              reloadHandler={props.reloadHandler}
               showEditHandler={toggleEdit}
               hideEditHandler={hideEdit}        
               //reloadHandler={props.reloadHandler}

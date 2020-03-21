@@ -56,11 +56,11 @@ const App = () => {
         soldHandler={showSoldHandler}
         deadHandler={showDeadHandler}
       />
-      {showGlobal && <GlobalDataContainer />}
+      {showGlobal && <GlobalDataContainer reload={reload}/>}
       {showUnits && <StandardUnitsContainer toggleExams={toggleExams} setUnitID={setUnit} reloadHandler={reloadHandler} reload={reload}/>}
-      {showSold && <SoldUnitsContainer isOn={showSold} />}
-      {showDead && <DeadUnitsContainer isOn={showDead} />}
-      {showExams && <ExamContainer toggleExams={toggleExams} unitID={unitID}/>}
+      {showSold && <SoldUnitsContainer isOn={showSold} reloadHandler={reloadHandler} reload={reload}/>}
+      {showDead && <DeadUnitsContainer isOn={showDead} reloadHandler={reloadHandler} reload={reload}/>}
+      {showExams && <ExamContainer toggleExams={toggleExams} unitID={unitID} reload={reload}/>}
       <h1 style={{display: "none"}}>{reload.toString()}</h1>
     </div>
   );

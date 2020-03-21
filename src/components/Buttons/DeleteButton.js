@@ -13,14 +13,11 @@ const DeleteButton = props => {
     })
     .then(handleModalClose())
     .then(props.deleteInfoHandler());
-    //TODO: Reload after remove
+    
+    setTimeout(() => {
+      props.reloadHandler();
+    }, 500)
   };
-
-  // const removeHandler = async () => {
-  //   await remove().then(
-  //     props.reloadHandler(props.idPen)
-  //   );
-  // }
 
   return (
     <div className="DeleteButton">

@@ -51,7 +51,7 @@ const SoldDeadEditForm = props => {
 
       setTimeout(() => {
         props.reloadHandler()
-      }, 500)
+      }, 500) //TODO doesnt work for dead mode
   };
 
   return (

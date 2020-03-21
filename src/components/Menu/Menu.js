@@ -55,7 +55,7 @@ const Menu = (props, { initShow = false }) => {
               <Button variant="dark" onClick={props.showEdit}>Edytuj datę zgonu</Button>
             )}
             {(props.mode === "dead" || props.mode === "sold") && (
-              <UndoneButton id={props.id} mode={props.mode} hideEverythingHandler={hideEverything}></UndoneButton>
+              <UndoneButton id={props.id} mode={props.mode} hideEverythingHandler={hideEverything} reloadHandler={props.reloadHandler}></UndoneButton>
             )}          
               <DeleteButton
               id={props.id}
@@ -68,9 +68,9 @@ const Menu = (props, { initShow = false }) => {
           </>
         )}
         {show && <h4 className="deleted-unit-info">Obiekt usunięto</h4>}
-        {props.deadSoldMode && <SoldDeadForm id={props.id} showHandler={props.showDeadSoldHandler} hideEverythingHandler={hideEverything}/>}
-        {props.show && <SoldDeadEditForm id={props.id} mode={props.mode} price={props.price} showHandler={props.showEdit}/>}
-        {props.showDead && <SoldDeadEditForm id={props.id} mode={props.mode} showHandler={props.showEdit}/>}
+        {props.deadSoldMode && <SoldDeadForm id={props.id} showHandler={props.showDeadSoldHandler} hideEverythingHandler={hideEverything} reloadHandler={props.reloadHandler}/>}
+        {props.show && <SoldDeadEditForm id={props.id} mode={props.mode} price={props.price} showHandler={props.showEdit} reloadHandler={props.reloadHandler}/>}
+        {props.showDead && <SoldDeadEditForm id={props.id} mode={props.mode} showHandler={props.showEdit} reloadHandler={props.reloadHandler}/>}
       </div>
     </div>
   );

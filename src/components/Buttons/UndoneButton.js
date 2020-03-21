@@ -23,6 +23,10 @@ const UndoneButton = props => {
       })
       .then(handleModalClose())
       .then(props.hideEverythingHandler());
+
+      setTimeout(() => {
+        props.reloadHandler();
+      }, 500)
   };
 
   return (

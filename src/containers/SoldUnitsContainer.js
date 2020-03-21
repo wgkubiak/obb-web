@@ -14,8 +14,8 @@ const DeadUnitsContainer = props => {
   const [price, setPrice] = useState("");
   const [showEdit, setShowEdit] = useState(false);
 
-  const getData = async () => {
-    await fetch(`https://obb-api.herokuapp.com/sold-pigs-limited`)
+  const getData = () => {
+    fetch(`https://obb-api.herokuapp.com/sold-pigs-limited`)
       .then(res => res.json())
       .then(res => setData(res))
       .catch(e => e);
@@ -50,7 +50,8 @@ const DeadUnitsContainer = props => {
   useEffect(() => {
     getData();
     getUnlimitedData();
-  }, []);
+    console.log(props.reload)
+  }, [props.reload]);
 
   return (
     <div className="UnitsContainer">

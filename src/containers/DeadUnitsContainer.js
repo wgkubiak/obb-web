@@ -30,7 +30,8 @@ const DeadUnitsContainer = props => {
   useEffect(() => {
     getData();
     getUnlimitedData();
-  }, []);
+    
+  },[props.reload]);
 
   const showForm = id => {
     setIdPig(id);
