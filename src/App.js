@@ -56,7 +56,7 @@ const App = () => {
         soldHandler={showSoldHandler}
         deadHandler={showDeadHandler}
       />
-      {showGlobal && <GlobalDataContainer reload={reload}/>}
+      {showGlobal && <GlobalDataContainer reloadHandler={reloadHandler} reload={reload}/>}
       {showUnits && <StandardUnitsContainer toggleExams={toggleExams} setUnitID={setUnit} reloadHandler={reloadHandler} reload={reload}/>}
       {showSold && <SoldUnitsContainer isOn={showSold} reloadHandler={reloadHandler} reload={reload}/>}
       {showDead && <DeadUnitsContainer isOn={showDead} reloadHandler={reloadHandler} reload={reload}/>}

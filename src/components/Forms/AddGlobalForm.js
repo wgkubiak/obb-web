@@ -45,14 +45,15 @@ const AddGlobalForm = props => {
       .then(data => {
         console.log("Success:", data);
       })
-      //   .then(
-      //     //TODO: Reload after POST
-      //     props.reloadHandler(props.id)
-      //   )
       .then(props.showAddGlobalHandler())
       .catch(error => {
         console.error("Error:", error);
       });
+
+      setTimeout(() => {
+        props.reloadHandler();
+        props.sortHandler();
+      }, 500)
   };
 
   return (
@@ -60,7 +61,7 @@ const AddGlobalForm = props => {
       <Button
         className="hide-selection"
         variant="dark"
-        onClick={props.showAddUnitHandler}
+        onClick={props.showAddGlobalHandler}
       >
         Ukryj
       </Button>
@@ -120,7 +121,7 @@ const AddGlobalForm = props => {
           <DatePicker
             className="date-picker"
             locale="pl"
-            selected={defaultDate}
+            selected={date}
             onChange={date => setDate(date)}
           />
         </Form.Group>

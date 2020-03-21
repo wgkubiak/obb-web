@@ -29,11 +29,12 @@ const GlobalDataContainer = props => {
   const [coData, setCOData] = useState([]);
   const [tempData, setTempData] = useState([]);
   const [wetData, setWetData] = useState([]);
-
   const [sorted, setSorted] = useState(false);
 
-  const getData = async () => {
-    await fetch(`https://obb-api.herokuapp.com/global-latest`)
+  const [reloadGraph, setReloadGraph] = useState(false);
+
+  const getData = () => {
+    fetch(`https://obb-api.herokuapp.com/global-latest`)
       .then(res => res.json())
       .then(res => setData(res))
       .catch(e => e);
@@ -47,11 +48,14 @@ const GlobalDataContainer = props => {
   };
 
   useEffect(() => {
+    setShowChart(false);
+    console.log("sorted: ", sorted)
     getData();
     getUnlimitedData();
     sortData();
-    setShowChart(true);
-  }, [sorted]);
+    setShowChart(sorted);
+    console.log("sorted: ", sorted)
+  }, [props.reload, sorted]);
 
   const toggleAddForm = () => {
     setShowForm(!showForm);
@@ -103,8 +107,10 @@ const GlobalDataContainer = props => {
     setTimeout(() => {
       setSorted(true);
       console.log(sorted);
-    }, 4000);
+    }, 2000);
   };
+
+  const sortedHandler = () => setSorted(false);
 
   const showFormHandler = (id, mDate, mTime, nh, htwo, co, temp, wet) => {
     setId(id);
@@ -198,7 +204,7 @@ const GlobalDataContainer = props => {
             maxy={25}
             dates={datesData}
             data={tempData}
-            reload={props.reload}
+            reload={sorted}
           />
           <GlobalChart
             chartClass="chart--wetness"
@@ -247,8 +253,8 @@ const GlobalDataContainer = props => {
         </div>
       )}
 
-      {showForm && <AddGlobalForm showAddGlobalHandler={toggleAddForm} />}
-      {showEdit && <EditGlobalForm id={id} nh={nh} htwo={htwo} co={co} temp={temp} wet={wet} toggleEditHandler={toggleForm}/>}
+      {showForm && <AddGlobalForm showAddGlobalHandler={toggleAddForm} reloadHandler={props.reloadHandler} sortHandler={sortedHandler}/>}
+      {showEdit && <EditGlobalForm id={id} nh={nh} htwo={htwo} co={co} temp={temp} wet={wet} toggleEditHandler={toggleForm} reloadHandler={sortedHandler}/>}
     </div>
   );
 };

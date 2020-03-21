@@ -40,6 +40,10 @@ const EditGlobalForm = props => {
     })
     .then(handleModalClose())
     .then(props.toggleEditHandler())
+
+    setTimeout(() => {
+      props.reloadHandler();
+    }, 500)
   };
 
   const submitHandler = event => {
@@ -61,6 +65,10 @@ const EditGlobalForm = props => {
       .catch(error => {
         console.error("Error:", error);
       });
+
+      setTimeout(() => {
+        props.reloadHandler();
+      }, 500)
   };
 
   return (

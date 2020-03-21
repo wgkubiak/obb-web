@@ -4,9 +4,7 @@ import GeneratePDF from "./../components/Actions/GeneratePDF";
 import Head from "./../components/Table/Head";
 import Body from "./../components/Table/Body";
 import Menu from "./../components/Menu/Menu";
-import NoData from "./../components/Info/NoData";
 import shortid from "shortid";
-import _ from "underscore";
 
 const DeadUnitsContainer = props => {
   const [data, setData] = useState([]);
@@ -15,8 +13,6 @@ const DeadUnitsContainer = props => {
   const [idPig, setIdPig] = useState("");
   const [price, setPrice] = useState("");
   const [showEdit, setShowEdit] = useState(false);
-
-  const [showNoData, setShowNoData] = useState(true);
 
   const getData = () => {
     fetch(`https://obb-api.herokuapp.com/sold-pigs-limited`)
@@ -54,22 +50,10 @@ const DeadUnitsContainer = props => {
   useEffect(() => {
     getData();
     getUnlimitedData();
-
-    console.log(_.first(data) !== undefined , !_.isEmpty(data));
-    
-    //TODO: some weird logic
-    setTimeout(() => {
-      if (_.first(data) !== undefined || !_.isEmpty(data)) {
-        setShowNoData(true);
-      } else {
-        setShowNoData(false);
-      }
-    }, 1000);
-  }, [props.reload, showNoData]);
+  }, [props.reload]);
 
   return (
     <div className="UnitsContainer">
-      {!showNoData && (
         <div className="UnitsTable">
           <div className="TableContent">
             <Table bordered hover variant="dark">
@@ -128,9 +112,7 @@ const DeadUnitsContainer = props => {
               reloadHandler={props.reloadHandler}
             />
           )}
-        </div>
-      )}
-      {showNoData && <NoData />}
+        </div>   
     </div>
   );
 };

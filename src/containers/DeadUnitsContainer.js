@@ -4,9 +4,7 @@ import GeneratePDF from "../components/Actions/GeneratePDF";
 import Head from "./../components/Table/Head";
 import Body from "./../components/Table/Body";
 import Menu from "./../components/Menu/Menu";
-import NoData from "./../components/Info/NoData";
 import shortid from "shortid";
-import underscore from "underscore";
 
 const DeadUnitsContainer = props => {
   const [data, setData] = useState([]);
@@ -14,8 +12,6 @@ const DeadUnitsContainer = props => {
   const [showMenu, setShowMenu] = useState(false);
   const [idPig, setIdPig] = useState("");
   const [showEdit, setShowEdit] = useState(false);
-
-  const [showNoData, setShowNoData] = useState(true);
 
   const getData = () => {
     fetch(`https://obb-api.herokuapp.com/dead-pigs-limited`)
@@ -34,13 +30,7 @@ const DeadUnitsContainer = props => {
   useEffect(() => {
     getData();
     getUnlimitedData();
-
-    setTimeout(() => {
-      if (underscore.isEmpty(data)) {
-        setShowNoData(false);
-      }
-    }, 500);
-  }, [props.reload, showNoData]);
+  }, [props.reload]);
 
   const showForm = id => {
     setIdPig(id);
@@ -57,7 +47,6 @@ const DeadUnitsContainer = props => {
 
   return (
     <div className="UnitsContainer">
-      {!showNoData && (
         <div className="UnitsTable">
           <div className="TableContent">
             <Table bordered hover variant="dark">
@@ -113,8 +102,6 @@ const DeadUnitsContainer = props => {
             />
           )}
         </div>
-      )}
-      {showNoData && <NoData />}
     </div>
   );
 };
