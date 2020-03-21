@@ -50,14 +50,13 @@ const EditUnitForm = props => {
         console.log("Success:", data);
       })
       .then(props.showEditHandler())
-      //   .then(
-      //     //TODO: Reload after POST
-      //     props.reloadHandler(props.id)
-      //   )
-      //   .then(props.showAddUnitHandler())
       .catch(error => {
         console.error("Error:", error);
       });
+
+      setTimeout(() => {
+        props.reloadHandler()
+      }, 500)
   };
 
   return (

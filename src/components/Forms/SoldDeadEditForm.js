@@ -48,6 +48,10 @@ const SoldDeadEditForm = props => {
       .catch(error => {
         console.error("Error:", error);
       });
+
+      setTimeout(() => {
+        props.reloadHandler()
+      }, 500)
   };
 
   return (

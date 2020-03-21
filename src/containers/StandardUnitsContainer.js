@@ -23,17 +23,16 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
   const [editMenu, setEditMenu] = useState(false);
   const [showDeadSoldForm, setShowDeadSoldForm] = useState(false);
 
-
-  const getUnitsData = id => {
-    fetch(`https://obb-api.herokuapp.com/active-pigs/${id}`)
+  const getUnitsData = async (id) => {
+    await fetch(`https://obb-api.herokuapp.com/active-pigs/${id}`)
       .then(res => res.json())
       .then(res => setDataUnits(res))
       .catch(e => e);
   };
 
   useEffect(() => {
-    getUnitsData(id);
-  }, [id]);
+    getUnitsData(id)
+  }, [id, props.reload]); //..,data] makes loop //id should change only on select
 
   const showForm = (pen, id, gender, date, price) => {
     setId(pen);
@@ -65,10 +64,6 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
     setId(event.target.value);
   };
 
-  const updateStateByID = id => {
-    setId(id);
-  };
-
   const toggleAddForm = () => {
     setShowAddForm(!showAddForm);
     setShowMenu(false);
@@ -78,6 +73,8 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
     setShowDeadSoldForm(!showDeadSoldForm);
     hideEdit();
   }
+
+ 
 
   return (
     <div className="UnitsContainer">
@@ -134,7 +131,7 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
         <AddForm
           id={id}
           showAddUnitHandler={toggleAddForm}
-          reloadHandler={updateStateByID}
+          reloadHandler={props.reloadHandler}
         />
       )}
      {editMenu && (
@@ -145,7 +142,7 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
           date={date}
           price={price}
           showEditHandler={toggleEdit}
-          reloadHandler={updateStateByID}
+          reloadHandler={props.reloadHandler}
           showMenuHandler={toggleMenu}
           showDeadSoldHandler={showDeadSoldHandler}
         />

@@ -18,6 +18,7 @@ const App = () => {
   const [showExams, setShowExams] = useState(false);
 
   const [unitID, setUnitID] = useState("");
+  const [reload, setReload] = useState(false);
 
   const toggleComponent = (unit, forage, global, water, sold, dead) => {
     setShowUnits(unit);
@@ -27,6 +28,10 @@ const App = () => {
     setShowSold(sold || false);
     setShowDead(dead || false);
   };
+
+  const reloadHandler = () => {
+    setReload(!reload)
+  }
 
   const showUnitsHandler = () => toggleComponent(true);
   const showForageHandler = () => toggleComponent(false, true);
@@ -52,10 +57,11 @@ const App = () => {
         deadHandler={showDeadHandler}
       />
       {showGlobal && <GlobalDataContainer />}
-      {showUnits && <StandardUnitsContainer toggleExams={toggleExams} setUnitID={setUnit}/>}
+      {showUnits && <StandardUnitsContainer toggleExams={toggleExams} setUnitID={setUnit} reloadHandler={reloadHandler} reload={reload}/>}
       {showSold && <SoldUnitsContainer isOn={showSold} />}
       {showDead && <DeadUnitsContainer isOn={showDead} />}
       {showExams && <ExamContainer toggleExams={toggleExams} unitID={unitID}/>}
+      <h1 style={{display: "none"}}>{reload.toString()}</h1>
     </div>
   );
 };

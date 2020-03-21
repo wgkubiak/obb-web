@@ -39,14 +39,14 @@ const AddForm = props => {
       .then(data => {
         console.log("Success:", data);
       })
-      .then(
-        //TODO: Reload after POST
-        props.reloadHandler(props.id)
-      )
       .then(props.showAddUnitHandler())
       .catch(error => {
         console.error("Error:", error);
       });
+
+    setTimeout(() => {
+      props.reloadHandler()
+    }, 500)
   };
 
   return (
