@@ -438,7 +438,6 @@ option {
   left: 50%;
   transform: translate(-50%, 0%);
   position: relative;
-  color: #eeeeee;
   font-style: italic;
   margin-top: 1em;
 }

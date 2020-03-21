@@ -30,7 +30,7 @@ const GlobalChart = props => {
       }
       }
     });
-  }, [ref, props.chartLabel, props.data, props.dates, props.mode, props.miny, props.maxy]);
+  }, [ref, props.chartLabel, props.data, props.dates, props.mode, props.miny, props.maxy, props.reload]);
 
 
   return (

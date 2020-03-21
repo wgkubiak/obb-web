@@ -4,7 +4,9 @@ import GeneratePDF from "../components/Actions/GeneratePDF";
 import Head from "./../components/Table/Head";
 import Body from "./../components/Table/Body";
 import Menu from "./../components/Menu/Menu";
+import NoData from "./../components/Info/NoData";
 import shortid from "shortid";
+import underscore from "underscore";
 
 const DeadUnitsContainer = props => {
   const [data, setData] = useState([]);
@@ -12,6 +14,8 @@ const DeadUnitsContainer = props => {
   const [showMenu, setShowMenu] = useState(false);
   const [idPig, setIdPig] = useState("");
   const [showEdit, setShowEdit] = useState(false);
+
+  const [showNoData, setShowNoData] = useState(true);
 
   const getData = () => {
     fetch(`https://obb-api.herokuapp.com/dead-pigs-limited`)
@@ -30,8 +34,13 @@ const DeadUnitsContainer = props => {
   useEffect(() => {
     getData();
     getUnlimitedData();
-    
-  },[props.reload]);
+
+    setTimeout(() => {
+      if (underscore.isEmpty(data)) {
+        setShowNoData(false);
+      }
+    }, 500);
+  }, [props.reload, showNoData]);
 
   const showForm = id => {
     setIdPig(id);
@@ -48,54 +57,64 @@ const DeadUnitsContainer = props => {
 
   return (
     <div className="UnitsContainer">
-      <div className="UnitsTable">
-        <div className="TableContent">
-          <Table bordered hover variant="dark">
-            <thead>
-              <Head
-                data={[
-                  "Kojec",
-                  "ID",
-                  "Płeć",
-                  "Data zakupu",
-                  "Cena",
-                  "Data zgonu"
-                ]}
-              />
-            </thead>
-            <tbody>
-              {data.map((data, index) => (
-                <Body
-                  key={`${data.id}${shortid.generate()}`}
-                  data={data}
-                  showForm={showForm.bind(this, data.id)}
+      {!showNoData && (
+        <div className="UnitsTable">
+          <div className="TableContent">
+            <Table bordered hover variant="dark">
+              <thead>
+                <Head
+                  data={[
+                    "Kojec",
+                    "ID",
+                    "Płeć",
+                    "Data zakupu",
+                    "Cena",
+                    "Data zgonu"
+                  ]}
                 />
-              ))}
-            </tbody>
-          </Table>
-        </div>
-        <GeneratePDF
-          header={["Data zgonu", "Kojec", "ID", "Plec", "Data zakupu", "Cena"]}
-          fileheader="Raport zgonow"
-          mode="dead"
-          unlData={unlimitedData}
-          filename={`RaportZgonow-${new Date()
-            .toString()
-            .substring(0, 10)
-            .replace(/\s/g, "")}`}
-        />
-        {showMenu && (
-          <Menu
+              </thead>
+              <tbody>
+                {data.map((data, index) => (
+                  <Body
+                    key={`${data.id}${shortid.generate()}`}
+                    data={data}
+                    showForm={showForm.bind(this, data.id)}
+                  />
+                ))}
+              </tbody>
+            </Table>
+          </div>
+          <GeneratePDF
+            header={[
+              "Data zgonu",
+              "Kojec",
+              "ID",
+              "Plec",
+              "Data zakupu",
+              "Cena"
+            ]}
+            fileheader="Raport zgonow"
             mode="dead"
-            url="https://obb-api.herokuapp.com/delete-pig/"
-            id={idPig}
-            showMenu={toggleMenu}
-            showEdit={toggleEdit}
-            showDead={showEdit}
-            reloadHandler={props.reloadHandler}
+            unlData={unlimitedData}
+            filename={`RaportZgonow-${new Date()
+              .toString()
+              .substring(0, 10)
+              .replace(/\s/g, "")}`}
           />
-        )}
-      </div>
+          {showMenu && (
+            <Menu
+              mode="dead"
+              url="https://obb-api.herokuapp.com/delete-pig/"
+              id={idPig}
+              showMenu={toggleMenu}
+              showEdit={toggleEdit}
+              showDead={showEdit}
+              reloadHandler={props.reloadHandler}
+            />
+          )}
+        </div>
+      )}
+      {showNoData && <NoData />}
     </div>
   );
 };

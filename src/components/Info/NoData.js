@@ -5,9 +5,9 @@ const NoData = () => {
   return (
     <>
     <FaRegSadTear
-      style={{ paddingTop: "2em", width: "10em", height: "10em" }}
+      style={{ paddingTop: "2em", width: "10em", height: "10em", color: "white"}}
     />
-    <h2 className="no-data--text">Brak danych</h2>
+    <h2 className="no-data--text" style={{color: "white"}}>Brak danych</h2>
     </>
   )
 };

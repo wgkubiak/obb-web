@@ -9,7 +9,7 @@ import EditGlobalForm from "./../components/Forms/EditGlobalForm";
 import GeneratePDF from "../components/Actions/GeneratePDF";
 import shortid from "shortid";
 
-const GlobalDataContainer = () => {
+const GlobalDataContainer = props => {
   const [data, setData] = useState([]);
   const [unlData, setUnlData] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -198,6 +198,7 @@ const GlobalDataContainer = () => {
             maxy={25}
             dates={datesData}
             data={tempData}
+            reload={props.reload}
           />
           <GlobalChart
             chartClass="chart--wetness"
@@ -208,6 +209,7 @@ const GlobalDataContainer = () => {
             maxy={70}
             dates={datesData}
             data={wetData}
+            reload={props.reload}
           />
           <GlobalChart
             chartClass="chart--nhthree"
@@ -218,6 +220,7 @@ const GlobalDataContainer = () => {
             maxy={20}
             dates={datesData}
             data={nhData}
+            reload={props.reload}
           />
           <GlobalChart
             chartClass="chart--htwos"
@@ -228,6 +231,7 @@ const GlobalDataContainer = () => {
             maxy={2}
             dates={datesData}
             data={htwoData}
+            reload={props.reload}
           />
           <GlobalChart
             chartClass="chart--cotwo"
@@ -238,6 +242,7 @@ const GlobalDataContainer = () => {
             maxy={3000}
             dates={datesData}
             data={coData}
+            reload={props.reload}
           />
         </div>
       )}
