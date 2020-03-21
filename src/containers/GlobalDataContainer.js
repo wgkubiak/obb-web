@@ -31,8 +31,6 @@ const GlobalDataContainer = props => {
   const [wetData, setWetData] = useState([]);
   const [sorted, setSorted] = useState(false);
 
-  const [reloadGraph, setReloadGraph] = useState(false);
-
   const getData = () => {
     fetch(`https://obb-api.herokuapp.com/global-latest`)
       .then(res => res.json())
@@ -59,6 +57,7 @@ const GlobalDataContainer = props => {
 
   const toggleAddForm = () => {
     setShowForm(!showForm);
+    setShowEdit(false);
   };
 
   const sortData = () => {
@@ -127,6 +126,7 @@ const GlobalDataContainer = props => {
 
   const toggleForm = () => {
     setShowEdit(!showEdit);
+    setShowForm(false);
   };
 
   return (
@@ -205,6 +205,7 @@ const GlobalDataContainer = props => {
             dates={datesData}
             data={tempData}
             reload={sorted}
+            step={1}
           />
           <GlobalChart
             chartClass="chart--wetness"
@@ -216,6 +217,7 @@ const GlobalDataContainer = props => {
             dates={datesData}
             data={wetData}
             reload={props.reload}
+            step={5}
           />
           <GlobalChart
             chartClass="chart--nhthree"
@@ -227,6 +229,7 @@ const GlobalDataContainer = props => {
             dates={datesData}
             data={nhData}
             reload={props.reload}
+            step={5}
           />
           <GlobalChart
             chartClass="chart--htwos"
@@ -238,6 +241,7 @@ const GlobalDataContainer = props => {
             dates={datesData}
             data={htwoData}
             reload={props.reload}
+            step={1}
           />
           <GlobalChart
             chartClass="chart--cotwo"
@@ -249,6 +253,7 @@ const GlobalDataContainer = props => {
             dates={datesData}
             data={coData}
             reload={props.reload}
+            step={500}
           />
         </div>
       )}

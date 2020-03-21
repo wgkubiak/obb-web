@@ -24,7 +24,8 @@ const GlobalChart = props => {
           yAxes: [{
               ticks: {
                   suggestedMin: props.miny,
-                  suggestedMax: props.maxy
+                  suggestedMax: props.maxy,
+                  stepSize: props.step
               }
           }]
       }
