@@ -1,5 +1,49 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import styled from "styled-components";
+
+const StyledOptionButton = styled(Button)`
+  background-color: #29434e;
+  width: 80%;
+  margin-top: 0.5em;
+  border: none !important;
+  outline: none;
+  
+  &hover: {
+    background-color: #546e7a;
+  }
+`;
+
+const StyledModalContent = styled(Modal)`
+  color: #eeeeee !important
+`;
+
+const StyledModalBody = styled(Modal.Body)`
+  border-bottom: none;
+  background-color: #eeeeee !important;
+  color: #000000
+`;
+
+const StyledModalHeader = styled(Modal.Header)`
+  background-color: #29434e !important
+`;
+
+const StyledModalFooter = styled(Modal.Footer)`
+  border-top: none;
+  background-color: #eeeeee !important;
+  color: #000000
+`;
+
+const StyledConfirmButton = styled(Button)`
+  background-color: #c75b39 !important;
+  border: none !important;
+  outline: none;
+  
+  &:hover {
+    background-color: #ff8a65 !important
+  }
+`;
+
 
 const UndoneButton = props => {
   const [showModal, setShowModal] = useState(false);
@@ -31,25 +75,25 @@ const UndoneButton = props => {
 
   return (
     <>
-      <Button variant="dark" onClick={handleModalShow}>
+      <StyledOptionButton variant="dark" onClick={handleModalShow}>
         Wycofaj do kojca
-      </Button>
-      <Modal show={showModal} onHide={handleModalClose}>
-        <Modal.Header>
+      </StyledOptionButton>
+      <StyledModalContent show={showModal} onHide={handleModalClose}>
+        <StyledModalHeader>
           <Modal.Title>Czy jesteś pewna/y?!</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        </StyledModalHeader>
+        <StyledModalBody>
           Próba przeniesienia jednostki #{props.id} do kojca
-        </Modal.Body>
-        <Modal.Footer>
+        </StyledModalBody>
+        <StyledModalFooter>
           <Button variant="secondary" onClick={handleModalClose}>
             Nie
           </Button>
-          <Button variant="primary" onClick={submitHandler}>
+          <StyledConfirmButton variant="primary" onClick={submitHandler}>
             Tak, przenieś
-          </Button>
-        </Modal.Footer>
-      </Modal>
+          </StyledConfirmButton>
+        </StyledModalFooter>
+      </StyledModalContent>
     </>
   );
 };

@@ -1,15 +1,22 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import styled from "styled-components";
+
+const StyledButton = styled(Button)`
+  width: "100%";
+  background-color: #c75b39;
+  border: none !important;
+  outline: none; 
+`
 
 
 const GenerateButton = props => (
-  <Button
+  <StyledButton
     onClick={props.generatePDF}
-    style={{ width: "20%" }}
     variant="dark"
     >
       <strong>Wygeneruj raport</strong>
-  </Button>
+  </StyledButton>
 )
 
 export default GenerateButton;

@@ -3,10 +3,94 @@ import { Form, Button } from "react-bootstrap";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import pl from "date-fns/locale/pl";
+import styled from "styled-components";
+
+const StyledSoldDeadForm = styled.div`
+  width: 20em;
+  height: auto;
+  z-index: 2;
+  position: fixed;
+  background-color: #ffffff;
+  color: #eeeeee;
+  left: 50%;
+  right: 0;
+  top: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0.3em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+`;
+
+const StyledHideButton = styled(Button)`
+  position: relative;
+  top: 0;
+  width: 100%;
+  background-color: #c75b39 !important;
+  height: 3em !important;
+  margin-right: auto;
+  right: 0;
+  border-radius: 0;
+  text-transform: uppercase;
+  border: none !important;
+  outline: none;
+
+  &:hover {
+    background-color: #ff8a65 !important;
+  }
+`;
+
+const StyledButton = styled(Button)`
+  position: relative;
+  width: 100%;
+  border-radius: 0;
+  background-color: #c75b39 !important;
+  height: 3em !important;
+  border: none !important;
+  outline: none;
+
+  &:hover {
+    background-color: #ff8a65 !important;
+  }
+`;
+
+const StyledFormControl = styled(Form.Control)`
+  text-align-last:center;
+  text-align: center;
+  background-color: #eeeeee;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0em !important;
+  color: #000000
+`;
+
+const StyledDatePicker = styled(DatePicker)`
+  width: 100%;
+  text-align: center;
+  background-color: #eeeeee;
+  color: #212121
+`;
+
+const StyledFormLabel = styled(Form.Label)`
+  color: #000000;
+`;
+
+const StyledSelect = styled(Form.Control)`
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  text-align-last: center;
+  text-align: center;
+  background-color: #eeeeee;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0em !important;
+  color: #000000;
+`;
 
 registerLocale("pl", pl);
 
-const SoldDeadForm = props => {
+const SoldDeadForm = (props) => {
   let defaultDate = new Date();
 
   const [date, setDate] = useState(defaultDate);
@@ -15,7 +99,7 @@ const SoldDeadForm = props => {
 
   const data = useMemo(
     () => ({
-      pigDeathDate: date
+      pigDeathDate: date,
     }),
     [date]
   );
@@ -23,88 +107,79 @@ const SoldDeadForm = props => {
   const _data = useMemo(
     () => ({
       pigSaleDate: date,
-      pigSellingCost: price
+      pigSellingCost: price,
     }),
     [date, price]
   );
 
-  const submitHandler = event => {
+  const submitHandler = (event) => {
     event.preventDefault();
     console.log(`MODE: ${mode}, DEATH/SOLD DATE: ${date}, PRICE: ${price}`);
 
     fetch(`http://obb-api.herokuapp.com/pig-${mode}/${props.id}`, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: mode === "dead" ? JSON.stringify(data) : JSON.stringify(_data)
+      body: mode === "dead" ? JSON.stringify(data) : JSON.stringify(_data),
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         console.log("Success:", data);
       })
-      .then(
-        props.hideEverythingHandler()
-      )
-      .catch(error => {
+      .then(props.hideEverythingHandler())
+      .catch((error) => {
         console.error("Error:", error);
       });
 
-      setTimeout(() => {
-        props.reloadHandler()
-      }, 500)
+    setTimeout(() => {
+      props.reloadHandler();
+    }, 500);
   };
 
   return (
-    <div className="SoldDeadForm">
-      <Button
-        className="hide-selection"
-        variant="dark"
-        style= {{width: "100%"}}
-        onClick={props.showHandler}
-      >
+    <StyledSoldDeadForm>
+      <StyledHideButton variant="dark" onClick={props.showHandler}>
         Ukryj
-      </Button>
+      </StyledHideButton>
       <Form>
-        <Form.Group controlId="sold-dead--selection">
-          <Form.Label>Tryb</Form.Label>
-          <Form.Control
+        <Form.Group
+        className="edit-input">
+          <StyledFormLabel>Tryb</StyledFormLabel>
+          <StyledSelect
             as="select"
-            onChange={event => {
-                setMode(event.target.value === "Zgon" ? "dead" : "sold");
-                console.log(event.target.value)
-            }       
-            }
+            onChange={(event) => {
+              setMode(event.target.value === "Zgon" ? "dead" : "sold");
+            }}
           >
             <option>Zgon</option>
             <option>Sprzedaż</option>
-          </Form.Control>
+          </StyledSelect>
         </Form.Group>
         {mode === "sold" && (
           <Form.Group controlId="sold-dead--price-input">
-            <Form.Label>Cena</Form.Label>
-            <Form.Control
+            <StyledFormLabel>Cena</StyledFormLabel>
+            <StyledFormControl
               type="text"
               placeholder="0"
-              onChange={event => setPrice(event.target.value)}
+              onChange={(event) => setPrice(event.target.value)}
             />
           </Form.Group>
         )}
         <Form.Group controlId="exampleForm.ControlSelect1">
-        <Form.Label>Data {mode === "dead" ? "zgonu" : "sprzedaży"}</Form.Label>
-          <DatePicker
-            className="date-picker"
+          <StyledFormLabel>
+            Data {mode === "dead" ? "zgonu" : "sprzedaży"}
+          </StyledFormLabel>
+          <StyledDatePicker
             locale="pl"
             selected={date}
-            onChange={date => setDate(date)}
+            onChange={(date) => setDate(date)}
           />
         </Form.Group>
       </Form>
 
-      <Button variant="success" onClick={submitHandler}>
-        POTWIERDŹ
-      </Button>
-    </div>
+      <StyledButton onClick={submitHandler}>POTWIERDŹ</StyledButton>
+    </StyledSoldDeadForm>
   );
 };
 

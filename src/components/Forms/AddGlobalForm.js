@@ -3,8 +3,23 @@ import { Form, Button } from "react-bootstrap";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import pl from "date-fns/locale/pl";
+import styled from "styled-components";
 
 registerLocale("pl", pl);
+
+const StyledAddGlobalForm = styled.div`
+  background-color: #ffffff;
+  color: #eeeeee;
+  position: fixed;
+  width: 20em;
+  height: auto;
+  left: 0;
+  right: 0;
+  top: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+`;
 
 const AddGlobalForm = props => {
   let defaultDate = new Date();
@@ -57,7 +72,7 @@ const AddGlobalForm = props => {
   };
 
   return (
-    <div className="AddGlobalForm">
+    <StyledAddGlobalForm>
       <Button
         className="hide-selection"
         variant="dark"
@@ -145,7 +160,7 @@ const AddGlobalForm = props => {
       <Button variant="success" onClick={submitHandler}>
         POTWIERDŹ
       </Button>
-    </div>
+    </StyledAddGlobalForm>
   );
 };
 

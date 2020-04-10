@@ -3,8 +3,79 @@ import { Form, Button } from "react-bootstrap";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import pl from "date-fns/locale/pl";
+import styled from "styled-components";
 
 registerLocale("pl", pl);
+
+const StyledHideButton = styled(Button)`
+  position: relative;
+  top: 0;
+  width: 100%;
+  background-color: #c75b39 !important;
+  height: 3em !important;
+  margin-right: auto;
+  right: 0;
+  border-radius: 0;
+  text-transform: uppercase;
+  border: none !important;
+  outline: none;
+
+  &:hover {
+    background-color: #ff8a65 !important;
+  }
+`;
+
+const StyledFormLabel = styled(Form.Label)`
+  color: #000000
+`;
+
+const StyledEditForm = styled.div`
+  width: 20em;
+  height: auto;
+  z-index: 2;
+  position: fixed;
+  background-color: #ffffff;
+  color: #eeeeee;
+  left: 50%;
+  right: 0;
+  top: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0.3em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+`;
+
+const StyledConfirmButton = styled(Button)`
+  position: relative;
+  width: 100%;
+  border-radius: 0;
+  background-color: #c75b39 !important;
+  height: 3em !important;
+  border: none !important;
+  outline: none;
+
+  &:hover {
+    background-color: #ff8a65 !important;
+  }
+`;
+
+const StyledDatePicker = styled(DatePicker)`
+  width: 100%;
+  text-align: center;
+  background-color: #eeeeee;
+  color: #212121
+`;
+
+const StyledFormControl = styled(Form.Control)`
+  text-align-last:center;
+  text-align: center;
+  background-color: #eeeeee;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0em !important;
+  color: #000000
+`;
 
 const SoldDeadEditForm = props => {
   const _date = new Date();
@@ -55,23 +126,21 @@ const SoldDeadEditForm = props => {
   };
 
   return (
-    <div className="EditDeadUnitForm">
+    <StyledEditForm>
       {props.mode === "sold" && (
         <>
-          <Button
-            className="hide-selection"
-            variant="dark"
+          <StyledHideButton
             onClick={props.showHandler}
           >
             Ukryj
-          </Button>
+          </StyledHideButton>
           <Form>
             <Form.Group
               controlId="exampleForm.ControlInput1"
               className="edit-input"
             >
-              <Form.Label>Kwota sprzedaży</Form.Label>
-              <Form.Control
+              <StyledFormLabel>Kwota sprzedaży</StyledFormLabel>
+              <StyledFormControl
                 type="text"
                 placeholder="0"
                 onChange={event => setPrice(event.target.value)}
@@ -82,8 +151,8 @@ const SoldDeadEditForm = props => {
               controlId="exampleForm.ControlSelect1"
               className="edit-input"
             >
-              <Form.Label>Data sprzedaży</Form.Label>
-              <DatePicker
+              <StyledFormLabel>Data sprzedaży</StyledFormLabel>
+              <StyledDatePicker
                 className="date-picker"
                 locale="pl"
                 selected={date}
@@ -92,28 +161,26 @@ const SoldDeadEditForm = props => {
             </Form.Group>
           </Form>
 
-          <Button variant="success" onClick={submitHandler}>
+          <StyledConfirmButton variant="success" onClick={submitHandler}>
             POTWIERDŹ
-          </Button>
+          </StyledConfirmButton>
         </>
       )}
       {props.mode === "dead" && (
         <>
-          <Button
-            className="hide-selection"
+          <StyledHideButton
             variant="dark"
             onClick={props.showHandler}
           >
             Ukryj
-          </Button>
+          </StyledHideButton>
           <Form>
             <Form.Group
               controlId="exampleForm.ControlSelect1"
               className="edit-input"
             >
-              <Form.Label>Data zgonu</Form.Label>
-              <DatePicker
-                className="date-picker"
+              <StyledFormLabel>Data zgonu</StyledFormLabel>
+              <StyledDatePicker
                 locale="pl"
                 selected={date}
                 onChange={date => setDate(date)}
@@ -121,12 +188,12 @@ const SoldDeadEditForm = props => {
             </Form.Group>
           </Form>
 
-          <Button variant="success" onClick={submitHandler}>
+          <StyledConfirmButton variant="success" onClick={submitHandler}>
             POTWIERDŹ
-          </Button>
+          </StyledConfirmButton>
         </>
       )}
-    </div>
+    </StyledEditForm>
   );
 };
 

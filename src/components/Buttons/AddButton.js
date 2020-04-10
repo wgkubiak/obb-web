@@ -1,10 +1,23 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import styled from 'styled-components';
+
+const StyledAddButton = styled(Button)`
+  margin-left: 2px;
+  border: none;
+  color: #ffffff !important;
+  background-color: #c75b39 !important;
+  border-radius: 0;
+  
+  &:hover {
+    background-color: #ff8a65 !important;
+  }
+`;
 
 const AddButton = props => (
-  <Button className="addBtn" variant="light" onClick={props.toggleHandler}>
+  <StyledAddButton variant="light" onClick={props.toggleHandler}>
     DODAJ
-  </Button>
+  </StyledAddButton>
 );
 
 export default AddButton;

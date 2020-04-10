@@ -36,7 +36,7 @@ const GlobalChart = props => {
 
   return (
         <div className={props.chartClass}>
-          <canvas id={props.chartID} ref={ref} />
+          <canvas ref={ref} />
         </div>
     )
 }

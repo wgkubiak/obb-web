@@ -3,6 +3,90 @@ import { Form, Button } from "react-bootstrap";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import pl from "date-fns/locale/pl";
+import styled from "styled-components";
+
+const StyledHideButton = styled(Button)`
+  position: relative;
+  top: 0;
+  width: 100%;
+  background-color: #c75b39 !important;
+  height: 3em !important;
+  margin-right: auto;
+  right: 0;
+  border-radius: 0;
+  text-transform: uppercase;
+  border: none !important;
+  outline: none;
+
+  &:hover {
+    background-color: #ff8a65 !important;
+  }
+`;
+
+const StyledFormLabel = styled(Form.Label)`
+  color: #000000
+`;
+
+const StyledEditUnitForm = styled.div`
+  width: 20em;
+  height: auto;
+  z-index: 2;
+  position: fixed;
+  background-color: #ffffff;
+  color: #eeeeee;
+  left: 50%;
+  right: 0;
+  top: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0.3em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+`;
+
+const StyledConfirmButton = styled(Button)`
+  position: relative;
+  width: 100%;
+  border-radius: 0;
+  background-color: #c75b39 !important;
+  height: 3em !important;
+  border: none !important;
+  outline: none;
+
+  &:hover {
+    background-color: #ff8a65 !important;
+  }
+`;
+
+const StyledDatePicker = styled(DatePicker)`
+  width: 100%;
+  text-align: center;
+  background-color: #eeeeee;
+  color: #212121
+`;
+
+const StyledFormControl = styled(Form.Control)`
+  text-align-last:center;
+  text-align: center;
+  background-color: #eeeeee;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0em !important;
+  color: #000000
+`;
+
+const StyledSelect = styled(Form.Control)`
+  width: 100%;
+  height: calc(1.5em + .75rem + 2px);
+  text-align-last:center;
+  text-align: center;
+  background-color: #eeeeee;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0em !important;
+  color: #000000
+`;
 
 registerLocale("pl", pl);
 
@@ -60,21 +144,20 @@ const EditUnitForm = props => {
   };
 
   return (
-    <div className="EditUnitForm">
-      <Button
-        className="hide-selection"
+    <StyledEditUnitForm>
+      <StyledHideButton
         variant="dark"
         onClick={props.showEditHandler}
       >
         Ukryj
-      </Button>
+      </StyledHideButton>
       <Form>
         <Form.Group
           controlId="exampleForm.ControlSelect1"
           className="edit-input"
         >
-          <Form.Label>Kojec</Form.Label>
-          <Form.Control
+          <StyledFormLabel>Kojec</StyledFormLabel>
+          <StyledSelect
             as="select"
             onChange={event => setPen(event.target.value)}
           >
@@ -85,28 +168,28 @@ const EditUnitForm = props => {
             <option value={4}>4</option>
             <option value={5}>5</option>
             <option value={6}>6</option>
-          </Form.Control>
+          </StyledSelect>
         </Form.Group>
         <Form.Group
           controlId="exampleForm.ControlSelect1"
           className="edit-input"
         >
-          <Form.Label>Płeć</Form.Label>
-          <Form.Control
+          <StyledFormLabel>Płeć</StyledFormLabel>
+          <StyledSelect
             as="select"
             onChange={event => setGender(event.target.value)}
             defaultValue={gender === "m"}
           >
             <option value={true}>Samiec</option>
             <option value={false}>Samica</option>
-          </Form.Control>
+          </StyledSelect>
         </Form.Group>
         <Form.Group
           controlId="exampleForm.ControlInput1"
           className="edit-input"
         >
-          <Form.Label>Cena</Form.Label>
-          <Form.Control
+          <StyledFormLabel>Cena</StyledFormLabel>
+          <StyledFormControl
             type="text"
             placeholder="0"
             onChange={event => setPrice(event.target.value)}
@@ -115,11 +198,9 @@ const EditUnitForm = props => {
         </Form.Group>
         <Form.Group
           controlId="exampleForm.ControlSelect1"
-          className="edit-input"
         >
-          <Form.Label>Data zakupu</Form.Label>
-          <DatePicker
-            className="date-picker"
+          <StyledFormLabel>Data zakupu</StyledFormLabel>
+          <StyledDatePicker
             locale="pl"
             selected={shoppingDate}
             onChange={date => setShoppingDate(date)}
@@ -127,10 +208,10 @@ const EditUnitForm = props => {
         </Form.Group>
       </Form>
 
-      <Button variant="success" onClick={submitHandler}>
+      <StyledConfirmButton onClick={submitHandler}>
         POTWIERDŹ
-      </Button>
-    </div>
+      </StyledConfirmButton>
+    </StyledEditUnitForm>
   );
 };
 

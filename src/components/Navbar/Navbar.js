@@ -5,72 +5,111 @@ import { GiWaterDrop } from "react-icons/gi";
 import { FaShoppingCart } from "react-icons/fa";
 import { TiUserDelete } from "react-icons/ti";
 
-const Navbar = props => {
+import styled from "styled-components";
+
+const StyledFigure = styled.figure`
+  margin: 0 0 0.1rem !important;
+`;
+
+const StyledHeader = styled.header`
+  width: auto;
+  height: 100%;
+  position: fixed;
+  background-color: #546e7a;
+  color: #000000;
+  box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.25), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  font-family: "Ubuntu", sans-serif;
+`;
+
+const StyledListGroup = styled(ListGroup)`
+  top: 10%;
+  position: relative;
+  width: auto;
+`;
+
+const StyledListGroupItem = styled(ListGroup.Item)`
+  justify-content: left;
+  display: flex;
+  flex-direction: column;
+  outline: 0;
+`;
+
+const Navbar = (props) => {
   return (
-    <header className="LeftBar">
-      <h1 className="list-header">OBB-Sys</h1>
-      <ListGroup
-        className="list-container"
+    <StyledHeader>
+      <StyledListGroup
         variant="flush"
         defaultActiveKey="#obb-groups"
       >
-        <ListGroup.Item
+        <StyledListGroupItem
           action
           href="#obb-groups"
           variant="dark"
           onClick={props.unitsHandler}
         >
-          <MdDns className="bar-icon" />
-          Grupy
-        </ListGroup.Item>
-        <ListGroup.Item
+          <StyledFigure>
+            <MdDns size={24} />
+          </StyledFigure>
+          <figcaption>Kojce</figcaption>
+        </StyledListGroupItem>
+        <StyledListGroupItem
           action
           href="#obb-global"
           variant="dark"
           onClick={props.globalHandler}
         >
-          <MdEqualizer className="bar-icon" />
-          Globalne
-        </ListGroup.Item>
-        <ListGroup.Item
+          <StyledFigure>
+            <MdEqualizer size={24} />
+          </StyledFigure>
+          <figcaption>Globalne</figcaption>
+        </StyledListGroupItem>
+        <StyledListGroupItem
           action
           href="#obb-forage"
           variant="dark"
           onClick={props.forageHandler}
         >
-          <MdWeb className="bar-icon" />
-          Paśnik
-        </ListGroup.Item>
-        <ListGroup.Item
+          <StyledFigure>
+            <MdWeb size={24} />
+          </StyledFigure>
+          <figcaption>Paśnik</figcaption>
+        </StyledListGroupItem>
+        <StyledListGroupItem
           action
           href="#obb-water"
           variant="dark"
           onClick={props.waterHandler}
         >
-          <GiWaterDrop className="bar-icon" />
-          Woda
-        </ListGroup.Item>
+          <StyledFigure>
+            <GiWaterDrop size={24} />
+          </StyledFigure>
+          <figcaption>Woda</figcaption>
+        </StyledListGroupItem>
 
-        <ListGroup.Item
+        <StyledListGroupItem
           action
           href="#obb-sold"
           variant="dark"
           onClick={props.soldHandler}
         >
-          <FaShoppingCart className="bar-icon" />
-          Sprzedaż
-        </ListGroup.Item>
-        <ListGroup.Item
+          <StyledFigure>
+            <FaShoppingCart size={24} />
+          </StyledFigure>
+          <figcaption>Sprzedaż</figcaption>
+        </StyledListGroupItem>
+        <StyledListGroupItem
           action
           href="#obb-death"
           variant="dark"
           onClick={props.deadHandler}
         >
-          <TiUserDelete className="bar-icon" />
-          Zgon
-        </ListGroup.Item>
-      </ListGroup>
-    </header>
+          <StyledFigure>
+            <TiUserDelete size={24} />
+          </StyledFigure>
+          <figcaption>Zgon</figcaption>
+        </StyledListGroupItem>
+      </StyledListGroup>
+    </StyledHeader>
   );
 };
 
