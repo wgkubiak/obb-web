@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Table } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
 import shortid from "shortid";
 import AddForm from "./../components/Forms/AddForm";
 import AddButton from "./../components/Buttons/AddButton";
@@ -7,24 +7,20 @@ import Head from "./../components/Table/Head";
 import Body from "./../components/Table/Body";
 import Menu from "./../components/Menu/Menu";
 import EditUnitForm from "./../components/Forms/EditUnitForm";
-import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import styled from "styled-components";
 
-const StyledSVGArrowLeft = styled(GoArrowLeft)`
-  color: #546e7a;
-  transition: 500ms;
+
+const StyledButton = styled(Button)`
+  margin-top: 1em;
+  margin-right: 1em;
+  margin-left: 1em;
+  border-radius: 0;
+  border: none;
+  background-color: #546e7a !important;
+  outline: none;
 
   &:hover {
-    color: #29434e;
-  }
-`;
-
-const StyledSVGArrowRight = styled(GoArrowRight)`
-  color: #546e7a;
-  transition: 500ms;
-  
-  &:hover {
-    color: #29434e;
+    background-color: #29434e !important;
   }
 `;
 
@@ -107,7 +103,7 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
     }
   };
 
-  const idDescrease = () => {
+  const idDecrease = () => {
     if (id === 1) {
       setId(6);
     } else {
@@ -120,8 +116,8 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
   return (
     <div className="UnitsContainer">
       <div>
-        <StyledSVGArrowLeft size={64} onClick={idDescrease} />
-        <StyledSVGArrowRight size={64} onClick={idIncrease} />
+      <StyledButton onClick={idDecrease}>Poprzedni</StyledButton>
+        <StyledButton onClick={idIncrease}>Następny</StyledButton>
         <AddButton toggleHandler={toggleAddForm} />
       </div>
       <div

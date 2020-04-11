@@ -25,6 +25,8 @@ const StyledAddGlobalForm = styled.div`
 
 const StyledFormLabel = styled(Form.Label)`
   color: #000000;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
 `;
 
 const StyledHideButton = styled(Button)`

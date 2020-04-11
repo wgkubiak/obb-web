@@ -25,6 +25,8 @@ const StyledEditGlobalForm = styled.div`
 
 const StyledFormLabel = styled(Form.Label)`
   color: #000000;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
 `;
 
 const StyledHideButton = styled(Button)`
@@ -41,9 +43,9 @@ const StyledHideButton = styled(Button)`
   width: auto;
   font-size: small;
   color: #292930 !important;
-  
+
   &:hover {
-    color: #000000
+    color: #000000;
   }
 `;
 

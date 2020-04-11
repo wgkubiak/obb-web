@@ -47,7 +47,6 @@ const StyledAddInputForm = styled(Form.Group)`
   transform: translate(-50%, 0%);
   position: relative;
   color: #019199;
-  font-style: italic;
   margin-top: 2em;
 `;
 
@@ -84,7 +83,9 @@ const StyledSelect = styled(Form.Control)`
 `;
 
 const StyledFormLabel = styled(Form.Label)`
-  color: #000000
+  color: #000000;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
 `;
 
 const StyledButton = styled(Button)`

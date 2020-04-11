@@ -74,7 +74,9 @@ const StyledDatePicker = styled(DatePicker)`
 `;
 
 const StyledFormLabel = styled(Form.Label)`
-  color: #000000;
+color: #000000;
+font-family: 'Roboto', sans-serif;
+font-weight: 500;
 `;
 
 const StyledSelect = styled(Form.Control)`

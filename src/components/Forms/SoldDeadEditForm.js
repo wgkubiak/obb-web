@@ -28,7 +28,9 @@ const StyledHideButton = styled(Button)`
 `;
 
 const StyledFormLabel = styled(Form.Label)`
-  color: #000000
+color: #000000;
+font-family: 'Roboto', sans-serif;
+font-weight: 500;
 `;
 
 const StyledEditForm = styled.div`

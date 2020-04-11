@@ -31,7 +31,7 @@ const StyledListGroupItem = styled(ListGroup.Item)`
   justify-content: left;
   display: flex;
   flex-direction: column;
-  outline: 0;
+  outline: none;
 `;
 
 const Navbar = (props) => {
@@ -50,7 +50,7 @@ const Navbar = (props) => {
           <StyledFigure>
             <MdDns size={24} />
           </StyledFigure>
-          <figcaption style={{fontSize: ".7vw"}}>Kojce</figcaption>
+          <figcaption style={{fontSize: ".9vw"}}>Kojce</figcaption>
         </StyledListGroupItem>
         <StyledListGroupItem
           action
@@ -61,7 +61,7 @@ const Navbar = (props) => {
           <StyledFigure>
             <MdEqualizer size={24} />
           </StyledFigure>
-          <figcaption style={{fontSize: ".7vw"}}>Globalne</figcaption>
+          <figcaption style={{fontSize: ".9vw"}}>Globalne</figcaption>
         </StyledListGroupItem>
         <StyledListGroupItem
           action
@@ -72,7 +72,7 @@ const Navbar = (props) => {
           <StyledFigure>
             <MdWeb size={24} />
           </StyledFigure>
-          <figcaption style={{fontSize: ".7vw"}}>Paśnik</figcaption>
+          <figcaption style={{fontSize: ".9vw"}}>Paśnik</figcaption>
         </StyledListGroupItem>
         <StyledListGroupItem
           action
@@ -83,7 +83,7 @@ const Navbar = (props) => {
           <StyledFigure>
             <GiWaterDrop size={24} />
           </StyledFigure>
-          <figcaption style={{fontSize: ".7vw"}}>Woda</figcaption>
+          <figcaption style={{fontSize: ".9vw"}}>Woda</figcaption>
         </StyledListGroupItem>
 
         <StyledListGroupItem
@@ -95,7 +95,7 @@ const Navbar = (props) => {
           <StyledFigure>
             <FaShoppingCart size={24} />
           </StyledFigure>
-          <figcaption style={{fontSize: ".7vw"}}>Sprzedaż</figcaption>
+          <figcaption style={{fontSize: ".9vw"}}>Sprzedaż</figcaption>
         </StyledListGroupItem>
         <StyledListGroupItem
           action
@@ -106,7 +106,7 @@ const Navbar = (props) => {
           <StyledFigure>
             <TiUserDelete size={24} />
           </StyledFigure>
-          <figcaption style={{fontSize: ".7vw"}}>Zgon</figcaption>
+          <figcaption style={{fontSize: ".9vw"}}>Zgon</figcaption>
         </StyledListGroupItem>
       </StyledListGroup>
     </StyledHeader>

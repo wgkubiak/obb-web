@@ -241,7 +241,6 @@ input, label {
   left: 50%;
   transform: translate(-50%, 0%);
   position: relative;
-  font-style: italic;
   margin-top: 1em;
 }
 
@@ -251,7 +250,7 @@ input, label {
   transform: translate(-50%, 0%);
   position: relative;
   color: #019199;
-  font-style: italic;
+  
   margin-top: 1em;
 }
 
