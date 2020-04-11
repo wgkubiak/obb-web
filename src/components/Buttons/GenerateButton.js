@@ -3,19 +3,23 @@ import { Button } from "react-bootstrap";
 import styled from "styled-components";
 
 const StyledButton = styled(Button)`
-  width: "100%";
-  background-color: #c75b39;
+  width: 20%;
+  background-color: #5E35B1;
   border: none !important;
-  outline: none; 
+  border-radius: 0;
+  outline: none;
+
+  &:hover {
+    background-color: #4527A0
+  }
 `
 
 
 const GenerateButton = props => (
   <StyledButton
     onClick={props.generatePDF}
-    variant="dark"
     >
-      <strong>Wygeneruj raport</strong>
+      <strong>Wygeneruj raport PDF</strong>
   </StyledButton>
 )
 

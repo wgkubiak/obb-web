@@ -68,11 +68,13 @@ const DeadUnitsContainer = props => {
                     "Data sprzedaży",
                     "Kwota sprzedaży"
                   ]}
+                  divider={7}
                 />
               </thead>
               <tbody>
                 {data.map((data, index) => (
                   <Body
+                    mode="sold"
                     key={`${data.id}${shortid.generate()}`}
                     data={data}
                     showForm={showForm.bind(this, data.id, data.pigSellingCost)}

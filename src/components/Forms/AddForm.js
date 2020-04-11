@@ -22,20 +22,20 @@ const StyledAddUnitForm = styled.div`
 `;
 
 const StyledHideButton = styled(Button)`
-  position: relative;
+  position: absolute;
   top: 0;
-  width: 100%;
-  background-color: #c75b39 !important;
-  height: 3em !important;
-  margin-right: auto;
+  width: 10%;
   right: 0;
+  background-color: #651FFF !important;
+  height: auto;
+  margin-right: auto;
   border-radius: 0;
   text-transform: uppercase;
   border: none !important;
   outline: none;
 
   &:hover {
-    background-color: #ff8a65 !important;
+    background-color: #6200EA !important;
   }
 `;
 
@@ -46,7 +46,7 @@ const StyledAddInputForm = styled(Form.Group)`
   position: relative;
   color: #019199;
   font-style: italic;
-  margin-top: 1em;
+  margin-top: 2em;
 `;
 
 const StyledDatePicker = styled(DatePicker)`
@@ -89,19 +89,19 @@ const StyledButton = styled(Button)`
   position: relative;
   width: 100%;
   border-radius: 0;
-  background-color: #c75b39 !important;
-  height: 3em !important;
+  background-color: #651FFF !important;
+  height: auto;
   border: none !important;
   outline: none;
 
   &:hover {
-    background-color: #ff8a65 !important;
+    background-color: #6200EA !important;
   }
 `;
 
 const StyledOption = styled.option`
-  background-color: #ff8a65;
-  color: #000000
+  background-color:  #eeeeee ;
+  color: #212121
 `;
 
 const AddForm = (props) => {
@@ -153,7 +153,7 @@ const AddForm = (props) => {
         variant="dark"
         onClick={props.showAddUnitHandler}
       >
-        Ukryj
+        X
       </StyledHideButton>
       <Form>
         <StyledAddInputForm controlId="exampleStyledFormControlInput1">

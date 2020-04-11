@@ -1,6 +1,10 @@
 body {
-  background-color: #e1e2e1;
-  font-family: "Ubuntu", sans-serif;
+  background-color: #eeeeee;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#arrow-standard:hover {
+  color: #1a237e
 }
 
 .button--delete-global {
@@ -94,7 +98,7 @@ body {
   margin-left: 1em;
   margin-right: 1em;
   margin: 0 auto;
-  background-color: #343434;
+  background-color: #ffffff;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
   border-radius: 0.5em;
 }
@@ -209,17 +213,17 @@ input, label {
 }
 
 .list-group-item {
-  background-color: #546e7a;
-  color: #ffffff;
+  background-color: #B39DDB;
+  color: #000000;
 }
 
 .list-group-item:hover {
-  background-color: #ff8a65 !important;
+  background-color: #4527A0 !important;
   color: #eeeeee !important;
 }
 
 .list-group-item.active {
-  background-color:  #29434e !important;
+  background-color: #5E35B1 !important;
   border: none !important;
   color: #ffffff !important
 }
@@ -264,32 +268,34 @@ input, label {
 
 .TableContent {
   background-color: transparent !important;
+  padding: 1em
 }
 
 .table td,
 .table th {
   width: 25em;
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .table td {
   background-color: #ffffff !important;
-  color: #000000;
+  color: #212121;
 }
 
 .table th {
-  background-color: #29434e !important;
-  color: #ffffff;
-}
-
-.table-dark {
-  background-color: transparent !important;
+  background-color:  #ffffff !important;
+  color: #000000;
 }
 
 .table-dark td,
-.table-dark th,
+.table-dark th {
+  border: none;
+  border-bottom: 2px solid #e0e0e0;
+}
+
 .table-dark thead th {
-  border: 1px solid #3838381c !important;
+  border: none;
+  border-bottom: 3px solid #d8d8d8;
 }
 
 .table-dark tr:hover {
@@ -297,10 +303,12 @@ input, label {
 }
 
 .UnitsContainer {
-  top: 10%;
-  width: 90%;
+  top: 8%;
+  width: 94%;
+  height: 90%;
   position: absolute;
-  left: 10%;
+  left: 50%;
+  transform: translate(-50%, 0%);
   margin: auto;
 }
 
@@ -315,13 +323,6 @@ input, label {
   transition-duration: 0.5s;
   border-radius: 0.25em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
-  font-family: "Lato";
+  font-family: 'Open Sans', sans-serif;
   font-size: 1em;
-}
-
-.UnitsTable > button {
-  width: 100%;
-  border-radius: 0px;
-  height: 3em;
-  outline: none;
 }

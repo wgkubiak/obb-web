@@ -138,7 +138,6 @@ const GlobalDataContainer = props => {
             <thead>
               <Head
                 data={[
-                  "ID pomiaru",
                   "Data pomiaru",
                   "Godzina",
                   "NH3",
@@ -147,6 +146,7 @@ const GlobalDataContainer = props => {
                   "Temperatura",
                   "Wilgotność"
                 ]}
+                divider={8} 
               />
             </thead>
             <tbody>
@@ -154,6 +154,8 @@ const GlobalDataContainer = props => {
                 <Body
                   key={`${data.id}${shortid.generate()}`}
                   data={data}
+                  divider={8} 
+                  mode="global"
                   showForm={showFormHandler.bind(
                     this,
                     data.id,
@@ -182,7 +184,7 @@ const GlobalDataContainer = props => {
         />
       </div>
       {!sorted && (
-        <Button variant="primary" disabled>
+        <Button variant="primary" style={{backgroundColor: "#5E35B1", border: "none"}} disabled>
           <Spinner
             as="span"
             animation="grow"

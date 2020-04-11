@@ -12,7 +12,11 @@ const Body = props => {
           props.data[item] !== null &&
           item !== "createdAt" &&
           item !== "updatedAt" &&
-          item !== "penId"
+          item !== "penId" &&
+          (item !== "idPen" || (props.mode === "sold" || props.mode === "dead")) &&
+          (item !== "id" && props.mode !== undefined) ||
+          (item === "id" && props.mode === "standard") ||
+          (item === "id" && (props.mode === "sold"  || props.mode === "dead" ))
         ) {
           if (item.includes("Date")) {
             return (

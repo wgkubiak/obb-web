@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Table } from "react-bootstrap";
 import shortid from "shortid";
 import AddForm from "./../components/Forms/AddForm";
@@ -7,8 +7,30 @@ import Head from "./../components/Table/Head";
 import Body from "./../components/Table/Body";
 import Menu from "./../components/Menu/Menu";
 import EditUnitForm from "./../components/Forms/EditUnitForm";
+import {GoArrowLeft, GoArrowRight} from "react-icons/go"
+import styled from "styled-components";
+
+const StyledSVGArrowLeft = styled(GoArrowLeft)`
+  color: #5E35B1;
+  transition: 500ms;
+
+  &:hover {
+    color: #4527A0;
+  }
+`;
+
+const StyledSVGArrowRight = styled(GoArrowRight)`
+  color: #5E35B1;
+  transition: 500ms;
+  
+  &:hover {
+    color: #4527A0;
+  }
+`;
 
 const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
+  let unitsContainer = useRef(null);
+
   const _date = new Date();
 
   const [dataUnits, setDataUnits] = useState([]);
@@ -31,7 +53,8 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
   };
 
   useEffect(() => {
-    getUnitsData(id)
+    getUnitsData(id);
+    props.headerHandler(id);
   }, [id, props.reload]); //..,data] makes loop //id should change only on select
 
   const showForm = (pen, id, gender, date, price) => {
@@ -74,37 +97,46 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
     hideEdit();
   }
 
- 
+  const idIncrease = () => {
+    if(id === 6) {
+      setId(1);
+    } else {
+      let identifier = id;
+      identifier++;
+      setId(identifier);
+    }
+  }
+
+  const idDescrease = () => {
+    if(id === 1) {
+      setId(6);
+    } else {
+      let identifier = id;
+      identifier--;
+      setId(identifier);
+    }  
+  }
 
   return (
     <div className="UnitsContainer">
       <div>
-        <select
-          className="penSelect"
-          id="pens"
-          onChange={updateState.bind(this)}
-          value={id}
-        >
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-        </select>
+      <StyledSVGArrowLeft size={64} onClick={idDescrease}/>
+        <StyledSVGArrowRight size={64} onClick={idIncrease}/>
         <AddButton toggleHandler={toggleAddForm} />
       </div>
-      <div className="UnitsTable">
+      <div className="UnitsTable" ref={e => {unitsContainer = e}}>
         <div className="TableContent">
           <Table bordered hover variant="dark">
             <thead>
-              <Head data={["Kojec", "Id", "Płeć", "Data zakupu", "Cena"]} />
+              <Head data={["Id", "Płeć", "Data zakupu", "Cena"]} divider={5} />
             </thead>
             <tbody>
               {dataUnits.map((data, index) => (
                 <Body
+                  mode="standard"
                   key={`${data.id}${shortid.generate()}`}
                   data={data}
+                  divider={5} 
                   showForm={showForm.bind(this, data.idPen, data.id, data.pigGender, data.pigShoppingDate, data.pigShoppingPrice)}
                 />
               ))}

@@ -65,6 +65,7 @@ const DeadUnitsContainer = props => {
               <tbody>
                 {data.map((data, index) => (
                   <Body
+                    mode="dead"
                     key={`${data.id}${shortid.generate()}`}
                     data={data}
                     showForm={showForm.bind(this, data.id)}
@@ -92,6 +93,7 @@ const DeadUnitsContainer = props => {
           />
           {showMenu && (
             <Menu
+              divider={6}
               mode="dead"
               url="https://obb-api.herokuapp.com/delete-pig/"
               id={idPig}

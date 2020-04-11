@@ -19,13 +19,13 @@ const StyledDivTop = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #29434e;
+  background-color: #5E35B1;
   z-index: 20;
 `;
 
 const StyledParagraphTop = styled.div`
-  margin-bottom: 0.1em;
-  margin-top: 0.1em;
+  margin-bottom: 0.4em;
+  margin-top: 0.4em;
   color: #ffffff;
 `;
 
@@ -44,7 +44,7 @@ const App = () => {
   const [unitID, setUnitID] = useState("");
   const [reload, setReload] = useState(false);
 
-  const [headerMode, setHeaderMode] = useState("Kojce");
+  const [headerMode, setHeaderMode] = useState("Kojec (1)");
 
   const toggleComponent = (mode, unit, forage, global, water, sold, dead) => {
     setShowUnits(unit);
@@ -60,7 +60,8 @@ const App = () => {
     setReload(!reload);
   };
 
-  const showUnitsHandler = () => toggleComponent("Kojce", true);
+  const setHeaderHandler = id => setHeaderMode(`Kojec (${id})`); 
+  const showUnitsHandler = () => toggleComponent("Kojec (1)", true);
   const showForageHandler = () => toggleComponent("Paśnik", false, true);
   const showGlobalHandler = () =>
     toggleComponent("Globalne pomiary", false, false, true);
@@ -93,6 +94,7 @@ const App = () => {
       )}
       {showUnits && (
         <StandardUnitsContainer
+          headerHandler={setHeaderHandler}
           toggleExams={toggleExams}
           setUnitID={setUnit}
           reloadHandler={reloadHandler}
