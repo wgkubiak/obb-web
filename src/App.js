@@ -15,17 +15,39 @@ const StyledApp = styled.div`
 
 const StyledDivTop = styled.div`
   width: 100%;
-  height: auto;
+  height: 4em;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #5E35B1;
+  background-color: #546e7a;
   z-index: 20;
 `;
 
 const StyledParagraphTop = styled.div`
-  margin-bottom: 0.4em;
-  margin-top: 0.4em;
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  width: 10%;
+  top: 50%;
+  left: 0%;
+  transform: translate(0%, -50%);
+  font-size: 2em;
+  margin-left: 1%;
+  text-align: left;
+  color: #ffffff;
+`;
+
+const StyledParagraphMid = styled.div`
+  position: absolute;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  top: 0%;
+  width: 10%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1em;
+  text-align: center;
   color: #ffffff;
 `;
 
@@ -87,7 +109,8 @@ const App = () => {
         deadHandler={showDeadHandler}
       />
       <StyledDivTop>
-        <StyledParagraphTop>OBB-SYS | {headerMode}</StyledParagraphTop>
+        <StyledParagraphTop>OBBsys</StyledParagraphTop>
+        <StyledParagraphMid>{headerMode}</StyledParagraphMid>
       </StyledDivTop>
       {showGlobal && (
         <GlobalDataContainer reloadHandler={reloadHandler} reload={reload} />

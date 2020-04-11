@@ -30,18 +30,20 @@ const StyledFormLabel = styled(Form.Label)`
 const StyledHideButton = styled(Button)`
   position: absolute;
   top: 0;
-  width: 10%;
   right: 0;
-  background-color: #651fff !important;
   height: auto;
   margin-right: auto;
   border-radius: 0;
   text-transform: uppercase;
   border: none !important;
   outline: none;
-
+  background-color: #ffffff !important;
+  width: auto;
+  font-size: small;
+  color: #292930 !important;
+  
   &:hover {
-    background-color: #6200ea !important;
+    color: #000000 !important
   }
 `;
 
@@ -84,13 +86,13 @@ const StyledButton = styled(Button)`
   width: 100%;
   margin-top: 0.2em;
   border-radius: 0;
-  background-color: #651FFF !important;
   height: auto;
   border: none !important;
   outline: none;
-
+  background-color: #546e7a !important;
+  
   &:hover {
-    background-color: #6200EA !important;
+    background-color: #29434e !important;
   }
 `;
 
@@ -147,7 +149,6 @@ const AddGlobalForm = props => {
   return (
     <StyledAddGlobalForm>
       <StyledHideButton
-        className="hide-selection"
         variant="dark"
         onClick={props.showAddGlobalHandler}
       >

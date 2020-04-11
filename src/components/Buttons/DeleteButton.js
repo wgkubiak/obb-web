@@ -11,26 +11,28 @@ const StyledDeleteButtonDiv = styled.div`
 `;
 
 const StyledModalContent = styled(Modal)`
-  color: #eeeeee !important
+  color: #eeeeee !important;
 `;
 
 const StyledModalBody = styled(Modal.Body)`
   border-bottom: none;
   background-color: #eeeeee !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
   color: #000000
 `;
 
 const StyledModalHeader = styled(Modal.Header)`
-  background-color: #5E35B1 !important
+  background-color: #546e7a !important;
 `;
 
 const StyledConfirmButton = styled(Button)`
-  background-color: #651FFF !important;
+background-color: #546e7a !important;
   border: none !important;
   outline: none;
-  
+
   &:hover {
-    background-color: #6200EA !important
+    background-color: #29434e !important;
   }
 `;
 
@@ -44,13 +46,15 @@ const StyledDeleteButton = styled(Button)`
   position: relative;
   width: 100%;
   border-radius: 0;
-  background-color: #651FFF !important;
   height: auto;
   border: none !important;
   outline: none;
+  background-color: #546e7a !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
 
   &:hover {
-    background-color: #6200EA !important;
+    background-color: #29434e !important;
   }
 `;
 
@@ -75,7 +79,7 @@ const DeleteButton = props => {
   return (
     <StyledDeleteButtonDiv>
       <StyledDeleteButton variant="danger" onClick={handleModalShow}>
-        USUŃ
+        Usuń
       </StyledDeleteButton>
 
       <StyledModalContent show={showModal} onHide={handleModalClose}>

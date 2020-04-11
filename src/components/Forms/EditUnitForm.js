@@ -8,18 +8,20 @@ import styled from "styled-components";
 const StyledHideButton = styled(Button)`
   position: absolute;
   top: 0;
-  width: 10%;
   right: 0;
-  background-color: #651FFF !important;
   height: auto;
   margin-right: auto;
   border-radius: 0;
   text-transform: uppercase;
   border: none !important;
   outline: none;
-
+  background-color: #ffffff !important;
+  width: auto;
+  font-size: small;
+  color: #292930 !important;
+  
   &:hover {
-    background-color: #6200EA !important;
+    color: #000000
   }
 `;
 
@@ -48,13 +50,13 @@ const StyledConfirmButton = styled(Button)`
   position: relative;
   width: 100%;
   border-radius: 0;
-  background-color: #651FFF !important;
   height: auto;
   border: none !important;
   outline: none;
-
+  background-color: #546e7a !important;
+  
   &:hover {
-    background-color: #6200EA !important;
+    background-color: #29434e !important;
   }
 `;
 

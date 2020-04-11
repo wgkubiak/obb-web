@@ -188,7 +188,7 @@ const GlobalDataContainer = (props) => {
       {!sorted && (
         <Button
           variant="primary"
-          style={{ backgroundColor: "#5E35B1", border: "none" }}
+          style={{ backgroundColor: "#546e7a", border: "none" }}
           disabled
         >
           <Spinner
@@ -206,7 +206,7 @@ const GlobalDataContainer = (props) => {
           <GlobalChart
             chartClass="chart--temperature"
             chartID="global-chart"
-            mode="bar"
+            mode="line"
             chartLabel="Temperatura"
             miny={18}
             maxy={25}
@@ -218,7 +218,7 @@ const GlobalDataContainer = (props) => {
           <GlobalChart
             chartClass="chart--wetness"
             chartID="global-chart"
-            mode="bar"
+            mode="line"
             chartLabel="Wilgotność (55-70)"
             miny={50}
             maxy={70}
@@ -254,7 +254,7 @@ const GlobalDataContainer = (props) => {
           <GlobalChart
             chartClass="chart--cotwo"
             chartID="global-chart"
-            mode="bar"
+            mode="line"
             chartLabel="CO2 (500-3000)"
             miny={0}
             maxy={3000}

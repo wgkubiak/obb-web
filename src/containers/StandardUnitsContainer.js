@@ -7,24 +7,24 @@ import Head from "./../components/Table/Head";
 import Body from "./../components/Table/Body";
 import Menu from "./../components/Menu/Menu";
 import EditUnitForm from "./../components/Forms/EditUnitForm";
-import {GoArrowLeft, GoArrowRight} from "react-icons/go"
+import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import styled from "styled-components";
 
 const StyledSVGArrowLeft = styled(GoArrowLeft)`
-  color: #5E35B1;
+  color: #546e7a;
   transition: 500ms;
 
   &:hover {
-    color: #4527A0;
+    color: #29434e;
   }
 `;
 
 const StyledSVGArrowRight = styled(GoArrowRight)`
-  color: #5E35B1;
+  color: #546e7a;
   transition: 500ms;
   
   &:hover {
-    color: #4527A0;
+    color: #29434e;
   }
 `;
 
@@ -39,7 +39,7 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
   const [idPig, setIdPig] = useState("");
   const [gender, setGender] = useState("");
   const [date, setDate] = useState(_date);
-  const [price, setPrice] = useState('0');
+  const [price, setPrice] = useState("0");
 
   const [showAddForm, setShowAddForm] = useState(initForm);
   const [editMenu, setEditMenu] = useState(false);
@@ -47,9 +47,9 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
 
   const getUnitsData = async (id) => {
     await fetch(`https://obb-api.herokuapp.com/active-pigs/${id}`)
-      .then(res => res.json())
-      .then(res => setDataUnits(res))
-      .catch(e => e);
+      .then((res) => res.json())
+      .then((res) => setDataUnits(res))
+      .catch((e) => e);
   };
 
   useEffect(() => {
@@ -72,18 +72,18 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
     setEditMenu(!editMenu);
     setShowAddForm(false);
     setShowDeadSoldForm(false);
-  }
+  };
 
   const hideEdit = () => {
     setEditMenu(false);
-  }
+  };
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
     setShowAddForm(false);
   };
 
-  const updateState = event => {
+  const updateState = (event) => {
     setId(event.target.value);
   };
 
@@ -95,36 +95,41 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
   const showDeadSoldHandler = () => {
     setShowDeadSoldForm(!showDeadSoldForm);
     hideEdit();
-  }
+  };
 
   const idIncrease = () => {
-    if(id === 6) {
+    if (id === 6) {
       setId(1);
     } else {
       let identifier = id;
       identifier++;
       setId(identifier);
     }
-  }
+  };
 
   const idDescrease = () => {
-    if(id === 1) {
+    if (id === 1) {
       setId(6);
     } else {
       let identifier = id;
       identifier--;
       setId(identifier);
-    }  
-  }
+    }
+  };
 
   return (
     <div className="UnitsContainer">
       <div>
-      <StyledSVGArrowLeft size={64} onClick={idDescrease}/>
-        <StyledSVGArrowRight size={64} onClick={idIncrease}/>
+        <StyledSVGArrowLeft size={64} onClick={idDescrease} />
+        <StyledSVGArrowRight size={64} onClick={idIncrease} />
         <AddButton toggleHandler={toggleAddForm} />
       </div>
-      <div className="UnitsTable" ref={e => {unitsContainer = e}}>
+      <div
+        className="UnitsTable"
+        ref={(e) => {
+          unitsContainer = e;
+        }}
+      >
         <div className="TableContent">
           <Table bordered hover variant="dark">
             <thead>
@@ -136,8 +141,15 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
                   mode="standard"
                   key={`${data.id}${shortid.generate()}`}
                   data={data}
-                  divider={5} 
-                  showForm={showForm.bind(this, data.idPen, data.id, data.pigGender, data.pigShoppingDate, data.pigShoppingPrice)}
+                  divider={5}
+                  showForm={showForm.bind(
+                    this,
+                    data.idPen,
+                    data.id,
+                    data.pigGender,
+                    data.pigShoppingDate,
+                    data.pigShoppingPrice
+                  )}
                 />
               ))}
             </tbody>
@@ -154,7 +166,7 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
               showDeadSoldHandler={showDeadSoldHandler}
               reloadHandler={props.reloadHandler}
               showEditHandler={toggleEdit}
-              hideEditHandler={hideEdit}        
+              hideEditHandler={hideEdit}
               //reloadHandler={props.reloadHandler}
             />
           )}
@@ -167,7 +179,7 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
           reloadHandler={props.reloadHandler}
         />
       )}
-     {editMenu && (
+      {editMenu && (
         <EditUnitForm
           id={id}
           idPig={idPig}

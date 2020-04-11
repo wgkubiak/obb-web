@@ -4,13 +4,15 @@ import styled from "styled-components";
 
 const StyledButton = styled(Button)`
   width: 20%;
-  background-color: #5E35B1;
   border: none !important;
   border-radius: 0;
   outline: none;
-
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  background-color:  #546e7a !important;
+  
   &:hover {
-    background-color: #4527A0
+    background-color: #29434e !important;
   }
 `
 
@@ -19,7 +21,7 @@ const GenerateButton = props => (
   <StyledButton
     onClick={props.generatePDF}
     >
-      <strong>Wygeneruj raport PDF</strong>
+      Wygeneruj raport PDF
   </StyledButton>
 )
 

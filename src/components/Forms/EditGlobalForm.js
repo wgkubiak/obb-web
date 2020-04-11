@@ -30,18 +30,20 @@ const StyledFormLabel = styled(Form.Label)`
 const StyledHideButton = styled(Button)`
   position: absolute;
   top: 0;
-  width: 10%;
   right: 0;
-  background-color: #651fff !important;
   height: auto;
   margin-right: auto;
   border-radius: 0;
   text-transform: uppercase;
   border: none !important;
   outline: none;
-
+  background-color: #ffffff !important;
+  width: auto;
+  font-size: small;
+  color: #292930 !important;
+  
   &:hover {
-    background-color: #6200ea !important;
+    color: #000000
   }
 `;
 
@@ -76,52 +78,51 @@ const StyledDatePicker = styled(DatePicker)`
   width: 100%;
   text-align: center;
   background-color: #eeeeee;
-  color: #212121
+  color: #212121;
 `;
 
 const StyledButton = styled(Button)`
   position: relative;
   width: 100%;
-  margin-top: 0.2em;
   border-radius: 0;
-  background-color: #651FFF !important;
   height: auto;
   border: none !important;
   outline: none;
+  background-color: #546e7a !important;
 
   &:hover {
-    background-color: #6200EA !important;
+    background-color: #29434e !important;
   }
 `;
 
 const StyledModalHeader = styled(Modal.Header)`
-  background-color: #5E35B1 !important
+  background-color: #546e7a !important;
 `;
 
 const StyledModalButton = styled(Button)`
-  background-color: #651FFF !important;
   border: none !important;
   outline: none;
-  
+  background-color: #546e7a !important;
+
   &:hover {
-    background-color: #6200EA !important
+    background-color: #29434e !important;
   }
 `;
 
 const StyledModalContent = styled(Modal)`
-  color: #eeeeee !important
+  color: #eeeeee !important;
 `;
 
 const StyledModalBody = styled(Modal.Body)`
   border-bottom: none;
   background-color: #eeeeee !important;
-  color: #000000
+  color: #000000;
 `;
 
 const StyledModalFooter = styled(Modal.Footer)`
   border-top: none;
   background-color: #eeeeee !important;
-  color: #000000
+  color: #000000;
 `;
 
 const EditGlobalForm = (props) => {
@@ -193,10 +194,7 @@ const EditGlobalForm = (props) => {
     <StyledEditGlobalForm>
       <StyledHideButton onClick={props.toggleEditHandler}>X</StyledHideButton>
       <Form>
-        <Form.Group
-          controlId="exampleStyledFormControlInput1"
-          
-        >
+        <Form.Group controlId="exampleStyledFormControlInput1">
           <StyledFormLabel>NH3</StyledFormLabel>
           <StyledFormControl
             type="text"
@@ -205,10 +203,7 @@ const EditGlobalForm = (props) => {
             onChange={(event) => setNh(event.target.value)}
           />
         </Form.Group>
-        <Form.Group
-          controlId="exampleStyledFormControlSelect1"
-          
-        >
+        <Form.Group controlId="exampleStyledFormControlSelect1">
           <StyledFormLabel>H2S</StyledFormLabel>
           <StyledSelect
             as="select"
@@ -219,10 +214,7 @@ const EditGlobalForm = (props) => {
             <option>2</option>
           </StyledSelect>
         </Form.Group>
-        <Form.Group
-          controlId="exampleStyledFormControlInput1"
-          
-        >
+        <Form.Group controlId="exampleStyledFormControlInput1">
           <StyledFormLabel>C02</StyledFormLabel>
           <StyledFormControl
             type="text"
@@ -231,10 +223,7 @@ const EditGlobalForm = (props) => {
             onChange={(event) => setCO(event.target.value)}
           />
         </Form.Group>
-        <Form.Group
-          controlId="exampleStyledFormControlInput1"
-          
-        >
+        <Form.Group controlId="exampleStyledFormControlInput1">
           <StyledFormLabel>Temperatura</StyledFormLabel>
           <StyledFormControl
             type="text"
@@ -243,10 +232,7 @@ const EditGlobalForm = (props) => {
             onChange={(event) => setTemp(event.target.value)}
           />
         </Form.Group>
-        <Form.Group
-          controlId="exampleStyledFormControlInput1"
-          
-        >
+        <Form.Group controlId="exampleStyledFormControlInput1">
           <StyledFormLabel>Wilgotność</StyledFormLabel>
           <StyledFormControl
             type="text"
@@ -255,10 +241,7 @@ const EditGlobalForm = (props) => {
             onChange={(event) => setWet(event.target.value)}
           />
         </Form.Group>
-        <Form.Group
-          controlId="exampleStyledFormControlSelect1"
-          
-        >
+        <Form.Group controlId="exampleStyledFormControlSelect1">
           <StyledFormLabel>Data badania</StyledFormLabel>
           <StyledDatePicker
             locale="pl"
@@ -266,10 +249,7 @@ const EditGlobalForm = (props) => {
             onChange={(date) => setMeasureDate(date)}
           />
         </Form.Group>
-        <Form.Group
-          controlId="exampleStyledFormControlSelect1"
-          
-        >
+        <Form.Group controlId="exampleStyledFormControlSelect1">
           <StyledFormLabel>Godzina badania</StyledFormLabel>
           <StyledDatePicker
             selected={measureTime}
@@ -284,22 +264,16 @@ const EditGlobalForm = (props) => {
       </Form>
 
       <div className="edit--buttons-container">
-        <StyledButton
-          onClick={submitHandler}
-        >
-          POTWIERDŹ EDYCJĘ
-        </StyledButton>
-        <StyledButton
-          onClick={handleModalShow}
-        >
-          USUŃ
-        </StyledButton>
+        <StyledButton onClick={submitHandler}>POTWIERDŹ EDYCJĘ</StyledButton>
+        <StyledButton onClick={handleModalShow}>USUŃ</StyledButton>
       </div>
       <StyledModalContent show={showModal} onHide={handleModalClose}>
         <StyledModalHeader>
           <Modal.Title>Czy jesteś pewna/y?!</Modal.Title>
         </StyledModalHeader>
-        <StyledModalBody>Próba usunięcia pomiaru nr. #{props.id}</StyledModalBody>
+        <StyledModalBody>
+          Próba usunięcia pomiaru nr. #{props.id}
+        </StyledModalBody>
         <StyledModalFooter>
           <Button variant="secondary" onClick={handleModalClose}>
             Nie

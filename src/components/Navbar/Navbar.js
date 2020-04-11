@@ -12,17 +12,17 @@ const StyledFigure = styled.figure`
 `;
 
 const StyledHeader = styled.header`
+  top: 4em;
   width: 6em;
   height: 100%;
   position: fixed;
-  background-color: #B39DDB;
+  background-color: #29434e;
   color: #000000;
   box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.25), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-  font-family: 'Open Sans', sans-serif;
 `;
 
 const StyledListGroup = styled(ListGroup)`
-  top: 10%;
+  top: 0%;
   position: relative;
   width: 6em;
 `;

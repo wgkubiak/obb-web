@@ -12,11 +12,11 @@ const StyledAddButton = styled(Button)`
   width: 4em;
   border: none;
   color: #ffffff !important;
-  background-color: #651FFF !important;
   border-radius: 50%;
+  background-color: #546e7a !important;
   
   &:hover {
-    background-color: #4527A0 !important;
+    background-color: #29434e !important;
   }
 `;
 
