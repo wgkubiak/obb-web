@@ -8,17 +8,90 @@ import styled from "styled-components";
 registerLocale("pl", pl);
 
 const StyledAddGlobalForm = styled.div`
-  background-color: #ffffff;
-  color: #eeeeee;
-  position: fixed;
   width: 20em;
   height: auto;
-  left: 0;
+  z-index: 2;
+  position: fixed;
+  background-color: #ffffff;
+  color: #eeeeee;
+  left: 50%;
   right: 0;
-  top: 5%;
+  top: 0%;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 0.3em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+`;
+
+const StyledFormLabel = styled(Form.Label)`
+  color: #000000;
+`;
+
+const StyledHideButton = styled(Button)`
+  position: absolute;
+  top: 0;
+  width: 10%;
+  right: 0;
+  background-color: #651fff !important;
+  height: auto;
+  margin-right: auto;
+  border-radius: 0;
+  text-transform: uppercase;
+  border: none !important;
+  outline: none;
+
+  &:hover {
+    background-color: #6200ea !important;
+  }
+`;
+
+const StyledFormControl = styled(Form.Control)`
+  position: relative;
+  width: 80%;
+  left: 10%;
+  text-align-last: center;
+  text-align: center;
+  background-color: #eeeeee;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0em !important;
+  color: #000000;
+`;
+
+const StyledSelect = styled(Form.Control)`
+  width: 80%;
+  height: calc(1.5em + 0.75rem + 2px);
+  text-align-last: center;
+  text-align: center;
+  background-color: #eeeeee;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0em !important;
+  color: #000000;
+`;
+
+const StyledDatePicker = styled(DatePicker)`
+  width: 100%;
+  text-align: center;
+  background-color: #eeeeee;
+  color: #212121
+`;
+
+const StyledButton = styled(Button)`
+  position: relative;
+  width: 100%;
+  margin-top: 0.2em;
+  border-radius: 0;
+  background-color: #651FFF !important;
+  height: auto;
+  border: none !important;
+  outline: none;
+
+  &:hover {
+    background-color: #6200EA !important;
+  }
 `;
 
 const AddGlobalForm = props => {
@@ -73,18 +146,17 @@ const AddGlobalForm = props => {
 
   return (
     <StyledAddGlobalForm>
-      <Button
+      <StyledHideButton
         className="hide-selection"
         variant="dark"
         onClick={props.showAddGlobalHandler}
       >
-        Ukryj
-      </Button>
-      <Form>
-        
-        <Form.Group controlId="exampleForm.ControlInput1" className="add-input">
-          <Form.Label>NH3</Form.Label>
-          <Form.Control
+        X
+      </StyledHideButton>
+      <Form>     
+        <Form.Group controlId="exampleForm.ControlInput1" >
+          <StyledFormLabel>NH3</StyledFormLabel>
+          <StyledFormControl
             type="text"
             placeholder="Wpisz NH3"
             onChange={event => setNHThree(event.target.value)}
@@ -92,37 +164,37 @@ const AddGlobalForm = props => {
         </Form.Group>
         <Form.Group
           controlId="exampleForm.ControlSelect1"
-          className="add-input"
+          
         >
-          <Form.Label>H2S</Form.Label>
-          <Form.Control
+          <StyledFormLabel>H2S</StyledFormLabel>
+          <StyledSelect
             as="select"
             onChange={event => setHTwoS(event.target.value)}
           >
             <option>0</option>
             <option>1</option>
             <option>2</option>
-          </Form.Control>
+          </StyledSelect>
         </Form.Group>
-        <Form.Group controlId="exampleForm.ControlInput1" className="add-input">
-          <Form.Label>C02</Form.Label>
-          <Form.Control
+        <Form.Group controlId="exampleForm.ControlInput1" >
+          <StyledFormLabel>C02</StyledFormLabel>
+          <StyledFormControl
             type="text"
             placeholder="Wpisz CO2"
             onChange={event => setCOTwo(event.target.value)}
           />
         </Form.Group>
-        <Form.Group controlId="exampleForm.ControlInput1" className="add-input">
-          <Form.Label>Temperatura</Form.Label>
-          <Form.Control
+        <Form.Group controlId="exampleForm.ControlInput1" >
+          <StyledFormLabel>Temperatura</StyledFormLabel>
+          <StyledFormControl
             type="text"
             placeholder="Wpisz temperature"
             onChange={event => setTemperature(event.target.value)}
           />
         </Form.Group>
-        <Form.Group controlId="exampleForm.ControlInput1" className="add-input">
-          <Form.Label>Wilgotność</Form.Label>
-          <Form.Control
+        <Form.Group controlId="exampleForm.ControlInput1" >
+          <StyledFormLabel>Wilgotność</StyledFormLabel>
+          <StyledFormControl
             type="text"
             placeholder="Wpisz wilgotność"
             onChange={event => setWetness(event.target.value)}
@@ -130,10 +202,10 @@ const AddGlobalForm = props => {
         </Form.Group>
         <Form.Group
           controlId="exampleForm.ControlSelect1"
-          className="add-input"
+          
         >
-          <Form.Label>Data badania</Form.Label>
-          <DatePicker
+          <StyledFormLabel>Data badania</StyledFormLabel>
+          <StyledDatePicker
             className="date-picker"
             locale="pl"
             selected={date}
@@ -142,10 +214,10 @@ const AddGlobalForm = props => {
         </Form.Group>
         <Form.Group
           controlId="exampleForm.ControlSelect1"
-          className="add-input"
+          
         >
-          <Form.Label>Godzina badania</Form.Label>
-          <DatePicker
+          <StyledFormLabel>Godzina badania</StyledFormLabel>
+          <StyledDatePicker
             selected={hour}
             onChange={date => setHour(date)}
             showTimeSelect
@@ -157,9 +229,9 @@ const AddGlobalForm = props => {
         </Form.Group>
       </Form>
 
-      <Button variant="success" onClick={submitHandler}>
+      <StyledButton variant="success" onClick={submitHandler}>
         POTWIERDŹ
-      </Button>
+      </StyledButton>
     </StyledAddGlobalForm>
   );
 };

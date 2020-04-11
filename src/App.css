@@ -58,22 +58,8 @@ body {
   padding-bottom: 2em;
 }
 
-.EditGlobalForm {
-  background-color: #343434;
-  color: #eeeeee;
-  position: fixed;
-  width: 20em;
-  height: auto;
-  left: 0;
-  right: 0;
-  top: 5%;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
-}
-
 .card-title {
-  color: #00adb5 !important;
+  color: #000000 !important;
   font-size: 1em
 }
 
@@ -140,13 +126,12 @@ body {
 
 .exam--container {
   position: absolute;
-  background-color: #212121;
+  background-color: #ffffff;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80vw;
   height: 80vh;
-  border-radius: 0.5em;
   z-index: 30;
 }
 
@@ -163,14 +148,15 @@ body {
   height: 3em !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
   color: white;
-  background-color: #212121 !important;
-  border-top-right-radius: 1em;
+  background-color: #651fff !important;
+  border: none;
   outline: none;
 }
 
 .exam--container > button:hover {
-  background-color: #202020 !important;
+  background-color: #6200ea !important;
 }
+
 .exam--container--cards {
   position: relative;
   top: 0%;
@@ -188,9 +174,10 @@ body {
 .exam--container--cards-data {
   text-align: left;
   align-self: auto;
-  background-color: #343434;
+  background-color: #B39DDB;
+  border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
-  color: white;
+  color: #000000;
   transition: 100ms;
 }
 

@@ -21,23 +21,24 @@ const StyledMenu = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 `;
 
-const StyledButton = styled(Button)`
-  position: relative;
+const StyledHideButton = styled(Button)`
+  position: absolute;
   top: 0;
-  width: 100%;
-  background-color: #c75b39 !important;
-  height: 3em !important;
-  margin-right: auto;
+  width: 10%;
   right: 0;
+  background-color: #651FFF !important;
+  height: auto;
+  margin-right: auto;
   border-radius: 0;
   text-transform: uppercase;
   border: none !important;
   outline: none;
 
   &:hover {
-    background-color: #ff8a65 !important;
+    background-color: #6200EA !important;
   }
 `;
+
 
 const StyledButtonContainer = styled.div`
   position: relative;
@@ -45,7 +46,8 @@ const StyledButtonContainer = styled.div`
 `;
 
 const StyledOptionButton = styled(Button)`
-  background-color: #29434e;
+  background-color: #B39DDB;
+  color: #000000;
   width: 80%;
   margin-top: 0.5em;
   border: none !important;
@@ -72,11 +74,11 @@ const Menu = (props, { initShow = false }) => {
 
   return (
     <StyledMenu>
-      <StyledButton
+      <StyledHideButton
         onClick={hideEverything}
       >
-        Ukryj
-      </StyledButton>
+        X
+      </StyledHideButton>
       <FiEdit3 className="edit-icon" />
       <h4>
         <strong>#{props.id}</strong>

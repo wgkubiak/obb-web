@@ -83,7 +83,22 @@ const DeadUnitsContainer = props => {
               </tbody>
             </Table>
           </div>
-          <GeneratePDF
+          
+          {showMenu && (
+            <Menu
+              mode="sold"
+              id={idPig}
+              price={price}
+              showMenu={toggleMenu}
+              showEdit={toggleEdit}
+              hideMenu={hideMenu}
+              url="https://obb-api.herokuapp.com/delete-pig/"
+              show={showEdit}
+              reloadHandler={props.reloadHandler}
+            />
+          )}
+        </div> 
+        <GeneratePDF
             header={[
               "Data sprzedazy",
               "Kwota sprzedazy",
@@ -100,21 +115,7 @@ const DeadUnitsContainer = props => {
               .toString()
               .substring(0, 10)
               .replace(/\s/g, "")}`}
-          />
-          {showMenu && (
-            <Menu
-              mode="sold"
-              id={idPig}
-              price={price}
-              showMenu={toggleMenu}
-              showEdit={toggleEdit}
-              hideMenu={hideMenu}
-              url="https://obb-api.herokuapp.com/delete-pig/"
-              show={showEdit}
-              reloadHandler={props.reloadHandler}
-            />
-          )}
-        </div>   
+          />  
     </div>
   );
 };

@@ -22,20 +22,20 @@ const StyledSoldDeadForm = styled.div`
 `;
 
 const StyledHideButton = styled(Button)`
-  position: relative;
+  position: absolute;
   top: 0;
-  width: 100%;
-  background-color: #c75b39 !important;
-  height: 3em !important;
-  margin-right: auto;
+  width: 10%;
   right: 0;
+  background-color: #651FFF !important;
+  height: auto;
+  margin-right: auto;
   border-radius: 0;
   text-transform: uppercase;
   border: none !important;
   outline: none;
 
   &:hover {
-    background-color: #ff8a65 !important;
+    background-color: #6200EA !important;
   }
 `;
 
@@ -43,13 +43,13 @@ const StyledButton = styled(Button)`
   position: relative;
   width: 100%;
   border-radius: 0;
-  background-color: #c75b39 !important;
-  height: 3em !important;
+  background-color: #651FFF !important;
+  height: auto;
   border: none !important;
   outline: none;
 
   &:hover {
-    background-color: #ff8a65 !important;
+    background-color: #6200EA !important;
   }
 `;
 
@@ -140,7 +140,7 @@ const SoldDeadForm = (props) => {
   return (
     <StyledSoldDeadForm>
       <StyledHideButton variant="dark" onClick={props.showHandler}>
-        Ukryj
+        X
       </StyledHideButton>
       <Form>
         <Form.Group

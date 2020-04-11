@@ -9,7 +9,7 @@ import EditGlobalForm from "./../components/Forms/EditGlobalForm";
 import GeneratePDF from "../components/Actions/GeneratePDF";
 import shortid from "shortid";
 
-const GlobalDataContainer = props => {
+const GlobalDataContainer = (props) => {
   const [data, setData] = useState([]);
   const [unlData, setUnlData] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -33,26 +33,26 @@ const GlobalDataContainer = props => {
 
   const getData = () => {
     fetch(`https://obb-api.herokuapp.com/global-latest`)
-      .then(res => res.json())
-      .then(res => setData(res))
-      .catch(e => e);
+      .then((res) => res.json())
+      .then((res) => setData(res))
+      .catch((e) => e);
   };
 
   const getUnlimitedData = () => {
     fetch(`https://obb-api.herokuapp.com/global`)
-      .then(res => res.json())
-      .then(res => setUnlData(res))
-      .catch(e => e);
+      .then((res) => res.json())
+      .then((res) => setUnlData(res))
+      .catch((e) => e);
   };
 
   useEffect(() => {
     setShowChart(false);
-    console.log("sorted: ", sorted)
+    console.log("sorted: ", sorted);
     getData();
     getUnlimitedData();
     sortData();
     setShowChart(sorted);
-    console.log("sorted: ", sorted)
+    console.log("sorted: ", sorted);
   }, [props.reload, sorted]);
 
   const toggleAddForm = () => {
@@ -68,8 +68,8 @@ const GlobalDataContainer = props => {
     const tempContainer = [];
     const wetContainer = [];
 
-    Object.keys(data).map(item => {
-      Object.keys(data[item]).map(element => {
+    Object.keys(data).map((item) => {
+      Object.keys(data[item]).map((element) => {
         switch (element) {
           case "measureDate":
             datesContainer.push(data[item][element].substring(5, 10));
@@ -144,9 +144,9 @@ const GlobalDataContainer = props => {
                   "H2S",
                   "CO2",
                   "Temperatura",
-                  "Wilgotność"
+                  "Wilgotność",
                 ]}
-                divider={8} 
+                divider={8}
               />
             </thead>
             <tbody>
@@ -154,7 +154,7 @@ const GlobalDataContainer = props => {
                 <Body
                   key={`${data.id}${shortid.generate()}`}
                   data={data}
-                  divider={8} 
+                  divider={8}
                   mode="global"
                   showForm={showFormHandler.bind(
                     this,
@@ -172,6 +172,8 @@ const GlobalDataContainer = props => {
             </tbody>
           </Table>
         </div>
+      </div>
+      {sorted && (
         <GeneratePDF
           header={["ID", "Data", "Godz", "NH3", "H2S", "CO2", "Temp", "Wilg"]}
           fileheader="Raport globalnych pomiarow"
@@ -182,9 +184,13 @@ const GlobalDataContainer = props => {
             .substring(0, 10)
             .replace(/\s/g, "")}`}
         />
-      </div>
+      )}
       {!sorted && (
-        <Button variant="primary" style={{backgroundColor: "#5E35B1", border: "none"}} disabled>
+        <Button
+          variant="primary"
+          style={{ backgroundColor: "#5E35B1", border: "none" }}
+          disabled
+        >
           <Spinner
             as="span"
             animation="grow"
@@ -259,9 +265,25 @@ const GlobalDataContainer = props => {
           />
         </div>
       )}
-
-      {showForm && <AddGlobalForm showAddGlobalHandler={toggleAddForm} reloadHandler={props.reloadHandler} sortHandler={sortedHandler}/>}
-      {showEdit && <EditGlobalForm id={id} nh={nh} htwo={htwo} co={co} temp={temp} wet={wet} toggleEditHandler={toggleForm} reloadHandler={sortedHandler}/>}
+      {showForm && (
+        <AddGlobalForm
+          showAddGlobalHandler={toggleAddForm}
+          reloadHandler={props.reloadHandler}
+          sortHandler={sortedHandler}
+        />
+      )}
+      {showEdit && (
+        <EditGlobalForm
+          id={id}
+          nh={nh}
+          htwo={htwo}
+          co={co}
+          temp={temp}
+          wet={wet}
+          toggleEditHandler={toggleForm}
+          reloadHandler={sortedHandler}
+        />
+      )}
     </div>
   );
 };

@@ -19,7 +19,7 @@ const showPartOfString = (string, l) => {
 
   return (
     <div className="exam">
-      <div className="exam--transparent"></div>
+      <div className="exam--transparent" onClick={props.toggleExams}></div>
       <div className="exam--container">
         <button onClick={props.toggleExams}>X</button>
         <h1>#{props.unitID}</h1>

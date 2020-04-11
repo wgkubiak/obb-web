@@ -128,7 +128,7 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
         <div className="TableContent">
           <Table bordered hover variant="dark">
             <thead>
-              <Head data={["Id", "Płeć", "Data zakupu", "Cena"]} divider={5} />
+              <Head data={["ID", "Płeć", "Data zakupu", "Cena"]} divider={5} />
             </thead>
             <tbody>
               {dataUnits.map((data, index) => (

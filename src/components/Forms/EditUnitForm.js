@@ -6,20 +6,20 @@ import pl from "date-fns/locale/pl";
 import styled from "styled-components";
 
 const StyledHideButton = styled(Button)`
-  position: relative;
+  position: absolute;
   top: 0;
-  width: 100%;
-  background-color: #c75b39 !important;
-  height: 3em !important;
-  margin-right: auto;
+  width: 10%;
   right: 0;
+  background-color: #651FFF !important;
+  height: auto;
+  margin-right: auto;
   border-radius: 0;
   text-transform: uppercase;
   border: none !important;
   outline: none;
 
   &:hover {
-    background-color: #ff8a65 !important;
+    background-color: #6200EA !important;
   }
 `;
 
@@ -43,17 +43,18 @@ const StyledEditUnitForm = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 `;
 
+
 const StyledConfirmButton = styled(Button)`
   position: relative;
   width: 100%;
   border-radius: 0;
-  background-color: #c75b39 !important;
-  height: 3em !important;
+  background-color: #651FFF !important;
+  height: auto;
   border: none !important;
   outline: none;
 
   &:hover {
-    background-color: #ff8a65 !important;
+    background-color: #6200EA !important;
   }
 `;
 
@@ -149,7 +150,7 @@ const EditUnitForm = props => {
         variant="dark"
         onClick={props.showEditHandler}
       >
-        Ukryj
+        X
       </StyledHideButton>
       <Form>
         <Form.Group

@@ -3,7 +3,8 @@ import { Button, Modal } from "react-bootstrap";
 import styled from "styled-components";
 
 const StyledOptionButton = styled(Button)`
-  background-color: #29434e;
+  background-color: #B39DDB;
+  color: #000000;
   width: 80%;
   margin-top: 0.5em;
   border: none !important;
@@ -25,7 +26,7 @@ const StyledModalBody = styled(Modal.Body)`
 `;
 
 const StyledModalHeader = styled(Modal.Header)`
-  background-color: #29434e !important
+  background-color: #5E35B1 !important
 `;
 
 const StyledModalFooter = styled(Modal.Footer)`
@@ -35,12 +36,12 @@ const StyledModalFooter = styled(Modal.Footer)`
 `;
 
 const StyledConfirmButton = styled(Button)`
-  background-color: #c75b39 !important;
+  background-color: #651FFF !important;
   border: none !important;
   outline: none;
   
   &:hover {
-    background-color: #ff8a65 !important
+    background-color: #6200EA !important
   }
 `;
 

@@ -21,7 +21,17 @@ const StyledModalBody = styled(Modal.Body)`
 `;
 
 const StyledModalHeader = styled(Modal.Header)`
-  background-color: #29434e !important
+  background-color: #5E35B1 !important
+`;
+
+const StyledConfirmButton = styled(Button)`
+  background-color: #651FFF !important;
+  border: none !important;
+  outline: none;
+  
+  &:hover {
+    background-color: #6200EA !important
+  }
 `;
 
 const StyledModalFooter = styled(Modal.Footer)`
@@ -30,27 +40,17 @@ const StyledModalFooter = styled(Modal.Footer)`
   color: #000000
 `;
 
-const StyledConfirmButton = styled(Button)`
-  background-color: #c75b39 !important;
-  border: none !important;
-  outline: none;
-  
-  &:hover {
-    background-color: #ff8a65 !important
-  }
-`;
-
 const StyledDeleteButton = styled(Button)`
+  position: relative;
   width: 100%;
-  height: 3em !important;
-  background-color: #c75b39 !important;
-
+  border-radius: 0;
+  background-color: #651FFF !important;
+  height: auto;
   border: none !important;
   outline: none;
-  border-radius: 0 !important;
 
   &:hover {
-    background-color: #ff8a65 !important
+    background-color: #6200EA !important;
   }
 `;
 
