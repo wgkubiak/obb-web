@@ -9,7 +9,6 @@ import Menu from "./../components/Menu/Menu";
 import EditUnitForm from "./../components/Forms/EditUnitForm";
 import styled from "styled-components";
 
-
 const StyledButton = styled(Button)`
   margin-top: 1em;
   margin-right: 1em;
@@ -116,7 +115,7 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
   return (
     <div className="UnitsContainer">
       <div>
-      <StyledButton onClick={idDecrease}>Poprzedni</StyledButton>
+        <StyledButton onClick={idDecrease}>Poprzedni</StyledButton>
         <StyledButton onClick={idIncrease}>Następny</StyledButton>
         <AddButton toggleHandler={toggleAddForm} />
       </div>
