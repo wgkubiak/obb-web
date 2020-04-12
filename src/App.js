@@ -3,6 +3,7 @@ import StandardUnitsContainer from "./containers/StandardUnitsContainer";
 import GlobalDataContainer from "./containers/GlobalDataContainer";
 import SoldUnitsContainer from "./containers/SoldUnitsContainer";
 import DeadUnitsContainer from "./containers/DeadUnitsContainer";
+import AddButton from "./components/Buttons/AddButton";
 import ExamContainer from "./containers/ExamContainer";
 import Navbar from "./components/Navbar/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -25,7 +26,7 @@ const StyledDivTop = styled.div`
 
 const StyledParagraphTop = styled.div`
   position: relative;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 700;
   width: 10%;
   top: 50%;
@@ -40,7 +41,7 @@ const StyledParagraphTop = styled.div`
 
 const StyledParagraphMid = styled.div`
   position: absolute;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 500;
   top: 0%;
   width: 10%;
@@ -53,8 +54,8 @@ const StyledParagraphMid = styled.div`
 `;
 
 const StyledHiddenReload = styled.h1`
-  display: none
-`
+  display: none;
+`;
 const App = () => {
   const [showUnits, setShowUnits] = useState(true);
   // const [showForage, setShowForage] = useState(false);
@@ -64,10 +65,13 @@ const App = () => {
   const [showDead, setShowDead] = useState(false);
   const [showExams, setShowExams] = useState(false);
 
+  const [showAddButton, setShowAddButton] = useState(true);
+
   const [unitID, setUnitID] = useState("");
   const [reload, setReload] = useState(false);
 
-  const [headerMode, setHeaderMode] = useState("Kojec (1)");
+  const [headerMode, setHeaderMode] = useState("Kojec | 1");
+  const [showAddForm, setShowAddForm] = useState(false);
 
   const toggleComponent = (mode, unit, forage, global, water, sold, dead) => {
     setShowUnits(unit);
@@ -77,14 +81,20 @@ const App = () => {
     setShowSold(sold || false);
     setShowDead(dead || false);
     setHeaderMode(mode);
+
+    if(global || unit) {
+      setShowAddButton(true);
+    } else {
+      setShowAddButton(false);
+    }
   };
 
   const reloadHandler = () => {
     setReload(!reload);
   };
 
-  const setHeaderHandler = id => setHeaderMode(`Kojec (${id})`); 
-  const showUnitsHandler = () => toggleComponent("Kojec (1)", true);
+  const setHeaderHandler = (id) => setHeaderMode(`Kojec | ${id}`);
+  const showUnitsHandler = () => toggleComponent("Kojec | 1", true);
   const showForageHandler = () => toggleComponent("Paśnik", false, true);
   const showGlobalHandler = () =>
     toggleComponent("Globalne pomiary", false, false, true);
@@ -99,6 +109,15 @@ const App = () => {
 
   const setUnit = (id) => setUnitID(id);
 
+  const toggleAddForm = () => {
+    setShowAddForm(!showAddForm);
+    //TODO: hide menu while toggleAddForm is clicked
+  };
+
+  const hideAddForm = () => {
+    setShowAddForm(false);
+  };
+
   return (
     <StyledApp>
       <Navbar
@@ -109,12 +128,18 @@ const App = () => {
         soldHandler={showSoldHandler}
         deadHandler={showDeadHandler}
       />
+      {showAddButton && <AddButton toggleHandler={toggleAddForm} />}
       <StyledDivTop>
         <StyledParagraphTop>OBBsys</StyledParagraphTop>
         <StyledParagraphMid>{headerMode}</StyledParagraphMid>
       </StyledDivTop>
       {showGlobal && (
-        <GlobalDataContainer reloadHandler={reloadHandler} reload={reload} />
+        <GlobalDataContainer
+          reloadHandler={reloadHandler}
+          reload={reload}
+          showAddForm={showAddForm}
+          hideAddForm={hideAddForm}
+        />
       )}
       {showUnits && (
         <StandardUnitsContainer
@@ -123,6 +148,8 @@ const App = () => {
           setUnitID={setUnit}
           reloadHandler={reloadHandler}
           reload={reload}
+          showAddForm={showAddForm}
+          hideAddForm={hideAddForm}
         />
       )}
       {showSold && (

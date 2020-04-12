@@ -259,19 +259,18 @@ input, label {
 }
 
 .TableContent {
+  z-index: 0;
   background-color: transparent !important;
   padding: 1em
 }
 
 .table td {
-  width: 25em;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   color: #696969 !important;
 }
 
 .table th {
-  width: 25em;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   color: #292930 !important;
@@ -303,13 +302,14 @@ input, label {
 }
 
 .UnitsContainer {
-  top: 8%;
+  top: 6%;
   width: 88%;
   height: 90%;
   position: absolute;
   right: 1%;
   transform: translate(0%, 0%);
   margin: auto;
+  outline: none
 }
 
 .UnitsTable {
@@ -317,7 +317,7 @@ input, label {
   padding-bottom: 0em;
   margin: 0 auto;
   margin-bottom: 1em !important;
-  margin-top: 1em !important;
+  margin-top: 3em !important;
   background-color: #ffffff;
   width: 100%;
   transition-duration: 0.5s;

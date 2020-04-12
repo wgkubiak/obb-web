@@ -2,18 +2,18 @@ import React, { useState, useEffect, useRef } from "react";
 import { Table, Button } from "react-bootstrap";
 import shortid from "shortid";
 import AddForm from "./../components/Forms/AddForm";
-import AddButton from "./../components/Buttons/AddButton";
 import Head from "./../components/Table/Head";
 import Body from "./../components/Table/Body";
 import Menu from "./../components/Menu/Menu";
 import EditUnitForm from "./../components/Forms/EditUnitForm";
 import styled from "styled-components";
+import ArrowKeysReact from "arrow-keys-react";
 
 const StyledButton = styled(Button)`
   margin-top: 1em;
   margin-right: 1em;
   margin-left: 1em;
-  border-radius: 0;
+  border-radius: .5;
   border: none;
   background-color: #546e7a !important;
   outline: none;
@@ -23,9 +23,37 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
-  let unitsContainer = useRef(null);
+const StyledUnitsContainer = styled.div`
+  top: 8%;
+  width: 88%;
+  height: 90%;
+  position: absolute;
+  right: 1%;
+  transform: translate(0%, 0%);
+  margin: auto;
+  outline: none;
+`;
 
+const StyledUnitsTable = styled.div`
+  padding-top: 0em;
+  padding-bottom: 0em;
+  margin: 0 auto;
+  margin-bottom: 1em !important;
+  margin-top: 1em !important;
+  background-color: #ffffff;
+  width: 100%;
+  transition-duration: 0.5s;
+  border-radius: 0.25em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+  font-size: 1em;
+`;
+
+const StyledTableContent = styled.div`
+  background-color: transparent !important;
+  padding: 1em;
+`;
+
+const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
   const _date = new Date();
 
   const [dataUnits, setDataUnits] = useState([]);
@@ -35,8 +63,6 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
   const [gender, setGender] = useState("");
   const [date, setDate] = useState(_date);
   const [price, setPrice] = useState("0");
-
-  const [showAddForm, setShowAddForm] = useState(initForm);
   const [editMenu, setEditMenu] = useState(false);
   const [showDeadSoldForm, setShowDeadSoldForm] = useState(false);
 
@@ -50,6 +76,11 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
   useEffect(() => {
     getUnitsData(id);
     props.headerHandler(id);
+
+    ArrowKeysReact.config({
+      left: () => idDecrease(),
+      right: () => idIncrease(),
+    });
   }, [id, props.reload]); //..,data] makes loop //id should change only on select
 
   const showForm = (pen, id, gender, date, price) => {
@@ -65,8 +96,6 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
 
   const toggleEdit = () => {
     setEditMenu(!editMenu);
-    setShowAddForm(false);
-    setShowDeadSoldForm(false);
   };
 
   const hideEdit = () => {
@@ -75,16 +104,6 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
-    setShowAddForm(false);
-  };
-
-  const updateState = (event) => {
-    setId(event.target.value);
-  };
-
-  const toggleAddForm = () => {
-    setShowAddForm(!showAddForm);
-    setShowMenu(false);
   };
 
   const showDeadSoldHandler = () => {
@@ -113,19 +132,13 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
   };
 
   return (
-    <div className="UnitsContainer">
+    <StyledUnitsContainer {...ArrowKeysReact.events} tabIndex="1">
       <div>
         <StyledButton onClick={idDecrease}>Poprzedni</StyledButton>
-        <StyledButton onClick={idIncrease}>Następny</StyledButton>
-        <AddButton toggleHandler={toggleAddForm} />
+        <StyledButton onClick={idIncrease}>Następny</StyledButton>    
       </div>
-      <div
-        className="UnitsTable"
-        ref={(e) => {
-          unitsContainer = e;
-        }}
-      >
-        <div className="TableContent">
+      <StyledUnitsTable>
+        <StyledTableContent>
           <Table bordered hover variant="dark">
             <thead>
               <Head data={["ID", "Płeć", "Data zakupu", "Cena"]} divider={5} />
@@ -162,15 +175,14 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
               reloadHandler={props.reloadHandler}
               showEditHandler={toggleEdit}
               hideEditHandler={hideEdit}
-              //reloadHandler={props.reloadHandler}
             />
           )}
-        </div>
-      </div>
-      {showAddForm && (
+        </StyledTableContent>
+      </StyledUnitsTable>
+      {props.showAddForm && (
         <AddForm
           id={id}
-          showAddUnitHandler={toggleAddForm}
+          showAddUnitHandler={props.hideAddForm}
           reloadHandler={props.reloadHandler}
         />
       )}
@@ -187,7 +199,7 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
           showDeadSoldHandler={showDeadSoldHandler}
         />
       )}
-    </div>
+    </StyledUnitsContainer>
   );
 };
 

@@ -131,7 +131,6 @@ const GlobalDataContainer = (props) => {
 
   return (
     <div className="UnitsContainer" style={{ marginTop: "1em" }}>
-      <AddButton toggleHandler={toggleAddForm} />
       <div className="UnitsTable">
         <div className="TableContent">
           <Table bordered hover variant="dark">
@@ -265,9 +264,9 @@ const GlobalDataContainer = (props) => {
           />
         </div>
       )}
-      {showForm && (
+      {props.showAddForm && (
         <AddGlobalForm
-          showAddGlobalHandler={toggleAddForm}
+          showAddGlobalHandler={props.hideAddForm}
           reloadHandler={props.reloadHandler}
           sortHandler={sortedHandler}
         />
