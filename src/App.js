@@ -31,9 +31,10 @@ const StyledParagraphTop = styled.div`
   top: 50%;
   left: 0%;
   transform: translate(0%, -50%);
-  font-size: 2em;
-  margin-left: 1%;
-  text-align: left;
+  font-size: calc(2vh + 1vw);
+  height: 100%;
+  text-align: center;
+  background-color: #29434e;
   color: #ffffff;
 `;
 
@@ -44,7 +45,7 @@ const StyledParagraphMid = styled.div`
   top: 0%;
   width: 10%;
   top: 50%;
-  left: 50%;
+  left: 55%;
   transform: translate(-50%, -50%);
   font-size: 1em;
   text-align: center;

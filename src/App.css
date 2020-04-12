@@ -206,7 +206,7 @@ input, label {
 }
 
 .list-group-item {
-  background-color: #29434e;
+  background-color: #546e7a;
   color: #ffffff;
 }
 
@@ -307,8 +307,8 @@ input, label {
   width: 88%;
   height: 90%;
   position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0%);
+  right: 1%;
+  transform: translate(0%, 0%);
   margin: auto;
 }
 
@@ -319,7 +319,7 @@ input, label {
   margin-bottom: 1em !important;
   margin-top: 1em !important;
   background-color: #ffffff;
-  width: 80%;
+  width: 100%;
   transition-duration: 0.5s;
   border-radius: 0.25em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);

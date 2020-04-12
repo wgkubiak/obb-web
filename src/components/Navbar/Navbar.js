@@ -13,10 +13,10 @@ const StyledFigure = styled.figure`
 
 const StyledHeader = styled.header`
   top: 4em;
-  width: 6em;
+  width: 10%;
   height: 100%;
   position: fixed;
-  background-color: #29434e;
+  background-color: #546e7a;
   color: #000000;
   box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.25), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 `;
@@ -24,7 +24,7 @@ const StyledHeader = styled.header`
 const StyledListGroup = styled(ListGroup)`
   top: 0%;
   position: relative;
-  width: 6em;
+  width: auto;
 `;
 
 const StyledListGroupItem = styled(ListGroup.Item)`
@@ -50,7 +50,7 @@ const Navbar = (props) => {
           <StyledFigure>
             <MdDns size={24} />
           </StyledFigure>
-          <figcaption style={{fontSize: ".9vw"}}>Kojce</figcaption>
+          <figcaption style={{fontSize: "calc(.8vw + .2vh)"}}>Kojce</figcaption>
         </StyledListGroupItem>
         <StyledListGroupItem
           action
@@ -61,7 +61,7 @@ const Navbar = (props) => {
           <StyledFigure>
             <MdEqualizer size={24} />
           </StyledFigure>
-          <figcaption style={{fontSize: ".9vw"}}>Globalne</figcaption>
+          <figcaption style={{fontSize: "calc(.8vw + .2vh)"}}>Globalne</figcaption>
         </StyledListGroupItem>
         <StyledListGroupItem
           action
@@ -72,7 +72,7 @@ const Navbar = (props) => {
           <StyledFigure>
             <MdWeb size={24} />
           </StyledFigure>
-          <figcaption style={{fontSize: ".9vw"}}>Paśnik</figcaption>
+          <figcaption style={{fontSize: "calc(.8vw + .2vh)"}}>Paśnik</figcaption>
         </StyledListGroupItem>
         <StyledListGroupItem
           action
@@ -83,7 +83,7 @@ const Navbar = (props) => {
           <StyledFigure>
             <GiWaterDrop size={24} />
           </StyledFigure>
-          <figcaption style={{fontSize: ".9vw"}}>Woda</figcaption>
+          <figcaption style={{fontSize: "calc(.8vw + .2vh)"}}>Woda</figcaption>
         </StyledListGroupItem>
 
         <StyledListGroupItem
@@ -95,7 +95,7 @@ const Navbar = (props) => {
           <StyledFigure>
             <FaShoppingCart size={24} />
           </StyledFigure>
-          <figcaption style={{fontSize: ".9vw"}}>Sprzedaż</figcaption>
+          <figcaption style={{fontSize: "calc(.8vw + .2vh)"}}>Sprzedaż</figcaption>
         </StyledListGroupItem>
         <StyledListGroupItem
           action
@@ -106,7 +106,7 @@ const Navbar = (props) => {
           <StyledFigure>
             <TiUserDelete size={24} />
           </StyledFigure>
-          <figcaption style={{fontSize: ".9vw"}}>Zgon</figcaption>
+          <figcaption style={{fontSize: "calc(.8vw + .2vh)"}}>Zgon</figcaption>
         </StyledListGroupItem>
       </StyledListGroup>
     </StyledHeader>
