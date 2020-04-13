@@ -1,14 +1,46 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { ListGroup } from "react-bootstrap";
+import { MdDns, MdWeb, MdEqualizer } from "react-icons/md";
+import { GiWaterDrop } from "react-icons/gi";
+import { FaShoppingCart } from "react-icons/fa";
+import { TiUserDelete } from "react-icons/ti";
 import StandardUnitsContainer from "./containers/StandardUnitsContainer";
 import GlobalDataContainer from "./containers/GlobalDataContainer";
 import SoldUnitsContainer from "./containers/SoldUnitsContainer";
 import DeadUnitsContainer from "./containers/DeadUnitsContainer";
 import AddButton from "./components/Buttons/AddButton";
 import ExamContainer from "./containers/ExamContainer";
-import Navbar from "./components/Navbar/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import styled from "styled-components";
+
+const StyledFigure = styled.figure`
+  margin: 0 0 0.1rem !important;
+`;
+
+const StyledHeader = styled.header`
+  top: 4em;
+  width: 10%;
+  height: 100%;
+  position: fixed;
+  background-color: #546e7a;
+  color: #000000;
+  box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.25), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+`;
+
+const StyledListGroup = styled(ListGroup)`
+  top: 0%;
+  position: relative;
+  width: auto;
+`;
+
+const StyledListGroupItem = styled(ListGroup.Item)`
+  justify-content: left;
+  display: flex;
+  flex-direction: column;
+  outline: none;
+`;
 
 const StyledApp = styled.div`
   text-align: center;
@@ -57,12 +89,6 @@ const StyledHiddenReload = styled.h1`
   display: none;
 `;
 const App = () => {
-  const [showUnits, setShowUnits] = useState(true);
-  // const [showForage, setShowForage] = useState(false);
-  const [showGlobal, setShowGlobal] = useState(false);
-  // const [showWater, setShowWater] = useState(false);
-  const [showSold, setShowSold] = useState(false);
-  const [showDead, setShowDead] = useState(false);
   const [showExams, setShowExams] = useState(false);
 
   const [showAddButton, setShowAddButton] = useState(true);
@@ -73,37 +99,40 @@ const App = () => {
   const [headerMode, setHeaderMode] = useState("Kojec | 1");
   const [showAddForm, setShowAddForm] = useState(false);
 
-  const toggleComponent = (mode, unit, forage, global, water, sold, dead) => {
-    setShowUnits(unit);
-    // setShowForage(forage || false);
-    setShowGlobal(global || false);
-    // setShowWater(water || false);
-    setShowSold(sold || false);
-    setShowDead(dead || false);
-    setHeaderMode(mode);
-
-    if(global || unit) {
-      setShowAddButton(true);
-    } else {
-      setShowAddButton(false);
+  const headerHandler = (mode, unit) => {
+    switch(mode) {
+      case "standard": 
+        setHeaderMode(`Kojec | ${unit}`)
+        showButtonHandler();
+        break;
+      case "global":
+        setHeaderMode("Pomiary globalne");
+        showButtonHandler();
+        break;
+      case "sold": 
+        setHeaderMode("Sprzedane");
+        hideButtonHandler();
+        break;
+      case "dead": 
+        setHeaderMode("Zgony");
+        hideButtonHandler();
+        break;
     }
-  };
+  }
+
+  const showButtonHandler =() => {
+    setShowAddButton(true)
+  }
+
+  const hideButtonHandler = () => {
+    setShowAddButton(false)
+  }
 
   const reloadHandler = () => {
     setReload(!reload);
   };
 
   const setHeaderHandler = (id) => setHeaderMode(`Kojec | ${id}`);
-  const showUnitsHandler = () => toggleComponent("Kojec | 1", true);
-  const showForageHandler = () => toggleComponent("Paśnik", false, true);
-  const showGlobalHandler = () =>
-    toggleComponent("Globalne pomiary", false, false, true);
-  const showWaterHandler = () =>
-    toggleComponent("Woda", false, false, false, true);
-  const showSoldHandler = () =>
-    toggleComponent("Sprzedaż", false, false, false, false, true);
-  const showDeadHandler = () =>
-    toggleComponent("Zgony", false, false, false, false, false, true);
 
   const toggleExams = () => setShowExams(!showExams);
 
@@ -120,52 +149,12 @@ const App = () => {
 
   return (
     <StyledApp>
-      <Navbar
-        unitsHandler={showUnitsHandler}
-        forageHandler={showForageHandler}
-        globalHandler={showGlobalHandler}
-        waterHandler={showWaterHandler}
-        soldHandler={showSoldHandler}
-        deadHandler={showDeadHandler}
-      />
       {showAddButton && <AddButton toggleHandler={toggleAddForm} />}
       <StyledDivTop>
         <StyledParagraphTop>OBBsys</StyledParagraphTop>
         <StyledParagraphMid>{headerMode}</StyledParagraphMid>
       </StyledDivTop>
-      {showGlobal && (
-        <GlobalDataContainer
-          reloadHandler={reloadHandler}
-          reload={reload}
-          showAddForm={showAddForm}
-          hideAddForm={hideAddForm}
-        />
-      )}
-      {showUnits && (
-        <StandardUnitsContainer
-          headerHandler={setHeaderHandler}
-          toggleExams={toggleExams}
-          setUnitID={setUnit}
-          reloadHandler={reloadHandler}
-          reload={reload}
-          showAddForm={showAddForm}
-          hideAddForm={hideAddForm}
-        />
-      )}
-      {showSold && (
-        <SoldUnitsContainer
-          isOn={showSold}
-          reloadHandler={reloadHandler}
-          reload={reload}
-        />
-      )}
-      {showDead && (
-        <DeadUnitsContainer
-          isOn={showDead}
-          reloadHandler={reloadHandler}
-          reload={reload}
-        />
-      )}
+
       {showExams && (
         <ExamContainer
           toggleExams={toggleExams}
@@ -174,6 +163,146 @@ const App = () => {
         />
       )}
       <StyledHiddenReload>{reload.toString()}</StyledHiddenReload>
+      <div>
+        <Router>
+          <StyledHeader>
+            <StyledListGroup variant="flush" defaultActiveKey="#obb-groups">
+              <Link to="/">
+                <StyledListGroupItem>
+                  <StyledFigure>
+                    <MdWeb size={24} style={{ color: "white" }} />
+                  </StyledFigure>
+                  <figcaption
+                    style={{ fontSize: "calc(.8vw + .2vh)", color: "white" }}
+                  >
+                    Kojce
+                  </figcaption>
+                </StyledListGroupItem>
+              </Link>
+              <Link to="/global">
+                <StyledListGroupItem>
+                  <StyledFigure>
+                    <MdEqualizer size={24} style={{ color: "white" }} />
+                  </StyledFigure>
+                  <figcaption
+                    style={{ fontSize: "calc(.8vw + .2vh)", color: "white" }}
+                  >
+                    Globalne
+                  </figcaption>
+                </StyledListGroupItem>
+              </Link>
+
+              <Link to="/forage">
+                <StyledListGroupItem>
+                  <StyledFigure>
+                    <MdDns size={24} style={{ color: "white" }} />
+                  </StyledFigure>
+                  <figcaption
+                    style={{ fontSize: "calc(.8vw + .2vh)", color: "white" }}
+                  >
+                    Paśnik
+                  </figcaption>
+                </StyledListGroupItem>
+              </Link>
+
+              <Link to="/water">
+                <StyledListGroupItem>
+                  <StyledFigure>
+                    <GiWaterDrop size={24} style={{ color: "white" }} />
+                  </StyledFigure>
+                  <figcaption
+                    style={{ fontSize: "calc(.8vw + .2vh)", color: "white" }}
+                  >
+                    Woda
+                  </figcaption>
+                </StyledListGroupItem>
+              </Link>
+
+              <Link to="/sold">
+                <StyledListGroupItem>
+                  <StyledFigure>
+                    <FaShoppingCart size={24} style={{ color: "white" }} />
+                  </StyledFigure>
+                  <figcaption
+                    style={{ fontSize: "calc(.8vw + .2vh)", color: "white" }}
+                  >
+                    Sprzedaż
+                  </figcaption>
+                </StyledListGroupItem>
+              </Link>
+
+              <Link to="/dead">
+                <StyledListGroupItem>
+                  <StyledFigure>
+                    <TiUserDelete size={24} style={{ color: "white" }} />
+                  </StyledFigure>
+                  <figcaption
+                    style={{ fontSize: "calc(.8vw + .2vh)", color: "white" }}
+                  >
+                    Zgon
+                  </figcaption>
+                </StyledListGroupItem>
+              </Link>
+            </StyledListGroup>
+          </StyledHeader>
+          <Route exact path="/">
+            <StandardUnitsContainer
+              toggleExams={toggleExams}
+              setUnitID={setUnit}
+              reloadHandler={reloadHandler}
+              reload={reload}
+              showAddForm={showAddForm}
+              hideAddForm={hideAddForm}
+              headerHandler={headerHandler}
+            />
+          </Route>
+          <Route path="/global">
+            <GlobalDataContainer
+              reloadHandler={reloadHandler}
+              reload={reload}
+              showAddForm={showAddForm}
+              hideAddForm={hideAddForm}
+              headerHandler={headerHandler}
+            />
+          </Route>
+          <Route path="/forage">
+            <StandardUnitsContainer
+              toggleExams={toggleExams}
+              setUnitID={setUnit}
+              reloadHandler={reloadHandler}
+              reload={reload}
+              showAddForm={showAddForm}
+              hideAddForm={hideAddForm}
+              headerHandler={headerHandler}
+            />
+          </Route>
+          <Route path="/water">
+            <StandardUnitsContainer
+              toggleExams={toggleExams}
+              setUnitID={setUnit}
+              reloadHandler={reloadHandler}
+              reload={reload}
+              showAddForm={showAddForm}
+              hideAddForm={hideAddForm}
+              headerHandler={headerHandler}
+            />
+          </Route>
+          <Route path="/sold">
+            <SoldUnitsContainer
+              reloadHandler={reloadHandler}
+              reload={reload}
+              headerHandler={headerHandler}
+            />
+          </Route>
+          <Route path="/dead">
+            <DeadUnitsContainer
+              reloadHandler={reloadHandler}
+              reload={reload}
+              headerHandler={headerHandler}
+            />
+          </Route>
+        </Router>
+      </div>
     </StyledApp>
   );
 };

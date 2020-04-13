@@ -50,6 +50,7 @@ const DeadUnitsContainer = props => {
   useEffect(() => {
     getData();
     getUnlimitedData();
+    props.headerHandler("sold");
   }, [props.reload]);
 
   return (

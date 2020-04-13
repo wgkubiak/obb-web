@@ -30,6 +30,7 @@ const DeadUnitsContainer = props => {
   useEffect(() => {
     getData();
     getUnlimitedData();
+    props.headerHandler("dead");
   }, [props.reload]);
 
   const showForm = id => {

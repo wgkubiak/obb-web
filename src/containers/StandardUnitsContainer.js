@@ -75,7 +75,8 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
 
   useEffect(() => {
     getUnitsData(id);
-    props.headerHandler(id);
+    
+    props.headerHandler("standard", id);
 
     ArrowKeysReact.config({
       left: () => idDecrease(),

@@ -53,12 +53,8 @@ const GlobalDataContainer = (props) => {
     sortData();
     setShowChart(sorted);
     console.log("sorted: ", sorted);
+    props.headerHandler("global");
   }, [props.reload, sorted]);
-
-  const toggleAddForm = () => {
-    setShowForm(!showForm);
-    setShowEdit(false);
-  };
 
   const sortData = () => {
     const datesContainer = [];
