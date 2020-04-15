@@ -1,15 +1,43 @@
 import React from "react";
-import { FaRegSadTear } from "react-icons/fa";
+import { FaRegSadTear, FaRegSmileBeam } from "react-icons/fa";
+import styled from "styled-components";
 
-const NoData = () => {
+const style = {
+  paddingTop: "2em",
+  width: "10em",
+  height: "10em",
+  color: "#30d158",
+}
+
+const StyledSadEmote = styled(FaRegSadTear)`
+  ${style}
+`
+
+const StyledHappyEmote = styled(FaRegSmileBeam)`
+  ${style}
+`
+
+const NoData = (props) => {
+  const emote = () => {
+    if (props.mode === "neg") {
+      return (
+        <StyledHappyEmote/>
+      );
+    } else {
+      return (
+        <StyledSadEmote/>
+      );
+    }
+  };
+
   return (
     <>
-    <FaRegSadTear
-      style={{ paddingTop: "2em", width: "10em", height: "10em", color: "white"}}
-    />
-    <h2 className="no-data--text" style={{color: "white"}}>Brak danych</h2>
+      {emote()}
+      <h2 style={{ color: "rgba(255, 255, 255, 0.87)" }}>
+        Brak danych
+      </h2>
     </>
-  )
+  );
 };
 
 export default NoData;

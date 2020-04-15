@@ -13,8 +13,11 @@ const GlobalChart = props => {
         datasets: [
           {
             label: props.chartLabel,
-            data: Object.values(props.data),
-            backgroundColor: "#546e7a"
+            data: Object.values(props.data),       
+            borderColor: "#30d158",
+            pointBackgroundColor: "rgba(255,255,255, 0.87)",
+            pointBorderColor: "#424242",
+            hoverBackgroundColor: "#30d158"
           }
         ]
       },

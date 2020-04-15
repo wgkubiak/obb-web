@@ -1,6 +1,6 @@
 import React from "react";
 import jsPDF from "jspdf";
-import GenerateButton from "./../Buttons/GenerateButton";
+import GenerateButton from "../UI/Buttons/GenerateButton";
 import "jspdf-autotable";
 
 const GeneratePDF = props => {

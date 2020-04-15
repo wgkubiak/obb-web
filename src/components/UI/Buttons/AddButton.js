@@ -13,13 +13,13 @@ const StyledAddButton = styled(Button)`
   border: none;
   color: #ffffff !important;
   border-radius: 50%;
-  background-color: #546e7a !important;
+  background-color: #30d158 !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 
   z-index: 10;
 
   &:hover {
-    background-color: #29434e !important;
+    background-color: #29b64c !important;
   }
 `;
 

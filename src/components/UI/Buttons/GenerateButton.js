@@ -9,10 +9,10 @@ const StyledButton = styled(Button)`
   outline: none;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
-  background-color:  #546e7a !important;
+  background-color:  #30d158 !important;
   
   &:hover {
-    background-color: #29434e !important;
+    background-color: #29b64c !important;
   }
 `
 

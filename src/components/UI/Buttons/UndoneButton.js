@@ -8,43 +8,49 @@ const StyledOptionButton = styled(Button)`
   margin-top: 0.5em;
   border: none !important;
   outline: none;
-  background-color: #718792 !important;
+  background-color: #424242 !important;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   
   &:hover {
-    background-color: #29434e !important;
+    background-color: #30d158 !important;
   }
 `;
 
 const StyledModalContent = styled(Modal)`
-  color: #eeeeee !important
+  color: rgba(255, 255, 255, 0.87) !important
 `;
 
 const StyledModalBody = styled(Modal.Body)`
   border-bottom: none;
-  background-color: #eeeeee !important;
-  color: #000000
+  background-color: #1b1b1b !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  border-radius: 0;
+  color: rgba(255, 255, 255, 0.87)
 `;
 
 const StyledModalHeader = styled(Modal.Header)`
-background-color: #546e7a !important;
+  background-color: #424242 !important;
+  border-radius: 0;
+  color: rgba(255, 255, 255, 0.87)
+`;
+
+const StyledConfirmButton = styled(Button)`
+  background-color: #ff373b !important;
+  border: none !important;
+  outline: none;
+  height: "auto";
+
+  &:hover {
+    background-color: #ff262b !important;
+  }
 `;
 
 const StyledModalFooter = styled(Modal.Footer)`
   border-top: none;
-  background-color: #eeeeee !important;
-  color: #000000
-`;
-
-const StyledConfirmButton = styled(Button)`
-  border: none !important;
-  outline: none;
-  background-color: #546e7a !important;
-
-  &:hover {
-    background-color: #29434e !important;
-  }
+  background-color: #1b1b1b !important;
+  border-radius: 0;
 `;
 
 
@@ -89,7 +95,7 @@ const UndoneButton = props => {
           Próba przeniesienia jednostki #{props.id} do kojca
         </StyledModalBody>
         <StyledModalFooter>
-          <Button variant="secondary" onClick={handleModalClose}>
+          <Button variant="success" style={{backgroundColor: "#30d158", height: "auto"}} onClick={handleModalClose}>
             Nie
           </Button>
           <StyledConfirmButton variant="primary" onClick={submitHandler}>

@@ -12,19 +12,19 @@ const StyledAddGlobalForm = styled.div`
   height: auto;
   z-index: 2;
   position: fixed;
-  background-color: #ffffff;
-  color: #eeeeee;
+  background-color: #424242;
+  color: rgba(255, 255, 255, 0.87);
   left: 50%;
-  right: 0;
-  top: 0%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   margin-left: auto;
   margin-right: auto;
-  border-radius: 0.3em;
+  border-radius: 0em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 `;
 
 const StyledFormLabel = styled(Form.Label)`
-  color: #000000;
+  color: rgba(255, 255, 255, 0.87);
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
 `;
@@ -39,10 +39,10 @@ const StyledHideButton = styled(Button)`
   text-transform: uppercase;
   border: none !important;
   outline: none;
-  background-color: #ffffff !important;
+  background-color: #424242!important;
   width: auto;
   font-size: small;
-  color: #292930 !important;
+  color: rgba(255, 255, 255, 0.87) !important;
   
   &:hover {
     color: #000000 !important
@@ -55,10 +55,11 @@ const StyledFormControl = styled(Form.Control)`
   left: 10%;
   text-align-last: center;
   text-align: center;
-  background-color: #eeeeee;
+  background-color: #424242;
   border-top: none;
   border-left: none;
   border-right: none;
+  border-bottom: 1px solid #30d158;
   border-radius: 0em !important;
   color: #000000;
 `;
@@ -68,19 +69,22 @@ const StyledSelect = styled(Form.Control)`
   height: calc(1.5em + 0.75rem + 2px);
   text-align-last: center;
   text-align: center;
-  background-color: #eeeeee;
+  background-color: #424242;
   border-top: none;
   border-left: none;
   border-right: none;
+  border-bottom: 1px solid #30d158;
   border-radius: 0em !important;
-  color: #000000;
+  color: rgba(255, 255, 255, 0.87);
 `;
 
 const StyledDatePicker = styled(DatePicker)`
   width: 100%;
   text-align: center;
-  background-color: #eeeeee;
-  color: #212121
+  background-color: #424242;
+  color: rgba(255, 255, 255, 0.87);
+  border: none;
+  border-bottom: 1px solid #30d158
 `;
 
 const StyledButton = styled(Button)`
@@ -91,10 +95,10 @@ const StyledButton = styled(Button)`
   height: auto;
   border: none !important;
   outline: none;
-  background-color: #546e7a !important;
+  background-color: #30d158 !important;
   
   &:hover {
-    background-color: #29434e !important;
+    background-color: #29b64c !important;
   }
 `;
 

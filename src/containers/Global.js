@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
-import GlobalChart from "./../components/Charts/GlobalChart";
+import GlobalChart from "../components/UI/Charts/GlobalChart";
 import { Table, Button, Spinner } from "react-bootstrap";
-import Body from "./../components/Table/Body";
-import Head from "./../components/Table/Head";
-import AddButton from "./../components/Buttons/AddButton";
-import AddGlobalForm from "./../components/Forms/AddGlobalForm";
-import EditGlobalForm from "./../components/Forms/EditGlobalForm";
+import Body from "../components/UI/Table/Body";
+import Head from "../components/UI/Table/Head";
+import AddGlobalForm from "../components/UI/Forms/AddGlobalForm";
+import EditGlobalForm from "../components/UI/Forms/EditGlobalForm";
 import GeneratePDF from "../components/Actions/GeneratePDF";
 import shortid from "shortid";
 
-const GlobalDataContainer = (props) => {
+const Global = (props) => {
   const [data, setData] = useState([]);
   const [unlData, setUnlData] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -183,7 +182,7 @@ const GlobalDataContainer = (props) => {
       {!sorted && (
         <Button
           variant="primary"
-          style={{ backgroundColor: "#546e7a", border: "none" }}
+          style={{ backgroundColor: "#30d158", border: "none" }}
           disabled
         >
           <Spinner
@@ -225,7 +224,7 @@ const GlobalDataContainer = (props) => {
           <GlobalChart
             chartClass="chart--nhthree"
             chartID="global-chart"
-            mode="bar"
+            mode="line"
             chartLabel="NH3 (0 - 20)"
             miny={0}
             maxy={20}
@@ -237,7 +236,7 @@ const GlobalDataContainer = (props) => {
           <GlobalChart
             chartClass="chart--htwos"
             chartID="global-chart"
-            mode="bar"
+            mode="line"
             chartLabel="H2S (0-2)"
             miny={0}
             maxy={2}
@@ -283,4 +282,4 @@ const GlobalDataContainer = (props) => {
   );
 };
 
-export default GlobalDataContainer;
+export default Global;

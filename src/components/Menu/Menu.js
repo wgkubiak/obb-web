@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import DeleteButton from "../Buttons/DeleteButton";
-import UndoneButton from "../Buttons/UndoneButton";
-import SoldDeadForm from "../Forms/SoldDeadForm";
-import SoldDeadEditForm from "../Forms/SoldDeadEditForm";
+import DeleteButton from "../UI/Buttons/DeleteButton";
+import UndoneButton from "../UI/Buttons/UndoneButton";
+import SoldDeadForm from "../UI/Forms/SoldDeadForm";
+import SoldDeadEditForm from "../UI/Forms/SoldDeadEditForm";
 import { FiEdit3 } from "react-icons/fi";
 import styled from "styled-components";
 
@@ -11,13 +11,13 @@ const StyledMenu = styled.div`
   width: 20em;
   z-index: 2;
   position: fixed;
-  background-color: #ffffff;
+  background-color: #424242;
   left: 0;
   right: 0;
   top: 20%;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 0.3em;
+  border-radius: 0em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 `;
 
@@ -31,10 +31,10 @@ const StyledHideButton = styled(Button)`
   text-transform: uppercase;
   border: none !important;
   outline: none;
-  background-color: #ffffff !important;
+  background-color: #424242 !important;
   width: auto;
   font-size: small;
-  color: #292930 !important;
+  color: rgba(255, 255, 255, 0.87) !important;
   
   &:hover {
     color: #000000
@@ -52,12 +52,12 @@ const StyledOptionButton = styled(Button)`
   margin-top: 0.5em;
   border: none !important;
   outline: none;
-  background-color: #718792 !important;
+  background-color: transparent !important;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   
   &:hover {
-    background-color: #29434e !important;
+    background-color: #30d158 !important;
   }
 `;
 
@@ -84,7 +84,7 @@ const Menu = (props, { initShow = false }) => {
       </StyledHideButton>
       <FiEdit3 className="edit-icon" />
       <h4>
-        <strong style={{color: "#292930"}}>#{props.id}</strong>
+        <strong style={{color: "rgba(255, 255, 255, 0.87)"}}>#{props.id}</strong>
       </h4>
       <StyledButtonContainer>
         {!show && (

@@ -11,35 +11,39 @@ const StyledDeleteButtonDiv = styled.div`
 `;
 
 const StyledModalContent = styled(Modal)`
-  color: #eeeeee !important;
+  color: rgba(255, 255, 255, 0.87) !important;
 `;
 
 const StyledModalBody = styled(Modal.Body)`
   border-bottom: none;
-  background-color: #eeeeee !important;
+  background-color: #1b1b1b !important;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
-  color: #000000
+  border-radius: 0;
+  color: rgba(255, 255, 255, 0.87)
 `;
 
 const StyledModalHeader = styled(Modal.Header)`
-  background-color: #546e7a !important;
+  background-color: #424242 !important;
+  border-radius: 0;
+  color: rgba(255, 255, 255, 0.87)
 `;
 
 const StyledConfirmButton = styled(Button)`
-background-color: #546e7a !important;
+  background-color: #ff373b !important;
   border: none !important;
   outline: none;
+  height: "auto";
 
   &:hover {
-    background-color: #29434e !important;
+    background-color: #ff262b !important;
   }
 `;
 
 const StyledModalFooter = styled(Modal.Footer)`
   border-top: none;
-  background-color: #eeeeee !important;
-  color: #000000
+  background-color: #1b1b1b !important;
+  border-radius: 0;
 `;
 
 const StyledDeleteButton = styled(Button)`
@@ -49,12 +53,12 @@ const StyledDeleteButton = styled(Button)`
   height: auto;
   border: none !important;
   outline: none;
-  background-color: #546e7a !important;
+  background-color: #ff373b !important;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
 
   &:hover {
-    background-color: #29434e !important;
+    background-color: #ff262b !important;
   }
 `;
 
@@ -88,7 +92,7 @@ const DeleteButton = props => {
         </StyledModalHeader>
         <StyledModalBody>Próba usunięcia jednostki #{props.id}</StyledModalBody>
         <StyledModalFooter>
-          <Button variant="secondary" onClick={handleModalClose}>
+          <Button variant="success" style={{backgroundColor: "#30d158", height: "auto"}} onClick={handleModalClose}>
             Nie
           </Button>
           <StyledConfirmButton onClick={remove}>

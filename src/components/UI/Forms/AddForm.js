@@ -8,8 +8,8 @@ import styled from "styled-components";
 registerLocale("pl", pl);
 
 const StyledAddUnitForm = styled.div`
-  background-color: #ffffff;
-  color: #eeeeee;
+  background-color: #424242;
+  color: rgba(255, 255, 255, 0.87);
   position: fixed;
   width: 20em;
   height: auto;
@@ -31,13 +31,13 @@ const StyledHideButton = styled(Button)`
   text-transform: uppercase;
   border: none !important;
   outline: none;
-  background-color: #ffffff !important;
+  background-color: #424242 !important;
   width: auto;
   font-size: small;
-  color: #292930 !important;
+  color: rgba(255, 255, 255, 0.87) !important;
   
   &:hover {
-    color: #000000
+    color: rgba(255, 255, 255, 0.87)
   }
 `;
 
@@ -46,26 +46,30 @@ const StyledAddInputForm = styled(Form.Group)`
   left: 50%;
   transform: translate(-50%, 0%);
   position: relative;
-  color: #019199;
+  color: rgba(255, 255, 255, 0.87);
   margin-top: 2em;
 `;
 
 const StyledDatePicker = styled(DatePicker)`
   width: 100%;
   text-align: center;
-  background-color: #eeeeee;
-  color: #212121
+  background-color: #424242;
+  color: rgba(255, 255, 255, 0.87);
+  border: none;
+  border-bottom: 1px solid #30d158;
+  
 `;
 
 const StyledFormControl = styled(Form.Control)`
   text-align-last:center;
   text-align: center;
-  background-color: #eeeeee;
+  background-color: #424242;
+  border-bottom: 1px solid #30d158;
   border-top: none;
   border-left: none;
   border-right: none;
   border-radius: 0em !important;
-  color: #000000
+  color: rgba(255, 255, 255, 0.87)
 `;
 
 const StyledSelect = styled(Form.Control)`
@@ -74,16 +78,17 @@ const StyledSelect = styled(Form.Control)`
   height: calc(1.5em + .75rem + 2px);
   text-align-last:center;
   text-align: center;
-  background-color: #eeeeee;
+  background-color: #424242;
   border-top: none;
   border-left: none;
   border-right: none;
   border-radius: 0em !important;
-  color: #000000
+  color: rgba(255, 255, 255, 0.87);
+  border-bottom: 1px solid #30d158;
 `;
 
 const StyledFormLabel = styled(Form.Label)`
-  color: #000000;
+  color: rgba(255, 255, 255, 0.87);
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
 `;
@@ -95,16 +100,16 @@ const StyledButton = styled(Button)`
   height: auto;
   border: none !important;
   outline: none;
-  background-color: #546e7a !important;
+  background-color: #30d158 !important;
   
   &:hover {
-    background-color: #29434e !important;
+    background-color: #29b64c !important;
   }
 `;
 
 const StyledOption = styled.option`
-  background-color:  #eeeeee ;
-  color: #212121
+  background-color:  rgba(255, 255, 255, 0.87) ;
+  color: #424242
 `;
 
 const AddForm = (props) => {

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Table, Button } from "react-bootstrap";
 import shortid from "shortid";
-import AddForm from "./../components/Forms/AddForm";
-import Head from "./../components/Table/Head";
-import Body from "./../components/Table/Body";
-import Menu from "./../components/Menu/Menu";
-import EditUnitForm from "./../components/Forms/EditUnitForm";
+import AddForm from "../components/UI/Forms/AddForm";
+import Head from "../components/UI/Table/Head";
+import Body from "../components/UI/Table/Body";
+import Menu from "../components/Menu/Menu";
+import EditUnitForm from "../components/UI/Forms/EditUnitForm";
 import styled from "styled-components";
 import ArrowKeysReact from "arrow-keys-react";
 
@@ -15,11 +15,11 @@ const StyledButton = styled(Button)`
   margin-left: 1em;
   border-radius: .5;
   border: none;
-  background-color: #546e7a !important;
+  background-color: #30d158 !important;
   outline: none;
 
   &:hover {
-    background-color: #29434e !important;
+    background-color: #29b64c !important;
   }
 `;
 
@@ -40,7 +40,7 @@ const StyledUnitsTable = styled.div`
   margin: 0 auto;
   margin-bottom: 1em !important;
   margin-top: 1em !important;
-  background-color: #ffffff;
+  background-color: #424242;
   width: 100%;
   transition-duration: 0.5s;
   border-radius: 0.25em;
@@ -53,7 +53,7 @@ const StyledTableContent = styled.div`
   padding: 1em;
 `;
 
-const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
+const Units = (props, { initId = 1, initForm = false }) => {
   const _date = new Date();
 
   const [dataUnits, setDataUnits] = useState([]);
@@ -204,4 +204,4 @@ const StandardUnitsContainer = (props, { initId = 1, initForm = false }) => {
   );
 };
 
-export default StandardUnitsContainer;
+export default Units;

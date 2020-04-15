@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card} from "react-bootstrap";
 
-const ExamContainer = props => {
+const Exams = props => {
 
 let longtext = "N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A";
 
@@ -27,42 +27,42 @@ const showPartOfString = (string, l) => {
           <Card className="exam--container--cards-data exam--result-card-small">
             <Card.Body>
               <Card.Title>Odchody</Card.Title>
-              <Card.Text>2020-03-19 | 12:00:00</Card.Text>
+              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19 | 12:00:00</Card.Text>
               <Card.Text>N/A</Card.Text>
             </Card.Body>
           </Card>
           <Card className="exam--container--cards-data exam--result-card-small">
             <Card.Body>
               <Card.Title>Tkanka</Card.Title>
-              <Card.Text>2020-03-19</Card.Text>
+              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19</Card.Text>
               <Card.Text>N/A</Card.Text>
             </Card.Body>
           </Card>
           <Card className="exam--container--cards-data exam--result-card-small">
             <Card.Body>
               <Card.Title>Leki</Card.Title>
-              <Card.Text>2020-03-19</Card.Text>
+              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19</Card.Text>
               <Card.Text>N/A</Card.Text>
             </Card.Body>
           </Card>
           <Card className="exam--container--cards-data exam--result-card-small">
             <Card.Body>
               <Card.Title>Ilość</Card.Title>
-              <Card.Text>2020-03-19</Card.Text>
+              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19</Card.Text>
               <Card.Text>N/A</Card.Text>
             </Card.Body>
           </Card>
           <Card className="exam--container--cards-data exam--result-card-small">
             <Card.Body>
               <Card.Title>Rodzaj leków</Card.Title>
-              <Card.Text>2020-03-19</Card.Text>
+              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19</Card.Text>
               <Card.Text>N/A</Card.Text>
             </Card.Body>
           </Card>
           <Card className="exam--container--cards-data exam--result-card-small">
             <Card.Body>
               <Card.Title>Rozwolnienie</Card.Title>
-              <Card.Text>2020-03-19</Card.Text>
+              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19</Card.Text>
               <Card.Text>N/A</Card.Text>
             </Card.Body>
           </Card>
@@ -70,7 +70,7 @@ const showPartOfString = (string, l) => {
           <Card className="exam--container--cards-data exam--result-card-small">
             <Card.Body>
               <Card.Title>Waga</Card.Title>
-              <Card.Text>2020-03-19</Card.Text>
+              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19</Card.Text>
               <Card.Text>N/A</Card.Text>
             </Card.Body>
           </Card>
@@ -78,7 +78,7 @@ const showPartOfString = (string, l) => {
           <Card className="exam--container--cards-data exam--result-card-small">
             <Card.Body>
               <Card.Title>Temperatura</Card.Title>
-              <Card.Text>2020-03-19</Card.Text>
+              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19</Card.Text>
               <Card.Text>N/A</Card.Text>
             </Card.Body>
           </Card>
@@ -86,7 +86,7 @@ const showPartOfString = (string, l) => {
           <Card className="exam--container--cards-data exam--result-card-small">
             <Card.Body>
               <Card.Title>Kulawizna</Card.Title>
-              <Card.Text>2020-03-19</Card.Text>
+              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19</Card.Text>
               <Card.Text>N/A</Card.Text>
             </Card.Body>
           </Card>
@@ -94,21 +94,21 @@ const showPartOfString = (string, l) => {
           <Card className="exam--container--cards-data exam--result-card-small">
             <Card.Body>
               <Card.Title>Układ oddechowy</Card.Title>
-              <Card.Text>2020-03-19</Card.Text>
+              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19</Card.Text>
               <Card.Text>N/A</Card.Text>
             </Card.Body>
           </Card>
           <Card className="exam--container--cards-data exam--result-card-small">
             <Card.Body>
               <Card.Title>Zmiany naskórne</Card.Title>
-              <Card.Text>2020-03-19</Card.Text>
+              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19</Card.Text>
               <Card.Text>N/A</Card.Text>
             </Card.Body>
           </Card>
           <Card className="exam--container--cards-data exam--result-card-wide">
             <Card.Body>
               <Card.Title>Wynik egzaminu</Card.Title>
-              <Card.Text>2020-03-19</Card.Text>
+              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19</Card.Text>
               <Card.Text>
                 {showPartOfString(longtext, 50)} ...
               </Card.Text>
@@ -120,4 +120,4 @@ const showPartOfString = (string, l) => {
   );
 };
 
-export default ExamContainer;
+export default Exams;
