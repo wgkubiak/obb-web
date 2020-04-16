@@ -118,14 +118,17 @@ const Menu = (props, { initShow = false }) => {
         {props.show && <SoldDeadEditForm id={props.id} mode={props.mode} price={props.price} showHandler={props.showEdit} reloadHandler={props.reloadHandler}/>}
         {props.showDead && <SoldDeadEditForm id={props.id} mode={props.mode} showHandler={props.showEdit} reloadHandler={props.reloadHandler}/>}
       </StyledButtonContainer>
-      <DeleteButton
-              id={props.id}
-              url={props.url}
-              idPen={props.idPen}
-              showSelection={props.showSelection}
-              reloadHandler={props.reloadHandler}
-              deleteInfoHandler={showInfoHandler}
-        />
+      {/* TODO: test it a little bit more, if buttons hides and shows up in good moment */}
+      {!show && (
+        <DeleteButton
+        id={props.id}
+        url={props.url}
+        idPen={props.idPen}
+        showSelection={props.showSelection}
+        reloadHandler={props.reloadHandler}
+        deleteInfoHandler={showInfoHandler}
+      />)
+      }
     </StyledMenu>
   );
 };

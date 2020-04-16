@@ -140,23 +140,28 @@ const DeadUnits = (props) => {
               reloadHandler={props.reloadHandler}
             />
           )}
+          {showTable && (
+            <GeneratePDF
+              header={[
+                "Data zgonu",
+                "Kojec",
+                "ID",
+                "Plec",
+                "Data zakupu",
+                "Cena",
+              ]}
+              fileheader="Raport zgonow"
+              mode="dead"
+              unlData={unlimitedData}
+              filename={`RaportZgonow-${new Date()
+                .toString()
+                .substring(0, 10)
+                .replace(/\s/g, "")}`}
+            />
+          )}
         </div>
       )}
-      {showTable && (
-        <GeneratePDF
-          header={["Data zgonu", "Kojec", "ID", "Plec", "Data zakupu", "Cena"]}
-          fileheader="Raport zgonow"
-          mode="dead"
-          unlData={unlimitedData}
-          filename={`RaportZgonow-${new Date()
-            .toString()
-            .substring(0, 10)
-            .replace(/\s/g, "")}`}
-        />
-      )}
-       {showNoDataInfo && (
-        <NoData mode="neg"/>
-      )}
+      {showNoDataInfo && <NoData mode="neg" />}
     </div>
   );
 };

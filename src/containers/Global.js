@@ -166,8 +166,7 @@ const Global = (props) => {
             </tbody>
           </Table>
         </div>
-      </div>
-      {sorted && (
+        {sorted && (
         <GeneratePDF
           header={["ID", "Data", "Godz", "NH3", "H2S", "CO2", "Temp", "Wilg"]}
           fileheader="Raport globalnych pomiarow"
@@ -179,6 +178,8 @@ const Global = (props) => {
             .replace(/\s/g, "")}`}
         />
       )}
+      </div>
+     
       {!sorted && (
         <Button
           variant="primary"

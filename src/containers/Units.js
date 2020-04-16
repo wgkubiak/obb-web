@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Table, Button } from "react-bootstrap";
+import { Jumbotron, Container, Table, Button } from "react-bootstrap";
 import shortid from "shortid";
 import AddForm from "../components/UI/Forms/AddForm";
 import Head from "../components/UI/Table/Head";
 import Body from "../components/UI/Table/Body";
+import GenerateButton from "../components/UI/Buttons/GenerateButton";
+import UnitChart from "../components/UI/Charts/UnitChart";
 import Menu from "../components/Menu/Menu";
 import EditUnitForm from "../components/UI/Forms/EditUnitForm";
+import { IoMdArrowDropdown } from "react-icons/io";
+import { MdAdd, MdEdit} from "react-icons/md";
 import styled from "styled-components";
 import ArrowKeysReact from "arrow-keys-react";
 
@@ -13,7 +17,7 @@ const StyledButton = styled(Button)`
   margin-top: 1em;
   margin-right: 1em;
   margin-left: 1em;
-  border-radius: .5;
+  border-radius: 0.5;
   border: none;
   background-color: #30d158 !important;
   outline: none;
@@ -30,11 +34,13 @@ const StyledUnitsContainer = styled.div`
   position: absolute;
   right: 1%;
   transform: translate(0%, 0%);
-  margin: auto;
+  margin-bottom: 1em !important;
   outline: none;
 `;
 
 const StyledUnitsTable = styled.div`
+  position: relative;
+  top: 2em;
   padding-top: 0em;
   padding-bottom: 0em;
   margin: 0 auto;
@@ -57,6 +63,7 @@ const Units = (props, { initId = 1, initForm = false }) => {
   const _date = new Date();
 
   const [dataUnits, setDataUnits] = useState([]);
+  const [dataPens, setDataPens] = useState([]);
   const [showMenu, setShowMenu] = useState(false);
   const [id, setId] = useState(initId);
   const [idPig, setIdPig] = useState("");
@@ -73,9 +80,16 @@ const Units = (props, { initId = 1, initForm = false }) => {
       .catch((e) => e);
   };
 
+  const getPenMeasuresData = async (id) => {
+    await fetch(`https://obb-api.herokuapp.com/pen-measures-last/${id}`)
+      .then((res) => res.json())
+      .then((res) => setDataPens(res))
+      .catch((e) => e);
+  };
+
   useEffect(() => {
     getUnitsData(id);
-    
+    getPenMeasuresData(id);
     props.headerHandler("standard", id);
 
     ArrowKeysReact.config({
@@ -135,8 +149,104 @@ const Units = (props, { initId = 1, initForm = false }) => {
   return (
     <StyledUnitsContainer {...ArrowKeysReact.events} tabIndex="1">
       <div>
-        <StyledButton onClick={idDecrease}>Poprzedni</StyledButton>
-        <StyledButton onClick={idIncrease}>Następny</StyledButton>    
+        <StyledButton onClick={idDecrease}>&larr;</StyledButton>
+        <StyledButton onClick={idIncrease}>&rarr;</StyledButton>
+      </div>
+      <div style={{display: "flex", flexDirection: "row", width: "100%", height: "auto"}}>
+      <Jumbotron
+        style={{
+          backgroundColor: "#424242",
+          marginTop: "1em",
+          height: "auto",
+          width: "49%",
+          marginRight: "1%",
+          borderRadius: ".3em",
+          padding: "1em",
+          marginBottom: "0em"
+        }}
+        fluid
+      >
+        <div style={{width: "100%", position: "relative", height: "auto", display: "flex", flexDirection: "row", alignContent: "right"}}>
+           <div style={{width: "auto", position: "absolute", right: "0"}}>
+          <button style={{backgroundColor: "#424242", border: "none", boxShadow: "none"}}><MdEdit style={{color: "rgba(255, 255, 255, 0.87)"}}/></button>
+          <button style={{backgroundColor: "#424242", border: "none", boxShadow: "none"}}><MdAdd style={{color: "rgba(255, 255, 255, 0.87)"}}/></button>
+           </div>
+         </div>
+        <Container>
+         
+
+          <h3
+            style={{
+              marginTop: "1em",
+              color: "rgba(255, 255, 255, 0.87)",
+              textAlign: "center",
+            }}
+          >
+            Pomiary kojca
+          </h3>
+          {dataPens.map((data, index) => (
+            <>
+              <p
+                style={{
+                  color: "rgba(255, 255, 255, 0.6)",
+                  textAlign: "center",
+                  width: "auto",
+                }}
+              >
+                <span>
+                  Data: {data.measureDate.substring(0, 10)} {data.measureTime}
+                </span>
+              </p>
+              <p
+                style={{
+                  color: "rgba(255, 255, 255, 0.6)",
+                  textAlign: "center",
+                  width: "auto",
+                }}
+              >
+                <span>
+                  Dozownik: {data.dosatron || "N/A"} Wprowadzono: {data.forage || "0"}{" "}
+                  Pozostałe: {data.forageQtyUsed || "0"}
+                </span>
+              </p>
+              <p
+                style={{
+                  color: "rgba(255, 255, 255, 0.6)",
+                  textAlign: "center",
+                  width: "auto",
+                }}
+              >
+                Awaria: {data.breakdown || "N/A"}
+              </p>
+              <p
+                style={{
+                  color: "rgba(255, 255, 255, 0.6)",
+                  textAlign: "center",
+                  width: "auto",
+                  paddingBottom: "2em",
+                }}
+              >
+                Dodatki: {data.addition || "N/A"}
+              </p>
+            </>
+          ))}
+        </Container>
+        {<GenerateButton/>}
+      </Jumbotron>
+      <UnitChart
+            chartClass="chart--forageqty"
+            chartID="global-chart"
+            mode="line"
+            chartLabel="Wprowadzone"
+            chartLabel2="Pozostałe"
+            miny={0}
+            maxy={200}
+            dates={["18-04", "19-04", "20-04", "21-04", "22-04", "23-04", "24-04"]}
+            data={["100", "125", "145", "148", "114", "58", "42"]}
+            reload={props.reload}
+            units="units"
+            step={50}
+          />
       </div>
       <StyledUnitsTable>
         <StyledTableContent>

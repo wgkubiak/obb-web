@@ -145,9 +145,7 @@ const DeadUnits = (props) => {
               reloadHandler={props.reloadHandler}
             />
           )}
-        </div>
-      )}
-      {showTable && (
+          {showTable && (
         <GeneratePDF
           header={[
             "Data sprzedazy",
@@ -166,6 +164,8 @@ const DeadUnits = (props) => {
             .substring(0, 10)
             .replace(/\s/g, "")}`}
         />
+      )}
+        </div>
       )}
       {showNoDataInfo && (
         <NoData mode="pos"/>
