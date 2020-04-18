@@ -8,7 +8,8 @@ import GenerateButton from "../components/UI/Buttons/GenerateButton";
 import UnitChart from "../components/UI/Charts/UnitChart";
 import Menu from "../components/Menu/Menu";
 import EditUnitForm from "../components/UI/Forms/EditUnitForm";
-import { IoMdArrowDropdown } from "react-icons/io";
+import EditPenMeasureForm from "../components/UI/Forms/EditPenMeasureForm";
+import AddPenMeasureForm from "../components/UI/Forms/AddPenMeasureForm";
 import { MdAdd, MdEdit} from "react-icons/md";
 import styled from "styled-components";
 import ArrowKeysReact from "arrow-keys-react";
@@ -72,6 +73,14 @@ const Units = (props, { initId = 1, initForm = false }) => {
   const [price, setPrice] = useState("0");
   const [editMenu, setEditMenu] = useState(false);
   const [showDeadSoldForm, setShowDeadSoldForm] = useState(false);
+  const [showEditPenMeasure, setShowEditPenMeasure] = useState(false);
+  const [showAddPenMeasure, setShowAddPenMeasure] = useState(false);
+  const [measureId, setMeasureId] = useState(0);
+  const [dosatron, setDosatron] = useState("");
+  const [forage, setForage] = useState("");
+  const [forageQtyUsed, setForageQtyUsed] = useState("");
+  const [breakdown, setBreakdown] = useState("");
+  const [addition, setAddition] = useState("");  
 
   const getUnitsData = async (id) => {
     await fetch(`https://obb-api.herokuapp.com/active-pigs/${id}`)
@@ -84,7 +93,9 @@ const Units = (props, { initId = 1, initForm = false }) => {
     await fetch(`https://obb-api.herokuapp.com/pen-measures-last/${id}`)
       .then((res) => res.json())
       .then((res) => setDataPens(res))
+      .then((res) => console.log(res.id))
       .catch((e) => e);
+      
   };
 
   useEffect(() => {
@@ -146,6 +157,32 @@ const Units = (props, { initId = 1, initForm = false }) => {
     }
   };
 
+  const measureIdHandler = () => {
+    dataPens.map((value) => {
+      setMeasureId(value.id);
+      setDosatron(value.dosatron);
+      setForage(value.forage);
+      setForageQtyUsed(value.forageQtyUsed);
+      setBreakdown(value.breakdown);
+      setAddition(value.addition)
+    })
+
+    setShowEditPenMeasure(true);
+  }
+
+  const showAddPenMeasureHandler = () => {
+    setShowAddPenMeasure(true);
+  }
+
+  const hidePenMeasure = () => {
+    setShowEditPenMeasure(false);
+  }
+
+
+  const hideAddPenMeasure = () => {
+    setShowAddPenMeasure(false);
+  }
+
   return (
     <StyledUnitsContainer {...ArrowKeysReact.events} tabIndex="1">
       <div>
@@ -168,8 +205,8 @@ const Units = (props, { initId = 1, initForm = false }) => {
       >
         <div style={{width: "100%", position: "relative", height: "auto", display: "flex", flexDirection: "row", alignContent: "right"}}>
            <div style={{width: "auto", position: "absolute", right: "0"}}>
-          <button style={{backgroundColor: "#424242", border: "none", boxShadow: "none"}}><MdEdit style={{color: "rgba(255, 255, 255, 0.87)"}}/></button>
-          <button style={{backgroundColor: "#424242", border: "none", boxShadow: "none"}}><MdAdd style={{color: "rgba(255, 255, 255, 0.87)"}}/></button>
+            <button style={{backgroundColor: "#424242", border: "none", boxShadow: "none"}} onClick={() => measureIdHandler()}><MdEdit style={{color: "rgba(255, 255, 255, 0.87)"}}/></button>
+            <button style={{backgroundColor: "#424242", border: "none", boxShadow: "none"}} onClick={() => showAddPenMeasureHandler()}><MdAdd style={{color: "rgba(255, 255, 255, 0.87)"}}/></button>
            </div>
          </div>
         <Container>
@@ -308,6 +345,26 @@ const Units = (props, { initId = 1, initForm = false }) => {
           reloadHandler={props.reloadHandler}
           showMenuHandler={toggleMenu}
           showDeadSoldHandler={showDeadSoldHandler}
+        />
+      )}
+       {showEditPenMeasure && (
+        <EditPenMeasureForm
+          id={measureId}
+          dos={dosatron} //dozatron
+          inp={forage} //wlozono
+          out={forageQtyUsed} //wyciagnieto
+          breaks={breakdown} //break
+          additions={addition} //dodatki
+          
+          toggleEditHandler={hidePenMeasure}
+          reloadHandler={props.reloadHandler}
+        />
+      )}
+       {showAddPenMeasure && (
+        <AddPenMeasureForm
+          id={id}
+          toggleAddHandler={hideAddPenMeasure}
+          reloadHandler={props.reloadHandler}
         />
       )}
     </StyledUnitsContainer>
