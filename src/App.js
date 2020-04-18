@@ -58,6 +58,8 @@ const StyledDivTop = styled.div`
   top: 0;
   left: 0;
   background-color: #424242;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 20px 0 rgba(0, 0, 0, 0.075);
+
   z-index: 20;
 `;
 
@@ -93,6 +95,7 @@ const StyledParagraphMid = styled.div`
 const StyledHiddenReload = styled.h1`
   display: none;
 `;
+
 const App = () => {
   const [showExams, setShowExams] = useState(false);
 

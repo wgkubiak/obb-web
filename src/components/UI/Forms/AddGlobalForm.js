@@ -61,7 +61,7 @@ const StyledFormControl = styled(Form.Control)`
   border-right: none;
   border-bottom: 1px solid #30d158;
   border-radius: 0em !important;
-  color: #000000;
+  color: rgba(255, 255, 255, 0.87);
 `;
 
 const StyledSelect = styled(Form.Control)`

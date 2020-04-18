@@ -44,7 +44,7 @@ const StyledUnitsTable = styled.div`
   padding-top: 0em;
   padding-bottom: 0em;
   margin: 0 auto;
-  margin-bottom: 1em !important;
+  margin-bottom: 4em !important;
   margin-top: 1em !important;
   background-color: #424242;
   width: 100%;

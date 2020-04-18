@@ -1,9 +1,18 @@
 import React from "react";
 import shortid from "shortid";
+import styled from "styled-components";
+
+const StyledTableRow = styled.tr`
+  background-color: #424242;
+  
+&:hover {
+  background-color: #30d158;
+}
+`;
 
 const Body = props => {
   return (
-    <tr
+    <StyledTableRow
       key={`${props.data.id}${shortid.generate()}key`}
       onClick={props.showForm}
     >
@@ -37,7 +46,7 @@ const Body = props => {
           return null;
         }
       })}
-    </tr>
+    </StyledTableRow>
   );
 };
 
