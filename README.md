@@ -3,8 +3,6 @@
 ### TODO <name [how hard it is]>:
 * Forages
     * Forage measures
-        * Add form [2]
-        * Edit form [3]
         * Generate PDF [1]
         * Input data into chart [3]
     * Exams
