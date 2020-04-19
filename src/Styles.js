@@ -124,17 +124,17 @@ export const StyledAddIcon = styled(MdAdd)`
 `;
 
 export const StyledSadIcon = styled(FaRegSadTear)`
-  paddingTop: "2em",
-  width: "10em",
-  height: "10em",
-  color: "#30d158",
+  padding-top: 2em;
+  width: 5em;
+  height: 5em;
+  color: #30d158;
 `;
 
 export const StyledHappyIcon = styled(FaRegSmileBeam)`
-  paddingTop: "2em",
-  width: "10em",
-  height: "10em",
-  color: "#30d158",
+  padding-top: 2em;
+  width: 5em;
+  height: 5em;
+  color: #30d158;
 `;
 
 export const StyledJumbotron = styled(Jumbotron)`

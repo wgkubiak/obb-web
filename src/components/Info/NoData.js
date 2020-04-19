@@ -17,9 +17,9 @@ const NoData = (props) => {
   return (
     <>
       {emote()}
-      <h2 style={{ color: "rgba(255, 255, 255, 0.87)" }}>
+      <h3 style={{ color: "rgba(255, 255, 255, 0.87)" }}>
         Brak danych
-      </h2>
+      </h3>
     </>
   );
 };
