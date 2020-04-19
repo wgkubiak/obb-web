@@ -1,31 +1,15 @@
 import React from "react";
-import { FaRegSadTear, FaRegSmileBeam } from "react-icons/fa";
-import styled from "styled-components";
-
-const style = {
-  paddingTop: "2em",
-  width: "10em",
-  height: "10em",
-  color: "#30d158",
-}
-
-const StyledSadEmote = styled(FaRegSadTear)`
-  ${style}
-`
-
-const StyledHappyEmote = styled(FaRegSmileBeam)`
-  ${style}
-`
+import { StyledHappyIcon, StyledSadIcon } from "./../../Styles";
 
 const NoData = (props) => {
   const emote = () => {
     if (props.mode === "neg") {
       return (
-        <StyledHappyEmote/>
+        <StyledHappyIcon/>
       );
     } else {
       return (
-        <StyledSadEmote/>
+        <StyledSadIcon/>
       );
     }
   };

@@ -1,58 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import styled from "styled-components";
-
-const StyledOptionButton = styled(Button)`
-  color: #ffffff;
-  width: 80%;
-  margin-top: 0.5em;
-  border: none !important;
-  outline: none;
-  background-color: #424242 !important;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  
-  &:hover {
-    background-color: #30d158 !important;
-  }
-`;
-
-const StyledModalContent = styled(Modal)`
-  color: rgba(255, 255, 255, 0.87) !important
-`;
-
-const StyledModalBody = styled(Modal.Body)`
-  border-bottom: none;
-  background-color: #1b1b1b !important;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  border-radius: 0;
-  color: rgba(255, 255, 255, 0.87)
-`;
-
-const StyledModalHeader = styled(Modal.Header)`
-  background-color: #424242 !important;
-  border-radius: 0;
-  color: rgba(255, 255, 255, 0.87)
-`;
-
-const StyledConfirmButton = styled(Button)`
-  background-color: #ff373b !important;
-  border: none !important;
-  outline: none;
-  height: "auto";
-
-  &:hover {
-    background-color: #ff262b !important;
-  }
-`;
-
-const StyledModalFooter = styled(Modal.Footer)`
-  border-top: none;
-  background-color: #1b1b1b !important;
-  border-radius: 0;
-`;
-
+import { StyledOptionButton, StyledConfirmModalButton, StyledModalContent, StyledModalBody, StyledModalHeader, StyledModalFooter} from "./../../../Styles";
 
 const UndoneButton = props => {
   const [showModal, setShowModal] = useState(false);
@@ -98,9 +46,9 @@ const UndoneButton = props => {
           <Button variant="success" style={{backgroundColor: "#30d158", height: "auto"}} onClick={handleModalClose}>
             Nie
           </Button>
-          <StyledConfirmButton variant="primary" onClick={submitHandler}>
+          <StyledConfirmModalButton variant="primary" onClick={submitHandler}>
             Tak, przenieś
-          </StyledConfirmButton>
+          </StyledConfirmModalButton>
         </StyledModalFooter>
       </StyledModalContent>
     </>

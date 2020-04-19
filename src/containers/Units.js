@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Jumbotron, Container, Table, Button } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import {Container, Table} from "react-bootstrap";
 import shortid from "shortid";
 import AddForm from "../components/UI/Forms/AddForm";
 import Head from "../components/UI/Table/Head";
@@ -10,57 +10,21 @@ import Menu from "../components/Menu/Menu";
 import EditUnitForm from "../components/UI/Forms/EditUnitForm";
 import EditPenMeasureForm from "../components/UI/Forms/EditPenMeasureForm";
 import AddPenMeasureForm from "../components/UI/Forms/AddPenMeasureForm";
-import { MdAdd, MdEdit} from "react-icons/md";
-import styled from "styled-components";
 import ArrowKeysReact from "arrow-keys-react";
+import {
+  StyledButtonNextPrev,
+  StyledAddIcon,
+  StyledEditIcon,
+  StyledJumbotron,
+  StyledJumbotronHeader,
+  StyledJumbotronParagraphs,
+  StyledUnitsTable,
+  StyledUnitsContainer,
+  StyledButton,
+  StyledTableContent,
+} from "./../Styles";
 
-const StyledButton = styled(Button)`
-  margin-top: 1em;
-  margin-right: 1em;
-  margin-left: 1em;
-  border-radius: 0.5;
-  border: none;
-  background-color: #30d158 !important;
-  outline: none;
-
-  &:hover {
-    background-color: #29b64c !important;
-  }
-`;
-
-const StyledUnitsContainer = styled.div`
-  top: 8%;
-  width: 88%;
-  height: 90%;
-  position: absolute;
-  right: 1%;
-  transform: translate(0%, 0%);
-  margin-bottom: 1em !important;
-  outline: none;
-`;
-
-const StyledUnitsTable = styled.div`
-  position: relative;
-  top: 2em;
-  padding-top: 0em;
-  padding-bottom: 0em;
-  margin: 0 auto;
-  margin-bottom: 4em !important;
-  margin-top: 1em !important;
-  background-color: #424242;
-  width: 100%;
-  transition-duration: 0.5s;
-  border-radius: 0.25em;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
-  font-size: 1em;
-`;
-
-const StyledTableContent = styled.div`
-  background-color: transparent !important;
-  padding: 1em;
-`;
-
-const Units = (props, { initId = 1, initForm = false }) => {
+const Units = (props, { initId = 1 }) => {
   const _date = new Date();
 
   const [dataUnits, setDataUnits] = useState([]);
@@ -80,7 +44,7 @@ const Units = (props, { initId = 1, initForm = false }) => {
   const [forage, setForage] = useState("");
   const [forageQtyUsed, setForageQtyUsed] = useState("");
   const [breakdown, setBreakdown] = useState("");
-  const [addition, setAddition] = useState("");  
+  const [addition, setAddition] = useState("");
 
   const getUnitsData = async (id) => {
     await fetch(`https://obb-api.herokuapp.com/active-pigs/${id}`)
@@ -95,7 +59,6 @@ const Units = (props, { initId = 1, initForm = false }) => {
       .then((res) => setDataPens(res))
       .then((res) => console.log(res.id))
       .catch((e) => e);
-      
   };
 
   useEffect(() => {
@@ -107,7 +70,7 @@ const Units = (props, { initId = 1, initForm = false }) => {
       left: () => idDecrease(),
       right: () => idIncrease(),
     });
-  }, [id, props.reload]); //..,data] makes loop //id should change only on select
+  }, [id, props.reload]);
 
   const showForm = (pen, id, gender, date, price) => {
     setId(pen);
@@ -164,24 +127,23 @@ const Units = (props, { initId = 1, initForm = false }) => {
       setForage(value.forage);
       setForageQtyUsed(value.forageQtyUsed);
       setBreakdown(value.breakdown);
-      setAddition(value.addition)
-    })
+      setAddition(value.addition);
+    });
 
     setShowEditPenMeasure(true);
-  }
+  };
 
   const showAddPenMeasureHandler = () => {
     setShowAddPenMeasure(true);
-  }
+  };
 
   const hidePenMeasure = () => {
     setShowEditPenMeasure(false);
-  }
-
+  };
 
   const hideAddPenMeasure = () => {
     setShowAddPenMeasure(false);
-  }
+  };
 
   return (
     <StyledUnitsContainer {...ArrowKeysReact.events} tabIndex="1">
@@ -189,101 +151,86 @@ const Units = (props, { initId = 1, initForm = false }) => {
         <StyledButton onClick={idDecrease}>&larr;</StyledButton>
         <StyledButton onClick={idIncrease}>&rarr;</StyledButton>
       </div>
-      <div style={{display: "flex", flexDirection: "row", width: "100%", height: "auto"}}>
-      <Jumbotron
+      <div
         style={{
-          backgroundColor: "#424242",
-          marginTop: "1em",
+          display: "flex",
+          flexDirection: "row",
+          width: "100%",
           height: "auto",
-          width: "49%",
-          marginRight: "1%",
-          borderRadius: ".3em",
-          padding: "1em",
-          marginBottom: "0em"
         }}
-        fluid
       >
-        <div style={{width: "100%", position: "relative", height: "auto", display: "flex", flexDirection: "row", alignContent: "right"}}>
-           <div style={{width: "auto", position: "absolute", right: "0"}}>
-            <button style={{backgroundColor: "#424242", border: "none", boxShadow: "none"}} onClick={() => measureIdHandler()}><MdEdit style={{color: "rgba(255, 255, 255, 0.87)"}}/></button>
-            <button style={{backgroundColor: "#424242", border: "none", boxShadow: "none"}} onClick={() => showAddPenMeasureHandler()}><MdAdd style={{color: "rgba(255, 255, 255, 0.87)"}}/></button>
-           </div>
-         </div>
-        <Container>
-         
-
-          <h3
+        <StyledJumbotron fluid>
+          <div
             style={{
-              marginTop: "1em",
-              color: "rgba(255, 255, 255, 0.87)",
-              textAlign: "center",
+              width: "100%",
+              position: "relative",
+              height: "auto",
+              display: "flex",
+              flexDirection: "row",
+              alignContent: "right",
             }}
           >
-            Pomiary kojca
-          </h3>
-          {dataPens.map((data, index) => (
-            <>
-              <p
-                style={{
-                  color: "rgba(255, 255, 255, 0.6)",
-                  textAlign: "center",
-                  width: "auto",
-                }}
-              >
-                <span>
-                  Data: {data.measureDate.substring(0, 10)} {data.measureTime}
-                </span>
-              </p>
-              <p
-                style={{
-                  color: "rgba(255, 255, 255, 0.6)",
-                  textAlign: "center",
-                  width: "auto",
-                }}
-              >
-                <span>
-                  Dozownik: {data.dosatron || "N/A"} Wprowadzono: {data.forage || "0"}{" "}
-                  Pozostałe: {data.forageQtyUsed || "0"}
-                </span>
-              </p>
-              <p
-                style={{
-                  color: "rgba(255, 255, 255, 0.6)",
-                  textAlign: "center",
-                  width: "auto",
-                }}
-              >
-                Awaria: {data.breakdown || "N/A"}
-              </p>
-              <p
-                style={{
-                  color: "rgba(255, 255, 255, 0.6)",
-                  textAlign: "center",
-                  width: "auto",
-                  paddingBottom: "2em",
-                }}
-              >
-                Dodatki: {data.addition || "N/A"}
-              </p>
-            </>
-          ))}
-        </Container>
-        {<GenerateButton/>}
-      </Jumbotron>
-      <UnitChart
-            chartClass="chart--forageqty"
-            chartID="global-chart"
-            mode="line"
-            chartLabel="Wprowadzone"
-            chartLabel2="Pozostałe"
-            miny={0}
-            maxy={200}
-            dates={["18-04", "19-04", "20-04", "21-04", "22-04", "23-04", "24-04"]}
-            data={["100", "125", "145", "148", "114", "58", "42"]}
-            reload={props.reload}
-            units="units"
-            step={50}
-          />
+            <div style={{ width: "auto", position: "absolute", right: "0" }}>
+              <StyledButtonNextPrev onClick={() => measureIdHandler()}>
+                <StyledEditIcon />
+              </StyledButtonNextPrev>
+              <StyledButtonNextPrev onClick={() => showAddPenMeasureHandler()}>
+                <StyledAddIcon />
+              </StyledButtonNextPrev>
+            </div>
+          </div>
+          <Container>
+            <StyledJumbotronHeader>Pomiary kojca</StyledJumbotronHeader>
+            {dataPens.map((data, index) => (
+              <>
+                <StyledJumbotronParagraphs>
+                  <span>
+                    Data: {data.measureDate.substring(0, 10)} {data.measureTime}
+                  </span>
+                </StyledJumbotronParagraphs>
+                <StyledJumbotronParagraphs>
+                  <span>
+                    Dozownik: {data.dosatron || "N/A"} Wprowadzono:{" "}
+                    {data.forage || "0"} Pozostałe: {data.forageQtyUsed || "0"}
+                  </span>
+                </StyledJumbotronParagraphs>
+                <StyledJumbotronParagraphs>
+                  Awaria: {data.breakdown || "N/A"}
+                </StyledJumbotronParagraphs>
+                <StyledJumbotronParagraphs
+                  style={{
+                    paddingBottom: "2em",
+                  }}
+                >
+                  Dodatki: {data.addition || "N/A"}
+                </StyledJumbotronParagraphs>
+              </>
+            ))}
+          </Container>
+          {<GenerateButton />}
+        </StyledJumbotron>
+        <UnitChart
+          chartClass="chart--forageqty"
+          chartID="global-chart"
+          mode="line"
+          chartLabel="Wprowadzone"
+          chartLabel2="Pozostałe"
+          miny={0}
+          maxy={200}
+          dates={[
+            "18-04",
+            "19-04",
+            "20-04",
+            "21-04",
+            "22-04",
+            "23-04",
+            "24-04",
+          ]}
+          data={["100", "125", "145", "148", "114", "58", "42"]}
+          reload={props.reload}
+          units="units"
+          step={50}
+        />
       </div>
       <StyledUnitsTable>
         <StyledTableContent>
@@ -347,20 +294,19 @@ const Units = (props, { initId = 1, initForm = false }) => {
           showDeadSoldHandler={showDeadSoldHandler}
         />
       )}
-       {showEditPenMeasure && (
+      {showEditPenMeasure && (
         <EditPenMeasureForm
           id={measureId}
-          dos={dosatron} //dozatron
-          inp={forage} //wlozono
-          out={forageQtyUsed} //wyciagnieto
-          breaks={breakdown} //break
-          additions={addition} //dodatki
-          
+          dos={dosatron}
+          inp={forage}
+          out={forageQtyUsed}
+          breaks={breakdown}
+          additions={addition}
           toggleEditHandler={hidePenMeasure}
           reloadHandler={props.reloadHandler}
         />
       )}
-       {showAddPenMeasure && (
+      {showAddPenMeasure && (
         <AddPenMeasureForm
           id={id}
           toggleAddHandler={hideAddPenMeasure}

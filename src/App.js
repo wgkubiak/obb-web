@@ -1,15 +1,6 @@
 import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  NavLink,
-} from "react-router-dom";
-import { ListGroup } from "react-bootstrap";
-import { MdDns, MdWeb, MdEqualizer } from "react-icons/md";
-import { GiWaterDrop } from "react-icons/gi";
-import { FaShoppingCart } from "react-icons/fa";
-import { TiUserDelete } from "react-icons/ti";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+
 import Units from "./containers/Units";
 import Global from "./containers/Global";
 import Sold from "./containers/Sold";
@@ -18,83 +9,25 @@ import AddButton from "./components/UI/Buttons/AddButton";
 import Exams from "./containers/Exams";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import styled from "styled-components";
 
-const StyledFigure = styled.figure`
-  margin: 0 0 0.1rem !important;
-`;
-
-const StyledHeader = styled.header`
-  top: 4em;
-  width: 10%;
-  height: 100%;
-  position: fixed;
-  background-color: #424242;
-  color: #000000;
-  box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.25), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-`;
-
-const StyledListGroup = styled(ListGroup)`
-  top: 0%;
-  position: relative;
-  width: auto;
-`;
-
-const StyledListGroupItem = styled(ListGroup.Item)`
-  justify-content: left;
-  display: flex;
-  flex-direction: column;
-  outline: none;
-`;
-
-const StyledApp = styled.div`
-  text-align: center;
-`;
-
-const StyledDivTop = styled.div`
-  width: 100%;
-  height: 4em;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #424242;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 20px 0 rgba(0, 0, 0, 0.075);
-
-  z-index: 20;
-`;
-
-const StyledParagraphTop = styled.div`
-  position: relative;
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  width: 10%;
-  top: 50%;
-  left: 0%;
-  transform: translate(0%, -50%);
-  font-size: calc(2vh + 1vw);
-  height: 100%;
-  text-align: center;
-  background-color: #1b1b1b;
-  color: rgba(255, 255, 255, 0.87);
-`;
-
-const StyledParagraphMid = styled.div`
-  position: absolute;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  top: 0%;
-  width: 10%;
-  top: 50%;
-  left: 55%;
-  transform: translate(-50%, -50%);
-  font-size: 1em;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.87);
-`;
-
-const StyledHiddenReload = styled.h1`
-  display: none;
-`;
+import {
+  StyledApp,
+  StyledFigure,
+  StyledHeader,
+  StyledListGroup,
+  StyledListGroupItem,
+  StyledFigcaption,
+  StyledDivTop,
+  StyledParagraphTop,
+  StyledParagraphMid,
+  StyledHiddenReload,
+  StyledForageIcon,
+  StyledGlobalIcon,
+  StyledPastureIcon,
+  StyledWaterIcon,
+  StyledSoldIcon,
+  StyledDeadIcon,
+} from "./Styles";
 
 const App = () => {
   const [showExams, setShowExams] = useState(false);
@@ -140,19 +73,22 @@ const App = () => {
     setReload(!reload);
   };
 
-  const setHeaderHandler = (id) => setHeaderMode(`Kojec | ${id}`);
-
   const toggleExams = () => setShowExams(!showExams);
 
   const setUnit = (id) => setUnitID(id);
 
   const toggleAddForm = () => {
     setShowAddForm(!showAddForm);
-    //TODO: hide menu while toggleAddForm is clicked
   };
 
   const hideAddForm = () => {
     setShowAddForm(false);
+  };
+
+  const activeStyle = {
+    textDecoration: "underline 1px solid white !important",
+    borderRight: "3px solid #30d158",
+    outline: "none",
   };
 
   return (
@@ -171,147 +107,52 @@ const App = () => {
         <Router>
           <StyledHeader>
             <StyledListGroup variant="flush" defaultActiveKey="#obb-groups">
-              <NavLink
-                exact
-                activeStyle={{
-                  textDecoration: "underline 1px solid white !important",
-                  borderRight: "3px solid #30d158",
-                  outline: "none",
-                }}
-                to="/"
-              >
+              <NavLink exact activeStyle={activeStyle} to="/">
                 <StyledListGroupItem>
                   <StyledFigure>
-                    <MdWeb size={24} style={{ color: "#30d158" }} />
+                    <StyledForageIcon size={24} />
                   </StyledFigure>
-                  <figcaption
-                    style={{
-                      fontSize: "calc(.8vw + .2vh)",
-                      color: "rgba(255, 255, 255, 0.87)",
-                      fontWeight: "500",
-                    }}
-                  >
-                    Kojce
-                  </figcaption>
+                  <StyledFigcaption>Kojce</StyledFigcaption>
                 </StyledListGroupItem>
               </NavLink>
-              <NavLink
-                to="/global"
-                activeStyle={{
-                  textDecoration: "underline 1px solid white !important",
-                  borderRight: "3px solid #30d158",
-                  outline: "none",
-                }}
-              >
+              <NavLink to="/global" activeStyle={activeStyle}>
                 <StyledListGroupItem>
                   <StyledFigure>
-                    <MdEqualizer size={24} style={{ color: "#30d158" }} />
+                    <StyledGlobalIcon size={24} />
                   </StyledFigure>
-                  <figcaption
-                    style={{
-                      fontSize: "calc(.8vw + .2vh)",
-                      color: "rgba(255, 255, 255, 0.87)",
-                      fontWeight: "500",
-                    }}
-                  >
-                    Globalne
-                  </figcaption>
+                  <StyledFigcaption>Globalne</StyledFigcaption>
                 </StyledListGroupItem>
               </NavLink>
-
-              <NavLink
-                to="/forage"
-                activeStyle={{
-                  textDecoration: "underline 1px solid white !important",
-                  borderRight: "3px solid #30d158",
-                  outline: "none",
-                }}
-              >
+              <NavLink to="/forage" activeStyle={activeStyle}>
                 <StyledListGroupItem>
                   <StyledFigure>
-                    <MdDns size={24} style={{ color: "#30d158" }} />
+                    <StyledPastureIcon size={24} />
                   </StyledFigure>
-                  <figcaption
-                    style={{
-                      fontSize: "calc(.8vw + .2vh)",
-                      color: "rgba(255, 255, 255, 0.87)",
-                      fontWeight: "500",
-                    }}
-                  >
-                    Paśnik
-                  </figcaption>
+                  <StyledFigcaption>Paśnik</StyledFigcaption>
                 </StyledListGroupItem>
               </NavLink>
-
-              <NavLink
-                to="/water"
-                activeStyle={{
-                  textDecoration: "underline 1px solid white !important",
-                  borderRight: "3px solid #30d158",
-                  outline: "none",
-                }}
-              >
+              <NavLink to="/water" activeStyle={activeStyle}>
                 <StyledListGroupItem>
                   <StyledFigure>
-                    <GiWaterDrop size={24} style={{ color: "#30d158" }} />
+                    <StyledWaterIcon size={24} />
                   </StyledFigure>
-                  <figcaption
-                    style={{
-                      fontSize: "calc(.8vw + .2vh)",
-                      color: "rgba(255, 255, 255, 0.87)",
-                      fontWeight: "500",
-                    }}
-                  >
-                    Woda
-                  </figcaption>
+                  <StyledFigcaption>Woda</StyledFigcaption>
                 </StyledListGroupItem>
               </NavLink>
-
-              <NavLink
-                to="/sold"
-                activeStyle={{
-                  textDecoration: "underline 1px solid white !important",
-                  borderRight: "3px solid #30d158",
-                  outline: "none",
-                }}
-              >
+              <NavLink to="/sold" activeStyle={activeStyle}>
                 <StyledListGroupItem>
                   <StyledFigure>
-                    <FaShoppingCart size={24} style={{ color: "#30d158" }} />
+                    <StyledSoldIcon size={24} />
                   </StyledFigure>
-                  <figcaption
-                    style={{
-                      fontSize: "calc(.8vw + .2vh)",
-                      color: "rgba(255, 255, 255, 0.87)",
-                      fontWeight: "500",
-                    }}
-                  >
-                    Sprzedaż
-                  </figcaption>
+                  <StyledFigcaption>Sprzedaż</StyledFigcaption>
                 </StyledListGroupItem>
               </NavLink>
-
-              <NavLink
-                to="/dead"
-                activeStyle={{
-                  textDecoration: "underline 1px solid white !important",
-                  borderRight: "3px solid #30d158",
-                  outline: "none",
-                }}
-              >
+              <NavLink to="/dead" activeStyle={activeStyle}>
                 <StyledListGroupItem>
                   <StyledFigure>
-                    <TiUserDelete size={24} style={{ color: "#30d158" }} />
+                    <StyledDeadIcon size={24} />
                   </StyledFigure>
-                  <figcaption
-                    style={{
-                      fontSize: "calc(.8vw + .2vh)",
-                      color: "rgba(255, 255, 255, 0.87)",
-                      fontWeight: "500",
-                    }}
-                  >
-                    Zgon
-                  </figcaption>
+                  <StyledFigcaption>Zgon</StyledFigcaption>
                 </StyledListGroupItem>
               </NavLink>
             </StyledListGroup>

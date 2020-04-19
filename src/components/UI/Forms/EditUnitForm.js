@@ -1,104 +1,21 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { Form, Button } from "react-bootstrap";
-import DatePicker, { registerLocale } from "react-datepicker";
+import { Form } from "react-bootstrap";
+import { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import pl from "date-fns/locale/pl";
-import styled from "styled-components";
-
-const StyledHideButton = styled(Button)`
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: auto;
-  margin-right: auto;
-  border-radius: 0;
-  text-transform: uppercase;
-  border: none !important;
-  outline: none;
-  background-color: #424242 !important;
-  width: auto;
-  font-size: small;
-  color: rgba(255, 255, 255, 0.87) !important;
-  
-  &:hover {
-    color: #000000
-  }
-`;
-
-const StyledFormLabel = styled(Form.Label)`
-color: rgba(255, 255, 255, 0.87);
-font-family: 'Roboto', sans-serif;
-font-weight: 500;
-`;
-
-const StyledEditUnitForm = styled.div`
-  width: 20em;
-  height: auto;
-  z-index: 2;
-  position: fixed;
-  background-color: #424242;
-  left: 50%;
-  right: 0;
-  top: 20%;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 0em;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
-`;
-
-
-const StyledConfirmButton = styled(Button)`
-  position: relative;
-  width: 100%;
-  border-radius: 0;
-  height: auto;
-  border: none !important;
-  outline: none;
-  background-color: #30d158 !important;
-  
-  &:hover {
-    background-color: #29b64c !important;
-  }
-`;
-
-const StyledDatePicker = styled(DatePicker)`
-  width: 100%;
-  text-align: center;
-  background-color: #424242;
-  color: rgba(255, 255, 255, 0.87);
-  border: none;
-  border-bottom: 1px solid #30d158
-`;
-
-const StyledFormControl = styled(Form.Control)`
-  text-align-last:center;
-  text-align: center;
-  background-color: #424242;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1px solid #30d158;
-  border-radius: 0em !important;
-  color: rgba(255, 255, 255, 0.87)
-`;
-
-const StyledSelect = styled(Form.Control)`
-  width: 100%;
-  height: calc(1.5em + .75rem + 2px);
-  text-align-last:center;
-  text-align: center;
-  background-color: #424242;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1px solid #30d158;
-  border-radius: 0em !important;
-  color: rgba(255, 255, 255, 0.87)
-`;
+import {
+  StyledSelect,
+  StyledFormLabel,
+  StyledFormControl,
+  StyledDatePicker,
+  StyledConfirmButton,
+  StyledEditForm,
+  StyledHideButton,
+} from "./../../../Styles";
 
 registerLocale("pl", pl);
 
-const EditUnitForm = props => {
+const EditUnitForm = (props) => {
   let defaultDate = new Date();
   const [pen, setPen] = useState(props.id);
   const [gender, setGender] = useState(props.gender);
@@ -110,7 +27,7 @@ const EditUnitForm = props => {
       idPen: pen,
       pigGender: gender.toString() === "true" ? "m" : "f",
       pigShoppingDate: shoppingDate,
-      pigShoppingPrice: price
+      pigShoppingPrice: price,
     }),
     [pen, gender, shoppingDate, price]
   );
@@ -123,7 +40,7 @@ const EditUnitForm = props => {
     );
   }, [pen, gender, shoppingDate, price]);
 
-  const submitHandler = event => {
+  const submitHandler = (event) => {
     event.preventDefault();
     console.log(data);
 
@@ -132,31 +49,28 @@ const EditUnitForm = props => {
       {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
       }
     )
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         console.log("Success:", data);
       })
       .then(props.showEditHandler())
-      .catch(error => {
+      .catch((error) => {
         console.error("Error:", error);
       });
 
-      setTimeout(() => {
-        props.reloadHandler()
-      }, 500)
+    setTimeout(() => {
+      props.reloadHandler();
+    }, 500);
   };
 
   return (
-    <StyledEditUnitForm>
-      <StyledHideButton
-        variant="dark"
-        onClick={props.showEditHandler}
-      >
+    <StyledEditForm>
+      <StyledHideButton variant="dark" onClick={props.showEditHandler}>
         X
       </StyledHideButton>
       <Form>
@@ -167,7 +81,7 @@ const EditUnitForm = props => {
           <StyledFormLabel>Kojec</StyledFormLabel>
           <StyledSelect
             as="select"
-            onChange={event => setPen(event.target.value)}
+            onChange={(event) => setPen(event.target.value)}
           >
             <option>Kojec (Domyślnie: bez zmian)</option>
             <option value={1}>1</option>
@@ -185,7 +99,7 @@ const EditUnitForm = props => {
           <StyledFormLabel>Płeć</StyledFormLabel>
           <StyledSelect
             as="select"
-            onChange={event => setGender(event.target.value)}
+            onChange={(event) => setGender(event.target.value)}
             defaultValue={gender === "m"}
           >
             <option value={true}>Samiec</option>
@@ -200,18 +114,16 @@ const EditUnitForm = props => {
           <StyledFormControl
             type="text"
             placeholder="0"
-            onChange={event => setPrice(event.target.value)}
+            onChange={(event) => setPrice(event.target.value)}
             defaultValue={price}
           />
         </Form.Group>
-        <Form.Group
-          controlId="exampleForm.ControlSelect1"
-        >
+        <Form.Group controlId="exampleForm.ControlSelect1">
           <StyledFormLabel>Data zakupu</StyledFormLabel>
           <StyledDatePicker
             locale="pl"
             selected={shoppingDate}
-            onChange={date => setShoppingDate(date)}
+            onChange={(date) => setShoppingDate(date)}
           />
         </Form.Group>
       </Form>
@@ -219,7 +131,7 @@ const EditUnitForm = props => {
       <StyledConfirmButton onClick={submitHandler}>
         POTWIERDŹ
       </StyledConfirmButton>
-    </StyledEditUnitForm>
+    </StyledEditForm>
   );
 };
 

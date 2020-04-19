@@ -1,116 +1,21 @@
 import React, { useState, useMemo } from "react";
-import { Form, Button } from "react-bootstrap";
-import DatePicker, { registerLocale } from "react-datepicker";
+import { Form } from "react-bootstrap";
+import { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import pl from "date-fns/locale/pl";
-import styled from "styled-components";
+import {
+  StyledFormLabel,
+  StyledFormControl,
+  StyledAddInputForm,
+  StyledDatePicker,
+  StyledConfirmButton,
+  StyledAddForm,
+  StyledHideButton,
+  StyledSelect,
+  StyledOption,
+} from "./../../../Styles";
 
 registerLocale("pl", pl);
-
-const StyledAddUnitForm = styled.div`
-  background-color: #424242;
-  color: rgba(255, 255, 255, 0.87);
-  position: fixed;
-  width: 20em;
-  height: auto;
-  left: 0;
-  right: 0;
-  top: 20%;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
-`;
-
-const StyledHideButton = styled(Button)`
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: auto;
-  margin-right: auto;
-  border-radius: 0;
-  text-transform: uppercase;
-  border: none !important;
-  outline: none;
-  background-color: #424242 !important;
-  width: auto;
-  font-size: small;
-  color: rgba(255, 255, 255, 0.87) !important;
-  
-  &:hover {
-    color: rgba(255, 255, 255, 0.87)
-  }
-`;
-
-const StyledAddInputForm = styled(Form.Group)`
-  width: 80%;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  position: relative;
-  color: rgba(255, 255, 255, 0.87);
-  margin-top: 2em;
-`;
-
-const StyledDatePicker = styled(DatePicker)`
-  width: 100%;
-  text-align: center;
-  background-color: #424242;
-  color: rgba(255, 255, 255, 0.87);
-  border: none;
-  border-bottom: 1px solid #30d158;
-  
-`;
-
-const StyledFormControl = styled(Form.Control)`
-  text-align-last:center;
-  text-align: center;
-  background-color: #424242;
-  border-bottom: 1px solid #30d158;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-radius: 0em !important;
-  color: rgba(255, 255, 255, 0.87)
-`;
-
-const StyledSelect = styled(Form.Control)`
-  width: 100%;
-  height: auto;
-  height: calc(1.5em + .75rem + 2px);
-  text-align-last:center;
-  text-align: center;
-  background-color: #424242;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-radius: 0em !important;
-  color: rgba(255, 255, 255, 0.87);
-  border-bottom: 1px solid #30d158;
-`;
-
-const StyledFormLabel = styled(Form.Label)`
-  color: rgba(255, 255, 255, 0.87);
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
-`;
-
-const StyledButton = styled(Button)`
-  position: relative;
-  width: 100%;
-  border-radius: 0;
-  height: auto;
-  border: none !important;
-  outline: none;
-  background-color: #30d158 !important;
-  
-  &:hover {
-    background-color: #29b64c !important;
-  }
-`;
-
-const StyledOption = styled.option`
-  background-color:  rgba(255, 255, 255, 0.87) ;
-  color: #424242
-`;
 
 const AddForm = (props) => {
   let defaultDate = new Date();
@@ -156,11 +61,8 @@ const AddForm = (props) => {
   };
 
   return (
-    <StyledAddUnitForm>
-      <StyledHideButton
-        variant="dark"
-        onClick={props.showAddUnitHandler}
-      >
+    <StyledAddForm>
+      <StyledHideButton variant="dark" onClick={props.showAddUnitHandler}>
         X
       </StyledHideButton>
       <Form>
@@ -172,9 +74,7 @@ const AddForm = (props) => {
             onChange={(event) => setIdentifier(event.target.value)}
           />
         </StyledAddInputForm>
-        <StyledAddInputForm
-          controlId="exampleStyledFormControlSelect1"
-        >
+        <StyledAddInputForm controlId="exampleStyledFormControlSelect1">
           <StyledFormLabel>Płeć</StyledFormLabel>
           <StyledSelect
             as="select"
@@ -192,9 +92,7 @@ const AddForm = (props) => {
             onChange={(event) => setPrice(event.target.value)}
           />
         </StyledAddInputForm>
-        <StyledAddInputForm
-          controlId="exampleStyledFormControlSelect1"
-        >
+        <StyledAddInputForm controlId="exampleStyledFormControlSelect1">
           <StyledFormLabel>Data zakupu</StyledFormLabel>
           <StyledDatePicker
             locale="pl"
@@ -204,10 +102,10 @@ const AddForm = (props) => {
         </StyledAddInputForm>
       </Form>
 
-      <StyledButton onClick={submitHandler}>
+      <StyledConfirmButton onClick={submitHandler}>
         POTWIERDŹ
-      </StyledButton>
-    </StyledAddUnitForm>
+      </StyledConfirmButton>
+    </StyledAddForm>
   );
 };
 

@@ -1,65 +1,11 @@
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
 import DeleteButton from "../UI/Buttons/DeleteButton";
 import UndoneButton from "../UI/Buttons/UndoneButton";
 import SoldDeadForm from "../UI/Forms/SoldDeadForm";
 import SoldDeadEditForm from "../UI/Forms/SoldDeadEditForm";
 import { FiEdit3 } from "react-icons/fi";
-import styled from "styled-components";
+import {StyledOptionButton, StyledMenu, StyledHideButton, StyledButtonContainer} from "./../../Styles";
 
-const StyledMenu = styled.div`
-  width: 20em;
-  z-index: 2;
-  position: fixed;
-  background-color: #424242;
-  left: 0;
-  right: 0;
-  top: 20%;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 0em;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
-`;
-
-const StyledHideButton = styled(Button)`
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: auto;
-  margin-right: auto;
-  border-radius: 0;
-  text-transform: uppercase;
-  border: none !important;
-  outline: none;
-  background-color: #424242 !important;
-  width: auto;
-  font-size: small;
-  color: rgba(255, 255, 255, 0.87) !important;
-  
-  &:hover {
-    color: #000000
-  }
-`;
-
-const StyledButtonContainer = styled.div`
-  position: relative;
-  height: 100%;
-`;
-
-const StyledOptionButton = styled(Button)`
-  color: #ffffff;
-  width: 80%;
-  margin-top: 0.5em;
-  border: none !important;
-  outline: none;
-  background-color: transparent !important;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  
-  &:hover {
-    background-color: #30d158 !important;
-  }
-`;
 
 const Menu = (props, { initShow = false }) => {
   const [show, setShow] = useState(initShow);

@@ -1,14 +1,6 @@
 import React from "react";
 import shortid from "shortid";
-import styled from "styled-components";
-
-const StyledTableRow = styled.tr`
-  background-color: #424242;
-  
-&:hover {
-  background-color: #30d158;
-}
-`;
+import {StyledTableRow} from "./../../../Styles";
 
 const Body = props => {
   return (

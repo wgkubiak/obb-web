@@ -1,30 +1,12 @@
 import React from "react";
-import { Button } from "react-bootstrap";
-import styled from "styled-components";
-
-const StyledButton = styled(Button)`
-  width: 100%;
-  border: none !important;
-  border-radius: 0;
-  position: relative;
-  margin-top: 2em;
-  outline: none;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  background-color:  #30d158 !important;
-  
-  &:hover {
-    background-color: #29b64c !important;
-  }
-`
-
+import {StyledGenerateButton} from "./../../../Styles";
 
 const GenerateButton = props => (
-  <StyledButton
+  <StyledGenerateButton
     onClick={props.generatePDF}
     >
       Wygeneruj raport PDF
-  </StyledButton>
+  </StyledGenerateButton>
 )
 
 export default GenerateButton;
