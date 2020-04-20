@@ -768,6 +768,7 @@ export const StyledDeleteButtonMain = styled(Button)`
 `;
 
 export const StyledSpinnerButton = styled(Button)`
+  margin-top: 1em;
   background-color: #30d158 !important;
   border: none;
   top: 10%;

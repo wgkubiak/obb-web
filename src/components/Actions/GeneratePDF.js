@@ -4,6 +4,7 @@ import GenerateButton from "../UI/Buttons/GenerateButton";
 import "jspdf-autotable";
 
 const GeneratePDF = props => {
+  //TODO: Replace polish signs
   const generatePDF = () => {
     const doc = new jsPDF();
 
@@ -33,6 +34,19 @@ const GeneratePDF = props => {
             `${data.pigGender === "m" ? "Samiec" : "Samica"}`,
             `${data.idPen}`
           ];
+        } else if(props.mode === "pen-measures") {
+
+          return [
+            `${data.idPen}`,
+            `${data.measureDate.substring(0, 10)}`,
+            `${data.measureTime}`,
+            `${data.breakdown}`,
+            `${data.dosatron}`,
+            `${data.addition}`,
+            `${data.forage}`,
+            `${data.forageQtyUsed}`
+          ];
+
         } else {
           return [
             `${data.pigDeathDate.substring(0, 10)}`,

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import {Container, Table} from "react-bootstrap";
+import {Container, Spinner, Table} from "react-bootstrap";
 import shortid from "shortid";
 import AddForm from "../components/UI/Forms/AddForm";
 import Head from "../components/UI/Table/Head";
 import Body from "../components/UI/Table/Body";
-import GenerateButton from "../components/UI/Buttons/GenerateButton";
+import GeneratePDF from "../components/Actions/GeneratePDF";
 import UnitChart from "../components/UI/Charts/UnitChart";
 import Menu from "../components/Menu/Menu";
 import EditUnitForm from "../components/UI/Forms/EditUnitForm";
@@ -24,6 +24,7 @@ import {
   StyledUnitsContainer,
   StyledButton,
   StyledTableContent,
+  StyledSpinnerButton
 } from "./../Styles";
 
 const Units = (props, { initId = 1 }) => {
@@ -31,6 +32,8 @@ const Units = (props, { initId = 1 }) => {
 
   const [dataUnits, setDataUnits] = useState([]);
   const [dataPens, setDataPens] = useState([]);
+  const [dataPensUnlimited, setDataPensUnlimited] = useState([]);
+
   const [showMenu, setShowMenu] = useState(false);
   const [id, setId] = useState(initId);
   const [idPig, setIdPig] = useState("");
@@ -47,27 +50,25 @@ const Units = (props, { initId = 1 }) => {
   const [forageQtyUsed, setForageQtyUsed] = useState("");
   const [breakdown, setBreakdown] = useState("");
   const [addition, setAddition] = useState("");
+  const [showSpinner, setShowSpinner] = useState(true);
 
-  const getUnitsData = async (id) => {
-    await fetch(`https://obb-api.herokuapp.com/active-pigs/${id}`)
-      .then((res) => res.json())
-      .then((res) => setDataUnits(res))
-      .catch((e) => e);
-  };
+  const getData = async (id, func, url) => {
+    await fetch(`${url}${id}`)
+    .then((res) => res.json())
+    .then((res) => func(res))
+    .then((res) => console.log(res.id))
+    .catch((e) => e);
+  }
 
-  const getPenMeasuresData = async (id) => {
-    await fetch(`https://obb-api.herokuapp.com/pen-measures-last/${id}`)
-      .then((res) => res.json())
-      .then((res) => setDataPens(res))
-      .then((res) => console.log(res.id))
-      .catch((e) => e);
-  };
-
+  
   useEffect(() => {
-    getUnitsData(id);
-    getPenMeasuresData(id);
+    getData(id, setDataUnits, "https://obb-api.herokuapp.com/active-pigs/");
+    getData(id, setDataPens, "https://obb-api.herokuapp.com/pen-measures-last/");
+    getData(id, setDataPensUnlimited, "https://obb-api.herokuapp.com/pen-measures/");
+
     props.headerHandler("standard", id);
 
+    setTimeout(() => {setShowSpinner(false)}, 2000)
     ArrowKeysReact.config({
       left: () => idDecrease(),
       right: () => idIncrease(),
@@ -161,6 +162,7 @@ const Units = (props, { initId = 1 }) => {
           height: "auto",
         }}
       >
+        
         <StyledJumbotron fluid>
           <StyledJumbotronMainContainer>
             <StyledJumbotronAltContainer>
@@ -197,9 +199,33 @@ const Units = (props, { initId = 1 }) => {
               </>
             ))}
           </Container>
-          {<GenerateButton />}
+          {<GeneratePDF
+            header={["Kojec", "Data", "Godz", "Awarie", "Dozownik", "Dodatki", "Wklad", "Ubytek"]}
+            fileheader="Raport pomiarow kojca"
+            mode="pen-measures"
+            unlData={dataPensUnlimited}
+            filename={`RaportPomiarowKojcaNr${id}-${new Date()
+              .toString()
+              .substring(0, 10)
+              .replace(/\s/g, "")}`}
+          />}
         </StyledJumbotron>
-        <UnitChart
+        {showSpinner && (
+        <StyledSpinnerButton
+          disabled
+        >
+          <Spinner
+            as="span"
+            animation="grow"
+            size="sm"
+            role="status"
+            aria-hidden="true"
+          />
+          Ładowanie wykresu...
+        </StyledSpinnerButton>
+        )}
+        {!showSpinner && (
+          <UnitChart
           chartClass="chart--forageqty"
           chartID="global-chart"
           mode="line"
@@ -220,7 +246,8 @@ const Units = (props, { initId = 1 }) => {
           reload={props.reload}
           units="units"
           step={50}
-        />
+          />
+        )}
       </div>
       <StyledUnitsTable>
         <StyledTableContent>

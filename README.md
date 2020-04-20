@@ -3,7 +3,6 @@
 ### TODO <name [how hard it is]>:
 * Forages
     * Forage measures
-        * Generate PDF [1]
         * Input data into chart [3]
     * Exams
         * Input exams into cards [2]
