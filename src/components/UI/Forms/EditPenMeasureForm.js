@@ -68,6 +68,7 @@ const EditPenMeasureForm = (props) => {
 
     setTimeout(() => {
       props.reloadHandler();
+      props.sortedHandler(false);
     }, 500);
   };
 
@@ -87,6 +88,7 @@ const EditPenMeasureForm = (props) => {
         console.log("Success:", data);
       })
       .then(props.toggleEditHandler())
+      .then(props.sortedHandler(false))
       .catch((error) => {
         console.error("Error:", error);
       });

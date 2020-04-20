@@ -59,12 +59,13 @@ const AddPenMeasureForm = (props) => {
         console.log("Success:", data);
       })
       .then(props.toggleAddHandler())
+      .then(props.sortedHandler(false))
       .catch((error) => {
         console.error("Error:", error);
       });
 
     setTimeout(() => {
-      props.reloadHandler();
+      props.reloadHandler();  
     }, 500);
   };
 

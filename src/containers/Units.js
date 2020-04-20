@@ -197,7 +197,7 @@ const Units = (props, { initId = 1 }) => {
     setTimeout(() => {
       setSorted(true);
       setShowChart(sorted);
-    }, 2000);
+    }, 1000);
   };
 
   const replaceNulls = (arr) => {
@@ -272,7 +272,7 @@ const Units = (props, { initId = 1 }) => {
               .replace(/\s/g, "")}`}
           />}
         </StyledJumbotron>
-        {!sorted && (
+        {!showChart && (
         <StyledSpinnerButton
           disabled
         >
@@ -376,6 +376,7 @@ const Units = (props, { initId = 1 }) => {
           additions={addition}
           toggleEditHandler={hidePenMeasure}
           reloadHandler={props.reloadHandler}
+          sortedHandler={sortedHandler}
         />
       )}
       {showAddPenMeasure && (
@@ -383,6 +384,7 @@ const Units = (props, { initId = 1 }) => {
           id={id}
           toggleAddHandler={hideAddPenMeasure}
           reloadHandler={props.reloadHandler}
+          sortedHandler={sortedHandler}
         />
       )}
     </StyledUnitsContainer>
