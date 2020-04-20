@@ -1,18 +1,22 @@
 import React from "react";
 import shortid from "shortid";
+import { StyledTableTR, StyledTableTH } from "./../../../Styles";
 
-const Head = props => {
-
+const Head = (props) => {
   const style = {
-    width: `${100 / props.divider}%`
-  }
+    width: `${100 / props.divider}%`,
+  };
 
   return (
-    <tr key={`tr${shortid.generate()}`} style={{width: "100%"}}>
-      {Object.keys(props.data).map(item => {
-        return <th key={`th${shortid.generate()}`} style={style}>{props.data[item]}</th>;
+    <StyledTableTR key={`tr${shortid.generate()}`}>
+      {Object.keys(props.data).map((item) => {
+        return (
+          <StyledTableTH key={`th${shortid.generate()}`} style={style}>
+            {props.data[item]}
+          </StyledTableTH>
+        );
       })}
-    </tr>
+    </StyledTableTR>
   );
 };
 

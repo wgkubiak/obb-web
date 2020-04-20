@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { StyledOptionButton, StyledConfirmModalButton, StyledModalContent, StyledModalBody, StyledModalHeader, StyledModalFooter} from "./../../../Styles";
+import { StyledOptionButton, StyledDeleteButtonMain, StyledConfirmModalButton, StyledModalContent, StyledModalBody, StyledModalHeader, StyledModalFooter} from "./../../../Styles";
 
 const UndoneButton = props => {
   const [showModal, setShowModal] = useState(false);
@@ -43,9 +43,9 @@ const UndoneButton = props => {
           Próba przeniesienia jednostki #{props.id} do kojca
         </StyledModalBody>
         <StyledModalFooter>
-          <Button variant="success" style={{backgroundColor: "#30d158", height: "auto"}} onClick={handleModalClose}>
+          <StyledDeleteButtonMain variant="success" onClick={handleModalClose}>
             Nie
-          </Button>
+          </StyledDeleteButtonMain>
           <StyledConfirmModalButton variant="primary" onClick={submitHandler}>
             Tak, przenieś
           </StyledConfirmModalButton>

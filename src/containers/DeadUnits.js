@@ -5,6 +5,7 @@ import Head from "../components/UI/Table/Head";
 import Body from "../components/UI/Table/Body";
 import Menu from "../components/Menu/Menu";
 import NoData from "../components/Info/NoData";
+import {StyledUnitsTable, StyledUnitsContainer, StyledTableContent, StyledSpinnerButton} from "./../Styles";
 import _ from "underscore";
 
 import shortid from "shortid";
@@ -77,16 +78,9 @@ const DeadUnits = (props) => {
   };
 
   return (
-    <div className="UnitsContainer">
+    <StyledUnitsContainer>
       {showSpinner && (
-        <Button
-          variant="primary"
-          style={{
-            backgroundColor: "#30d158",
-            border: "none",
-            top: "10%",
-            position: "relative",
-          }}
+        <StyledSpinnerButton
           disabled
         >
           <Spinner
@@ -97,11 +91,11 @@ const DeadUnits = (props) => {
             aria-hidden="true"
           />
           Wczytuję dane...
-        </Button>
+        </StyledSpinnerButton>
       )}
       {showTable && (
-        <div className="UnitsTable">
-          <div className="TableContent">
+        <StyledUnitsTable>
+          <StyledTableContent>
             <Table bordered hover variant="dark">
               <thead>
                 <Head
@@ -126,7 +120,7 @@ const DeadUnits = (props) => {
                 ))}
               </tbody>
             </Table>
-          </div>
+          </StyledTableContent>
 
           {showMenu && (
             <Menu
@@ -159,10 +153,10 @@ const DeadUnits = (props) => {
                 .replace(/\s/g, "")}`}
             />
           )}
-        </div>
+        </StyledUnitsTable>
       )}
       {showNoDataInfo && <NoData mode="neg" />}
-    </div>
+    </StyledUnitsContainer>
   );
 };
 

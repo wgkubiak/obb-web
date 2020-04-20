@@ -1,6 +1,6 @@
 import React from "react";
 import shortid from "shortid";
-import {StyledTableRow} from "./../../../Styles";
+import {StyledTableRow, StyledTableTD } from "./../../../Styles";
 
 const Body = props => {
   return (
@@ -21,18 +21,18 @@ const Body = props => {
         ) {
           if (item.includes("Date")) {
             return (
-              <td key={`${shortid.generate()}`}>
+              <StyledTableTD key={`${shortid.generate()}`}>
                 {props.data[item].substring(0, 10)}
-              </td>
+              </StyledTableTD>
             );
           } else if (item.includes("Gender")) {
             return (
-              <td key={`${shortid.generate()}`}>
+              <StyledTableTD key={`${shortid.generate()}`}>
                 {props.data[item] === "m" ? "Samiec" : "Samica"}
-              </td>
+              </StyledTableTD>
             );
           } else {
-            return <td key={`${shortid.generate()}`}>{props.data[item]}</td>;
+            return <StyledTableTD key={`${shortid.generate()}`}>{props.data[item]}</StyledTableTD>;
           }
         } else {
           return null;

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { Card} from "react-bootstrap";
+import { Card } from "react-bootstrap";
+import {StyledExam, StyledCardTitle, StyledCardText, StyledExamContainer, StyledExamTransparent, StyledExamContainerCards, StyledContainerCardsData} from "./../Styles";
 
 const Exams = props => {
 
@@ -18,105 +19,105 @@ const showPartOfString = (string, l) => {
   });
 
   return (
-    <div className="exam">
-      <div className="exam--transparent" onClick={props.toggleExams}></div>
-      <div className="exam--container">
+    <StyledExam>
+      <StyledExamTransparent onClick={props.toggleExams}></StyledExamTransparent>
+      <StyledExamContainer>
         <button onClick={props.toggleExams}>X</button>
         <h1>#{props.unitID}</h1>
-        <div className="exam--container--cards">
-          <Card className="exam--container--cards-data exam--result-card-small">
+        <StyledExamContainerCards>
+          <StyledContainerCardsData>
             <Card.Body>
-              <Card.Title>Odchody</Card.Title>
-              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19 | 12:00:00</Card.Text>
-              <Card.Text>N/A</Card.Text>
+              <StyledCardTitle>Odchody</StyledCardTitle>
+              <StyledCardText>2020-03-19 | 12:00:00</StyledCardText>
+              <StyledCardText>N/A</StyledCardText>
             </Card.Body>
-          </Card>
-          <Card className="exam--container--cards-data exam--result-card-small">
+          </StyledContainerCardsData>
+          <StyledContainerCardsData>
             <Card.Body>
-              <Card.Title>Tkanka</Card.Title>
-              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19</Card.Text>
-              <Card.Text>N/A</Card.Text>
+              <StyledCardTitle>Tkanka</StyledCardTitle>
+              <StyledCardText>2020-03-19</StyledCardText>
+              <StyledCardText>N/A</StyledCardText>
             </Card.Body>
-          </Card>
-          <Card className="exam--container--cards-data exam--result-card-small">
+          </StyledContainerCardsData>
+          <StyledContainerCardsData>
             <Card.Body>
-              <Card.Title>Leki</Card.Title>
-              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19</Card.Text>
-              <Card.Text>N/A</Card.Text>
+              <StyledCardTitle>Leki</StyledCardTitle>
+              <StyledCardText>2020-03-19</StyledCardText>
+              <StyledCardText>N/A</StyledCardText>
             </Card.Body>
-          </Card>
-          <Card className="exam--container--cards-data exam--result-card-small">
+          </StyledContainerCardsData>
+          <StyledContainerCardsData>
             <Card.Body>
-              <Card.Title>Ilość</Card.Title>
-              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19</Card.Text>
-              <Card.Text>N/A</Card.Text>
+              <StyledCardTitle>Ilość</StyledCardTitle>
+              <StyledCardText>2020-03-19</StyledCardText>
+              <StyledCardText>N/A</StyledCardText>
             </Card.Body>
-          </Card>
-          <Card className="exam--container--cards-data exam--result-card-small">
+          </StyledContainerCardsData>
+          <StyledContainerCardsData>
             <Card.Body>
-              <Card.Title>Rodzaj leków</Card.Title>
-              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19</Card.Text>
-              <Card.Text>N/A</Card.Text>
+              <StyledCardTitle>Rodzaj leków</StyledCardTitle>
+              <StyledCardText>2020-03-19</StyledCardText>
+              <StyledCardText>N/A</StyledCardText>
             </Card.Body>
-          </Card>
-          <Card className="exam--container--cards-data exam--result-card-small">
+          </StyledContainerCardsData>
+          <StyledContainerCardsData>
             <Card.Body>
-              <Card.Title>Rozwolnienie</Card.Title>
-              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19</Card.Text>
-              <Card.Text>N/A</Card.Text>
+              <StyledCardTitle>Rozwolnienie</StyledCardTitle>
+              <StyledCardText>2020-03-19</StyledCardText>
+              <StyledCardText>N/A</StyledCardText>
             </Card.Body>
-          </Card>
+          </StyledContainerCardsData>
 
-          <Card className="exam--container--cards-data exam--result-card-small">
+          <StyledContainerCardsData>
             <Card.Body>
-              <Card.Title>Waga</Card.Title>
-              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19</Card.Text>
-              <Card.Text>N/A</Card.Text>
+              <StyledCardTitle>Waga</StyledCardTitle>
+              <StyledCardText>2020-03-19</StyledCardText>
+              <StyledCardText>N/A</StyledCardText>
             </Card.Body>
-          </Card>
+          </StyledContainerCardsData>
 
-          <Card className="exam--container--cards-data exam--result-card-small">
+          <StyledContainerCardsData>
             <Card.Body>
-              <Card.Title>Temperatura</Card.Title>
-              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19</Card.Text>
-              <Card.Text>N/A</Card.Text>
+              <StyledCardTitle>Temperatura</StyledCardTitle>
+              <StyledCardText>2020-03-19</StyledCardText>
+              <StyledCardText>N/A</StyledCardText>
             </Card.Body>
-          </Card>
+          </StyledContainerCardsData>
 
-          <Card className="exam--container--cards-data exam--result-card-small">
+          <StyledContainerCardsData>
             <Card.Body>
-              <Card.Title>Kulawizna</Card.Title>
-              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19</Card.Text>
-              <Card.Text>N/A</Card.Text>
+              <StyledCardTitle>Kulawizna</StyledCardTitle>
+              <StyledCardText>2020-03-19</StyledCardText>
+              <StyledCardText>N/A</StyledCardText>
             </Card.Body>
-          </Card>
+          </StyledContainerCardsData>
 
-          <Card className="exam--container--cards-data exam--result-card-small">
+          <StyledContainerCardsData>
             <Card.Body>
-              <Card.Title>Układ oddechowy</Card.Title>
-              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19</Card.Text>
-              <Card.Text>N/A</Card.Text>
+              <StyledCardTitle>Układ oddechowy</StyledCardTitle>
+              <StyledCardText>2020-03-19</StyledCardText>
+              <StyledCardText>N/A</StyledCardText>
             </Card.Body>
-          </Card>
-          <Card className="exam--container--cards-data exam--result-card-small">
+          </StyledContainerCardsData>
+          <StyledContainerCardsData>
             <Card.Body>
-              <Card.Title>Zmiany naskórne</Card.Title>
-              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19</Card.Text>
-              <Card.Text>N/A</Card.Text>
+              <StyledCardTitle>Zmiany naskórne</StyledCardTitle>
+              <StyledCardText>2020-03-19</StyledCardText>
+              <StyledCardText>N/A</StyledCardText>
             </Card.Body>
-          </Card>
-          <Card className="exam--container--cards-data exam--result-card-wide">
+          </StyledContainerCardsData>
+          <StyledContainerCardsData>
             <Card.Body>
-              <Card.Title>Wynik egzaminu</Card.Title>
-              <Card.Text style={{color: "rgba(255, 255, 255, 0.87)"}}>2020-03-19</Card.Text>
-              <Card.Text>
+              <StyledCardTitle>Wynik egzaminu</StyledCardTitle>
+              <StyledCardText>2020-03-19</StyledCardText>
+              <StyledCardText>
                 {showPartOfString(longtext, 50)} ...
-              </Card.Text>
+              </StyledCardText>
             </Card.Body>
-          </Card>
-        </div>
-      </div>
-    </div>
+          </StyledContainerCardsData>
+        </StyledExamContainerCards>
+      </StyledExamContainer>
+    </StyledExam>
   );
 };
 

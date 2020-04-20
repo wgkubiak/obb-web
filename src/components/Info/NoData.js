@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledHappyIcon, StyledSadIcon } from "./../../Styles";
+import { StyledHappyIcon, StyledSadIcon, StyledNoDataHeader } from "./../../Styles";
 
 const NoData = (props) => {
   const emote = () => {
@@ -17,9 +17,9 @@ const NoData = (props) => {
   return (
     <>
       {emote()}
-      <h3 style={{ color: "rgba(255, 255, 255, 0.87)" }}>
+      <StyledNoDataHeader>
         Brak danych
-      </h3>
+      </StyledNoDataHeader>
     </>
   );
 };

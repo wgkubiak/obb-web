@@ -8,7 +8,6 @@ import DeadUnits from "./containers/DeadUnits";
 import AddButton from "./components/UI/Buttons/AddButton";
 import Exams from "./containers/Exams";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
 
 import {
   StyledApp,

@@ -12,6 +12,7 @@ import {
   StyledHideButton,
   StyledDatePicker,
   StyledFormControl,
+  StyledSoldDeadPriceInput
 } from "./../../../Styles";
 
 registerLocale("pl", pl);
@@ -82,14 +83,14 @@ const SoldDeadForm = (props) => {
           </StyledSelect>
         </Form.Group>
         {mode === "sold" && (
-          <Form.Group controlId="sold-dead--price-input">
+          <StyledSoldDeadPriceInput>
             <StyledFormLabel>Cena</StyledFormLabel>
             <StyledFormControl
               type="text"
               placeholder="0"
               onChange={(event) => setPrice(event.target.value)}
             />
-          </Form.Group>
+          </StyledSoldDeadPriceInput>
         )}
         <Form.Group controlId="exampleForm.ControlSelect1">
           <StyledFormLabel>

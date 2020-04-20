@@ -11,6 +11,7 @@ import {
   StyledConfirmButton,
   StyledEditForm,
   StyledHideButton,
+  StyledEditInput
 } from "./../../../Styles";
 
 registerLocale("pl", pl);
@@ -74,10 +75,7 @@ const EditUnitForm = (props) => {
         X
       </StyledHideButton>
       <Form>
-        <Form.Group
-          controlId="exampleForm.ControlSelect1"
-          className="edit-input"
-        >
+        <StyledEditInput>
           <StyledFormLabel>Kojec</StyledFormLabel>
           <StyledSelect
             as="select"
@@ -91,11 +89,8 @@ const EditUnitForm = (props) => {
             <option value={5}>5</option>
             <option value={6}>6</option>
           </StyledSelect>
-        </Form.Group>
-        <Form.Group
-          controlId="exampleForm.ControlSelect1"
-          className="edit-input"
-        >
+        </StyledEditInput>
+        <StyledEditInput>
           <StyledFormLabel>Płeć</StyledFormLabel>
           <StyledSelect
             as="select"
@@ -105,11 +100,8 @@ const EditUnitForm = (props) => {
             <option value={true}>Samiec</option>
             <option value={false}>Samica</option>
           </StyledSelect>
-        </Form.Group>
-        <Form.Group
-          controlId="exampleForm.ControlInput1"
-          className="edit-input"
-        >
+        </StyledEditInput>
+        <StyledEditInput>
           <StyledFormLabel>Cena</StyledFormLabel>
           <StyledFormControl
             type="text"
@@ -117,15 +109,15 @@ const EditUnitForm = (props) => {
             onChange={(event) => setPrice(event.target.value)}
             defaultValue={price}
           />
-        </Form.Group>
-        <Form.Group controlId="exampleForm.ControlSelect1">
+        </StyledEditInput>
+        <StyledEditInput>
           <StyledFormLabel>Data zakupu</StyledFormLabel>
           <StyledDatePicker
             locale="pl"
             selected={shoppingDate}
             onChange={(date) => setShoppingDate(date)}
           />
-        </Form.Group>
+        </StyledEditInput>
       </Form>
 
       <StyledConfirmButton onClick={submitHandler}>

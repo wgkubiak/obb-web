@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
 import GlobalChart from "../components/UI/Charts/GlobalChart";
-import { Table, Button, Spinner } from "react-bootstrap";
+import { Table, Spinner } from "react-bootstrap";
 import Body from "../components/UI/Table/Body";
 import Head from "../components/UI/Table/Head";
 import AddGlobalForm from "../components/UI/Forms/AddGlobalForm";
 import EditGlobalForm from "../components/UI/Forms/EditGlobalForm";
 import GeneratePDF from "../components/Actions/GeneratePDF";
+import {
+  StyledChartContainer,
+  StyledUnitsTable,
+  StyledUnitsContainer,
+  StyledTableContent,
+  StyledSpinnerButton
+} from "./../Styles";
 import shortid from "shortid";
 
 const Global = (props) => {
@@ -125,9 +132,9 @@ const Global = (props) => {
   };
 
   return (
-    <div className="UnitsContainer" style={{ marginTop: "1em" }}>
-      <div className="UnitsTable">
-        <div className="TableContent">
+    <StyledUnitsContainer>
+      <StyledUnitsTable>
+        <StyledTableContent>
           <Table bordered hover variant="dark">
             <thead>
               <Head
@@ -165,25 +172,23 @@ const Global = (props) => {
               ))}
             </tbody>
           </Table>
-        </div>
+        </StyledTableContent>
         {sorted && (
-        <GeneratePDF
-          header={["ID", "Data", "Godz", "NH3", "H2S", "CO2", "Temp", "Wilg"]}
-          fileheader="Raport globalnych pomiarow"
-          mode="global"
-          unlData={unlData}
-          filename={`RaportGlobalny-${new Date()
-            .toString()
-            .substring(0, 10)
-            .replace(/\s/g, "")}`}
-        />
-      )}
-      </div>
-     
+          <GeneratePDF
+            header={["ID", "Data", "Godz", "NH3", "H2S", "CO2", "Temp", "Wilg"]}
+            fileheader="Raport globalnych pomiarow"
+            mode="global"
+            unlData={unlData}
+            filename={`RaportGlobalny-${new Date()
+              .toString()
+              .substring(0, 10)
+              .replace(/\s/g, "")}`}
+          />
+        )}
+      </StyledUnitsTable>
+
       {!sorted && (
-        <Button
-          variant="primary"
-          style={{ backgroundColor: "#30d158", border: "none" }}
+        <StyledSpinnerButton
           disabled
         >
           <Spinner
@@ -194,10 +199,10 @@ const Global = (props) => {
             aria-hidden="true"
           />
           Wczytuję dane...
-        </Button>
+        </StyledSpinnerButton>
       )}
       {showChart && (
-        <div className="chart">
+        <StyledChartContainer>
           <GlobalChart
             chartClass="chart--temperature"
             chartID="global-chart"
@@ -258,7 +263,7 @@ const Global = (props) => {
             reload={props.reload}
             step={500}
           />
-        </div>
+        </StyledChartContainer>
       )}
       {props.showAddForm && (
         <AddGlobalForm
@@ -279,7 +284,7 @@ const Global = (props) => {
           reloadHandler={sortedHandler}
         />
       )}
-    </div>
+    </StyledUnitsContainer>
   );
 };
 

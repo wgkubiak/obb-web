@@ -18,6 +18,8 @@ import {
   StyledJumbotron,
   StyledJumbotronHeader,
   StyledJumbotronParagraphs,
+  StyledJumbotronMainContainer,
+  StyledJumbotronAltContainer,
   StyledUnitsTable,
   StyledUnitsContainer,
   StyledButton,
@@ -160,25 +162,16 @@ const Units = (props, { initId = 1 }) => {
         }}
       >
         <StyledJumbotron fluid>
-          <div
-            style={{
-              width: "100%",
-              position: "relative",
-              height: "auto",
-              display: "flex",
-              flexDirection: "row",
-              alignContent: "right",
-            }}
-          >
-            <div style={{ width: "auto", position: "absolute", right: "0" }}>
+          <StyledJumbotronMainContainer>
+            <StyledJumbotronAltContainer>
               <StyledButtonNextPrev onClick={() => measureIdHandler()}>
                 <StyledEditIcon />
               </StyledButtonNextPrev>
               <StyledButtonNextPrev onClick={() => showAddPenMeasureHandler()}>
                 <StyledAddIcon />
               </StyledButtonNextPrev>
-            </div>
-          </div>
+            </StyledJumbotronAltContainer>
+          </StyledJumbotronMainContainer>
           <Container>
             <StyledJumbotronHeader>Pomiary kojca</StyledJumbotronHeader>
             {dataPens.map((data, index) => (
@@ -198,9 +191,6 @@ const Units = (props, { initId = 1 }) => {
                   Awaria: {data.breakdown || "N/A"}
                 </StyledJumbotronParagraphs>
                 <StyledJumbotronParagraphs
-                  style={{
-                    paddingBottom: "2em",
-                  }}
                 >
                   Dodatki: {data.addition || "N/A"}
                 </StyledJumbotronParagraphs>

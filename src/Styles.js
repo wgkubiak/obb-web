@@ -1,14 +1,85 @@
-import styled, { css } from "styled-components";
-import { Button, Form, Jumbotron, ListGroup, Modal } from "react-bootstrap";
+import styled, { createGlobalStyle, css } from "styled-components";
+import {
+  Button,
+  Card,
+  Form,
+  Jumbotron,
+  ListGroup,
+  Modal,
+} from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import { MdDns, MdWeb, MdEqualizer, MdEdit, MdAdd } from "react-icons/md";
 import { GiWaterDrop } from "react-icons/gi";
 import { FaShoppingCart, FaRegSadTear, FaRegSmileBeam } from "react-icons/fa";
 import { TiUserDelete } from "react-icons/ti";
+import { FiEdit3 } from "react-icons/fi";
 
 /*
 NAVBARS
  */
+
+export const StyledGlobal = createGlobalStyle`
+  body {
+    background-color: #1b1b1b;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+  };
+  a {
+    text-decoration: none !important;
+    border-bottom: 1px solid rgba(71, 71, 71, 0.24);
+  };
+  .chart--temperature {
+    order: 1
+  };
+  .chart--wetness {
+    order: 2
+  };
+  .chart--nhthree {
+    order: 3
+  };
+  .chart--htwos {
+    order: 4
+  };
+  .chart--cotwo {
+    order: 5
+  };
+  .chart--forageqty {
+    background-color: #424242;
+    border-radius: .3em;
+    width: 49%;
+    margin-top: 1em !important;
+    margin-left: 1%;
+  };
+  .chartjs-render-monitor {
+    margin-top: 0
+  };
+  .chart--temperature, .chart--wetness, .chart--nhthree, .chart--htwos, .chart--cotwo {
+    width: 40em;
+    height: auto;
+    margin-top: 2em !important;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin: 0 auto;
+    background-color: #424242;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+    border-radius: .3em;
+  };
+  .list-header {
+    text-align: left;
+    padding-left: 0.5em;
+  };
+  .list-group-item {
+    background-color: #424242;
+  };
+  .list-group-item:hover {
+    background-color: #1b1b1b !important;
+    color: rgba(255, 255, 255, 0.87) !important;
+  };
+  strong {
+    color: rgba(255, 255, 255, 0.87) !important
+  }
+`;
+
 export const StyledApp = styled.div`
   text-align: center;
 `;
@@ -43,7 +114,9 @@ export const StyledListGroupItem = styled(ListGroup.Item)`
 export const StyledFigcaption = styled.figcaption`
   fontsize: calc(0.8vw + 0.2vh);
   color: rgba(255, 255, 255, 0.87);
-  fontweight: 500;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  outline: none;
 `;
 
 export const StyledDivTop = styled.div`
@@ -123,6 +196,14 @@ export const StyledAddIcon = styled(MdAdd)`
   color: rgba(255, 255, 255, 0.87);
 `;
 
+export const StyledMenuIcon = styled(FiEdit3)`
+  width: 2em;
+  height: 2em;
+  margin-top: 1em;
+  color: rgba(255, 255, 255, 0.87) !important;
+  margin-bottom: 1em;
+`;
+
 export const StyledSadIcon = styled(FaRegSadTear)`
   padding-top: 2em;
   width: 5em;
@@ -138,6 +219,7 @@ export const StyledHappyIcon = styled(FaRegSmileBeam)`
 `;
 
 export const StyledJumbotron = styled(Jumbotron)`
+  position: relative;
   background-color: #424242;
   margin-top: 1em;
   height: auto;
@@ -150,6 +232,7 @@ export const StyledJumbotron = styled(Jumbotron)`
 
 export const StyledJumbotronHeader = styled.h3`
   margin-top: 1em;
+  margin-bottom: 2em;
   color: rgba(255, 255, 255, 0.87);
   text-align: center;
 `;
@@ -158,6 +241,8 @@ export const StyledJumbotronParagraphs = styled.p`
   color: rgba(255, 255, 255, 0.6);
   text-align: center;
   width: auto;
+  margin-bottom: 1.5em;
+  margin-top: 1.5em
 `;
 
 export const StyledButtonNextPrev = styled.button`
@@ -216,7 +301,7 @@ export const StyledTableRow = styled.tr`
   background-color: #424242;
 
   &:hover {
-    background-color: #30d158;
+    background-color: #1b1b1b !important;
   }
 `;
 
@@ -255,7 +340,11 @@ export const StyledHideButton = styled(Button)`
 `;
 
 export const StyledFormControl = styled(Form.Control)`
+  width: 80%;
   text-align-last: center;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0%);
   text-align: center;
   background-color: #424242;
   border-top: none;
@@ -273,16 +362,21 @@ export const StyledDatePicker = styled(DatePicker)`
   color: rgba(255, 255, 255, 0.87);
   border: none;
   border-bottom: 1px solid #30d158;
+
+  & > input {
+    text-align: center !important; 
+  }
 `;
 
 export const StyledFormLabel = styled(Form.Label)`
   color: rgba(255, 255, 255, 0.87);
   font-family: "Roboto", sans-serif;
+  display: block;
   font-weight: 500;
 `;
 
 export const StyledSelect = styled(Form.Control)`
-  width: 100%;
+  width: 80%;
   height: calc(1.5em + 0.75rem + 2px);
   text-align-last: center;
   text-align: center;
@@ -481,8 +575,11 @@ export const StyledAddButton = styled(Button)`
 `;
 
 export const StyledGenerateButton = styled(Button)`
+  position: absolute;
   width: 100%;
   border: none !important;
+  bottom: 0;
+  left: 0;
   border-radius: 0;
   position: relative;
   margin-top: 2em;
@@ -513,4 +610,181 @@ export const StyledMenu = styled.div`
 export const StyledButtonContainer = styled.div`
   position: relative;
   height: 100%;
+`;
+
+export const StyledSoldDeadPriceInput = styled(Form.Group)`
+  width: 100%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  position: relative;
+  margin-top: 1em;
+`;
+
+export const StyledExam = styled.div`
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 20;
+`;
+
+export const StyledExamTransparent = styled.div`
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: #212121a9;
+  z-index: 25;
+`;
+
+export const StyledExamContainer = styled.div`
+  position: absolute;
+  background-color: #1b1b1b;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  height: 80vh;
+  z-index: 30;
+
+  & > h1 {
+    margin-top: 2vh;
+    color: rgba(255, 255, 255, 0.87);
+  }
+
+  & > button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 5%;
+    height: 3em !important;
+    color: #ffffff;
+    background-color: #1b1b1b !important;
+    border: none;
+    outline: none;
+
+    &:hover {
+      background-color: #1b1b1b !important;
+    }
+  }
+`;
+
+export const StyledExamContainerCards = styled.div`
+  position: relative;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 80%;
+  height: 80%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+`;
+
+export const StyledContainerCardsData = styled(Card)`
+  text-align: left;
+  align-self: auto;
+  background-color: #424242;
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.6);
+  transition: 100ms;
+  width: 14vw;
+  height: 16vh;
+`;
+
+export const StyledTableTD = styled.td`
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6) !important;
+  border: none !important;
+  border-bottom: 1px solid #6d6d6d !important;
+`;
+
+export const StyledTableTH = styled.th`
+font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  background-color: #424242 !important;
+  color: rgba(255, 255, 255, 0.87); !important;
+  border: none !important;
+  &:hover {
+    background-color: #000000;
+  }
+`;
+
+export const StyledTableTR = styled.tr`
+  width: "100%" !important;
+  border: none !important;
+  border-bottom: 3px solid #6d6d6d !important;
+  &:hover {
+    background-color: #1b1b1b !important;
+  }
+`;
+
+export const StyledEditButtonsContainer = styled.div`
+  position: relative;
+`;
+
+export const StyledCardTitle = styled(Card.Title)`
+  color: #30d158  !important;
+  font-size: 1em
+`;
+
+export const StyledCardText = styled(Card.Text)`
+  font-size: 0.8em;
+  color: rgba(255, 255, 255, 0.87)
+`;
+
+export const StyledChartContainer = styled.div`
+  position: relative;
+  width: 100% !important;
+  height: auto;
+  display: flex;
+  margin-bottom: 2em;
+  flex-direction: row;
+  flex-wrap: wrap
+`;
+
+export const StyledDeleteInfo = styled.h4`
+  color: rgb(230, 59, 59);
+`;
+
+export const StyledNoDataHeader = styled.h3`
+  color: rgba(255, 255, 255, 0.87)
+`;
+
+export const StyledEditInput = styled(Form.Group)`
+  width: 100%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  position: relative;
+
+  margin-top: 1em;
+`;
+
+export const StyledDeleteButtonMain = styled(Button)`
+  background-color: #30d158; 
+  height: auto
+`;
+
+export const StyledSpinnerButton = styled(Button)`
+  background-color: #30d158 !important;
+  border: none;
+  top: 10%;
+  position: relative
+`;
+
+export const StyledJumbotronMainContainer = styled.div`
+  width: 100%;
+  position: relative;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-content: right
+`;
+
+export const StyledJumbotronAltContainer = styled.div`
+  width: auto;
+  position: absolute;
+  right: 0;
 `;

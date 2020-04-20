@@ -16,7 +16,9 @@ import {
   StyledFormLabel,
   StyledDatePicker,
   StyledSelectShort,
-  StyledConfirmButton
+  StyledConfirmButton,
+  StyledEditButtonsContainer,
+  StyledDeleteButtonMain
 } from "./../../../Styles";
 
 registerLocale("pl", pl);
@@ -160,10 +162,10 @@ const EditGlobalForm = (props) => {
         </Form.Group>
       </Form>
 
-      <div className="edit--buttons-container">
+      <StyledEditButtonsContainer>
         <StyledConfirmButton onClick={submitHandler}>POTWIERDŹ EDYCJĘ</StyledConfirmButton>
-        <StyledDeleteButton style={{backgroundColor: "#ff373b"}} onClick={handleModalShow}>USUŃ</StyledDeleteButton>
-      </div>
+        <StyledDeleteButton onClick={handleModalShow}>USUŃ</StyledDeleteButton>
+      </StyledEditButtonsContainer>
       <StyledModalContent show={showModal} onHide={handleModalClose}>
         <StyledModalHeader>
           <Modal.Title>Czy jesteś pewna/y?!</Modal.Title>
@@ -172,9 +174,9 @@ const EditGlobalForm = (props) => {
           Próba usunięcia pomiaru nr. #{props.id}
         </StyledModalBody>
         <StyledModalFooter>
-          <Button variant="success" style={{backgroundColor: "#30d158", height: "auto"}} onClick={handleModalClose}>
+          <StyledDeleteButtonMain onClick={handleModalClose}>
             Nie
-          </Button>
+          </StyledDeleteButtonMain>
           <StyledConfirmModalButton variant="primary" onClick={remove}>
             Tak, usuń
           </StyledConfirmModalButton>

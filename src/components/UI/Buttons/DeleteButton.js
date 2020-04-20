@@ -8,6 +8,7 @@ import {
   StyledModalFooter,
   StyledConfirmModalButton,
   StyledModalContent,
+  StyledDeleteButtonMain
 } from "./../../../Styles";
 
 const DeleteButton = (props) => {
@@ -40,13 +41,12 @@ const DeleteButton = (props) => {
         </StyledModalHeader>
         <StyledModalBody>Próba usunięcia jednostki #{props.id}</StyledModalBody>
         <StyledModalFooter>
-          <Button
+          <StyledDeleteButtonMain
             variant="success"
-            style={{ backgroundColor: "#30d158", height: "auto" }}
             onClick={handleModalClose}
           >
             Nie
-          </Button>
+          </StyledDeleteButtonMain>
           <StyledConfirmModalButton onClick={remove}>
             Tak, usuń
           </StyledConfirmModalButton>
