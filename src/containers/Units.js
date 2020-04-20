@@ -27,14 +27,21 @@ import {
   StyledSpinnerButton
 } from "./../Styles";
 
+//TODO: API - order pen measures DESC
+
+
 const Units = (props, { initId = 1 }) => {
   const _date = new Date();
 
   const [dataUnits, setDataUnits] = useState([]);
   const [dataPens, setDataPens] = useState([]);
   const [dataPensUnlimited, setDataPensUnlimited] = useState([]);
-
+  const [forageData, setForageData] = useState([]);
+  const [forageOutData, setForageOutData] = useState([]);
+  const [datesData, setDatesData] = useState([]);
+  const [sorted, setSorted] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const [showChart, setShowChart] = useState(false);
   const [id, setId] = useState(initId);
   const [idPig, setIdPig] = useState("");
   const [gender, setGender] = useState("");
@@ -65,15 +72,16 @@ const Units = (props, { initId = 1 }) => {
     getData(id, setDataUnits, "https://obb-api.herokuapp.com/active-pigs/");
     getData(id, setDataPens, "https://obb-api.herokuapp.com/pen-measures-last/");
     getData(id, setDataPensUnlimited, "https://obb-api.herokuapp.com/pen-measures/");
-
+    
+    sortData();
+    
     props.headerHandler("standard", id);
 
-    setTimeout(() => {setShowSpinner(false)}, 2000)
     ArrowKeysReact.config({
       left: () => idDecrease(),
       right: () => idIncrease(),
     });
-  }, [id, props.reload]);
+  }, [id, props.reload, sorted]);
 
   const showForm = (pen, id, gender, date, price) => {
     setId(pen);
@@ -111,6 +119,8 @@ const Units = (props, { initId = 1 }) => {
       identifier++;
       setId(identifier);
     }
+    setSorted(false);
+    setShowChart(false);
   };
 
   const idDecrease = () => {
@@ -121,6 +131,8 @@ const Units = (props, { initId = 1 }) => {
       identifier--;
       setId(identifier);
     }
+    setSorted(false);
+    setShowChart(false);
   };
 
   const measureIdHandler = () => {
@@ -147,6 +159,56 @@ const Units = (props, { initId = 1 }) => {
   const hideAddPenMeasure = () => {
     setShowAddPenMeasure(false);
   };
+
+  const sortData = () => {
+    const datesContainer = [];
+    const forageContainer = [];
+    const forageOutContainer = [];
+
+    Object.keys(dataPensUnlimited).map((item) => {
+      Object.keys(dataPensUnlimited[item]).map((element) => {
+        switch (element) {
+          case "measureDate":
+            datesContainer.push(dataPensUnlimited[item][element].substring(5, 10));
+            break;
+          case "forage":
+            forageContainer.push(dataPensUnlimited[item][element]);
+            break;
+          case "forageQtyUsed":
+            forageOutContainer.push(dataPensUnlimited[item][element]);
+            break;
+          default:
+            break;
+        }
+      });
+    });
+
+    replaceNulls(forageContainer);
+    replaceNulls(forageOutContainer);
+
+    setDatesData(datesContainer);
+    setForageData(forageContainer);
+    setForageOutData(forageOutContainer); //reverse() if data gonna be DESC/ASC
+
+    console.log(datesContainer);
+    console.log(forageContainer);
+    console.log(forageOutContainer)
+    // TODO: make it a little bit better
+    setTimeout(() => {
+      setSorted(true);
+      setShowChart(sorted);
+    }, 2000);
+  };
+
+  const replaceNulls = (arr) => {
+    arr.forEach((e, index) => {
+      if(e === null) {
+        arr[index] = 0;
+      }
+    })
+  }
+
+  const sortedHandler = () => setSorted(false);
 
   return (
     <StyledUnitsContainer {...ArrowKeysReact.events} tabIndex="1">
@@ -210,7 +272,7 @@ const Units = (props, { initId = 1 }) => {
               .replace(/\s/g, "")}`}
           />}
         </StyledJumbotron>
-        {showSpinner && (
+        {!sorted && (
         <StyledSpinnerButton
           disabled
         >
@@ -224,7 +286,7 @@ const Units = (props, { initId = 1 }) => {
           Ładowanie wykresu...
         </StyledSpinnerButton>
         )}
-        {!showSpinner && (
+        {showChart && (
           <UnitChart
           chartClass="chart--forageqty"
           chartID="global-chart"
@@ -233,16 +295,9 @@ const Units = (props, { initId = 1 }) => {
           chartLabel2="Pozostałe"
           miny={0}
           maxy={200}
-          dates={[
-            "18-04",
-            "19-04",
-            "20-04",
-            "21-04",
-            "22-04",
-            "23-04",
-            "24-04",
-          ]}
-          data={["100", "125", "145", "148", "114", "58", "42"]}
+          dates={datesData}
+          data={forageData}
+          data2={forageOutData}
           reload={props.reload}
           units="units"
           step={50}

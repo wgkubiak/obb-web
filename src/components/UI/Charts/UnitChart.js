@@ -29,7 +29,7 @@ const UnitChart = (props) => {
           },
           {
             label: props.chartLabel2,
-            data: ["150", "150", "150", "125", "142", "38", "98"],
+            data: Object.values(props.data2),
             borderColor: "#ff373b",
             pointBackgroundColor: "rgba(255,255,255, 0.87)",
             pointBorderColor: "#424242",

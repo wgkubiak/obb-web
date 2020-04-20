@@ -2,8 +2,6 @@
 
 ### TODO <name [how hard it is]>:
 * Forages
-    * Forage measures
-        * Input data into chart [3]
     * Exams
         * Input exams into cards [2]
         * Edit exams form [3]
