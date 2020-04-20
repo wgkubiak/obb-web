@@ -20,7 +20,7 @@ NAVBARS
 
 export const StyledGlobal = createGlobalStyle`
   body {
-    background-color: #1b1b1b;
+    background-color: #eeeeee;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
   };
@@ -750,7 +750,7 @@ export const StyledDeleteInfo = styled.h4`
 `;
 
 export const StyledNoDataHeader = styled.h3`
-  color: rgba(255, 255, 255, 0.87)
+  color: rgba(0, 0, 0, 0.87)
 `;
 
 export const StyledEditInput = styled(Form.Group)`
@@ -772,6 +772,15 @@ export const StyledSpinnerButton = styled(Button)`
   background-color: #30d158 !important;
   border: none;
   top: 10%;
+  position: relative
+`;
+
+export const StyledUnitSpinnerButton = styled(Button)`
+  margin-top: 1em;
+  background-color: #30d158 !important;
+  border: none;
+  width: 49%;
+  margin-left: 1%;
   position: relative
 `;
 

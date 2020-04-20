@@ -24,7 +24,7 @@ import {
   StyledUnitsContainer,
   StyledButton,
   StyledTableContent,
-  StyledSpinnerButton
+  StyledUnitSpinnerButton
 } from "./../Styles";
 
 //TODO: API - order pen measures DESC
@@ -273,7 +273,7 @@ const Units = (props, { initId = 1 }) => {
           />}
         </StyledJumbotron>
         {!showChart && (
-        <StyledSpinnerButton
+        <StyledUnitSpinnerButton
           disabled
         >
           <Spinner
@@ -284,7 +284,7 @@ const Units = (props, { initId = 1 }) => {
             aria-hidden="true"
           />
           Ładowanie wykresu...
-        </StyledSpinnerButton>
+        </StyledUnitSpinnerButton>
         )}
         {showChart && (
           <UnitChart
