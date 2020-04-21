@@ -35,7 +35,6 @@ const GeneratePDF = props => {
             `${data.idPen}`
           ];
         } else if(props.mode === "pen-measures") {
-
           return [
             `${data.idPen}`,
             `${data.measureDate.substring(0, 10)}`,
@@ -46,7 +45,16 @@ const GeneratePDF = props => {
             `${data.forage}`,
             `${data.forageQtyUsed}`
           ];
-
+        } else if(props.mode === "forage") {
+          return [
+            `${data.idPen}`,
+            `${data.creationDate.substring(0, 10)}`,
+            `${data.expiration.substring(0, 10)}`,
+            `${data.producer}`,
+            `${data.fgQty}`,
+            `${data.fgPrice}`,
+            `${data.fgAbout}`
+          ];
         } else {
           return [
             `${data.pigDeathDate.substring(0, 10)}`,
@@ -63,7 +71,7 @@ const GeneratePDF = props => {
     doc.save(`${props.filename}.pdf`);
   };
 
-  return <GenerateButton generatePDF={generatePDF} />;
+  return <GenerateButton generatePDF={generatePDF} text={props.text}/>;
 };
 
 export default GeneratePDF;

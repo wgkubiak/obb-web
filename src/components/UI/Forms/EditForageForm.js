@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { Form, Button, Modal } from "react-bootstrap";
+import { Form, Modal } from "react-bootstrap";
 import { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import pl from "date-fns/locale/pl";
@@ -16,23 +16,21 @@ import {
   StyledFormLabel,
   StyledDatePicker,
   StyledSubmitButton,
-  StyledSelectShort,
   StyledEditButtonsContainer,
   StyledDeleteButtonMain
 } from "./../../../Styles";
 
 registerLocale("pl", pl);
 
-const EditPenMeasureForm = (props) => {
+const EditForageForm = (props) => {
   let defaultDate = new Date();
 
-  const [measureDate, setMeasureDate] = useState(defaultDate);
-  const [measureTime, setMeasureTime] = useState(defaultDate);
-  const [dosatron, setDosatron] = useState(props.dos);
-  const [forage, setForage] = useState(props.inp);
-  const [forageQtyUsed, setForageQtyUsed] = useState(props.out);
-  const [breaks, setBreaks] = useState(props.breaks);
-  const [additions, setAdditions] = useState(props.additions);
+  const [creationDate, setCreationDate] = useState(defaultDate);
+  const [expirationDate, setExpirationDate] = useState(defaultDate);
+  const [about, setAbout] = useState(props.about);
+  const [qty, setQty] = useState(props.qty);
+  const [price, setPrice] = useState(props.price);
+  const [producer, setProducer] = useState(props.producer);
   const [showModal, setShowModal] = useState(false);
 
   const handleModalClose = () => setShowModal(false);
@@ -40,27 +38,20 @@ const EditPenMeasureForm = (props) => {
 
   const data = useMemo(
     () => ({
-      measureDate: measureDate,
-      measureTime: measureTime.toString().substring(16, 31),
-      breakdown: breaks,
-      dosatron: dosatron,
-      addition: additions,
-      forage: forage,
-      forageQtyUsed: forageQtyUsed,
+        fgAbout: about,
+        fgQty: qty,
+        fgPrice: price,
+        creationDate: creationDate,
+        producer: producer,
+        expiration: expirationDate
     }),
     [
-      measureDate,
-      measureTime,
-      breaks,
-      dosatron,
-      additions,
-      forage,
-      forageQtyUsed,
+      about, qty, price, creationDate, producer, expirationDate
     ]
   );
 
   const remove = () => {
-    fetch(`https://obb-api.herokuapp.com/delete-pen-measure/${props.id}`, {
+    fetch(`https://obb-api.herokuapp.com/delete-forage/${props.id}`, {
       method: "DELETE",
     })
       .then(handleModalClose())
@@ -68,7 +59,6 @@ const EditPenMeasureForm = (props) => {
 
     setTimeout(() => {
       props.reloadHandler();
-      props.sortedHandler(false);
     }, 500);
   };
 
@@ -76,7 +66,7 @@ const EditPenMeasureForm = (props) => {
     event.preventDefault();
     console.log(data);
 
-    fetch(`http://obb-api.herokuapp.com/edit-pen-measure/${props.id}`, {
+    fetch(`http://obb-api.herokuapp.com/edit-forage/${props.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -88,7 +78,7 @@ const EditPenMeasureForm = (props) => {
         console.log("Success:", data);
       })
       .then(props.toggleEditHandler())
-      .then(props.sortedHandler(false))
+    //   .then(props.sortedHandler(false))
       .catch((error) => {
         console.error("Error:", error);
       });
@@ -103,71 +93,57 @@ const EditPenMeasureForm = (props) => {
       <StyledHideButton onClick={props.toggleEditHandler}>X</StyledHideButton>
       <Form>
         <Form.Group controlId="exampleStyledFormControlShortSelect1">
-          <StyledFormLabel>Data badania</StyledFormLabel>
+          <StyledFormLabel>Data stworzenia</StyledFormLabel>
           <StyledDatePicker
             locale="pl"
-            selected={measureDate}
-            onChange={(date) => setMeasureDate(date)}
+            selected={creationDate}
+            onChange={(date) => setCreationDate(date)}
           />
         </Form.Group>
         <Form.Group controlId="exampleStyledFormControlShortSelect1">
-          <StyledFormLabel>Godzina badania</StyledFormLabel>
+          <StyledFormLabel>Data ważności</StyledFormLabel>
           <StyledDatePicker
-            selected={measureTime}
-            onChange={(date) => setMeasureTime(date)}
-            showTimeSelect
-            showTimeSelectOnly
-            timeIntervals={15}
-            timeCaption="Time"
-            dateFormat="h:mm aa"
+            locale="pl"
+            selected={expirationDate}
+            onChange={(date) => setExpirationDate(date)}
           />
         </Form.Group>
 
         <Form.Group controlId="exampleStyledFormControlShortInput1">
-          <StyledFormLabel>Awaria</StyledFormLabel>
-          <StyledFormControlShort
-            type="text"
-            placeholder="Rodzaj awarii"
-            defaultValue={breaks}
-            onChange={(event) => setBreaks(event.target.value)}
-          />
-        </Form.Group>
-        <Form.Group controlId="exampleStyledFormControlShortSelect1">
-          <StyledFormLabel>Dozownik</StyledFormLabel>
-          <StyledSelectShort
-            as="select"
-            onChange={(event) => setDosatron(event.target.value)}
-          >
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
-          </StyledSelectShort>
-        </Form.Group>
-        <Form.Group controlId="exampleStyledFormControlShortInput1">
-          <StyledFormLabel>Dodatki</StyledFormLabel>
+          <StyledFormLabel>Ilość</StyledFormLabel>
           <StyledFormControlShort
             type="text"
             placeholder="Wpisz dodatki"
-            defaultValue={additions}
-            onChange={(event) => setAdditions(event.target.value)}
+            defaultValue={qty}
+            onChange={(event) => setQty(event.target.value)}
           />
         </Form.Group>
         <Form.Group controlId="exampleStyledFormControlShortInput1">
-          <StyledFormLabel>Ilość wprowadzona</StyledFormLabel>
+          <StyledFormLabel>Cena</StyledFormLabel>
           <StyledFormControlShort
             type="text"
-            placeholder="Wpisz ilość"
-            defaultValue={forage}
-            onChange={(event) => setForage(event.target.value)}
+            placeholder="Cena"
+            defaultValue={price}
+            onChange={(event) => setPrice(event.target.value)}
           />
         </Form.Group>
         <Form.Group controlId="exampleStyledFormControlShortInput1">
           <StyledFormLabel>Pozostałe</StyledFormLabel>
           <StyledFormControlShort
             type="text"
-            placeholder="Wpisz ilość"
-            defaultValue={forageQtyUsed}
-            onChange={(event) => setForageQtyUsed(event.target.value)}
+            placeholder="Producent"
+            defaultValue={producer}
+            onChange={(event) => setProducer(event.target.value)}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="exampleStyledFormControlShortInput1">
+          <StyledFormLabel>Opis</StyledFormLabel>
+          <StyledFormControlShort
+            type="text"
+            placeholder="Podaj dodatkowe informacje"
+            defaultValue={about}
+            onChange={(event) => setAbout(event.target.value)}
           />
         </Form.Group>
       </Form>
@@ -205,4 +181,4 @@ const EditPenMeasureForm = (props) => {
   );
 };
 
-export default EditPenMeasureForm;
+export default EditForageForm;

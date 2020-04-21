@@ -133,7 +133,7 @@ const AddPenMeasureForm = (props) => {
           />
         </Form.Group>
         <Form.Group controlId="exampleStyledFormControlShortInput1">
-          <StyledFormLabel>Ubytek</StyledFormLabel>
+          <StyledFormLabel>Pozostałe</StyledFormLabel>
           <StyledFormControlShort
             type="text"
             placeholder="Wpisz ilość"

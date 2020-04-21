@@ -5,7 +5,7 @@ const GenerateButton = props => (
   <StyledGenerateButton
     onClick={props.generatePDF}
     >
-      Wygeneruj raport PDF
+      {props.text}
   </StyledGenerateButton>
 )
 

@@ -144,6 +144,7 @@ const DeadUnits = (props) => {
                 "Data zakupu",
                 "Cena",
               ]}
+              text="Wygeneruj raport PDF"
               fileheader="Raport zgonow"
               mode="dead"
               unlData={unlimitedData}

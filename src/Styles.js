@@ -20,7 +20,7 @@ NAVBARS
 
 export const StyledGlobal = createGlobalStyle`
   body {
-    background-color: #eeeeee;
+    background-color: #1b1b1b;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
   };
@@ -230,6 +230,18 @@ export const StyledJumbotron = styled(Jumbotron)`
   margin-bottom: 0em;
 `;
 
+export const StyledJumbotronWhite = styled(Jumbotron)`
+  position: relative;
+  background-color: #1b1b1b;
+  margin-top: 1em;
+  height: auto;
+  width: 49%;
+  margin-right: 0%;
+  padding: 1em;
+  margin-bottom: 0em;
+  margin-left: 1em;
+`;
+
 export const StyledJumbotronHeader = styled.h3`
   margin-top: 1em;
   margin-bottom: 2em;
@@ -412,7 +424,7 @@ export const StyledEditForm = styled.div`
   color: rgba(255, 255, 255, 0.87);
   left: 50%;
   right: 0;
-  top: 20%;
+  top: 15%;
   margin-left: auto;
   margin-right: auto;
   border-radius: 0em;
@@ -492,6 +504,12 @@ export const StyledModalHeader = styled(Modal.Header)`
   background-color: #424242 !important;
   border-radius: 0;
   color: rgba(255, 255, 255, 0.87);
+`;
+
+export const StyledJumbotronGenerateHeader = styled.h3`
+  color: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  padding-bottom: 1em
 `;
 
 export const StyledConfirmModalButton = styled(Button)`
@@ -586,7 +604,7 @@ export const StyledGenerateButton = styled(Button)`
   outline: none;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
-  background-color: #30d158 !important;
+  background-color: #1b1b1b !important;
 
   &:hover {
     background-color: #29b64c !important;
@@ -750,7 +768,7 @@ export const StyledDeleteInfo = styled.h4`
 `;
 
 export const StyledNoDataHeader = styled.h3`
-  color: rgba(0, 0, 0, 0.87)
+  color: rgba(0, 0, 0, 0.87);
 `;
 
 export const StyledEditInput = styled(Form.Group)`

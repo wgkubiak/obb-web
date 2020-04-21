@@ -122,14 +122,6 @@ const App = () => {
                   <StyledFigcaption>Globalne</StyledFigcaption>
                 </StyledListGroupItem>
               </NavLink>
-              <NavLink to="/forage" activeStyle={activeStyle}>
-                <StyledListGroupItem>
-                  <StyledFigure>
-                    <StyledPastureIcon size={24} />
-                  </StyledFigure>
-                  <StyledFigcaption>Paśnik</StyledFigcaption>
-                </StyledListGroupItem>
-              </NavLink>
               <NavLink to="/water" activeStyle={activeStyle}>
                 <StyledListGroupItem>
                   <StyledFigure>
@@ -169,17 +161,6 @@ const App = () => {
           </Route>
           <Route path="/global">
             <Global
-              reloadHandler={reloadHandler}
-              reload={reload}
-              showAddForm={showAddForm}
-              hideAddForm={hideAddForm}
-              headerHandler={headerHandler}
-            />
-          </Route>
-          <Route path="/forage">
-            <Units
-              toggleExams={toggleExams}
-              setUnitID={setUnit}
               reloadHandler={reloadHandler}
               reload={reload}
               showAddForm={showAddForm}
