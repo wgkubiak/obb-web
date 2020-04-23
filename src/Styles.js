@@ -713,6 +713,7 @@ export const StyledExamContainerCards = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
+  overflow: scroll
 `;
 
 export const StyledContainerCardsData = styled(Card)`
@@ -721,6 +722,7 @@ export const StyledContainerCardsData = styled(Card)`
   border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
   color: rgba(255, 255, 255, 0.6);
+  background-color: #424242;
   transition: 100ms;
   width: 14vw;
   height: 16vh;

@@ -46,11 +46,6 @@ const Menu = (props, { initShow = false }) => {
               </StyledOptionButton>
             )}
             {props.mode === "pigs" && (
-              <StyledOptionButton variant="dark">
-                Dodaj badanie
-              </StyledOptionButton>
-            )}
-            {props.mode === "pigs" && (
               <StyledOptionButton
                 variant="dark"
                 onClick={props.showDeadSoldHandler}

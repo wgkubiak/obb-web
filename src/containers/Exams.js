@@ -1,23 +1,21 @@
-import React, { useEffect } from "react";
-import { Card } from "react-bootstrap";
-import {StyledExam, StyledHeaderH2, StyledHeaderH4, StyledCardTitle, StyledCardText, StyledExamContainer, StyledExamTransparent, StyledExamContainerCards, StyledContainerCardsData} from "./../Styles";
+import React, { useEffect, useMemo, useState } from "react";
+import {StyledExam, StyledHeaderH2, StyledHeaderH4, StyledExamContainer, StyledExamTransparent, StyledExamContainerCards} from "./../Styles";
 import ExamCard from "./../components/UI/Cards/Card";
 
 const Exams = props => {
+  const [data, setData] = useState([]);
 
-let longtext = "N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A N/A";
-
-const showPartOfString = (string, l) => {
-    if(string.length <= l) {
-        return string;
-    }
-        
-    return string.substr(0, string.lastIndexOf(' ', l));
-}
+  const getData = async (id, func, url) => {
+    await fetch(`http://obb-api.herokuapp.com/exams-latest/${props.unitID}`)
+    .then((res) => res.json())
+    .then((res) => setData(res))
+    .then((res) => console.log(res.id))
+    .catch((e) => e);
+  }
 
   useEffect(() => {
-    console.log(props.unitID);
-  });
+    getData();
+  }, [props.reload]);
 
   return (
     <StyledExam>
@@ -25,20 +23,28 @@ const showPartOfString = (string, l) => {
       <StyledExamContainer>
         <button onClick={props.toggleExams}>X</button>
         <StyledHeaderH2>#{props.unitID}</StyledHeaderH2>
-        <StyledHeaderH4>2020-03-19 | 12:00:00</StyledHeaderH4>
+        {data.map((data, index) => (
+          <StyledHeaderH4>{data.exDate.substring(0, 10)} | {data.exTime}</StyledHeaderH4>
+        ))}
         <StyledExamContainerCards>
-          <ExamCard examTitle="Odchody" examAbout="N/A"/>
-          <ExamCard examTitle="Tkanka" examAbout={false}/>
-          <ExamCard examTitle="Leki" examAbout={false}/>
-          <ExamCard examTitle="Ilość" examAbout="N/A"/>
-          <ExamCard examTitle="Rodzaj leków" examAbout="N/A"/>
-          <ExamCard examTitle="Rozwolnienie" examAbout={false}/>
-          <ExamCard examTitle="Waga" examAbout="N/A"/>
-          <ExamCard examTitle="Temperatura" examAbout="N/A"/>
-          <ExamCard examTitle="Kulawizna" examAbout="N/A"/>
-          <ExamCard examTitle="Układ oddechowy" examAbout={true}/>
-          <ExamCard examTitle="Zmiany naskórne" examAbout={true}/>
-          <ExamCard examTitle="Wynik egzaminu" examAbout={false}/>
+        {data.map((data, index) => (
+           
+            <>
+            <ExamCard examTitle="Odchody" examAbout={ data.feces || "N/A"}  examInNorm={true}/>
+            <ExamCard examTitle="Tkanka" examAbout={data.tissue || "N/A"} examInNorm={Number(data.tissue) < 1}/>
+            <ExamCard examTitle="Leki" examAbout={data.medicine || "N/A"} examInNorm={true}/>
+            <ExamCard examTitle="Ilość" examAbout={data.medicineQty || "N/A"} examInNorm={true}/>
+            <ExamCard examTitle="Rodzaj leków" examAbout={data.medicineType || "N/A"} examInNorm={true}/>
+            <ExamCard examTitle="Rozwolnienie" examAbout={data.diarrhea || "N/A"} examInNorm={Number(data.diarrhea) < 1}/>
+            <ExamCard examTitle="Waga" examAbout={data.weight || "N/A"} examInNorm={Number(data.weight) < 100}/>
+            <ExamCard examTitle="Temperatura" examAbout={data.temperature || "N/A"} examInNorm={Number(data.temperature) < 38}/>
+            <ExamCard examTitle="Kulawizna" examAbout={data.lameness || "N/A"} examInNorm={Number(data.lameness) < 1}/>
+            <ExamCard examTitle="Układ oddechowy" examAbout={data.respiratorySys || "N/A"} examInNorm={Number(data.respiratorySys) < 1}/>
+            <ExamCard examTitle="Zmiany naskórne" examAbout={data.skinChanges || "N/A"} examInNorm={true}/>
+            <ExamCard examTitle="Wynik egzaminu" examAbout={data.exResult || "N/A"} examInNorm={true} mode="long"/>
+            </>
+           
+        ))}
         </StyledExamContainerCards>
       </StyledExamContainer>
     </StyledExam>

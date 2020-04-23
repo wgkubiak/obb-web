@@ -7,33 +7,27 @@ import {
 } from "./../../../Styles";
 
 const ExamCard = (props) => {
+  let norm = {}, long = {};
+
   const styleHandler = (eq) => {
-    if (eq) {
-      return {
-        backgroundColor: "#30d158",
-      };
-    } else {
-      return { backgroundColor: "#ff373b" };
-    }
-  };
-
-  const showPartOfString = (str, l) => {
-    const string = str.toString();
-
-    if (string.length <= l) {
-      return string;
+    if(!eq) {
+      norm = { backgroundColor: "#ff373b" };
     }
 
-    return string.substr(0, string.lastIndexOf(" ", l));
+    if(props.mode) {
+      long = { height: "auto"}
+    }
+
+    return {...norm, ...long};
   };
 
   return (
     <>
-      <StyledContainerCardsData style={styleHandler(props.examAbout)}>
+      <StyledContainerCardsData style={styleHandler(props.examInNorm)}>
         <Card.Body>
           <StyledCardTitle>{props.examTitle}</StyledCardTitle>
           <StyledCardText>
-            {showPartOfString(props.examAbout, 50)}
+            {props.examAbout}
           </StyledCardText>
         </Card.Body>
       </StyledContainerCardsData>
