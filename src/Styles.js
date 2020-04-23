@@ -9,6 +9,7 @@ import {
 } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import { MdDns, MdWeb, MdEqualizer, MdEdit, MdAdd } from "react-icons/md";
+import {RiFileAddLine, RiEditBoxLine} from "react-icons/ri";
 import { GiWaterDrop } from "react-icons/gi";
 import { FaShoppingCart, FaRegSadTear, FaRegSmileBeam } from "react-icons/fa";
 import { TiUserDelete } from "react-icons/ti";
@@ -17,6 +18,18 @@ import { FiEdit3 } from "react-icons/fi";
 /*
 NAVBARS
  */
+
+export const StyledExamAddIcon = styled(RiFileAddLine)`
+  width: auto !important;
+  height: auto !important;
+  color: rgba(255, 255, 255, 0.87) !important;
+`;
+
+export const StyledExamEditIcon = styled(RiEditBoxLine)`
+  width: auto !important;
+  height: auto !important;
+  color: rgba(255, 255, 255, 0.87) !important;
+`;
 
 export const StyledGlobal = createGlobalStyle`
   body {
@@ -700,6 +713,34 @@ export const StyledExamContainer = styled.div`
       background-color: #1b1b1b !important;
     }
   }
+
+  & > .buttons-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: auto;
+    height: auto;
+    color: #ffffff;
+    background-color: #1b1b1b !important;
+    border: none;
+    outline: none;
+
+    &:hover {
+      background-color: #1b1b1b !important;
+    }
+
+    & > .buttons-button {
+      height: auto;
+      width: auto;
+      padding: 0 !auto;
+      background-color: #1b1b1b !important;
+      border: 1px solid #1b1b1b !important;
+
+      &:hover {
+        background-color: #1b1b1b !important
+      }
+    }
+  }
 `;
 
 export const StyledExamContainerCards = styled.div`
@@ -809,6 +850,13 @@ export const StyledEditInput = styled(Form.Group)`
 
   margin-top: 1em;
 `;
+
+export const StyledEditExamInput = styled(Form.Group)`
+  width: calc(25% - 2em);
+  left: 50%;
+  margin: 1em;
+`;
+
 
 export const StyledDeleteButtonMain = styled(Button)`
   background-color: #30d158; 

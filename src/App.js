@@ -99,7 +99,7 @@ const App = () => {
       </StyledDivTop>
 
       {showExams && (
-        <Exams toggleExams={toggleExams} unitID={unitID} reload={reload} />
+        <Exams toggleExams={toggleExams} unitID={unitID} reload={reload} reloadHandler={reloadHandler} />
       )}
       <StyledHiddenReload>{reload.toString()}</StyledHiddenReload>
       <div>

@@ -5,8 +5,10 @@ import {
   StyledCardTitle,
   StyledCardText,
 } from "./../../../Styles";
+import EditExamForm from "./../Forms/EditExamForm";
 
 const ExamCard = (props) => {
+  const [showForm, setShowForm] = useState(false);
   let norm = {}, long = {};
 
   const styleHandler = (eq) => {
@@ -21,13 +23,15 @@ const ExamCard = (props) => {
     return {...norm, ...long};
   };
 
+  const showFormHandler = () => setShowForm(!showForm);
+  
   const alertData = () => {
     alert(`${props.id} ${props.data}`)
   }
 
   return (
     <>
-      <StyledContainerCardsData style={styleHandler(props.examInNorm)} onClick={() => alertData()}>
+      <StyledContainerCardsData style={styleHandler(props.examInNorm)} onClick={showFormHandler}>
         <Card.Body>
           <StyledCardTitle>{props.examTitle}</StyledCardTitle>
           <StyledCardText>
@@ -35,6 +39,9 @@ const ExamCard = (props) => {
           </StyledCardText>
         </Card.Body>
       </StyledContainerCardsData>
+      {showForm && (
+        <EditExamForm mode={props.mode} id={props.id} data={props.data} title={props.examTitle}/>
+      )}
     </>
   );
 };
