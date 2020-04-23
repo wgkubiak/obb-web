@@ -380,6 +380,18 @@ export const StyledDatePicker = styled(DatePicker)`
   }
 `;
 
+export const StyledSearch = styled.input`
+  background-color: #424242;
+  margin-top: 1em;
+  position: absolute;
+  right: 0em;
+  border: none;
+  border-bottom: 1px solid #30d158;
+  color: rgba(255, 255, 255, 0.87);  
+  text-align: right;
+  padding-right: 0.5em;
+`;
+
 export const StyledFormLabel = styled(Form.Label)`
   color: rgba(255, 255, 255, 0.87);
   font-family: "Roboto", sans-serif;
@@ -768,7 +780,7 @@ export const StyledDeleteInfo = styled.h4`
 `;
 
 export const StyledNoDataHeader = styled.h3`
-  color: rgba(0, 0, 0, 0.87);
+  color: rgba(255, 255, 255, 0.87);
 `;
 
 export const StyledEditInput = styled(Form.Group)`
