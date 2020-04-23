@@ -133,6 +133,7 @@ const DeadUnits = (props) => {
                     data={data}
                     text={currentSearch}
                     showForm={showForm.bind(this, data.id, data.pigSellingCost)}
+                    divider={7}
                   />
                 ))}
               </tbody>

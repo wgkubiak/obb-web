@@ -77,6 +77,9 @@ export const StyledGlobal = createGlobalStyle`
   };
   strong {
     color: rgba(255, 255, 255, 0.87) !important
+  };
+  .table-dark th, .table-dark thead th {
+    width: 12.5%
   }
 `;
 
@@ -305,6 +308,7 @@ export const StyledUnitsTable = styled.div`
 `;
 
 export const StyledTableContent = styled.div`
+  width: 100% !important;
   background-color: transparent !important;
   padding: 1em;
 `;
@@ -743,7 +747,7 @@ font-family: 'Roboto', sans-serif;
 `;
 
 export const StyledTableTR = styled.tr`
-  width: "100%" !important;
+  width: 100% !important;
   border: none !important;
   border-bottom: 3px solid #6d6d6d !important;
   &:hover {

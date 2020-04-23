@@ -4,7 +4,7 @@ import { StyledTableTR, StyledTableTH } from "./../../../Styles";
 
 const Head = (props) => {
   const style = {
-    width: `${100 / props.divider}%`,
+    width: `${100 / props.divider}% !important`,
   };
 
   return (

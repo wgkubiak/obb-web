@@ -3,6 +3,9 @@ import shortid from "shortid";
 import {StyledTableRow, StyledTableTD } from "./../../../Styles";
 
 const Body = props => {
+  const style = {
+    width: `${100 / props.divider}%`,
+  };
 
   const checkIfContainer = text => {
     if(props.mode !== "global") {
@@ -29,18 +32,18 @@ const Body = props => {
          if(checkIfContainer(props.data.id) || props.mode === "standard" || props.mode === "global") {
           if (item.includes("Date")) {
             return (
-              <StyledTableTD key={`${shortid.generate()}`}>
+              <StyledTableTD style={style} key={`${shortid.generate()}`}>
                 {props.data[item].substring(0, 10)}
               </StyledTableTD>
             );
           } else if (item.includes("Gender")) {
             return (
-              <StyledTableTD key={`${shortid.generate()}`}>
+              <StyledTableTD style={style} key={`${shortid.generate()}`}>
                 {props.data[item] === "m" ? "Samiec" : "Samica"}
               </StyledTableTD>
             );
           } else {
-            return <StyledTableTD key={`${shortid.generate()}`}>{props.data[item]}</StyledTableTD>;
+            return <StyledTableTD style={style} key={`${shortid.generate()}`}>{props.data[item]}</StyledTableTD>;
           }
          }
         } else {
