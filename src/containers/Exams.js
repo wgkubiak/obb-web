@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Card } from "react-bootstrap";
-import {StyledExam, StyledCardTitle, StyledCardText, StyledExamContainer, StyledExamTransparent, StyledExamContainerCards, StyledContainerCardsData} from "./../Styles";
+import {StyledExam, StyledHeaderH2, StyledHeaderH4, StyledCardTitle, StyledCardText, StyledExamContainer, StyledExamTransparent, StyledExamContainerCards, StyledContainerCardsData} from "./../Styles";
+import ExamCard from "./../components/UI/Cards/Card";
 
 const Exams = props => {
 
@@ -23,98 +24,21 @@ const showPartOfString = (string, l) => {
       <StyledExamTransparent onClick={props.toggleExams}></StyledExamTransparent>
       <StyledExamContainer>
         <button onClick={props.toggleExams}>X</button>
-        <h1>#{props.unitID}</h1>
+        <StyledHeaderH2>#{props.unitID}</StyledHeaderH2>
+        <StyledHeaderH4>2020-03-19 | 12:00:00</StyledHeaderH4>
         <StyledExamContainerCards>
-          <StyledContainerCardsData>
-            <Card.Body>
-              <StyledCardTitle>Odchody</StyledCardTitle>
-              <StyledCardText>2020-03-19 | 12:00:00</StyledCardText>
-              <StyledCardText>N/A</StyledCardText>
-            </Card.Body>
-          </StyledContainerCardsData>
-          <StyledContainerCardsData>
-            <Card.Body>
-              <StyledCardTitle>Tkanka</StyledCardTitle>
-              <StyledCardText>2020-03-19</StyledCardText>
-              <StyledCardText>N/A</StyledCardText>
-            </Card.Body>
-          </StyledContainerCardsData>
-          <StyledContainerCardsData>
-            <Card.Body>
-              <StyledCardTitle>Leki</StyledCardTitle>
-              <StyledCardText>2020-03-19</StyledCardText>
-              <StyledCardText>N/A</StyledCardText>
-            </Card.Body>
-          </StyledContainerCardsData>
-          <StyledContainerCardsData>
-            <Card.Body>
-              <StyledCardTitle>Ilość</StyledCardTitle>
-              <StyledCardText>2020-03-19</StyledCardText>
-              <StyledCardText>N/A</StyledCardText>
-            </Card.Body>
-          </StyledContainerCardsData>
-          <StyledContainerCardsData>
-            <Card.Body>
-              <StyledCardTitle>Rodzaj leków</StyledCardTitle>
-              <StyledCardText>2020-03-19</StyledCardText>
-              <StyledCardText>N/A</StyledCardText>
-            </Card.Body>
-          </StyledContainerCardsData>
-          <StyledContainerCardsData>
-            <Card.Body>
-              <StyledCardTitle>Rozwolnienie</StyledCardTitle>
-              <StyledCardText>2020-03-19</StyledCardText>
-              <StyledCardText>N/A</StyledCardText>
-            </Card.Body>
-          </StyledContainerCardsData>
-
-          <StyledContainerCardsData>
-            <Card.Body>
-              <StyledCardTitle>Waga</StyledCardTitle>
-              <StyledCardText>2020-03-19</StyledCardText>
-              <StyledCardText>N/A</StyledCardText>
-            </Card.Body>
-          </StyledContainerCardsData>
-
-          <StyledContainerCardsData>
-            <Card.Body>
-              <StyledCardTitle>Temperatura</StyledCardTitle>
-              <StyledCardText>2020-03-19</StyledCardText>
-              <StyledCardText>N/A</StyledCardText>
-            </Card.Body>
-          </StyledContainerCardsData>
-
-          <StyledContainerCardsData>
-            <Card.Body>
-              <StyledCardTitle>Kulawizna</StyledCardTitle>
-              <StyledCardText>2020-03-19</StyledCardText>
-              <StyledCardText>N/A</StyledCardText>
-            </Card.Body>
-          </StyledContainerCardsData>
-
-          <StyledContainerCardsData>
-            <Card.Body>
-              <StyledCardTitle>Układ oddechowy</StyledCardTitle>
-              <StyledCardText>2020-03-19</StyledCardText>
-              <StyledCardText>N/A</StyledCardText>
-            </Card.Body>
-          </StyledContainerCardsData>
-          <StyledContainerCardsData>
-            <Card.Body>
-              <StyledCardTitle>Zmiany naskórne</StyledCardTitle>
-              <StyledCardText>2020-03-19</StyledCardText>
-              <StyledCardText>N/A</StyledCardText>
-            </Card.Body>
-          </StyledContainerCardsData>
-          <StyledContainerCardsData>
-            <Card.Body>
-              <StyledCardTitle>Wynik egzaminu</StyledCardTitle>
-              <StyledCardText>2020-03-19</StyledCardText>
-              <StyledCardText>
-                {showPartOfString(longtext, 50)} ...
-              </StyledCardText>
-            </Card.Body>
-          </StyledContainerCardsData>
+          <ExamCard examTitle="Odchody" examAbout="N/A"/>
+          <ExamCard examTitle="Tkanka" examAbout={false}/>
+          <ExamCard examTitle="Leki" examAbout={false}/>
+          <ExamCard examTitle="Ilość" examAbout="N/A"/>
+          <ExamCard examTitle="Rodzaj leków" examAbout="N/A"/>
+          <ExamCard examTitle="Rozwolnienie" examAbout={false}/>
+          <ExamCard examTitle="Waga" examAbout="N/A"/>
+          <ExamCard examTitle="Temperatura" examAbout="N/A"/>
+          <ExamCard examTitle="Kulawizna" examAbout="N/A"/>
+          <ExamCard examTitle="Układ oddechowy" examAbout={true}/>
+          <ExamCard examTitle="Zmiany naskórne" examAbout={true}/>
+          <ExamCard examTitle="Wynik egzaminu" examAbout={false}/>
         </StyledExamContainerCards>
       </StyledExamContainer>
     </StyledExam>

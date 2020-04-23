@@ -676,7 +676,7 @@ export const StyledExamContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80vw;
-  height: 80vh;
+  height: 100vh;
   z-index: 30;
 
   & > h1 {
@@ -718,7 +718,6 @@ export const StyledExamContainerCards = styled.div`
 export const StyledContainerCardsData = styled(Card)`
   text-align: left;
   align-self: auto;
-  background-color: #424242;
   border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
   color: rgba(255, 255, 255, 0.6);
@@ -760,13 +759,13 @@ export const StyledEditButtonsContainer = styled.div`
 `;
 
 export const StyledCardTitle = styled(Card.Title)`
-  color: #30d158  !important;
+  color: rgba(255, 255, 255, 1);
   font-size: 1em
 `;
 
 export const StyledCardText = styled(Card.Text)`
   font-size: 0.8em;
-  color: rgba(255, 255, 255, 0.87)
+  color: rgba(255, 255, 255, 1)
 `;
 
 export const StyledChartContainer = styled.div`
@@ -785,6 +784,19 @@ export const StyledDeleteInfo = styled.h4`
 
 export const StyledNoDataHeader = styled.h3`
   color: rgba(255, 255, 255, 0.87);
+`;
+
+export const StyledHeaderH2 = styled.h2`
+  font-weight: 400;
+  margin-top: 1em;
+  color: rgba(255, 255, 255, 0.87);
+`;
+
+export const StyledHeaderH4 = styled.h4`
+  font-weight: 300;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  color: rgba(255, 255, 255, 0.6);
 `;
 
 export const StyledEditInput = styled(Form.Group)`
