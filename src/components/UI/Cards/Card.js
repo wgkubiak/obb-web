@@ -21,9 +21,13 @@ const ExamCard = (props) => {
     return {...norm, ...long};
   };
 
+  const alertData = () => {
+    alert(`${props.id} ${props.data}`)
+  }
+
   return (
     <>
-      <StyledContainerCardsData style={styleHandler(props.examInNorm)}>
+      <StyledContainerCardsData style={styleHandler(props.examInNorm)} onClick={() => alertData()}>
         <Card.Body>
           <StyledCardTitle>{props.examTitle}</StyledCardTitle>
           <StyledCardText>

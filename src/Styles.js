@@ -678,6 +678,7 @@ export const StyledExamContainer = styled.div`
   width: 80vw;
   height: 100vh;
   z-index: 30;
+  overflow: scroll;
 
   & > h1 {
     margin-top: 2vh;
@@ -712,8 +713,7 @@ export const StyledExamContainerCards = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: flex-start;
-  overflow: scroll
+  align-items: flex-start
 `;
 
 export const StyledContainerCardsData = styled(Card)`

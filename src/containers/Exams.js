@@ -30,18 +30,18 @@ const Exams = props => {
         {data.map((data, index) => (
            
             <>
-            <ExamCard examTitle="Odchody" examAbout={ data.feces || "N/A"}  examInNorm={true}/>
-            <ExamCard examTitle="Tkanka" examAbout={data.tissue || "N/A"} examInNorm={Number(data.tissue) < 1}/>
-            <ExamCard examTitle="Leki" examAbout={data.medicine || "N/A"} examInNorm={true}/>
-            <ExamCard examTitle="Ilość" examAbout={data.medicineQty || "N/A"} examInNorm={true}/>
-            <ExamCard examTitle="Rodzaj leków" examAbout={data.medicineType || "N/A"} examInNorm={true}/>
-            <ExamCard examTitle="Rozwolnienie" examAbout={data.diarrhea || "N/A"} examInNorm={Number(data.diarrhea) < 1}/>
-            <ExamCard examTitle="Waga" examAbout={data.weight || "N/A"} examInNorm={Number(data.weight) < 100}/>
-            <ExamCard examTitle="Temperatura" examAbout={data.temperature || "N/A"} examInNorm={Number(data.temperature) < 38}/>
-            <ExamCard examTitle="Kulawizna" examAbout={data.lameness || "N/A"} examInNorm={Number(data.lameness) < 1}/>
-            <ExamCard examTitle="Układ oddechowy" examAbout={data.respiratorySys || "N/A"} examInNorm={Number(data.respiratorySys) < 1}/>
-            <ExamCard examTitle="Zmiany naskórne" examAbout={data.skinChanges || "N/A"} examInNorm={true}/>
-            <ExamCard examTitle="Wynik egzaminu" examAbout={data.exResult || "N/A"} examInNorm={true} mode="long"/>
+            <ExamCard examTitle="Odchody" examAbout={ data.feces || "N/A"} data={data.feces} id={props.unitID} examInNorm={true}/>
+            <ExamCard examTitle="Tkanka" examAbout={data.tissue || "N/A"} data={data.tissue} id={props.unitID} examInNorm={Number(data.tissue) < 1}/>
+            <ExamCard examTitle="Leki" examAbout={data.medicine || "N/A"} data={data.medicine} id={props.unitID} examInNorm={true}/>
+            <ExamCard examTitle="Ilość" examAbout={data.medicineQty || "N/A"} data={data.medicineQty} id={props.unitID} examInNorm={true}/>
+            <ExamCard examTitle="Rodzaj leków" examAbout={data.medicineType || "N/A"} data={data.medicineType} id={props.unitID} examInNorm={true}/>
+            <ExamCard examTitle="Rozwolnienie" examAbout={data.diarrhea || "N/A"} data={data.diarrhea} id={props.unitID} examInNorm={Number(data.diarrhea) < 1}/>
+            <ExamCard examTitle="Waga" examAbout={data.weight || "N/A"} data={data.weight} id={props.unitID} examInNorm={Number(data.weight) < 100}/>
+            <ExamCard examTitle="Temperatura" examAbout={data.temperature || "N/A"} data={data.temperature} id={props.unitID} examInNorm={Number(data.temperature) < 38}/>
+            <ExamCard examTitle="Kulawizna" examAbout={data.lameness || "N/A"} data={data.lameness} id={props.unitID} examInNorm={Number(data.lameness) < 1}/>
+            <ExamCard examTitle="Układ oddechowy" examAbout={data.respiratorySys || "N/A"} data={data.respiratorySys} id={props.unitID} examInNorm={Number(data.respiratorySys) < 1}/>
+            <ExamCard examTitle="Zmiany naskórne" examAbout={data.skinChanges || "N/A"} data={data.skinChanges} id={props.unitID} examInNorm={true}/>
+            <ExamCard examTitle="Wynik egzaminu" examAbout={data.exResult || "N/A"} data={data.exResult} id={props.unitID} examInNorm={true} mode="long"/>
             </>
            
         ))}
