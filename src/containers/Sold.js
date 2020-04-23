@@ -6,7 +6,7 @@ import Body from "../components/UI/Table/Body";
 import Menu from "../components/Menu/Menu";
 import NoData from "../components/Info/NoData";
 import _ from "underscore";
-import {StyledUnitsTable, StyledUnitsContainer, StyledTableContent, StyledSpinnerButton} from "./../Styles";
+import {StyledUnitsTable, StyledSearch, StyledUnitsContainer, StyledTableContent, StyledSpinnerButton} from "./../Styles";
 import shortid from "shortid";
 
 const DeadUnits = (props) => {
@@ -19,6 +19,7 @@ const DeadUnits = (props) => {
   const [showTable, setShowTable] = useState(false);
   const [showSpinner, setShowSpinner] = useState(true);
   const [showNoDataInfo, setShowNoDataInfo] = useState(false);
+  const [currentSearch, setCurrentSearch] = useState("");
 
   const getData = () => {
     fetch(`https://obb-api.herokuapp.com/sold-pigs-limited`)
@@ -74,13 +75,15 @@ const DeadUnits = (props) => {
     }
   }
   
+  const currentSearchHandler = event => setCurrentSearch(event.target.value);
+
   useEffect(() => {
     getData();
     getUnlimitedData();
     props.headerHandler("sold");
 
     showHandler();
-  }, [props.reload]);
+  }, [props.reload, currentSearch]);
 
   showHandler();
   return (
@@ -98,6 +101,11 @@ const DeadUnits = (props) => {
           />
           Wczytuję dane...
         </StyledSpinnerButton>
+      )}
+      {showTable && (
+        <>
+          <StyledSearch onChange={event => currentSearchHandler(event)} placeholder="Wyszukaj"></StyledSearch>
+        </>
       )}
       {showTable && (
         <StyledUnitsTable>
@@ -123,13 +131,13 @@ const DeadUnits = (props) => {
                     mode="sold"
                     key={`${data.id}${shortid.generate()}`}
                     data={data}
+                    text={currentSearch}
                     showForm={showForm.bind(this, data.id, data.pigSellingCost)}
                   />
                 ))}
               </tbody>
             </Table>
           </StyledTableContent>
-
           {showMenu && (
             <Menu
               mode="sold"

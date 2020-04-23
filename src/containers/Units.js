@@ -73,7 +73,6 @@ const Units = (props, { initId = 1 }) => {
   const [foragePrice, setForagePrice] = useState(0);
   const [forageProducer, setForageProducer] = useState("");
 
-
   const getData = async (id, func, url) => {
     await fetch(`${url}${id}`)
     .then((res) => res.json())

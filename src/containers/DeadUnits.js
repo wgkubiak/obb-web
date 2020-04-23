@@ -5,7 +5,7 @@ import Head from "../components/UI/Table/Head";
 import Body from "../components/UI/Table/Body";
 import Menu from "../components/Menu/Menu";
 import NoData from "../components/Info/NoData";
-import {StyledUnitsTable, StyledUnitsContainer, StyledTableContent, StyledSpinnerButton} from "./../Styles";
+import {StyledUnitsTable, StyledUnitsContainer, StyledTableContent, StyledSearch, StyledSpinnerButton} from "./../Styles";
 import _ from "underscore";
 
 import shortid from "shortid";
@@ -19,6 +19,7 @@ const DeadUnits = (props) => {
   const [showTable, setShowTable] = useState(false);
   const [showSpinner, setShowSpinner] = useState(true);
   const [showNoDataInfo, setShowNoDataInfo] = useState(false);
+  const [currentSearch, setCurrentSearch] = useState("");
 
   const getData = () => {
     fetch(`https://obb-api.herokuapp.com/dead-pigs-limited`)
@@ -76,6 +77,8 @@ const DeadUnits = (props) => {
   const toggleEdit = () => {
     setShowEdit(!showEdit);
   };
+  
+  const currentSearchHandler = event => setCurrentSearch(event.target.value);
 
   return (
     <StyledUnitsContainer>
@@ -92,6 +95,11 @@ const DeadUnits = (props) => {
           />
           Wczytuję dane...
         </StyledSpinnerButton>
+      )}
+       {showTable && (
+        <>
+          <StyledSearch onChange={event => currentSearchHandler(event)} placeholder="Wyszukaj"></StyledSearch>
+        </>
       )}
       {showTable && (
         <StyledUnitsTable>
@@ -115,13 +123,13 @@ const DeadUnits = (props) => {
                     mode="dead"
                     key={`${data.id}${shortid.generate()}`}
                     data={data}
+                    text={currentSearch}
                     showForm={showForm.bind(this, data.id)}
                   />
                 ))}
               </tbody>
             </Table>
           </StyledTableContent>
-
           {showMenu && (
             <Menu
               divider={6}
