@@ -1,17 +1,17 @@
 import React from "react";
 import shortid from "shortid";
-import {StyledTableRow, StyledTableTD } from "./../../../Styles";
+import { StyledTableRow, StyledTableTD } from "./../../../Styles";
 
-const Body = props => {
+const Body = (props) => {
   const style = {
     width: `${100 / props.divider}%`,
   };
 
-  const checkIfContainer = text => {
-    if(props.mode !== "global") {
-      return text.includes(props.text)
+  const checkIfContainer = (text) => {
+    if (props.mode !== "global") {
+      return text.includes(props.text);
     }
-  }
+  };
 
   return (
     <StyledTableRow
@@ -20,32 +20,43 @@ const Body = props => {
     >
       {Object.keys(props.data).map((item, index) => {
         if (
-          props.data[item] !== null &&
-          item !== "createdAt" &&
-          item !== "updatedAt" &&
-          item !== "penId" &&
-          (item !== "idPen" || (props.mode === "sold" || props.mode === "dead")) &&
-          (item !== "id" && props.mode !== undefined) ||
+          (props.data[item] !== null &&
+            item !== "createdAt" &&
+            item !== "updatedAt" &&
+            item !== "penId" &&
+            (item !== "idPen" ||
+              props.mode === "sold" ||
+              props.mode === "dead") &&
+            item !== "id" &&
+            props.mode !== undefined) ||
           (item === "id" && props.mode === "standard") ||
-          (item === "id" && (props.mode === "sold"  || props.mode === "dead" ))
+          (item === "id" && (props.mode === "sold" || props.mode === "dead"))
         ) {
-         if(checkIfContainer(props.data.id) || props.mode === "standard" || props.mode === "global") {
-          if (item.includes("Date")) {
-            return (
-              <StyledTableTD style={style} key={`${shortid.generate()}`}>
-                {props.data[item].substring(0, 10)}
-              </StyledTableTD>
-            );
-          } else if (item.includes("Gender")) {
-            return (
-              <StyledTableTD style={style} key={`${shortid.generate()}`}>
-                {props.data[item] === "m" ? "Samiec" : "Samica"}
-              </StyledTableTD>
-            );
-          } else {
-            return <StyledTableTD style={style} key={`${shortid.generate()}`}>{props.data[item]}</StyledTableTD>;
+          if (
+            checkIfContainer(props.data.id) ||
+            props.mode === "standard" ||
+            props.mode === "global"
+          ) {
+            if (item.includes("Date")) {
+              return (
+                <StyledTableTD style={style} key={`${shortid.generate()}`}>
+                  {props.data[item].substring(0, 10)}
+                </StyledTableTD>
+              );
+            } else if (item.includes("Gender")) {
+              return (
+                <StyledTableTD style={style} key={`${shortid.generate()}`}>
+                  {props.data[item] === "m" ? "Samiec" : "Samica"}
+                </StyledTableTD>
+              );
+            } else {
+              return (
+                <StyledTableTD style={style} key={`${shortid.generate()}`}>
+                  {props.data[item]}
+                </StyledTableTD>
+              );
+            }
           }
-         }
         } else {
           return null;
         }

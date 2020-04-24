@@ -18,7 +18,7 @@ import {
   StyledSubmitButton,
   StyledSelectShort,
   StyledEditButtonsContainer,
-  StyledDeleteButtonMain
+  StyledDeleteButtonMain,
 } from "./../../../Styles";
 
 registerLocale("pl", pl);
@@ -176,11 +176,7 @@ const EditPenMeasureForm = (props) => {
         <StyledSubmitButton onClick={submitHandler}>
           POTWIERDŹ EDYCJĘ
         </StyledSubmitButton>
-        <StyledDeleteButton
-          onClick={handleModalShow}
-        >
-          USUŃ
-        </StyledDeleteButton>
+        <StyledDeleteButton onClick={handleModalShow}>USUŃ</StyledDeleteButton>
       </StyledEditButtonsContainer>
       <StyledModalContent show={showModal} onHide={handleModalClose}>
         <StyledModalHeader>
@@ -190,10 +186,7 @@ const EditPenMeasureForm = (props) => {
           Próba usunięcia pomiaru nr. #{props.id}
         </StyledModalBody>
         <StyledModalFooter>
-          <StyledDeleteButtonMain
-            variant="success"
-            onClick={handleModalClose}
-          >
+          <StyledDeleteButtonMain variant="success" onClick={handleModalClose}>
             Nie
           </StyledDeleteButtonMain>
           <StyledConfirmModalButton variant="primary" onClick={remove}>

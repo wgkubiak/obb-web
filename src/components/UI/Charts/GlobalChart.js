@@ -1,8 +1,8 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import Chart from "chart.js";
 let chart;
 
-const GlobalChart = props => {
+const GlobalChart = (props) => {
   const ref = React.createRef();
   useEffect(() => {
     chartHandler();
@@ -25,7 +25,7 @@ const GlobalChart = props => {
             pointBackgroundColor: "rgba(255,255,255, 0.87)",
             pointBorderColor: "#424242",
             hoverBackgroundColor: "#30d158",
-          }
+          },
         ],
       },
       options: {
@@ -58,10 +58,10 @@ const GlobalChart = props => {
     });
   };
   return (
-        <div className={props.chartClass}>
-          <canvas ref={ref} />
-        </div>
-    )
-}
+    <div className={props.chartClass}>
+      <canvas ref={ref} />
+    </div>
+  );
+};
 
 export default GlobalChart;

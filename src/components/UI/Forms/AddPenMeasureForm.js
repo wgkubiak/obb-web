@@ -11,9 +11,8 @@ import {
   StyledFormLabel,
   StyledDatePicker,
   StyledSelectShort,
-  StyledConfirmButton
+  StyledConfirmButton,
 } from "./../../../Styles";
-
 
 registerLocale("pl", pl);
 
@@ -31,16 +30,25 @@ const AddPenMeasureForm = (props) => {
 
   const data = useMemo(
     () => ({
-      idPen: props.id, 
+      idPen: props.id,
       measureDate: measureDate,
       measureTime: measureTime.toString().substring(16, 31),
       breakdown: breaks,
       dosatron: dosatron,
       addition: additions,
       forage: forage,
-      forageQtyUsed: forageQtyUsed
+      forageQtyUsed: forageQtyUsed,
     }),
-    [props.id, measureDate, measureTime, breaks, dosatron, additions, forage, forageQtyUsed]
+    [
+      props.id,
+      measureDate,
+      measureTime,
+      breaks,
+      dosatron,
+      additions,
+      forage,
+      forageQtyUsed,
+    ]
   );
 
   const submitHandler = (event) => {
@@ -65,7 +73,7 @@ const AddPenMeasureForm = (props) => {
       });
 
     setTimeout(() => {
-      props.reloadHandler();  
+      props.reloadHandler();
     }, 500);
   };
 
@@ -73,7 +81,7 @@ const AddPenMeasureForm = (props) => {
     <StyledEditForm>
       <StyledHideButton onClick={props.toggleAddHandler}>X</StyledHideButton>
       <Form>
-      <Form.Group controlId="exampleStyledFormControlShortSelect1">
+        <Form.Group controlId="exampleStyledFormControlShortSelect1">
           <StyledFormLabel>Data badania</StyledFormLabel>
           <StyledDatePicker
             locale="pl"
@@ -93,7 +101,7 @@ const AddPenMeasureForm = (props) => {
             dateFormat="h:mm aa"
           />
         </Form.Group>
-        
+
         <Form.Group controlId="exampleStyledFormControlShortInput1">
           <StyledFormLabel>Awaria</StyledFormLabel>
           <StyledFormControlShort
@@ -144,7 +152,9 @@ const AddPenMeasureForm = (props) => {
       </Form>
 
       <div className="Add--buttons-container">
-        <StyledConfirmButton onClick={submitHandler}>POTWIERDŹ EDYCJĘ</StyledConfirmButton>
+        <StyledConfirmButton onClick={submitHandler}>
+          POTWIERDŹ EDYCJĘ
+        </StyledConfirmButton>
       </div>
     </StyledEditForm>
   );

@@ -12,7 +12,7 @@ import {
   StyledHideButton,
   StyledDatePicker,
   StyledFormControl,
-  StyledSoldDeadPriceInput
+  StyledSoldDeadPriceInput,
 } from "./../../../Styles";
 
 registerLocale("pl", pl);

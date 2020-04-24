@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {Container, Spinner, Table} from "react-bootstrap";
+import { Container, Spinner, Table } from "react-bootstrap";
 import shortid from "shortid";
 import AddForm from "../components/UI/Forms/AddForm";
 import Head from "../components/UI/Table/Head";
@@ -28,11 +28,10 @@ import {
   StyledButton,
   StyledTableContent,
   StyledUnitSpinnerButton,
-  StyledJumbotronGenerateHeader
+  StyledJumbotronGenerateHeader,
 } from "./../Styles";
 
 //TODO: API - order pen measures DESC
-
 
 const Units = (props, { initId = 1 }) => {
   const _date = new Date();
@@ -42,7 +41,7 @@ const Units = (props, { initId = 1 }) => {
   const [dataPensUnlimited, setDataPensUnlimited] = useState([]);
   const [dataForage, setDataForage] = useState([]);
   const [forageData, setForageData] = useState([]);
-  
+
   const [forageDataUnlimited, setForageDataUnlimited] = useState([]);
 
   const [forageOutData, setForageOutData] = useState([]);
@@ -75,21 +74,33 @@ const Units = (props, { initId = 1 }) => {
 
   const getData = async (id, func, url) => {
     await fetch(`${url}${id}`)
-    .then((res) => res.json())
-    .then((res) => func(res))
-    .then((res) => console.log(res.id))
-    .catch((e) => e);
-  }
-  
+      .then((res) => res.json())
+      .then((res) => func(res))
+      .then((res) => console.log(res.id))
+      .catch((e) => e);
+  };
+
   useEffect(() => {
     getData(id, setDataUnits, "https://obb-api.herokuapp.com/active-pigs/");
-    getData(id, setDataPens, "https://obb-api.herokuapp.com/pen-measures-last/");
-    getData(id, setDataPensUnlimited, "https://obb-api.herokuapp.com/pen-measures/");
+    getData(
+      id,
+      setDataPens,
+      "https://obb-api.herokuapp.com/pen-measures-last/"
+    );
+    getData(
+      id,
+      setDataPensUnlimited,
+      "https://obb-api.herokuapp.com/pen-measures/"
+    );
     getData(id, setDataForage, "https://obb-api.herokuapp.com/forage-last/");
-    getData(id, setForageDataUnlimited, "https://obb-api.herokuapp.com/forage/");
+    getData(
+      id,
+      setForageDataUnlimited,
+      "https://obb-api.herokuapp.com/forage/"
+    );
 
     sortData();
-    
+
     props.headerHandler("standard", id);
 
     // ArrowKeysReact.config({
@@ -97,6 +108,10 @@ const Units = (props, { initId = 1 }) => {
     //   right: () => idIncrease(),
     // });
   }, [id, props.reload, sorted]);
+
+  useEffect(() => {
+    props.unitsModeHandler(true);
+  }, []);
 
   const showForm = (pen, id, gender, date, price) => {
     setId(pen);
@@ -190,11 +205,11 @@ const Units = (props, { initId = 1 }) => {
 
   const hideEditForage = () => {
     setShowEditForage(false);
-  }
+  };
 
   const hideAddForage = () => {
     setShowAddForage(false);
-  }
+  };
 
   const hideAddPenMeasure = () => {
     setShowAddPenMeasure(false);
@@ -209,7 +224,9 @@ const Units = (props, { initId = 1 }) => {
       Object.keys(dataPensUnlimited[item]).map((element) => {
         switch (element) {
           case "measureDate":
-            datesContainer.push(dataPensUnlimited[item][element].substring(5, 10));
+            datesContainer.push(
+              dataPensUnlimited[item][element].substring(5, 10)
+            );
             break;
           case "forage":
             forageContainer.push(dataPensUnlimited[item][element]);
@@ -232,7 +249,7 @@ const Units = (props, { initId = 1 }) => {
 
     console.log(datesContainer);
     console.log(forageContainer);
-    console.log(forageOutContainer)
+    console.log(forageOutContainer);
     // TODO: make it a little bit better
     setTimeout(() => {
       setSorted(true);
@@ -242,11 +259,11 @@ const Units = (props, { initId = 1 }) => {
 
   const replaceNulls = (arr) => {
     arr.forEach((e, index) => {
-      if(e === null) {
+      if (e === null) {
         arr[index] = 0;
       }
-    })
-  }
+    });
+  };
 
   const sortedHandler = () => setSorted(false);
 
@@ -264,7 +281,6 @@ const Units = (props, { initId = 1 }) => {
           height: "auto",
         }}
       >
-        
         <StyledJumbotron fluid>
           <StyledJumbotronMainContainer>
             <StyledJumbotronAltContainer>
@@ -294,8 +310,7 @@ const Units = (props, { initId = 1 }) => {
                 <StyledJumbotronParagraphs>
                   Awaria: {data.breakdown || "N/A"}
                 </StyledJumbotronParagraphs>
-                <StyledJumbotronParagraphs
-                >
+                <StyledJumbotronParagraphs>
                   Dodatki: {data.addition || "N/A"}
                 </StyledJumbotronParagraphs>
               </>
@@ -303,34 +318,32 @@ const Units = (props, { initId = 1 }) => {
           </Container>
         </StyledJumbotron>
         {!showChart && (
-        <StyledUnitSpinnerButton
-          disabled
-        >
-          <Spinner
-            as="span"
-            animation="grow"
-            size="sm"
-            role="status"
-            aria-hidden="true"
-          />
-          Ładowanie wykresu...
-        </StyledUnitSpinnerButton>
+          <StyledUnitSpinnerButton disabled>
+            <Spinner
+              as="span"
+              animation="grow"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+            />
+            Ładowanie wykresu...
+          </StyledUnitSpinnerButton>
         )}
         {showChart && (
           <UnitChart
-          chartClass="chart--forageqty"
-          chartID="global-chart"
-          mode="line"
-          chartLabel="Wprowadzone"
-          chartLabel2="Pozostałe"
-          miny={0}
-          maxy={200}
-          dates={datesData}
-          data={forageData}
-          data2={forageOutData}
-          reload={props.reload}
-          units="units"
-          step={50}
+            chartClass="chart--forageqty"
+            chartID="global-chart"
+            mode="line"
+            chartLabel="Wprowadzone"
+            chartLabel2="Pozostałe"
+            miny={0}
+            maxy={200}
+            dates={datesData}
+            data={forageData}
+            data2={forageOutData}
+            reload={props.reload}
+            units="units"
+            step={50}
           />
         )}
       </div>
@@ -342,7 +355,6 @@ const Units = (props, { initId = 1 }) => {
           height: "auto",
         }}
       >
-        
         <StyledJumbotron fluid>
           <StyledJumbotronMainContainer>
             <StyledJumbotronAltContainer>
@@ -361,22 +373,18 @@ const Units = (props, { initId = 1 }) => {
                 <StyledJumbotronParagraphs>
                   <span>
                     Data zakupu/zdatności: {data.creationDate.substring(0, 10)}
-                  </span> 
-                  { "/" }
-                  <span>
-                   {data.expiration.substring(0, 10)}
                   </span>
+                  {"/"}
+                  <span>{data.expiration.substring(0, 10)}</span>
                 </StyledJumbotronParagraphs>
                 <StyledJumbotronParagraphs>
-                  <span>
-                    Producent: "{data.producer}"
-                  </span>
+                  <span>Producent: "{data.producer}"</span>
                 </StyledJumbotronParagraphs>
                 <StyledJumbotronParagraphs>
-                Zakupiona ilość: {data.fgQty}
+                  Zakupiona ilość: {data.fgQty}
                 </StyledJumbotronParagraphs>
                 <StyledJumbotronParagraphs>
-                Cena: {data.fgPrice || "0"}
+                  Cena: {data.fgPrice || "0"}
                 </StyledJumbotronParagraphs>
                 <StyledJumbotronParagraphs>
                   Więcej informacji: {data.fgAbout || "N/A"}
@@ -386,29 +394,52 @@ const Units = (props, { initId = 1 }) => {
           </Container>
         </StyledJumbotron>
         <StyledJumbotronWhite fluid>
-          <StyledJumbotronGenerateHeader>Wygeneruj raport w formie PDF</StyledJumbotronGenerateHeader>
-          {<GeneratePDF
-            header={["Kojec", "Data", "Godz", "Awarie", "Dozownik", "Dodatki", "Wklad", "Pozostale"]}
-            fileheader="Raport pomiarow kojca"
-            mode="pen-measures"
-            unlData={dataPensUnlimited}
-            text="Pomiary kojców"
-            filename={`RaportPomiarowKojcaNr${id}-${new Date()
-              .toString()
-              .substring(0, 10)
-              .replace(/\s/g, "")}`}
-          />}
-           {<GeneratePDF
-            header={["Kojec", "Data zak.", "Data waz.", "Producent", "Ilosc", "Cena", "Wiecej info."]}
-            fileheader="Raport paszy"
-            mode="forage"
-            text="Pasza"
-            unlData={forageDataUnlimited}
-            filename={`RaportPaszyKojcaNr${id}-${new Date()
-              .toString()
-              .substring(0, 10)
-              .replace(/\s/g, "")}`}
-          />}
+          <StyledJumbotronGenerateHeader>
+            Wygeneruj raport w formie PDF
+          </StyledJumbotronGenerateHeader>
+          {
+            <GeneratePDF
+              header={[
+                "Kojec",
+                "Data",
+                "Godz",
+                "Awarie",
+                "Dozownik",
+                "Dodatki",
+                "Wklad",
+                "Pozostale",
+              ]}
+              fileheader="Raport pomiarow kojca"
+              mode="pen-measures"
+              unlData={dataPensUnlimited}
+              text="Pomiary kojców"
+              filename={`RaportPomiarowKojcaNr${id}-${new Date()
+                .toString()
+                .substring(0, 10)
+                .replace(/\s/g, "")}`}
+            />
+          }
+          {
+            <GeneratePDF
+              header={[
+                "Kojec",
+                "Data zak.",
+                "Data waz.",
+                "Producent",
+                "Ilosc",
+                "Cena",
+                "Wiecej info.",
+              ]}
+              fileheader="Raport paszy"
+              mode="forage"
+              text="Pasza"
+              unlData={forageDataUnlimited}
+              filename={`RaportPaszyKojcaNr${id}-${new Date()
+                .toString()
+                .substring(0, 10)
+                .replace(/\s/g, "")}`}
+            />
+          }
         </StyledJumbotronWhite>
       </div>
       <StyledUnitsTable>
@@ -494,20 +525,19 @@ const Units = (props, { initId = 1 }) => {
           sortedHandler={sortedHandler}
         />
       )}
-       {showEditForage && (
+      {showEditForage && (
         <EditForageForm
           id={forageId}
           about={forageAbout}
           qty={forageQty}
           price={foragePrice}
           producer={forageProducer}
-          
           toggleEditHandler={hideEditForage}
           reloadHandler={props.reloadHandler}
           sortedHandler={sortedHandler}
         />
       )}
-       {showAddForage && (
+      {showAddForage && (
         <AddForageForm
           id={id}
           toggleAddHandler={hideAddForage}

@@ -5,7 +5,13 @@ import Head from "../components/UI/Table/Head";
 import Body from "../components/UI/Table/Body";
 import Menu from "../components/Menu/Menu";
 import NoData from "../components/Info/NoData";
-import {StyledUnitsTable, StyledUnitsContainer, StyledTableContent, StyledSearch, StyledSpinnerButton} from "./../Styles";
+import {
+  StyledUnitsTable,
+  StyledUnitsContainer,
+  StyledTableContent,
+  StyledSearch,
+  StyledSpinnerButton,
+} from "./../Styles";
 import _ from "underscore";
 
 import shortid from "shortid";
@@ -63,6 +69,14 @@ const DeadUnits = (props) => {
     showHandler();
   }, [props.reload]);
 
+  useEffect(() => {
+    props.unitIDHandler(idPig);
+  }, [idPig]);
+
+  useEffect(() => {
+    props.unitsModeHandler(false);
+  }, []);
+
   showHandler();
 
   const showForm = (id) => {
@@ -77,15 +91,13 @@ const DeadUnits = (props) => {
   const toggleEdit = () => {
     setShowEdit(!showEdit);
   };
-  
-  const currentSearchHandler = event => setCurrentSearch(event.target.value);
+
+  const currentSearchHandler = (event) => setCurrentSearch(event.target.value);
 
   return (
     <StyledUnitsContainer>
       {showSpinner && (
-        <StyledSpinnerButton
-          disabled
-        >
+        <StyledSpinnerButton disabled>
           <Spinner
             as="span"
             animation="grow"
@@ -96,9 +108,12 @@ const DeadUnits = (props) => {
           Wczytuję dane...
         </StyledSpinnerButton>
       )}
-       {showTable && (
+      {showTable && (
         <>
-          <StyledSearch onChange={event => currentSearchHandler(event)} placeholder="Wyszukaj"></StyledSearch>
+          <StyledSearch
+            onChange={(event) => currentSearchHandler(event)}
+            placeholder="Wyszukaj"
+          ></StyledSearch>
         </>
       )}
       {showTable && (
@@ -137,6 +152,7 @@ const DeadUnits = (props) => {
               url="https://obb-api.herokuapp.com/delete-pig/"
               id={idPig}
               showMenu={toggleMenu}
+              showExams={props.toggleExams}
               showEdit={toggleEdit}
               showDead={showEdit}
               reloadHandler={props.reloadHandler}

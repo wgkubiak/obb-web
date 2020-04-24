@@ -11,7 +11,7 @@ import {
   StyledUnitsTable,
   StyledUnitsContainer,
   StyledTableContent,
-  StyledSpinnerButton
+  StyledSpinnerButton,
 } from "./../Styles";
 import shortid from "shortid";
 
@@ -189,9 +189,7 @@ const Global = (props) => {
       </StyledUnitsTable>
 
       {!sorted && (
-        <StyledSpinnerButton
-          disabled
-        >
+        <StyledSpinnerButton disabled>
           <Spinner
             as="span"
             animation="grow"

@@ -9,7 +9,12 @@ import {
 } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import { MdDns, MdWeb, MdEqualizer, MdEdit, MdAdd } from "react-icons/md";
-import {RiFileAddLine, RiEditBoxLine} from "react-icons/ri";
+import {
+  RiFileAddLine,
+  RiEditBoxLine,
+  RiFolderDownloadLine,
+  RiDeleteBin2Line,
+} from "react-icons/ri";
 import { GiWaterDrop } from "react-icons/gi";
 import { FaShoppingCart, FaRegSadTear, FaRegSmileBeam } from "react-icons/fa";
 import { TiUserDelete } from "react-icons/ti";
@@ -26,6 +31,18 @@ export const StyledExamAddIcon = styled(RiFileAddLine)`
 `;
 
 export const StyledExamEditIcon = styled(RiEditBoxLine)`
+  width: auto !important;
+  height: auto !important;
+  color: rgba(255, 255, 255, 0.87) !important;
+`;
+
+export const StyledExamDeleteIcon = styled(RiDeleteBin2Line)`
+  width: auto !important;
+  height: auto !important;
+  color: rgba(255, 255, 255, 0.87) !important;
+`;
+
+export const StyledExamDownloadIcon = styled(RiFolderDownloadLine)`
   width: auto !important;
   height: auto !important;
   color: rgba(255, 255, 255, 0.87) !important;
@@ -270,7 +287,7 @@ export const StyledJumbotronParagraphs = styled.p`
   text-align: center;
   width: auto;
   margin-bottom: 1.5em;
-  margin-top: 1.5em
+  margin-top: 1.5em;
 `;
 
 export const StyledButtonNextPrev = styled.button`
@@ -393,7 +410,7 @@ export const StyledDatePicker = styled(DatePicker)`
   border-bottom: 1px solid #30d158;
 
   & > input {
-    text-align: center !important; 
+    text-align: center !important;
   }
 `;
 
@@ -404,7 +421,7 @@ export const StyledSearch = styled.input`
   right: 0em;
   border: none;
   border-bottom: 1px solid #30d158;
-  color: rgba(255, 255, 255, 0.87);  
+  color: rgba(255, 255, 255, 0.87);
   text-align: right;
   padding-right: 0.5em;
 `;
@@ -538,7 +555,7 @@ export const StyledModalHeader = styled(Modal.Header)`
 export const StyledJumbotronGenerateHeader = styled.h3`
   color: rgba(255, 255, 255, 0.8);
   border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-  padding-bottom: 1em
+  padding-bottom: 1em;
 `;
 
 export const StyledConfirmModalButton = styled(Button)`
@@ -737,7 +754,7 @@ export const StyledExamContainer = styled.div`
       border: 1px solid #1b1b1b !important;
 
       &:hover {
-        background-color: #1b1b1b !important
+        background-color: #1b1b1b !important;
       }
     }
   }
@@ -754,7 +771,7 @@ export const StyledExamContainerCards = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: flex-start
+  align-items: flex-start;
 `;
 
 export const StyledContainerCardsData = styled(Card)`
@@ -803,12 +820,12 @@ export const StyledEditButtonsContainer = styled.div`
 
 export const StyledCardTitle = styled(Card.Title)`
   color: rgba(255, 255, 255, 1);
-  font-size: 1em
+  font-size: 1em;
 `;
 
 export const StyledCardText = styled(Card.Text)`
   font-size: 0.8em;
-  color: rgba(255, 255, 255, 1)
+  color: rgba(255, 255, 255, 1);
 `;
 
 export const StyledChartContainer = styled.div`
@@ -818,7 +835,7 @@ export const StyledChartContainer = styled.div`
   display: flex;
   margin-bottom: 2em;
   flex-direction: row;
-  flex-wrap: wrap
+  flex-wrap: wrap;
 `;
 
 export const StyledDeleteInfo = styled.h4`
@@ -857,10 +874,9 @@ export const StyledEditExamInput = styled(Form.Group)`
   margin: 1em;
 `;
 
-
 export const StyledDeleteButtonMain = styled(Button)`
-  background-color: #30d158; 
-  height: auto
+  background-color: #30d158;
+  height: auto;
 `;
 
 export const StyledSpinnerButton = styled(Button)`
@@ -868,7 +884,7 @@ export const StyledSpinnerButton = styled(Button)`
   background-color: #30d158 !important;
   border: none;
   top: 10%;
-  position: relative
+  position: relative;
 `;
 
 export const StyledUnitSpinnerButton = styled(Button)`
@@ -877,7 +893,7 @@ export const StyledUnitSpinnerButton = styled(Button)`
   border: none;
   width: 49%;
   margin-left: 1%;
-  position: relative
+  position: relative;
 `;
 
 export const StyledJumbotronMainContainer = styled.div`
@@ -886,7 +902,7 @@ export const StyledJumbotronMainContainer = styled.div`
   height: auto;
   display: flex;
   flex-direction: row;
-  align-content: right
+  align-content: right;
 `;
 
 export const StyledJumbotronAltContainer = styled.div`

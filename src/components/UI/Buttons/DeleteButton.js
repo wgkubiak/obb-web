@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import {
   StyledDeleteButtonDiv,
   StyledDeleteButton,
@@ -8,7 +8,7 @@ import {
   StyledModalFooter,
   StyledConfirmModalButton,
   StyledModalContent,
-  StyledDeleteButtonMain
+  StyledDeleteButtonMain,
 } from "./../../../Styles";
 
 const DeleteButton = (props) => {
@@ -41,10 +41,7 @@ const DeleteButton = (props) => {
         </StyledModalHeader>
         <StyledModalBody>Próba usunięcia jednostki #{props.id}</StyledModalBody>
         <StyledModalFooter>
-          <StyledDeleteButtonMain
-            variant="success"
-            onClick={handleModalClose}
-          >
+          <StyledDeleteButtonMain variant="success" onClick={handleModalClose}>
             Nie
           </StyledDeleteButtonMain>
           <StyledConfirmModalButton onClick={remove}>

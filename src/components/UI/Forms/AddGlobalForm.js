@@ -11,13 +11,12 @@ import {
   StyledFormLabel,
   StyledDatePicker,
   StyledSelectShort,
-  StyledConfirmButton
+  StyledConfirmButton,
 } from "./../../../Styles";
 
 registerLocale("pl", pl);
 
-
-const AddGlobalForm = props => {
+const AddGlobalForm = (props) => {
   let defaultDate = new Date();
 
   const [date, setDate] = useState(defaultDate);
@@ -36,112 +35,100 @@ const AddGlobalForm = props => {
       hTwoS: hTwoS,
       coTwo: cOTwo,
       temperature: temperature,
-      wetness: wetness
+      wetness: wetness,
     }),
     [date, hour, nHThree, hTwoS, cOTwo, temperature, wetness]
   );
 
-  const submitHandler = event => {
+  const submitHandler = (event) => {
     event.preventDefault();
     console.log(data);
 
     fetch("http://obb-api.herokuapp.com/add-global", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         console.log("Success:", data);
       })
       .then(props.showAddGlobalHandler())
-      .catch(error => {
+      .catch((error) => {
         console.error("Error:", error);
       });
 
-      setTimeout(() => {
-        props.reloadHandler();
-        props.sortHandler();
-      }, 500)
+    setTimeout(() => {
+      props.reloadHandler();
+      props.sortHandler();
+    }, 500);
   };
 
   return (
     <StyledEditForm>
-      <StyledHideButton
-        variant="dark"
-        onClick={props.showAddGlobalHandler}
-      >
+      <StyledHideButton variant="dark" onClick={props.showAddGlobalHandler}>
         X
       </StyledHideButton>
-      <Form>     
-        <Form.Group controlId="exampleForm.ControlInput1" >
+      <Form>
+        <Form.Group controlId="exampleForm.ControlInput1">
           <StyledFormLabel>NH3</StyledFormLabel>
           <StyledFormControlShort
             type="text"
             placeholder="Wpisz NH3"
-            onChange={event => setNHThree(event.target.value)}
+            onChange={(event) => setNHThree(event.target.value)}
           />
         </Form.Group>
-        <Form.Group
-          controlId="exampleForm.ControlSelect1"
-          
-        >
+        <Form.Group controlId="exampleForm.ControlSelect1">
           <StyledFormLabel>H2S</StyledFormLabel>
           <StyledSelectShort
             as="select"
-            onChange={event => setHTwoS(event.target.value)}
+            onChange={(event) => setHTwoS(event.target.value)}
           >
             <option>0</option>
             <option>1</option>
             <option>2</option>
           </StyledSelectShort>
         </Form.Group>
-        <Form.Group controlId="exampleForm.ControlInput1" >
+        <Form.Group controlId="exampleForm.ControlInput1">
           <StyledFormLabel>C02</StyledFormLabel>
           <StyledFormControlShort
             type="text"
             placeholder="Wpisz CO2"
-            onChange={event => setCOTwo(event.target.value)}
+            onChange={(event) => setCOTwo(event.target.value)}
           />
         </Form.Group>
-        <Form.Group controlId="exampleForm.ControlInput1" >
+        <Form.Group controlId="exampleForm.ControlInput1">
           <StyledFormLabel>Temperatura</StyledFormLabel>
           <StyledFormControlShort
             type="text"
             placeholder="Wpisz temperature"
-            onChange={event => setTemperature(event.target.value)}
+            onChange={(event) => setTemperature(event.target.value)}
           />
         </Form.Group>
-        <Form.Group controlId="exampleForm.ControlInput1" >
+        <Form.Group controlId="exampleForm.ControlInput1">
           <StyledFormLabel>Wilgotność</StyledFormLabel>
           <StyledFormControlShort
             type="text"
             placeholder="Wpisz wilgotność"
-            onChange={event => setWetness(event.target.value)}
+            onChange={(event) => setWetness(event.target.value)}
           />
         </Form.Group>
-        <Form.Group
-          controlId="exampleForm.ControlSelect1"
-          
-        >
+        <Form.Group controlId="exampleForm.ControlSelect1">
           <StyledFormLabel>Data badania</StyledFormLabel>
           <StyledDatePicker
             className="date-picker"
             locale="pl"
             selected={date}
-            onChange={date => setDate(date)}
+            onChange={(date) => setDate(date)}
           />
         </Form.Group>
-        <Form.Group
-          controlId="exampleForm.ControlSelect1"
-          
-        >
+        <Form.Group controlId="exampleForm.ControlSelect1">
           <StyledFormLabel>Godzina badania</StyledFormLabel>
           <StyledDatePicker
             selected={hour}
-            onChange={date => setHour(date)}
+            onChange={(date) => setHour(date)}
             showTimeSelect
             showTimeSelectOnly
             timeIntervals={15}

@@ -36,6 +36,8 @@ const App = () => {
   const [unitID, setUnitID] = useState("");
   const [reload, setReload] = useState(false);
 
+  const [unitsMode, setUnitsMode] = useState(true);
+
   const [headerMode, setHeaderMode] = useState("Kojec | 1");
   const [showAddForm, setShowAddForm] = useState(false);
 
@@ -56,6 +58,8 @@ const App = () => {
       case "dead":
         setHeaderMode("Zgony");
         hideButtonHandler();
+        break;
+      default:
         break;
     }
   };
@@ -99,7 +103,13 @@ const App = () => {
       </StyledDivTop>
 
       {showExams && (
-        <Exams toggleExams={toggleExams} unitID={unitID} reload={reload} reloadHandler={reloadHandler} />
+        <Exams
+          toggleExams={toggleExams}
+          unitID={unitID}
+          reload={reload}
+          reloadHandler={reloadHandler}
+          unitsMode={unitsMode}
+        />
       )}
       <StyledHiddenReload>{reload.toString()}</StyledHiddenReload>
       <div>
@@ -157,6 +167,7 @@ const App = () => {
               showAddForm={showAddForm}
               hideAddForm={hideAddForm}
               headerHandler={headerHandler}
+              unitsModeHandler={setUnitsMode}
             />
           </Route>
           <Route path="/global">
@@ -181,16 +192,22 @@ const App = () => {
           </Route>
           <Route path="/sold">
             <Sold
+              toggleExams={toggleExams}
               reloadHandler={reloadHandler}
               reload={reload}
+              unitIDHandler={setUnitID}
               headerHandler={headerHandler}
+              unitsModeHandler={setUnitsMode}
             />
           </Route>
           <Route path="/dead">
             <DeadUnits
+              toggleExams={toggleExams}
               reloadHandler={reloadHandler}
+              unitIDHandler={setUnitID}
               reload={reload}
               headerHandler={headerHandler}
+              unitsModeHandler={setUnitsMode}
             />
           </Route>
         </Router>

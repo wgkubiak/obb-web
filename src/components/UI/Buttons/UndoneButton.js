@@ -1,33 +1,41 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { StyledOptionButton, StyledDeleteButtonMain, StyledConfirmModalButton, StyledModalContent, StyledModalBody, StyledModalHeader, StyledModalFooter} from "./../../../Styles";
+import {
+  StyledOptionButton,
+  StyledDeleteButtonMain,
+  StyledConfirmModalButton,
+  StyledModalContent,
+  StyledModalBody,
+  StyledModalHeader,
+  StyledModalFooter,
+} from "./../../../Styles";
 
-const UndoneButton = props => {
+const UndoneButton = (props) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleModalClose = () => setShowModal(false);
   const handleModalShow = () => setShowModal(true);
 
-  const submitHandler = event => {
+  const submitHandler = (event) => {
     event.preventDefault();
 
     fetch(`http://obb-api.herokuapp.com/pig-undone-${props.mode}/${props.id}`, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: null
+      body: null,
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         console.log("Success:", data);
       })
       .then(handleModalClose())
       .then(props.hideEverythingHandler());
 
-      setTimeout(() => {
-        props.reloadHandler();
-      }, 500)
+    setTimeout(() => {
+      props.reloadHandler();
+    }, 500);
   };
 
   return (

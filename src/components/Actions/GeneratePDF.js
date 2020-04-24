@@ -3,16 +3,27 @@ import jsPDF from "jspdf";
 import GenerateButton from "../UI/Buttons/GenerateButton";
 import "jspdf-autotable";
 
-const GeneratePDF = props => {
+const GeneratePDF = (props) => {
   //TODO: Replace polish signs
   const generatePDF = () => {
-    const doc = new jsPDF();
+    let doc;
+
+    if (props.mode === "exams") {
+      doc = new jsPDF("landscape");
+    } else {
+      doc = new jsPDF();
+    }
 
     doc.text(`${props.fileheader}`, 10, 20);
     doc.autoTable({
       startY: 25,
       head: [props.header],
-      body: props.unlData.map(data => {
+      columnStyles: {
+        Rezultat: { cellWidth: 100 },
+        Zmiany: { cellWidth: 80 },
+        Awarie: { cellWidth: 40 },
+      },
+      body: props.unlData.map((data) => {
         if (props.mode === "global") {
           return [
             `${data.id}`,
@@ -22,7 +33,7 @@ const GeneratePDF = props => {
             `${data.hTwoS}`,
             `${data.coTwo}`,
             `${data.temperature}`,
-            `${data.wetness}`
+            `${data.wetness}`,
           ];
         } else if (props.mode === "sold") {
           return [
@@ -32,9 +43,9 @@ const GeneratePDF = props => {
             `${data.pigShoppingPrice}`,
             `${data.id}`,
             `${data.pigGender === "m" ? "Samiec" : "Samica"}`,
-            `${data.idPen}`
+            `${data.idPen}`,
           ];
-        } else if(props.mode === "pen-measures") {
+        } else if (props.mode === "pen-measures") {
           return [
             `${data.idPen}`,
             `${data.measureDate.substring(0, 10)}`,
@@ -43,9 +54,9 @@ const GeneratePDF = props => {
             `${data.dosatron}`,
             `${data.addition}`,
             `${data.forage}`,
-            `${data.forageQtyUsed}`
+            `${data.forageQtyUsed}`,
           ];
-        } else if(props.mode === "forage") {
+        } else if (props.mode === "forage") {
           return [
             `${data.idPen}`,
             `${data.creationDate.substring(0, 10)}`,
@@ -53,7 +64,25 @@ const GeneratePDF = props => {
             `${data.producer}`,
             `${data.fgQty}`,
             `${data.fgPrice}`,
-            `${data.fgAbout}`
+            `${data.fgAbout}`,
+          ];
+        } else if (props.mode === "exams") {
+          return [
+            `${data.id}`,
+            `${data.exDate.substring(0, 10)}`,
+            `${data.exTime}`,
+            `${data.feces}`,
+            `${data.tissue}`,
+            `${data.exResult}`,
+            `${data.medicine}`,
+            `${data.medicineQty}`,
+            `${data.medicineType}`,
+            `${data.diarrhea}`,
+            `${data.pigWeight}`,
+            `${data.temperature}`,
+            `${data.lameness}`,
+            `${data.respiratorySys}`,
+            `${data.skinChanges}`,
           ];
         } else {
           return [
@@ -62,16 +91,22 @@ const GeneratePDF = props => {
             `${data.id}`,
             `${data.pigGender === "m" ? "Samiec" : "Samica"}`,
             `${data.pigShoppingDate.substring(0, 10)}`,
-            `${data.pigShoppingPrice}`
+            `${data.pigShoppingPrice}`,
           ];
         }
-      })
+      }),
     });
 
     doc.save(`${props.filename}.pdf`);
   };
 
-  return <GenerateButton generatePDF={generatePDF} text={props.text}/>;
+  return (
+    <GenerateButton
+      generatePDF={generatePDF}
+      mode={props.mode}
+      text={props.text}
+    />
+  );
 };
 
 export default GeneratePDF;

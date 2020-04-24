@@ -18,11 +18,10 @@ import {
   StyledSelectShort,
   StyledConfirmButton,
   StyledEditButtonsContainer,
-  StyledDeleteButtonMain
+  StyledDeleteButtonMain,
 } from "./../../../Styles";
 
 registerLocale("pl", pl);
-
 
 const EditGlobalForm = (props) => {
   let defaultDate = new Date();
@@ -163,7 +162,9 @@ const EditGlobalForm = (props) => {
       </Form>
 
       <StyledEditButtonsContainer>
-        <StyledConfirmButton onClick={submitHandler}>POTWIERDŹ EDYCJĘ</StyledConfirmButton>
+        <StyledConfirmButton onClick={submitHandler}>
+          POTWIERDŹ EDYCJĘ
+        </StyledConfirmButton>
         <StyledDeleteButton onClick={handleModalShow}>USUŃ</StyledDeleteButton>
       </StyledEditButtonsContainer>
       <StyledModalContent show={showModal} onHide={handleModalClose}>

@@ -6,7 +6,13 @@ import Body from "../components/UI/Table/Body";
 import Menu from "../components/Menu/Menu";
 import NoData from "../components/Info/NoData";
 import _ from "underscore";
-import {StyledUnitsTable, StyledSearch, StyledUnitsContainer, StyledTableContent, StyledSpinnerButton} from "./../Styles";
+import {
+  StyledUnitsTable,
+  StyledSearch,
+  StyledUnitsContainer,
+  StyledTableContent,
+  StyledSpinnerButton,
+} from "./../Styles";
 import shortid from "shortid";
 
 const DeadUnits = (props) => {
@@ -55,43 +61,48 @@ const DeadUnits = (props) => {
   };
 
   const show = () => {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       setTimeout(() => {
         resolve(data);
         setShowSpinner(false);
-      }, 2000)
-    })
-  }
+      }, 2000);
+    });
+  };
 
   const showHandler = async () => {
     const res = await show();
     console.log(typeof res);
-    if(_.isObject(res) && !_.isEmpty(res)) {
+    if (_.isObject(res) && !_.isEmpty(res)) {
       setShowTable(true);
       setShowNoDataInfo(false);
     } else {
       setShowNoDataInfo(true);
       setShowTable(false);
     }
-  }
-  
-  const currentSearchHandler = event => setCurrentSearch(event.target.value);
+  };
+
+  const currentSearchHandler = (event) => setCurrentSearch(event.target.value);
 
   useEffect(() => {
     getData();
     getUnlimitedData();
     props.headerHandler("sold");
-
     showHandler();
   }, [props.reload, currentSearch]);
+
+  useEffect(() => {
+    props.unitIDHandler(idPig);
+  }, [idPig]);
+
+  useEffect(() => {
+    props.unitsModeHandler(false);
+  }, []);
 
   showHandler();
   return (
     <StyledUnitsContainer>
       {showSpinner && (
-        <StyledSpinnerButton
-          disabled
-        >
+        <StyledSpinnerButton disabled>
           <Spinner
             as="span"
             animation="grow"
@@ -104,7 +115,10 @@ const DeadUnits = (props) => {
       )}
       {showTable && (
         <>
-          <StyledSearch onChange={event => currentSearchHandler(event)} placeholder="Wyszukaj"></StyledSearch>
+          <StyledSearch
+            onChange={(event) => currentSearchHandler(event)}
+            placeholder="Wyszukaj"
+          ></StyledSearch>
         </>
       )}
       {showTable && (
@@ -146,6 +160,7 @@ const DeadUnits = (props) => {
               price={price}
               showMenu={toggleMenu}
               showEdit={toggleEdit}
+              showExams={props.toggleExams}
               hideMenu={hideMenu}
               url="https://obb-api.herokuapp.com/delete-pig/"
               show={showEdit}
@@ -153,31 +168,29 @@ const DeadUnits = (props) => {
             />
           )}
           {showTable && (
-        <GeneratePDF
-          header={[
-            "Data sprzedazy",
-            "Kwota sprzedazy",
-            "Data zakupu",
-            "Cena",
-            "ID",
-            "Plec",
-            "Kojec",
-          ]}
-          text="Wygeneruj raport PDF"
-          fileheader="Raport sprzedazy"
-          mode="sold"
-          unlData={unlimitedData}
-          filename={`RaportSprzedazy-${new Date()
-            .toString()
-            .substring(0, 10)
-            .replace(/\s/g, "")}`}
-        />
-      )}
+            <GeneratePDF
+              header={[
+                "Data sprzedazy",
+                "Kwota sprzedazy",
+                "Data zakupu",
+                "Cena",
+                "ID",
+                "Plec",
+                "Kojec",
+              ]}
+              text="Wygeneruj raport PDF"
+              fileheader="Raport sprzedazy"
+              mode="sold"
+              unlData={unlimitedData}
+              filename={`RaportSprzedazy-${new Date()
+                .toString()
+                .substring(0, 10)
+                .replace(/\s/g, "")}`}
+            />
+          )}
         </StyledUnitsTable>
       )}
-      {showNoDataInfo && (
-        <NoData mode="pos"/>
-      )}
+      {showNoDataInfo && <NoData mode="pos" />}
     </StyledUnitsContainer>
   );
 };

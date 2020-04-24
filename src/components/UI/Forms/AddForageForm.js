@@ -10,10 +10,8 @@ import {
   StyledHideButton,
   StyledFormLabel,
   StyledDatePicker,
-  StyledSelectShort,
-  StyledConfirmButton
+  StyledConfirmButton,
 } from "./../../../Styles";
-
 
 registerLocale("pl", pl);
 
@@ -28,17 +26,15 @@ const AddForageForm = (props) => {
 
   const data = useMemo(
     () => ({
-        idPen: props.id,
-        fgAbout: about,
-        fgQty: qty,
-        fgPrice: price,
-        creationDate: creationDate,
-        producer: producer,
-        expiration: expirationDate
+      idPen: props.id,
+      fgAbout: about,
+      fgQty: qty,
+      fgPrice: price,
+      creationDate: creationDate,
+      producer: producer,
+      expiration: expirationDate,
     }),
-    [
-      props.id, about, qty, price, creationDate, producer, expirationDate
-    ]
+    [props.id, about, qty, price, creationDate, producer, expirationDate]
   );
 
   const submitHandler = (event) => {
@@ -57,13 +53,13 @@ const AddForageForm = (props) => {
         console.log("Success:", data);
       })
       .then(props.toggleAddHandler())
-    //   .then(props.sortedHandler(false))
+      //   .then(props.sortedHandler(false))
       .catch((error) => {
         console.error("Error:", error);
       });
 
     setTimeout(() => {
-      props.reloadHandler();  
+      props.reloadHandler();
     }, 500);
   };
 
@@ -71,7 +67,7 @@ const AddForageForm = (props) => {
     <StyledEditForm>
       <StyledHideButton onClick={props.toggleAddHandler}>X</StyledHideButton>
       <Form>
-      <Form.Group controlId="exampleStyledFormControlShortSelect1">
+        <Form.Group controlId="exampleStyledFormControlShortSelect1">
           <StyledFormLabel>Data stworzenia</StyledFormLabel>
           <StyledDatePicker
             locale="pl"
@@ -128,7 +124,9 @@ const AddForageForm = (props) => {
       </Form>
 
       <div className="Add--buttons-container">
-        <StyledConfirmButton onClick={submitHandler}>POTWIERDŹ EDYCJĘ</StyledConfirmButton>
+        <StyledConfirmButton onClick={submitHandler}>
+          POTWIERDŹ EDYCJĘ
+        </StyledConfirmButton>
       </div>
     </StyledEditForm>
   );

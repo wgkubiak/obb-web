@@ -11,7 +11,7 @@ import {
   StyledConfirmButton,
   StyledEditForm,
   StyledHideButton,
-  StyledEditInput
+  StyledEditInput,
 } from "./../../../Styles";
 
 registerLocale("pl", pl);

@@ -17,7 +17,7 @@ import {
   StyledDatePicker,
   StyledSubmitButton,
   StyledEditButtonsContainer,
-  StyledDeleteButtonMain
+  StyledDeleteButtonMain,
 } from "./../../../Styles";
 
 registerLocale("pl", pl);
@@ -38,16 +38,14 @@ const EditForageForm = (props) => {
 
   const data = useMemo(
     () => ({
-        fgAbout: about,
-        fgQty: qty,
-        fgPrice: price,
-        creationDate: creationDate,
-        producer: producer,
-        expiration: expirationDate
+      fgAbout: about,
+      fgQty: qty,
+      fgPrice: price,
+      creationDate: creationDate,
+      producer: producer,
+      expiration: expirationDate,
     }),
-    [
-      about, qty, price, creationDate, producer, expirationDate
-    ]
+    [about, qty, price, creationDate, producer, expirationDate]
   );
 
   const remove = () => {
@@ -78,7 +76,7 @@ const EditForageForm = (props) => {
         console.log("Success:", data);
       })
       .then(props.toggleEditHandler())
-    //   .then(props.sortedHandler(false))
+      //   .then(props.sortedHandler(false))
       .catch((error) => {
         console.error("Error:", error);
       });
@@ -152,11 +150,7 @@ const EditForageForm = (props) => {
         <StyledSubmitButton onClick={submitHandler}>
           POTWIERDŹ EDYCJĘ
         </StyledSubmitButton>
-        <StyledDeleteButton
-          onClick={handleModalShow}
-        >
-          USUŃ
-        </StyledDeleteButton>
+        <StyledDeleteButton onClick={handleModalShow}>USUŃ</StyledDeleteButton>
       </StyledEditButtonsContainer>
       <StyledModalContent show={showModal} onHide={handleModalClose}>
         <StyledModalHeader>
@@ -166,10 +160,7 @@ const EditForageForm = (props) => {
           Próba usunięcia pomiaru nr. #{props.id}
         </StyledModalBody>
         <StyledModalFooter>
-          <StyledDeleteButtonMain
-            variant="success"
-            onClick={handleModalClose}
-          >
+          <StyledDeleteButtonMain variant="success" onClick={handleModalClose}>
             Nie
           </StyledDeleteButtonMain>
           <StyledConfirmModalButton variant="primary" onClick={remove}>

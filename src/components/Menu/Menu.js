@@ -9,7 +9,7 @@ import {
   StyledMenu,
   StyledHideButton,
   StyledButtonContainer,
-  StyledDeleteInfo 
+  StyledDeleteInfo,
 } from "./../../Styles";
 
 const Menu = (props, { initShow = false }) => {
@@ -31,9 +31,7 @@ const Menu = (props, { initShow = false }) => {
       <StyledHideButton onClick={hideEverything}>X</StyledHideButton>
       <StyledMenuIcon />
       <h4>
-        <strong>
-          #{props.id}
-        </strong>
+        <strong>#{props.id}</strong>
       </h4>
       <StyledButtonContainer>
         {!show && (
