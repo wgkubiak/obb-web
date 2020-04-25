@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Modal } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Button, Modal } from "react-bootstrap";
 import {
   StyledDeleteButtonDiv,
   StyledDeleteButton,
@@ -9,6 +9,7 @@ import {
   StyledConfirmModalButton,
   StyledModalContent,
   StyledDeleteButtonMain,
+  StyledExamDeleteIcon,
 } from "./../../../Styles";
 
 const DeleteButton = (props) => {
@@ -29,27 +30,48 @@ const DeleteButton = (props) => {
     }, 500);
   };
 
-  return (
-    <StyledDeleteButtonDiv>
-      <StyledDeleteButton variant="danger" onClick={handleModalShow}>
-        Usuń
-      </StyledDeleteButton>
+  useEffect(() => {
+    console.log(props.url, props.id);
+  }, []);
 
-      <StyledModalContent show={showModal} onHide={handleModalClose}>
-        <StyledModalHeader>
-          <Modal.Title>Czy jesteś pewna/y?!</Modal.Title>
-        </StyledModalHeader>
-        <StyledModalBody>Próba usunięcia jednostki #{props.id}</StyledModalBody>
-        <StyledModalFooter>
-          <StyledDeleteButtonMain variant="success" onClick={handleModalClose}>
-            Nie
-          </StyledDeleteButtonMain>
-          <StyledConfirmModalButton onClick={remove}>
-            Tak, usuń
-          </StyledConfirmModalButton>
-        </StyledModalFooter>
-      </StyledModalContent>
-    </StyledDeleteButtonDiv>
+  return (
+    <div style={{width: "auto", height: "auto"}}>
+      {props.mode && (
+        <Button
+          className="buttons-button"
+          onClick={handleModalShow}
+        >
+          <StyledExamDeleteIcon size={32} />
+        </Button>
+      )}
+      <StyledDeleteButtonDiv>
+        {!props.mode && (
+          <StyledDeleteButton variant="danger" onClick={handleModalShow}>
+            Usuń
+          </StyledDeleteButton>
+        )}
+
+        <StyledModalContent show={showModal} onHide={handleModalClose}>
+          <StyledModalHeader>
+            <Modal.Title>Czy jesteś pewna/y?!</Modal.Title>
+          </StyledModalHeader>
+          <StyledModalBody>
+            Próba usunięcia {props.text}jednostki #{props.id}
+          </StyledModalBody>
+          <StyledModalFooter>
+            <StyledDeleteButtonMain
+              variant="success"
+              onClick={handleModalClose}
+            >
+              Nie
+            </StyledDeleteButtonMain>
+            <StyledConfirmModalButton onClick={remove}>
+              Tak, usuń
+            </StyledConfirmModalButton>
+          </StyledModalFooter>
+        </StyledModalContent>
+      </StyledDeleteButtonDiv>
+    </div>
   );
 };
 

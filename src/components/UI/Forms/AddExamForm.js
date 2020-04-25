@@ -4,34 +4,36 @@ import {
   StyledFormLabel,
   StyledFormControl,
   StyledConfirmButton,
-  StyledHeaderH2,
   StyledDatePicker,
+  StyledHeaderH2,
 } from "./../../../Styles";
+import { registerLocale } from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import pl from "date-fns/locale/pl";
 
-const EditExamForm = (props) => {
+registerLocale("pl", pl);
+
+const AddExamForm = (props) => {
   const currentTime = new Date();
   const [exDate, setExDate] = useState(currentTime);
   const [exTime, setExTime] = useState(currentTime);
-  const [feces, setFeces] = useState(props.data.feces || 0);
-  const [tissue, setTissue] = useState(props.data.tissue || "");
-  const [medicine, setMedicine] = useState(props.data.medicine || "");
-  const [medicineQty, setMedicineQty] = useState(props.data.medicineQty || 0);
-  const [medicineType, setMedicineType] = useState(
-    props.data.medicineType || ""
-  );
-  const [diarrhea, setDiarrhea] = useState(props.data.diarrhea || "");
-  const [pigWeight, setPigWeight] = useState(props.data.pigWeight || 0);
-  const [temperature, setTemperature] = useState(props.data.temperature || 0);
-  const [lameness, setLameness] = useState(props.data.lameness || "");
-  const [respiratorySys, setRespiratorySys] = useState(
-    props.data.respiratorySys || ""
-  );
-  const [skinChanges, setSkinChanges] = useState(props.data.skinChanges || "");
-  const [exResult, setExResult] = useState(props.data.exResult || "");
+  const [feces, setFeces] = useState("");
+  const [tissue, setTissue] = useState("");
+  const [medicine, setMedicine] = useState("");
+  const [medicineQty, setMedicineQty] = useState(0);
+  const [medicineType, setMedicineType] = useState("");
+  const [diarrhea, setDiarrhea] = useState("");
+  const [pigWeight, setPigWeight] = useState(0);
+  const [temperature, setTemperature] = useState(0);
+  const [lameness, setLameness] = useState("");
+  const [respiratorySys, setRespiratorySys] = useState("");
+  const [skinChanges, setSkinChanges] = useState("");
+  const [exResult, setExResult] = useState("");
   const [reload, setReload] = useState(false);
 
   const data = useMemo(
     () => ({
+      idPig: props.id,
       exDate: exDate,
       exTime: exTime.toString().substring(16, 31),
       feces: feces,
@@ -48,6 +50,7 @@ const EditExamForm = (props) => {
       skinChanges: skinChanges,
     }),
     [
+      props.id,
       exDate,
       exTime,
       feces,
@@ -69,8 +72,8 @@ const EditExamForm = (props) => {
     event.preventDefault();
     console.log(data);
 
-    fetch(`http://obb-api.herokuapp.com/edit-exam/${props.data.id}`, {
-      method: "PUT",
+    fetch(`http://obb-api.herokuapp.com/add-exam`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -80,7 +83,8 @@ const EditExamForm = (props) => {
       .then((data) => {
         console.log("Success:", data);
       })
-      .then(props.toggleEditHandler())
+      .then(props.toggleAddHandler())
+      //   .then(props.sortedHandler(false))
       .catch((error) => {
         console.error("Error:", error);
       });
@@ -141,7 +145,7 @@ const EditExamForm = (props) => {
         <StyledFormLabel>Leki</StyledFormLabel>
         <StyledFormControl
           type="text"
-          placeholder="Wpisz dane (np. Tak/Nie)"
+          placeholder="Wpisz dane (Tak/Nie)"
           onChange={(event) => setMedicine(event.target.value)}
           defaultValue={medicine}
         />
@@ -238,4 +242,4 @@ const EditExamForm = (props) => {
   );
 };
 
-export default EditExamForm;
+export default AddExamForm;

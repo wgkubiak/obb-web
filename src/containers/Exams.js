@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import {
   StyledExam,
+  StyledModalBody,
+  StyledModalFooter,
+  StyledModalContent,
+  StyledModalHeader,
+  StyledDeleteButtonMain,
+  StyledConfirmModalButton,
   StyledHeaderH2,
   StyledHeaderH4,
   StyledExamAddIcon,
@@ -12,6 +18,7 @@ import {
   StyledExamContainerCards,
 } from "./../Styles";
 import ExamCard from "./../components/UI/Cards/Card";
+import AddExamForm from "./../components/UI/Forms/AddExamForm";
 import EditExamForm from "./../components/UI/Forms/EditExamForm";
 import GeneratePDF from "./../components/Actions/GeneratePDF";
 
@@ -20,6 +27,10 @@ const Exams = (props) => {
   const [unlData, setUnlData] = useState([]);
   const [showEditForm, setShowEditForm] = useState(false);
   const [reload, setReload] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [showAddForm, setShowAddForm] = useState(false);
+  const handleModalClose = () => setShowModal(false);
+  const handleModalShow = () => setShowModal(true);
 
   const getData = async (id, func, url) => {
     await fetch(`http://obb-api.herokuapp.com/exams-latest/${props.unitID}`)
@@ -37,6 +48,17 @@ const Exams = (props) => {
       .catch((e) => e);
   };
 
+  const remove = id => {
+    fetch(`https://obb-api.herokuapp.com/delete-exam/${id}`, {
+      method: "DELETE",
+    })
+      .then(handleModalClose())
+
+    setTimeout(() => {
+      reloadHandler();
+    }, 500);
+  };
+
   useEffect(() => {
     getData();
     getUnlimitedData();
@@ -44,11 +66,22 @@ const Exams = (props) => {
 
   const showEditHandler = () => {
     setShowEditForm(!showEditForm);
+    setShowAddForm(false);
     const container = document.querySelector(".exam--container");
     setTimeout(() => {
       container.scrollTop = container.scrollHeight - container.clientHeight;
     }, 500);
   };
+
+  const showAddHandler = () => {
+    setShowAddForm(!showAddForm);
+    setShowEditForm(false);
+    const container = document.querySelector(".exam--container");
+    setTimeout(() => {
+      container.scrollTop = container.scrollHeight - container.clientHeight;
+    }, 500);
+  };
+
 
   const reloadHandler = () => {
     setReload(!reload);
@@ -139,7 +172,9 @@ const Exams = (props) => {
         <div className="buttons-container">
           {props.unitsMode && (
             <>
-              <Button variant="success" className="buttons-button">
+              <Button variant="success" className="buttons-button"
+              onClick={() => showAddHandler()}
+              >
                 <StyledExamAddIcon size={32} />
               </Button>
               <Button
@@ -178,10 +213,33 @@ const Exams = (props) => {
             }-${new Date().toString().substring(0, 10).replace(/\s/g, "")}`}
           />
           {props.unitsMode && (
-            <Button variant="success" className="buttons-button">
+            <Button variant="success" className="buttons-button" onClick={handleModalShow}>
               <StyledExamDeleteIcon size={32} />
             </Button>
           )}
+           <StyledModalContent show={showModal} onHide={handleModalClose}>
+          <StyledModalHeader>
+            <Modal.Title>Czy jesteś pewna/y?!</Modal.Title>
+          </StyledModalHeader>
+          <StyledModalBody>
+            Próba usunięcia badania jednostki #{props.unitID}
+          </StyledModalBody>
+          <StyledModalFooter>
+            <StyledDeleteButtonMain
+              variant="success"
+              onClick={handleModalClose}
+            >
+              Nie
+            </StyledDeleteButtonMain>
+            {
+              data.map((data) => (
+                <StyledConfirmModalButton onClick={() => remove(data.id)}>
+                  Tak, usuń
+                </StyledConfirmModalButton>
+              ))
+            }
+          </StyledModalFooter>
+        </StyledModalContent>
         </div>
 
         {showEditForm && (
@@ -206,6 +264,9 @@ const Exams = (props) => {
               />
             );
           })}
+          {showAddForm && (
+            <AddExamForm id={props.unitID} reloadHandler={reloadHandler} toggleAddHandler={showAddHandler}/>
+          )}
         <h1 style={{ display: "none" }}>{reload.toString()}</h1>
       </StyledExamContainer>
     </StyledExam>
