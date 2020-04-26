@@ -82,6 +82,7 @@ const App = () => {
 
   const toggleAddForm = () => {
     setShowAddForm(!showAddForm);
+    window.scrollTo(0, 0);
   };
 
   const hideAddForm = () => {
@@ -95,7 +96,7 @@ const App = () => {
   };
 
   return (
-    <StyledApp>
+    <StyledApp className="app">
       {showAddButton && <AddButton toggleHandler={toggleAddForm} />}
       <StyledDivTop>
         <StyledParagraphTop>OBBsys</StyledParagraphTop>

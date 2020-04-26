@@ -462,6 +462,7 @@ export const StyledSelectShort = styled(Form.Control)`
 `;
 
 export const StyledEditForm = styled.div`
+  padding-top: 1em;
   width: 20em;
   height: auto;
   z-index: 2;
@@ -469,8 +470,8 @@ export const StyledEditForm = styled.div`
   background-color: #424242;
   color: rgba(255, 255, 255, 0.87);
   left: 50%;
-  right: 0;
-  top: 15%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   margin-left: auto;
   margin-right: auto;
   border-radius: 0em;
