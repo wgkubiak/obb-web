@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
-
+import {RiLogoutBoxLine} from "react-icons/ri";
+import LoginScreen from "./containers/LoginScreen";
 import Units from "./containers/Units";
 import Global from "./containers/Global";
 import Sold from "./containers/Sold";
@@ -30,6 +31,7 @@ import {
 } from "./Styles";
 
 const App = () => {
+  const [logIn, setLogIn] = useState(false);
   const [showExams, setShowExams] = useState(false);
 
   const [showAddButton, setShowAddButton] = useState(true);
@@ -69,6 +71,13 @@ const App = () => {
     }
   };
 
+  const loginHandler = () => setLogIn(true);
+
+  const logoutHandler = () => {
+    setLogIn(false);
+    localStorage.clear();
+  }
+
   const showButtonHandler = () => {
     setShowAddButton(true);
   };
@@ -102,13 +111,16 @@ const App = () => {
 
   return (
     <StyledApp className="app">
-      {showAddButton && <AddButton toggleHandler={toggleAddForm} />}
-      <StyledDivTop>
-        <StyledParagraphTop>OBBsys</StyledParagraphTop>
-        <StyledParagraphMid>{headerMode}</StyledParagraphMid>
-      </StyledDivTop>
+      {!logIn && <LoginScreen loginHandler={loginHandler}/>}
+      {showAddButton && logIn && <AddButton toggleHandler={toggleAddForm} />}
+      {logIn && (
+        <StyledDivTop>
+          <StyledParagraphTop>OBBsys</StyledParagraphTop>
+          <StyledParagraphMid>{headerMode}</StyledParagraphMid>
+        </StyledDivTop>
+      )}
 
-      {showExams && (
+      {showExams && logIn && (
         <Exams
           toggleExams={toggleExams}
           unitID={unitID}
@@ -118,7 +130,8 @@ const App = () => {
         />
       )}
       <StyledHiddenReload>{reload.toString()}</StyledHiddenReload>
-      <div>
+      {logIn && (
+        <div>
         <Router>
           <StyledHeader>
             <StyledListGroup variant="flush" defaultActiveKey="#obb-groups">
@@ -162,8 +175,17 @@ const App = () => {
                   <StyledFigcaption>Zgon</StyledFigcaption>
                 </StyledListGroupItem>
               </NavLink>
+             <NavLink to="/" onClick={() => logoutHandler()}>
+             <StyledListGroupItem style={{position: "absolute", width: "100%", bottom: "0%"}}>
+                <StyledFigure>
+                  <RiLogoutBoxLine style={{color: "white"}} size={24}/>
+                </StyledFigure>
+                <StyledFigcaption>Wyloguj</StyledFigcaption>
+              </StyledListGroupItem>
+             </NavLink>
             </StyledListGroup>
           </StyledHeader>
+          
           <Route exact path="/">
             <Units
               toggleExams={toggleExams}
@@ -214,6 +236,7 @@ const App = () => {
           </Route>
         </Router>
       </div>
+      )}
     </StyledApp>
   );
 };
