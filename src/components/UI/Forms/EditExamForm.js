@@ -4,37 +4,37 @@ import {
   StyledFormLabel,
   StyledFormControl,
   StyledConfirmButton,
-  StyledHeaderH2,
   StyledDatePicker,
+  StyledOption,
+  StyledSelect
 } from "./../../../Styles";
 
 const EditExamForm = (props) => {
   const currentTime = new Date();
   const [exDate, setExDate] = useState(currentTime);
   const [exTime, setExTime] = useState(currentTime);
-  const [feces, setFeces] = useState(props.data.feces || 0);
-  const [tissue, setTissue] = useState(props.data.tissue || "");
+  const [feces, setFeces] = useState(props.data.feces || "0");
+  const [tissue, setTissue] = useState(props.data.tissue || "0");
   const [medicine, setMedicine] = useState(props.data.medicine || "");
   const [medicineQty, setMedicineQty] = useState(props.data.medicineQty || 0);
   const [medicineType, setMedicineType] = useState(
     props.data.medicineType || ""
   );
-  const [diarrhea, setDiarrhea] = useState(props.data.diarrhea || "");
+  const [diarrhea, setDiarrhea] = useState(props.data.diarrhea || "0");
   const [pigWeight, setPigWeight] = useState(props.data.pigWeight || 0);
   const [temperature, setTemperature] = useState(props.data.temperature || 0);
-  const [lameness, setLameness] = useState(props.data.lameness || "");
+  const [lameness, setLameness] = useState(props.data.lameness || "0");
   const [respiratorySys, setRespiratorySys] = useState(
-    props.data.respiratorySys || ""
+    props.data.respiratorySys || "0"
   );
   const [skinChanges, setSkinChanges] = useState(props.data.skinChanges || "");
   const [exResult, setExResult] = useState(props.data.exResult || "");
-  const [reload, setReload] = useState(false);
 
   const data = useMemo(
     () => ({
       exDate: exDate,
       exTime: exTime.toString().substring(16, 31),
-      feces: feces,
+      feces: Number(feces),
       tissue: tissue,
       exResult: exResult,
       medicine: medicine,
@@ -121,21 +121,27 @@ const EditExamForm = (props) => {
       </StyledEditExamInput>
       <StyledEditExamInput>
         <StyledFormLabel>Odchody</StyledFormLabel>
-        <StyledFormControl
-          type="text"
-          placeholder="Wpisz dane (0-2)"
+        <StyledSelect
+          as="select"
           onChange={(event) => setFeces(event.target.value)}
-          defaultValue={feces}
-        />
+        >
+          <StyledOption value="">Bez zmian</StyledOption>
+          <StyledOption value="0">Normalne</StyledOption>
+          <StyledOption value="1">Małe zmiany</StyledOption>
+          <StyledOption value="2">Znaczne</StyledOption>
+        </StyledSelect>
       </StyledEditExamInput>
       <StyledEditExamInput>
         <StyledFormLabel>Tkanka</StyledFormLabel>
-        <StyledFormControl
-          type="text"
-          placeholder="Wpisz dane (0-2)"
+        <StyledSelect
+          as="select"
           onChange={(event) => setTissue(event.target.value)}
-          defaultValue={tissue}
-        />
+        >
+          <StyledOption value="">Bez zmian</StyledOption>
+          <StyledOption value="0">Dobra</StyledOption>
+          <StyledOption value="1">Mierna</StyledOption>
+          <StyledOption value="2">Zła</StyledOption>
+        </StyledSelect>
       </StyledEditExamInput>
       <StyledEditExamInput>
         <StyledFormLabel>Leki</StyledFormLabel>
@@ -166,12 +172,15 @@ const EditExamForm = (props) => {
       </StyledEditExamInput>
       <StyledEditExamInput>
         <StyledFormLabel>Rozwolnienie</StyledFormLabel>
-        <StyledFormControl
-          type="text"
-          placeholder="Wpisz dane (0-1)"
+        <StyledSelect
+          as="select"
           onChange={(event) => setDiarrhea(event.target.value)}
-          defaultValue={diarrhea}
-        />
+        >
+          <StyledOption value="">Bez zmian</StyledOption>
+          <StyledOption value="0">Brak</StyledOption>
+          <StyledOption value="1">Znikome</StyledOption>
+          <StyledOption value="2">Znaczne</StyledOption>
+        </StyledSelect>
       </StyledEditExamInput>
       <StyledEditExamInput>
         <StyledFormLabel>Waga</StyledFormLabel>
@@ -193,21 +202,27 @@ const EditExamForm = (props) => {
       </StyledEditExamInput>
       <StyledEditExamInput>
         <StyledFormLabel>Kulawizna</StyledFormLabel>
-        <StyledFormControl
-          type="text"
-          placeholder="Wprowadź dane (0-2)"
+        <StyledSelect
+          as="select"
           onChange={(event) => setLameness(event.target.value)}
-          defaultValue={lameness}
-        />
+        >
+          <StyledOption value="">Bez zmian</StyledOption>
+          <StyledOption value="0">Brak</StyledOption>
+          <StyledOption value="1">Znikome</StyledOption>
+          <StyledOption value="2">Znaczne</StyledOption>
+        </StyledSelect>
       </StyledEditExamInput>
       <StyledEditExamInput>
         <StyledFormLabel>Układ oddechowy</StyledFormLabel>
-        <StyledFormControl
-          type="text"
-          placeholder="Wprowadź dane (0-2)"
+        <StyledSelect
+          as="select"
           onChange={(event) => setRespiratorySys(event.target.value)}
-          defaultValue={respiratorySys}
-        />
+        >
+          <StyledOption value="">Bez zmian</StyledOption>
+          <StyledOption value="0">Brak</StyledOption>
+          <StyledOption value="1">Znikome</StyledOption>
+          <StyledOption value="2">Znaczne</StyledOption>
+        </StyledSelect>
       </StyledEditExamInput>
       <StyledEditExamInput>
         <StyledFormLabel>Zmiany naskórne</StyledFormLabel>

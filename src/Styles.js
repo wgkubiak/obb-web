@@ -49,6 +49,9 @@ export const StyledExamDownloadIcon = styled(RiFolderDownloadLine)`
 `;
 
 export const StyledGlobal = createGlobalStyle`
+  html {
+    scroll-behavior: smooth;
+  };
   body {
     background-color: #1b1b1b;
     font-family: 'Roboto', sans-serif;
@@ -383,6 +386,10 @@ export const StyledHideButton = styled(Button)`
   &:hover {
     color: rgba(255, 255, 255, 0.87);
   }
+`;
+
+export const StyledErrorFigcaption = styled.figcaption`
+  color: #ff373b
 `;
 
 export const StyledFormControl = styled(Form.Control)`

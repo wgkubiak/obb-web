@@ -42,11 +42,11 @@ const EditGlobalForm = (props) => {
     () => ({
       measureDate: measureDate,
       measureTime: measureTime.toString().substring(16, 31),
-      nhThree: nh,
-      hTwoS: htwo,
-      coTwo: co,
-      temperature: temp,
-      wetness: wet,
+      nhThree: Number(nh),
+      hTwoS: Number(htwo),
+      coTwo: Number(co),
+      temperature: Number(temp),
+      wetness: Number(wet),
     }),
     [measureDate, measureTime, nh, htwo, co, temp, wet]
   );
@@ -95,8 +95,8 @@ const EditGlobalForm = (props) => {
         <Form.Group controlId="exampleStyledFormControlShortInput1">
           <StyledFormLabel>NH3</StyledFormLabel>
           <StyledFormControlShort
-            type="text"
-            placeholder="Wpisz NH3"
+            type="number"
+            placeholder="Wprowadź NH3"
             defaultValue={nh}
             onChange={(event) => setNh(event.target.value)}
           />
@@ -107,16 +107,17 @@ const EditGlobalForm = (props) => {
             as="select"
             onChange={(event) => setHTwo(event.target.value)}
           >
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
+            <option value="">Bez zmian</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
           </StyledSelectShort>
         </Form.Group>
         <Form.Group controlId="exampleStyledFormControlShortInput1">
           <StyledFormLabel>C02</StyledFormLabel>
           <StyledFormControlShort
-            type="text"
-            placeholder="Wpisz CO2"
+            type="number"
+            placeholder="Wprowadź CO2"
             defaultValue={co}
             onChange={(event) => setCO(event.target.value)}
           />
@@ -124,8 +125,8 @@ const EditGlobalForm = (props) => {
         <Form.Group controlId="exampleStyledFormControlShortInput1">
           <StyledFormLabel>Temperatura</StyledFormLabel>
           <StyledFormControlShort
-            type="text"
-            placeholder="Wpisz temperature"
+            type="number"
+            placeholder="Wprowadź temperaturę"
             defaultValue={temp}
             onChange={(event) => setTemp(event.target.value)}
           />
@@ -133,8 +134,8 @@ const EditGlobalForm = (props) => {
         <Form.Group controlId="exampleStyledFormControlShortInput1">
           <StyledFormLabel>Wilgotność</StyledFormLabel>
           <StyledFormControlShort
-            type="text"
-            placeholder="Wpisz wilgotność"
+            type="number"
+            placeholder="Wprowadź wilgotność"
             defaultValue={wet}
             onChange={(event) => setWet(event.target.value)}
           />

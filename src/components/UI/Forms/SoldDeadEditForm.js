@@ -23,7 +23,7 @@ const SoldDeadEditForm = (props) => {
   const data = useMemo(
     () => ({
       pigSaleDate: date,
-      pigSellingCost: price,
+      pigSellingCost: Number(price),
     }),
     [date, price]
   );
@@ -79,8 +79,8 @@ const SoldDeadEditForm = (props) => {
             >
               <StyledFormLabel>Kwota sprzedaży</StyledFormLabel>
               <StyledFormControl
-                type="text"
-                placeholder="0"
+                type="number"
+                placeholder="Wprowadź cenę"
                 onChange={(event) => setPrice(event.target.value)}
                 defaultValue={price}
               />

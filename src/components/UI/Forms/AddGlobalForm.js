@@ -21,21 +21,21 @@ const AddGlobalForm = (props) => {
 
   const [date, setDate] = useState(defaultDate);
   const [hour, setHour] = useState(defaultDate);
-  const [nHThree, setNHThree] = useState("");
+  const [nHThree, setNHThree] = useState(0);
   const [hTwoS, setHTwoS] = useState("0");
-  const [cOTwo, setCOTwo] = useState("");
-  const [temperature, setTemperature] = useState("");
-  const [wetness, setWetness] = useState("");
+  const [cOTwo, setCOTwo] = useState(0);
+  const [temperature, setTemperature] = useState(0);
+  const [wetness, setWetness] = useState(0);
 
   const data = useMemo(
     () => ({
       measureDate: date,
       measureTime: hour.toString().substring(16, 31),
-      nhThree: nHThree,
-      hTwoS: hTwoS,
-      coTwo: cOTwo,
-      temperature: temperature,
-      wetness: wetness,
+      nhThree: Number(nHThree),
+      hTwoS: Number(hTwoS),
+      coTwo: Number(cOTwo),
+      temperature: Number(temperature),
+      wetness: Number(wetness)
     }),
     [date, hour, nHThree, hTwoS, cOTwo, temperature, wetness]
   );
@@ -75,9 +75,10 @@ const AddGlobalForm = (props) => {
         <Form.Group controlId="exampleForm.ControlInput1">
           <StyledFormLabel>NH3</StyledFormLabel>
           <StyledFormControlShort
-            type="text"
-            placeholder="Wpisz NH3"
+            type="number"
+            placeholder="Wprowadź NH3"
             onChange={(event) => setNHThree(event.target.value)}
+            defaultValue={nHThree}
           />
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlSelect1">
@@ -94,25 +95,28 @@ const AddGlobalForm = (props) => {
         <Form.Group controlId="exampleForm.ControlInput1">
           <StyledFormLabel>C02</StyledFormLabel>
           <StyledFormControlShort
-            type="text"
-            placeholder="Wpisz CO2"
+            type="number"
+            placeholder="Wprowadź CO2"
             onChange={(event) => setCOTwo(event.target.value)}
+            defaultValue={cOTwo}
           />
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlInput1">
           <StyledFormLabel>Temperatura</StyledFormLabel>
           <StyledFormControlShort
-            type="text"
-            placeholder="Wpisz temperature"
+            type="number"
+            placeholder="Wprowadź temperaturę"
             onChange={(event) => setTemperature(event.target.value)}
+            defaultValue={temperature}
           />
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlInput1">
           <StyledFormLabel>Wilgotność</StyledFormLabel>
           <StyledFormControlShort
-            type="text"
-            placeholder="Wpisz wilgotność"
+            type="number"
+            placeholder="Wprowadź wilgotność"
             onChange={(event) => setWetness(event.target.value)}
+            defaultValue={wetness}
           />
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlSelect1">

@@ -21,12 +21,12 @@ const SoldDeadForm = (props) => {
   let defaultDate = new Date();
 
   const [date, setDate] = useState(defaultDate);
-  const [price, setPrice] = useState("0");
+  const [price, setPrice] = useState(0);
   const [mode, setMode] = useState("dead");
 
   const data = useMemo(
     () => ({
-      pigDeathDate: date,
+      pigDeathDate: date
     }),
     [date]
   );
@@ -34,7 +34,7 @@ const SoldDeadForm = (props) => {
   const _data = useMemo(
     () => ({
       pigSaleDate: date,
-      pigSellingCost: price,
+      pigSellingCost: Number(price)
     }),
     [date, price]
   );
@@ -86,9 +86,10 @@ const SoldDeadForm = (props) => {
           <StyledSoldDeadPriceInput>
             <StyledFormLabel>Cena</StyledFormLabel>
             <StyledFormControl
-              type="text"
-              placeholder="0"
+              type="number"
+              placeholder="Wprowadź cenę"
               onChange={(event) => setPrice(event.target.value)}
+              defaultValue={price}
             />
           </StyledSoldDeadPriceInput>
         )}

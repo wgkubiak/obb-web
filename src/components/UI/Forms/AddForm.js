@@ -13,6 +13,7 @@ import {
   StyledHideButton,
   StyledSelect,
   StyledOption,
+  StyledErrorFigcaption
 } from "./../../../Styles";
 
 registerLocale("pl", pl);
@@ -22,7 +23,10 @@ const AddForm = (props) => {
   const [identifier, setIdentifier] = useState("");
   const [gender, setGender] = useState("Samiec");
   const [shoppingDate, setShoppingDate] = useState(defaultDate);
-  const [price, setPrice] = useState("0");
+  const [price, setPrice] = useState(0);
+  const [validationStyle, setValidationStyle] = useState({});
+  const [showError, setShowError] = useState(false);
+  const errorInfo = "Wprowadź ID jednostki";
 
   const data = useMemo(
     () => ({
@@ -30,7 +34,7 @@ const AddForm = (props) => {
       id: identifier,
       pigGender: gender === "Samiec" ? "m" : "f",
       pigShoppingDate: shoppingDate,
-      pigShoppingPrice: price,
+      pigShoppingPrice: Number(price)
     }),
     [props.id, identifier, gender, shoppingDate, price]
   );
@@ -39,7 +43,11 @@ const AddForm = (props) => {
     event.preventDefault();
     console.log(data);
 
-    fetch("http://obb-api.herokuapp.com/add-pig", {
+    if(data.id === "" || data.id === undefined || (data.id).length < 5) {
+      setValidationStyle({borderBottomColor: "#ff373b", color: "#ff373b"})
+      setShowError(true);
+    } else {
+      fetch("http://obb-api.herokuapp.com/add-pig", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +66,14 @@ const AddForm = (props) => {
     setTimeout(() => {
       props.reloadHandler();
     }, 500);
+    }
   };
+
+  const idHandler = event => {
+    setIdentifier(event.target.value);
+    setValidationStyle({borderBottomColor: "#30d158", color: ""})
+    setShowError(false);
+  }
 
   return (
     <StyledAddForm>
@@ -67,12 +82,19 @@ const AddForm = (props) => {
       </StyledHideButton>
       <Form>
         <StyledAddInputForm controlId="exampleStyledFormControlInput1">
-          <StyledFormLabel>ID</StyledFormLabel>
+        <StyledFormLabel>ID</StyledFormLabel>
+         <figure>
+         
           <StyledFormControl
             type="text"
-            placeholder="Wpisz ID jednostki"
-            onChange={(event) => setIdentifier(event.target.value)}
+            placeholder={errorInfo}
+            onChange={(event) => idHandler(event)}
+            style={validationStyle}
           />
+          {showError && (
+            <StyledErrorFigcaption>Zły typ danych</StyledErrorFigcaption>
+          )}
+         </figure>
         </StyledAddInputForm>
         <StyledAddInputForm controlId="exampleStyledFormControlSelect1">
           <StyledFormLabel>Płeć</StyledFormLabel>
@@ -87,9 +109,10 @@ const AddForm = (props) => {
         <StyledAddInputForm controlId="exampleStyledFormControlInput1">
           <StyledFormLabel>Cena</StyledFormLabel>
           <StyledFormControl
-            type="text"
-            placeholder="0"
+            type="number"
+            placeholder="Wprowadź cenę"
             onChange={(event) => setPrice(event.target.value)}
+            defaultValue={price}
           />
         </StyledAddInputForm>
         <StyledAddInputForm controlId="exampleStyledFormControlSelect1">

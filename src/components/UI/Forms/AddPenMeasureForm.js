@@ -21,7 +21,6 @@ const AddPenMeasureForm = (props) => {
 
   const [measureDate, setMeasureDate] = useState(defaultDate);
   const [measureTime, setMeasureTime] = useState(defaultDate);
-  //TODO: dosatron N/A at start, without changes
   const [dosatron, setDosatron] = useState(0);
   const [forage, setForage] = useState(0);
   const [forageQtyUsed, setForageQtyUsed] = useState(0);
@@ -34,10 +33,10 @@ const AddPenMeasureForm = (props) => {
       measureDate: measureDate,
       measureTime: measureTime.toString().substring(16, 31),
       breakdown: breaks,
-      dosatron: dosatron,
+      dosatron: Number(dosatron),
       addition: additions,
-      forage: forage,
-      forageQtyUsed: forageQtyUsed,
+      forage: Number(forage),
+      forageQtyUsed: Number(forageQtyUsed)
     }),
     [
       props.id,
@@ -134,19 +133,21 @@ const AddPenMeasureForm = (props) => {
         <Form.Group controlId="exampleStyledFormControlShortInput1">
           <StyledFormLabel>Ilość wprowadzona</StyledFormLabel>
           <StyledFormControlShort
-            type="text"
+            type="number"
             placeholder="Wpisz ilość"
             defaultValue={forage}
             onChange={(event) => setForage(event.target.value)}
+            defaultValue={forage}
           />
         </Form.Group>
         <Form.Group controlId="exampleStyledFormControlShortInput1">
           <StyledFormLabel>Pozostałe</StyledFormLabel>
           <StyledFormControlShort
-            type="text"
+            type="number"
             placeholder="Wpisz ilość"
             defaultValue={forageQtyUsed}
             onChange={(event) => setForageQtyUsed(event.target.value)}
+            defaultValue={forageQtyUsed}
           />
         </Form.Group>
       </Form>

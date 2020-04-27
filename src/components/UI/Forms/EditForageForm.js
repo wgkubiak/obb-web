@@ -39,8 +39,8 @@ const EditForageForm = (props) => {
   const data = useMemo(
     () => ({
       fgAbout: about,
-      fgQty: qty,
-      fgPrice: price,
+      fgQty: Number(qty),
+      fgPrice: Number(price),
       creationDate: creationDate,
       producer: producer,
       expiration: expirationDate,
@@ -110,8 +110,8 @@ const EditForageForm = (props) => {
         <Form.Group controlId="exampleStyledFormControlShortInput1">
           <StyledFormLabel>Ilość</StyledFormLabel>
           <StyledFormControlShort
-            type="text"
-            placeholder="Wpisz dodatki"
+            type="number"
+            placeholder="Wprowadź ilość"
             defaultValue={qty}
             onChange={(event) => setQty(event.target.value)}
           />
@@ -119,8 +119,8 @@ const EditForageForm = (props) => {
         <Form.Group controlId="exampleStyledFormControlShortInput1">
           <StyledFormLabel>Cena</StyledFormLabel>
           <StyledFormControlShort
-            type="text"
-            placeholder="Cena"
+            type="number"
+            placeholder="Wprowadź cenę"
             defaultValue={price}
             onChange={(event) => setPrice(event.target.value)}
           />
@@ -129,7 +129,7 @@ const EditForageForm = (props) => {
           <StyledFormLabel>Pozostałe</StyledFormLabel>
           <StyledFormControlShort
             type="text"
-            placeholder="Producent"
+            placeholder="Wpisz dane producenta"
             defaultValue={producer}
             onChange={(event) => setProducer(event.target.value)}
           />

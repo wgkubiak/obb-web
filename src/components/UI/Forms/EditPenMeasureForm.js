@@ -43,10 +43,10 @@ const EditPenMeasureForm = (props) => {
       measureDate: measureDate,
       measureTime: measureTime.toString().substring(16, 31),
       breakdown: breaks,
-      dosatron: dosatron,
+      dosatron: Number(dosatron),
       addition: additions,
-      forage: forage,
-      forageQtyUsed: forageQtyUsed,
+      forage: Number(forage),
+      forageQtyUsed: Number(forageQtyUsed),
     }),
     [
       measureDate,
@@ -138,9 +138,10 @@ const EditPenMeasureForm = (props) => {
             as="select"
             onChange={(event) => setDosatron(event.target.value)}
           >
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
+            <option value="">Bez zmian</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
           </StyledSelectShort>
         </Form.Group>
         <Form.Group controlId="exampleStyledFormControlShortInput1">
@@ -155,8 +156,8 @@ const EditPenMeasureForm = (props) => {
         <Form.Group controlId="exampleStyledFormControlShortInput1">
           <StyledFormLabel>Ilość wprowadzona</StyledFormLabel>
           <StyledFormControlShort
-            type="text"
-            placeholder="Wpisz ilość"
+            type="number"
+            placeholder="Wprowadź ilość"
             defaultValue={forage}
             onChange={(event) => setForage(event.target.value)}
           />
@@ -164,8 +165,8 @@ const EditPenMeasureForm = (props) => {
         <Form.Group controlId="exampleStyledFormControlShortInput1">
           <StyledFormLabel>Pozostałe</StyledFormLabel>
           <StyledFormControlShort
-            type="text"
-            placeholder="Wpisz ilość"
+            type="number"
+            placeholder="Wprowadź ilość"
             defaultValue={forageQtyUsed}
             onChange={(event) => setForageQtyUsed(event.target.value)}
           />

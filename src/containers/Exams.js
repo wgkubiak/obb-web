@@ -107,7 +107,7 @@ const Exams = (props) => {
             <>
               <ExamCard
                 examTitle="Odchody"
-                examAbout={data.feces || "N/A"}
+                examAbout={data.feces}
                 examInNorm={true}
               />
               <ExamCard
@@ -122,7 +122,7 @@ const Exams = (props) => {
               />
               <ExamCard
                 examTitle="Ilość"
-                examAbout={data.medicineQty || "N/A"}
+                examAbout={data.medicineQty}
                 examInNorm={true}
               />
               <ExamCard

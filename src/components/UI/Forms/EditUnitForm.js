@@ -11,7 +11,7 @@ import {
   StyledConfirmButton,
   StyledEditForm,
   StyledHideButton,
-  StyledEditInput,
+  StyledEditInput
 } from "./../../../Styles";
 
 registerLocale("pl", pl);
@@ -28,7 +28,7 @@ const EditUnitForm = (props) => {
       idPen: pen,
       pigGender: gender.toString() === "true" ? "m" : "f",
       pigShoppingDate: shoppingDate,
-      pigShoppingPrice: price,
+      pigShoppingPrice: Number(price)
     }),
     [pen, gender, shoppingDate, price]
   );
@@ -104,8 +104,8 @@ const EditUnitForm = (props) => {
         <StyledEditInput>
           <StyledFormLabel>Cena</StyledFormLabel>
           <StyledFormControl
-            type="text"
-            placeholder="0"
+            type="number"
+            placeholder="Wprowadź cenę"
             onChange={(event) => setPrice(event.target.value)}
             defaultValue={price}
           />

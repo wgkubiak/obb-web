@@ -247,9 +247,6 @@ const Units = (props, { initId = 1 }) => {
     setForageData(forageContainer.reverse());
     setForageOutData(forageOutContainer.reverse());
 
-    console.log(datesContainer);
-    console.log(forageContainer);
-    console.log(forageOutContainer);
     // TODO: make it a little bit better
     setTimeout(() => {
       setSorted(true);
@@ -303,7 +300,7 @@ const Units = (props, { initId = 1 }) => {
                 </StyledJumbotronParagraphs>
                 <StyledJumbotronParagraphs>
                   <span>
-                    Dozownik: {data.dosatron || "N/A"} Wprowadzono:{" "}
+                    Dozownik: {data.dosatron} Wprowadzono:{" "}
                     {data.forage || "0"} Pozostałe: {data.forageQtyUsed || "0"}
                   </span>
                 </StyledJumbotronParagraphs>
