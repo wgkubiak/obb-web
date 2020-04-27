@@ -5,6 +5,7 @@ import Units from "./containers/Units";
 import Global from "./containers/Global";
 import Sold from "./containers/Sold";
 import DeadUnits from "./containers/DeadUnits";
+import Water from "./containers/Water";
 import AddButton from "./components/UI/Buttons/AddButton";
 import Exams from "./containers/Exams";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -53,6 +54,10 @@ const App = () => {
         break;
       case "sold":
         setHeaderMode("Sprzedane");
+        hideButtonHandler();
+        break;
+      case "water":
+        setHeaderMode("Woda");
         hideButtonHandler();
         break;
       case "dead":
@@ -181,14 +186,10 @@ const App = () => {
             />
           </Route>
           <Route path="/water">
-            <Units
-              toggleExams={toggleExams}
-              setUnitID={setUnit}
-              reloadHandler={reloadHandler}
-              reload={reload}
-              showAddForm={showAddForm}
-              hideAddForm={hideAddForm}
-              headerHandler={headerHandler}
+            <Water
+               reloadHandler={reloadHandler}
+               reload={reload}
+               headerHandler={headerHandler}
             />
           </Route>
           <Route path="/sold">

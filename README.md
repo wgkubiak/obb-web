@@ -1,8 +1,7 @@
 ## OBB-WEB 
 
 ### TODO <name [how hard it is]>:
-* Switch between forms [2]
-* Data validation (forms) [3]
+* Switch between forms / hide them [2]
 
 * Water:
     * Show data [3]

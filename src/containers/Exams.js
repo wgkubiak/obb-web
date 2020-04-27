@@ -265,6 +265,18 @@ const Exams = (props) => {
             );
           })}
           {showAddForm && (
+            <button
+            style={{
+              position: "relative",
+              border: "1px solid #424242",
+              width: "auto",
+            }}
+            onClick={showAddHandler}
+          >
+            Schowaj
+          </button>
+          )}
+          {showAddForm && (
             <AddExamForm id={props.unitID} reloadHandler={reloadHandler} toggleAddHandler={showAddHandler}/>
           )}
         <h1 style={{ display: "none" }}>{reload.toString()}</h1>

@@ -294,9 +294,16 @@ export const StyledJumbotronParagraphs = styled.p`
 `;
 
 export const StyledButtonNextPrev = styled.button`
-  background-color: #424242;
+  background-color: transparent;
   border: none;
   box-shadow: none;
+  border-radius: 0.1em;
+  border: 1px solid transparent;
+
+  &:hover {
+    background-color: #424242;
+    border: 1px solid #ffffff;
+  }
 `;
 
 export const StyledButton = styled(Button)`
@@ -472,7 +479,7 @@ export const StyledEditForm = styled.div`
   padding-top: 1em;
   width: 20em;
   height: auto;
-  z-index: 2;
+  z-index: 400;
   position: fixed;
   background-color: #424242;
   color: rgba(255, 255, 255, 0.87);
@@ -589,6 +596,7 @@ export const StyledAddForm = styled.div`
   position: fixed;
   width: 20em;
   height: auto;
+  z-index: 400;
   left: 0;
   right: 0;
   top: 20%;
@@ -908,6 +916,7 @@ export const StyledJumbotronMainContainer = styled.div`
   width: 100%;
   position: relative;
   height: auto;
+  z-index: 20;
   display: flex;
   flex-direction: row;
   align-content: right;
