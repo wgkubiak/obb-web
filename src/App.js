@@ -32,8 +32,9 @@ import {
 
 const App = () => {
   const history = useHistory();
+  const log = localStorage.getItem("token") ? true : false;
 
-  const [logIn, setLogIn] = useState(localStorage.getItem("login"));
+  const [logIn, setLogIn] = useState(log);
 
   const [showExams, setShowExams] = useState(false);
 

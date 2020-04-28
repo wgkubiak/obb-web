@@ -65,11 +65,11 @@ const LoginScreen = props => {
             .then((data) => {
                 if(data.token) {
                   localStorage.setItem("token", data.token);
-                  localStorage.setItem("login", true);
+
                   props.routeHandler();
                   props.loginHandler();
                 } else {
-                  alert("Złe dane")
+                  alert("Wprowadzono błędne dane. Spróbuj ponownie.")
                 }
             })
             .catch((error) => {
