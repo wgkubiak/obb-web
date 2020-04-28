@@ -48,7 +48,7 @@ const SoldDeadEditForm = (props) => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
+          "Authorization": `${token}`
         },
         body:
           props.mode === "sold" ? JSON.stringify(data) : JSON.stringify(_data),

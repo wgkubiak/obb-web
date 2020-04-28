@@ -53,12 +53,10 @@ const Global = (props) => {
 
   useEffect(() => {
     setShowChart(false);
-    console.log("sorted: ", sorted);
     getData();
     getUnlimitedData();
     sortData();
     setShowChart(sorted);
-    console.log("sorted: ", sorted);
     props.headerHandler("global");
   }, [props.reload, sorted]);
 
@@ -107,7 +105,6 @@ const Global = (props) => {
     // TODO: make it a little bit better
     setTimeout(() => {
       setSorted(true);
-      console.log(sorted);
     }, 2000);
   };
 

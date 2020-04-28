@@ -47,7 +47,7 @@ const SoldDeadForm = (props) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
+        "Authorization": `${token}`
       },
       body: mode === "dead" ? JSON.stringify(data) : JSON.stringify(_data),
     })

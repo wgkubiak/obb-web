@@ -64,7 +64,7 @@ const EditPenMeasureForm = (props) => {
     fetch(`https://obb-api.herokuapp.com/delete-pen-measure/${props.id}`, {
       method: "DELETE",
       headers: {
-        "Authorization": `Bearer ${token}`
+        "Authorization": `${token}`
       }
     })
       .then(handleModalClose())
@@ -84,7 +84,7 @@ const EditPenMeasureForm = (props) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
+        "Authorization": `${token}`
       },
       body: JSON.stringify(data),
     })

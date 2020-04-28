@@ -53,7 +53,7 @@ const Exams = (props) => {
     fetch(`https://obb-api.herokuapp.com/delete-exam/${id}`, {
       method: "DELETE",
       headers: {
-        "Authorization": `Bearer ${token}`
+        "Authorization": `${token}`
       }
     })
       .then(handleModalClose())

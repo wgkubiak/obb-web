@@ -56,7 +56,7 @@ const EditGlobalForm = (props) => {
     fetch(`https://obb-api.herokuapp.com/delete-global/${props.id}`, {
       method: "DELETE",
       headers: {
-        "Authorization": `Bearer ${token}`
+        "Authorization": `${token}`
       }
     })
       .then(handleModalClose())
@@ -74,7 +74,7 @@ const EditGlobalForm = (props) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
+        "Authorization": `${token}`
       },
       body: JSON.stringify(data),
     })

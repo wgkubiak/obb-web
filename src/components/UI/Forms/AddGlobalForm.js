@@ -48,13 +48,14 @@ const AddGlobalForm = (props) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
+        "Authorization": `${token}`
       },
       body: JSON.stringify(data),
+      token: token
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
+       console.log("Success:", data);
       })
       .then(props.showAddGlobalHandler())
       .catch((error) => {

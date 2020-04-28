@@ -22,7 +22,7 @@ const DeleteButton = (props) => {
     fetch(`${props.url}${props.id}`, {
       method: "DELETE",
       headers: {
-        "Authorization": `Bearer ${token}`
+        "Authorization": `${token}`
       }
     })
       .then(handleModalClose())

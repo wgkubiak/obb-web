@@ -53,7 +53,7 @@ const EditForageForm = (props) => {
     fetch(`https://obb-api.herokuapp.com/delete-forage/${props.id}`, {
       method: "DELETE",
       headers: {
-        "Authorization": `Bearer ${token}`
+        "Authorization": `${token}`
       }
     })
       .then(handleModalClose())
@@ -72,7 +72,7 @@ const EditForageForm = (props) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
+        "Authorization": `${token}`
       },
       body: JSON.stringify(data),
     })
