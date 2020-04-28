@@ -17,10 +17,13 @@ const DeleteButton = (props) => {
 
   const handleModalClose = () => setShowModal(false);
   const handleModalShow = () => setShowModal(true);
-
+  const token = localStorage.getItem("token");
   const remove = () => {
     fetch(`${props.url}${props.id}`, {
       method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
     })
       .then(handleModalClose())
       .then(props.deleteInfoHandler());

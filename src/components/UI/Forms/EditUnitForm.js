@@ -43,7 +43,7 @@ const EditUnitForm = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log(data);
+    const token = localStorage.getItem("token");
 
     fetch(
       `http://obb-api.herokuapp.com/edit-pig/${props.idPig.replace(/ /g, "")}`,
@@ -51,6 +51,7 @@ const EditUnitForm = (props) => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify(data),
       }

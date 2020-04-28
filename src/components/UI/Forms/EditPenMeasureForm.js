@@ -60,8 +60,12 @@ const EditPenMeasureForm = (props) => {
   );
 
   const remove = () => {
+    const token = localStorage("token")
     fetch(`https://obb-api.herokuapp.com/delete-pen-measure/${props.id}`, {
       method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
     })
       .then(handleModalClose())
       .then(props.toggleEditHandler());
@@ -74,12 +78,13 @@ const EditPenMeasureForm = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log(data);
+    const token = localStorage.getItem("token");
 
     fetch(`http://obb-api.herokuapp.com/edit-pen-measure/${props.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify(data),
     })

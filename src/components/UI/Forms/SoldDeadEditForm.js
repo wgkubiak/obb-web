@@ -37,7 +37,7 @@ const SoldDeadEditForm = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log(data);
+    const token = localStorage.getItem("token");
 
     fetch(
       `http://obb-api.herokuapp.com/pig-${props.mode}/${props.id.replace(
@@ -48,6 +48,7 @@ const SoldDeadEditForm = (props) => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
         },
         body:
           props.mode === "sold" ? JSON.stringify(data) : JSON.stringify(_data),

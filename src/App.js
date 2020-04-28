@@ -175,15 +175,14 @@ const App = () => {
                   <StyledFigcaption>Zgon</StyledFigcaption>
                 </StyledListGroupItem>
               </NavLink>
-             <NavLink to="/" onClick={() => logoutHandler()}>
-             <StyledListGroupItem style={{position: "absolute", width: "100%", bottom: "0%"}}>
+      {/* TODO: Position it to make it visible */}
+            </StyledListGroup>
+            <StyledListGroupItem style={{position: "absolute", zIndex: "500", bottom: "0%", left: "0%", width: "100%"}} onClick={() => logoutHandler()} style={{position: "absolute", width: "100%", height: "auto", bottom: "0%"}}>
                 <StyledFigure>
                   <RiLogoutBoxLine style={{color: "white"}} size={24}/>
                 </StyledFigure>
                 <StyledFigcaption>Wyloguj</StyledFigcaption>
-              </StyledListGroupItem>
-             </NavLink>
-            </StyledListGroup>
+            </StyledListGroupItem>
           </StyledHeader>
           
           <Route exact path="/">

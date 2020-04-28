@@ -41,12 +41,13 @@ const SoldDeadForm = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log(`MODE: ${mode}, DEATH/SOLD DATE: ${date}, PRICE: ${price}`);
+    const token = localStorage.getItem("token");
 
     fetch(`http://obb-api.herokuapp.com/pig-${mode}/${props.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
       },
       body: mode === "dead" ? JSON.stringify(data) : JSON.stringify(_data),
     })

@@ -49,8 +49,12 @@ const Exams = (props) => {
   };
 
   const remove = id => {
+    const token = localStorage.getItem("token");
     fetch(`https://obb-api.herokuapp.com/delete-exam/${id}`, {
       method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
     })
       .then(handleModalClose())
 

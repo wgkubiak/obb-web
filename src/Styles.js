@@ -138,6 +138,7 @@ export const StyledListGroup = styled(ListGroup)`
   top: 0%;
   position: relative;
   width: auto;
+  height: auto;
 `;
 
 export const StyledListGroupItem = styled(ListGroup.Item)`

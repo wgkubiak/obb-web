@@ -49,8 +49,12 @@ const EditForageForm = (props) => {
   );
 
   const remove = () => {
+    const token = localStorage.getItem("token");
     fetch(`https://obb-api.herokuapp.com/delete-forage/${props.id}`, {
       method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
     })
       .then(handleModalClose())
       .then(props.toggleEditHandler());
@@ -62,12 +66,13 @@ const EditForageForm = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log(data);
+    const token = localStorage.getItem("token");
 
     fetch(`http://obb-api.herokuapp.com/edit-forage/${props.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify(data),
     })

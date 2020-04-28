@@ -41,7 +41,7 @@ const AddForm = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log(data);
+    const token = localStorage.token;
 
     if(data.id === "" || data.id === undefined || (data.id).length < 5) {
       setValidationStyle({borderBottomColor: "#ff373b", color: "#ff373b"})
@@ -51,6 +51,7 @@ const AddForm = (props) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify(data),
     })
