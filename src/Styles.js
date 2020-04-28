@@ -149,7 +149,7 @@ export const StyledListGroupItem = styled(ListGroup.Item)`
 `;
 
 export const StyledFigcaption = styled.figcaption`
-  fontsize: calc(0.8vw + 0.2vh);
+  font-size: calc(1vw + 0.2vh);
   color: rgba(255, 255, 255, 0.87);
   font-family: "Roboto", sans-serif;
   font-weight: 400;

@@ -50,8 +50,7 @@ const AddGlobalForm = (props) => {
         "Content-Type": "application/json",
         "Authorization": `${token}`
       },
-      body: JSON.stringify(data),
-      token: token
+      body: JSON.stringify(data)
     })
       .then((response) => response.json())
       .then((data) => {

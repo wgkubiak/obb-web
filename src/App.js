@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import { useHistory, BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import {RiLogoutBoxLine} from "react-icons/ri";
 import LoginScreen from "./containers/LoginScreen";
 import Units from "./containers/Units";
@@ -31,7 +31,10 @@ import {
 } from "./Styles";
 
 const App = () => {
-  const [logIn, setLogIn] = useState(false);
+  const history = useHistory();
+
+  const [logIn, setLogIn] = useState(localStorage.getItem("login"));
+
   const [showExams, setShowExams] = useState(false);
 
   const [showAddButton, setShowAddButton] = useState(true);
@@ -43,6 +46,8 @@ const App = () => {
 
   const [headerMode, setHeaderMode] = useState("Kojec | 1");
   const [showAddForm, setShowAddForm] = useState(false);
+
+  const routeToMainSite = () => history.push('/');
 
   const headerHandler = (mode, unit) => {
     switch (mode) {
@@ -111,7 +116,7 @@ const App = () => {
 
   return (
     <StyledApp className="app">
-      {!logIn && <LoginScreen loginHandler={loginHandler}/>}
+      {!logIn && <LoginScreen loginHandler={loginHandler} routeHandler={routeToMainSite}/>}
       {showAddButton && logIn && <AddButton toggleHandler={toggleAddForm} />}
       {logIn && (
         <StyledDivTop>
@@ -175,14 +180,16 @@ const App = () => {
                   <StyledFigcaption>Zgon</StyledFigcaption>
                 </StyledListGroupItem>
               </NavLink>
-      {/* TODO: Position it to make it visible */}
+             <NavLink to="/login">
+              <StyledListGroupItem onClick={() => logoutHandler()} style={{marginTop: "1em"}}>
+                  <StyledFigure>
+                    <RiLogoutBoxLine style={{color: "white"}} size={24}/>
+                  </StyledFigure>
+                  <StyledFigcaption>Wyloguj</StyledFigcaption>
+                </StyledListGroupItem>
+             </NavLink>
             </StyledListGroup>
-            <StyledListGroupItem style={{position: "absolute", zIndex: "500", bottom: "0%", left: "0%", width: "100%"}} onClick={() => logoutHandler()} style={{position: "absolute", width: "100%", height: "auto", bottom: "0%"}}>
-                <StyledFigure>
-                  <RiLogoutBoxLine style={{color: "white"}} size={24}/>
-                </StyledFigure>
-                <StyledFigcaption>Wyloguj</StyledFigcaption>
-            </StyledListGroupItem>
+            
           </StyledHeader>
           
           <Route exact path="/">
@@ -232,6 +239,9 @@ const App = () => {
               headerHandler={headerHandler}
               unitsModeHandler={setUnitsMode}
             />
+          </Route>
+          <Route path="/login">
+            <LoginScreen loginHandler={loginHandler}/>
           </Route>
         </Router>
       </div>

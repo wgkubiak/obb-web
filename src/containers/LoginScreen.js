@@ -65,6 +65,8 @@ const LoginScreen = props => {
             .then((data) => {
                 if(data.token) {
                   localStorage.setItem("token", data.token);
+                  localStorage.setItem("login", true);
+                  props.routeHandler();
                   props.loginHandler();
                 } else {
                   alert("Złe dane")
@@ -95,8 +97,7 @@ const LoginScreen = props => {
                     onChange={(event) => setPassword(event.target.value)}
                 />
             </StyledEditExamInput>
-            {/* <Button variant="success" style={{ marginTop: "1em" }} onClick={submitHandler}>Stwórz</Button> */}
-            <Button variant="success" style={{ marginTop: "1em" }} onClick={submitLoginHandler}>Loguj</Button>
+            <Button variant="success" style={{ marginTop: "1em", marginBottom: "0", width: "60%" }} onClick={submitLoginHandler}>Dalej</Button>
         </div>
     )
 }
