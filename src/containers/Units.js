@@ -76,7 +76,6 @@ const Units = (props, { initId = 1 }) => {
     await fetch(`${url}${id}`)
       .then((res) => res.json())
       .then((res) => func(res))
-      .then((res) => console.log(res.id))
       .catch((e) => e);
   };
 
@@ -103,10 +102,6 @@ const Units = (props, { initId = 1 }) => {
 
     props.headerHandler("standard", id);
 
-    // ArrowKeysReact.config({
-    //   left: () => idDecrease(),
-    //   right: () => idIncrease(),
-    // });
   }, [id, props.reload, sorted]);
 
   useEffect(() => {
@@ -394,17 +389,17 @@ const Units = (props, { initId = 1 }) => {
           <StyledJumbotronGenerateHeader>
             Wygeneruj raport w formie PDF
           </StyledJumbotronGenerateHeader>
-          {
-            <GeneratePDF
+           {sorted && (
+             <>
+ <GeneratePDF
               header={[
-                "Kojec",
-                "Data",
+                "Data pomiaru",
                 "Godz",
-                "Awarie",
+                "Awaria",
                 "Dozownik",
                 "Dodatki",
                 "Wklad",
-                "Pozostale",
+                "Pozostale"
               ]}
               fileheader="Raport pomiarow kojca"
               mode="pen-measures"
@@ -415,17 +410,15 @@ const Units = (props, { initId = 1 }) => {
                 .substring(0, 10)
                 .replace(/\s/g, "")}`}
             />
-          }
-          {
             <GeneratePDF
               header={[
                 "Kojec",
-                "Data zak.",
-                "Data waz.",
-                "Producent",
-                "Ilosc",
+                "Info",
+                "Qty",
                 "Cena",
-                "Wiecej info.",
+                "Stworzenie",
+                "Producent",
+                "Waznosc"
               ]}
               fileheader="Raport paszy"
               mode="forage"
@@ -436,7 +429,8 @@ const Units = (props, { initId = 1 }) => {
                 .substring(0, 10)
                 .replace(/\s/g, "")}`}
             />
-          }
+             </>
+           )}
         </StyledJumbotronWhite>
       </div>
       <StyledUnitsTable>

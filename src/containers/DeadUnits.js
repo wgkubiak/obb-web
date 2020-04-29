@@ -161,12 +161,12 @@ const DeadUnits = (props) => {
           {showTable && (
             <GeneratePDF
               header={[
-                "Data zgonu",
-                "Kojec",
+                "Nr",
                 "ID",
                 "Plec",
                 "Data zakupu",
                 "Cena",
+                "Data zgonu"
               ]}
               text="Wygeneruj raport PDF"
               fileheader="Raport zgonow"

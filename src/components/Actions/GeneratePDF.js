@@ -1,11 +1,36 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import jsPDF from "jspdf";
 import GenerateButton from "../UI/Buttons/GenerateButton";
 import "jspdf-autotable";
 
 const GeneratePDF = (props) => {
-  //TODO: Replace polish signs
-  const generatePDF = () => {
+  const [data, setData] = useState([]);
+  const [sorted, setSorted] = useState(false);
+
+  const sort = d => {
+    const _data = [];
+    const _arr = [];
+
+    Object.keys(d).forEach((key) => {
+      _data.push(d[key]);
+    })
+
+    _data.forEach((elem) => {
+      _arr.push(Object.values(elem));
+    })
+
+    setData(_arr);
+    setSorted(true);
+  }
+
+
+  useEffect(() => {
+    sort(props.unlData);
+    console.log(data);
+  }, [sorted]);
+
+  const generatePDF = (event) => {
+    event.preventDefault();
     let doc;
 
     if (props.mode === "exams") {
@@ -18,83 +43,7 @@ const GeneratePDF = (props) => {
     doc.autoTable({
       startY: 25,
       head: [props.header],
-      columnStyles: {
-        Rezultat: { cellWidth: 100 },
-        Zmiany: { cellWidth: 80 },
-        Awarie: { cellWidth: 40 },
-      },
-      body: props.unlData.map((data) => {
-        if (props.mode === "global") {
-          return [
-            `${data.id}`,
-            `${data.measureDate.substring(0, 10)}`,
-            `${data.measureTime}`,
-            `${data.nhThree}`,
-            `${data.hTwoS}`,
-            `${data.coTwo}`,
-            `${data.temperature}`,
-            `${data.wetness}`,
-          ];
-        } else if (props.mode === "sold") {
-          return [
-            `${data.pigSaleDate.substring(0, 10)}`,
-            `${data.pigSellingCost}`,
-            `${data.pigShoppingDate.substring(0, 10)}`,
-            `${data.pigShoppingPrice}`,
-            `${data.id}`,
-            `${data.pigGender === "m" ? "Samiec" : "Samica"}`,
-            `${data.idPen}`,
-          ];
-        } else if (props.mode === "pen-measures") {
-          return [
-            `${data.idPen}`,
-            `${data.measureDate.substring(0, 10)}`,
-            `${data.measureTime}`,
-            `${data.breakdown}`,
-            `${data.dosatron}`,
-            `${data.addition}`,
-            `${data.forage}`,
-            `${data.forageQtyUsed}`,
-          ];
-        } else if (props.mode === "forage") {
-          return [
-            `${data.idPen}`,
-            `${data.creationDate.substring(0, 10)}`,
-            `${data.expiration.substring(0, 10)}`,
-            `${data.producer}`,
-            `${data.fgQty}`,
-            `${data.fgPrice}`,
-            `${data.fgAbout}`,
-          ];
-        } else if (props.mode === "exams") {
-          return [
-            `${data.id}`,
-            `${data.exDate.substring(0, 10)}`,
-            `${data.exTime}`,
-            `${data.feces}`,
-            `${data.tissue}`,
-            `${data.exResult}`,
-            `${data.medicine}`,
-            `${data.medicineQty}`,
-            `${data.medicineType}`,
-            `${data.diarrhea}`,
-            `${data.pigWeight}`,
-            `${data.temperature}`,
-            `${data.lameness}`,
-            `${data.respiratorySys}`,
-            `${data.skinChanges}`,
-          ];
-        } else {
-          return [
-            `${data.pigDeathDate.substring(0, 10)}`,
-            `${data.idPen}`,
-            `${data.id}`,
-            `${data.pigGender === "m" ? "Samiec" : "Samica"}`,
-            `${data.pigShoppingDate.substring(0, 10)}`,
-            `${data.pigShoppingPrice}`,
-          ];
-        }
-      }),
+      body: data
     });
 
     doc.save(`${props.filename}.pdf`);

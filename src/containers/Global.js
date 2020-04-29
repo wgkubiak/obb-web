@@ -173,7 +173,7 @@ const Global = (props) => {
         {sorted && (
           <GeneratePDF
             text="Wygeneruj raport PDF"
-            header={["ID", "Data", "Godz", "NH3", "H2S", "CO2", "Temp", "Wilg"]}
+            header={["Data", "Godz", "NH3", "H2S", "CO2", "Temp", "Wilg"]}
             fileheader="Raport globalnych pomiarow"
             mode="global"
             unlData={unlData}

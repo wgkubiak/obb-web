@@ -29,8 +29,10 @@ const Exams = (props) => {
   const [reload, setReload] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
+  const [sorted, setSorted] = useState(false);
   const handleModalClose = () => setShowModal(false);
   const handleModalShow = () => setShowModal(true);
+  
 
   const getData = async (id, func, url) => {
     await fetch(`http://obb-api.herokuapp.com/exams-latest/${props.unitID}`)
@@ -64,8 +66,13 @@ const Exams = (props) => {
   };
 
   useEffect(() => {
+    setSorted(false);
     getData();
     getUnlimitedData();
+
+    setTimeout(() => {
+      setSorted(true);
+    }, 3000);
   }, [reload]);
 
   const showEditHandler = () => {
@@ -190,10 +197,16 @@ const Exams = (props) => {
               </Button>
             </>
           )}
-          <GeneratePDF
+          {props.unitsMode && (
+            <Button variant="success" className="buttons-button" onClick={handleModalShow}>
+              <StyledExamDeleteIcon size={32} />
+            </Button>
+          )}
+         {
+           sorted && (
+            <GeneratePDF
             text="Wygeneruj raport PDF"
             header={[
-              "ID",
               "Data",
               "Godz",
               "Odch",
@@ -216,11 +229,8 @@ const Exams = (props) => {
               props.unitID
             }-${new Date().toString().substring(0, 10).replace(/\s/g, "")}`}
           />
-          {props.unitsMode && (
-            <Button variant="success" className="buttons-button" onClick={handleModalShow}>
-              <StyledExamDeleteIcon size={32} />
-            </Button>
-          )}
+           )
+         }
            <StyledModalContent show={showModal} onHide={handleModalClose}>
           <StyledModalHeader>
             <Modal.Title>Czy jesteś pewna/y?!</Modal.Title>

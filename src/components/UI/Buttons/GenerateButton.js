@@ -10,7 +10,7 @@ const GenerateButton = (props) => {
   return (
     <>
       {!mode && (
-        <StyledGenerateButton onClick={props.generatePDF}>
+        <StyledGenerateButton onClick={(event) => props.generatePDF(event)}>
           {props.text}
         </StyledGenerateButton>
       )}
@@ -18,7 +18,7 @@ const GenerateButton = (props) => {
         <Button
           variant="success"
           className="buttons-button"
-          onClick={props.generatePDF}
+          onClick={(event) => props.generatePDF(event)}
         >
           <StyledExamDownloadIcon size={32} />
         </Button>
