@@ -101,7 +101,6 @@ const Units = (props, { initId = 1 }) => {
     sortData();
 
     props.headerHandler("standard", id);
-
   }, [id, props.reload, sorted]);
 
   useEffect(() => {
@@ -261,7 +260,12 @@ const Units = (props, { initId = 1 }) => {
 
   return (
     <StyledUnitsContainer {...ArrowKeysReact.events} tabIndex="1">
-      <div>
+      <div
+        style={{
+          borderBottom: "1px solid rgba(255, 255, 255, 0.37)",
+          paddingBottom: "1em",
+        }}
+      >
         <StyledButton onClick={idDecrease}>&larr;</StyledButton>
         <StyledButton onClick={idIncrease}>&rarr;</StyledButton>
       </div>
@@ -295,8 +299,8 @@ const Units = (props, { initId = 1 }) => {
                 </StyledJumbotronParagraphs>
                 <StyledJumbotronParagraphs>
                   <span>
-                    Dozownik: {data.dosatron} Wprowadzono:{" "}
-                    {data.forage || "0"} Pozostałe: {data.forageQtyUsed || "0"}
+                    Dozownik: {data.dosatron} Wprowadzono: {data.forage || "0"}{" "}
+                    Zużyte: {data.forageQtyUsed || "0"}
                   </span>
                 </StyledJumbotronParagraphs>
                 <StyledJumbotronParagraphs>
@@ -310,7 +314,7 @@ const Units = (props, { initId = 1 }) => {
           </Container>
         </StyledJumbotron>
         {!showChart && (
-          <StyledUnitSpinnerButton disabled>
+          <StyledUnitSpinnerButton style={{height: "50%"}} disabled>
             <Spinner
               as="span"
               animation="grow"
@@ -327,7 +331,7 @@ const Units = (props, { initId = 1 }) => {
             chartID="global-chart"
             mode="line"
             chartLabel="Wprowadzone"
-            chartLabel2="Pozostałe"
+            chartLabel2="Zużyte"
             miny={0}
             maxy={200}
             dates={datesData}
@@ -345,6 +349,8 @@ const Units = (props, { initId = 1 }) => {
           flexDirection: "row",
           width: "100%",
           height: "auto",
+          borderBottom: "1px solid rgba(255, 255, 255, 0.37)", 
+          paddingBottom: "1em"
         }}
       >
         <StyledJumbotron fluid>
@@ -389,48 +395,48 @@ const Units = (props, { initId = 1 }) => {
           <StyledJumbotronGenerateHeader>
             Wygeneruj raport w formie PDF
           </StyledJumbotronGenerateHeader>
-           {sorted && (
-             <>
- <GeneratePDF
-              header={[
-                "Data pomiaru",
-                "Godz",
-                "Awaria",
-                "Dozownik",
-                "Dodatki",
-                "Wklad",
-                "Pozostale"
-              ]}
-              fileheader="Raport pomiarow kojca"
-              mode="pen-measures"
-              unlData={dataPensUnlimited}
-              text="Pomiary kojców"
-              filename={`RaportPomiarowKojcaNr${id}-${new Date()
-                .toString()
-                .substring(0, 10)
-                .replace(/\s/g, "")}`}
-            />
-            <GeneratePDF
-              header={[
-                "Kojec",
-                "Info",
-                "Qty",
-                "Cena",
-                "Stworzenie",
-                "Producent",
-                "Waznosc"
-              ]}
-              fileheader="Raport paszy"
-              mode="forage"
-              text="Pasza"
-              unlData={forageDataUnlimited}
-              filename={`RaportPaszyKojcaNr${id}-${new Date()
-                .toString()
-                .substring(0, 10)
-                .replace(/\s/g, "")}`}
-            />
-             </>
-           )}
+          {sorted && (
+            <>
+              <GeneratePDF
+                header={[
+                  "Data pomiaru",
+                  "Godz",
+                  "Awaria",
+                  "Dozownik",
+                  "Dodatki",
+                  "Wklad",
+                  "Pozostale",
+                ]}
+                fileheader="Raport pomiarow kojca"
+                mode="pen-measures"
+                unlData={dataPensUnlimited}
+                text="Pomiary kojców"
+                filename={`RaportPomiarowKojcaNr${id}-${new Date()
+                  .toString()
+                  .substring(0, 10)
+                  .replace(/\s/g, "")}`}
+              />
+              <GeneratePDF
+                header={[
+                  "Kojec",
+                  "Info",
+                  "Qty",
+                  "Cena",
+                  "Stworzenie",
+                  "Producent",
+                  "Waznosc",
+                ]}
+                fileheader="Raport paszy"
+                mode="forage"
+                text="Pasza"
+                unlData={forageDataUnlimited}
+                filename={`RaportPaszyKojcaNr${id}-${new Date()
+                  .toString()
+                  .substring(0, 10)
+                  .replace(/\s/g, "")}`}
+              />
+            </>
+          )}
         </StyledJumbotronWhite>
       </div>
       <StyledUnitsTable>

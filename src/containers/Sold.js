@@ -26,7 +26,6 @@ const DeadUnits = (props) => {
   const [showSpinner, setShowSpinner] = useState(true);
   const [showNoDataInfo, setShowNoDataInfo] = useState(false);
   const [currentSearch, setCurrentSearch] = useState("");
-  const [forageDataUnlimited, setForageDataUnlimited] = useState([]);
 
   const getData = () => {
     fetch(`https://obb-api.herokuapp.com/sold-pigs-limited`)
@@ -39,12 +38,6 @@ const DeadUnits = (props) => {
     fetch(`https://obb-api.herokuapp.com/sold-pigs`)
       .then((res) => res.json())
       .then((res) => setUnlimitedData(res))
-      .catch((e) => e);
-  };
-  const _getData = async () => {
-    await fetch(`https://obb-api.herokuapp.com/forage/1`)
-      .then((res) => res.json())
-      .then((res) => setForageDataUnlimited(res))
       .catch((e) => e);
   };
 
@@ -93,7 +86,6 @@ const DeadUnits = (props) => {
   useEffect(() => {
     getData();
     getUnlimitedData();
-    _getData();
 
     props.headerHandler("sold");
     showHandler();
@@ -177,7 +169,6 @@ const DeadUnits = (props) => {
             />
           )}
           {showTable && (
-            <>
             <GeneratePDF
               header={[
                 "Nr",
@@ -197,27 +188,6 @@ const DeadUnits = (props) => {
                 .substring(0, 10)
                 .replace(/\s/g, "")}`}
             />
-            <GeneratePDF
-              header={[
-                "Kojec",
-                "Info",
-                "Qty",
-                "Cena",
-                "Stworzenie",
-                "Producent",
-                "Waznosc"
-              ]}
-              fileheader="Raport paszy"
-              mode="forage"
-              text="Pasza"
-              unlData={forageDataUnlimited}
-              filename={`RaportPaszyKojcaNr1-${new Date()
-                .toString()
-                .substring(0, 10)
-                .replace(/\s/g, "")}`}
-            />
-            </>
-            
           )}
         </StyledUnitsTable>
       )}

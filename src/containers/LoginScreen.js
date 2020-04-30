@@ -1,10 +1,11 @@
 import React, { useState, useMemo } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { StyledEditExamInput, StyledFormLabel, StyledFormControl, StyledHeaderH2 } from "./../Styles";
 
 const LoginScreen = props => {
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const data = useMemo(
         () => ({
@@ -53,6 +54,7 @@ const LoginScreen = props => {
 
     const submitLoginHandler = (event) => {
         event.preventDefault();
+        setLoading(true);
 
         fetch(`http://obb-api.herokuapp.com/login`, {
             method: "POST",
@@ -65,11 +67,12 @@ const LoginScreen = props => {
             .then((data) => {
                 if(data.token) {
                   localStorage.setItem("token", data.token);
-
                   props.routeHandler();
                   props.loginHandler();
+                  setLoading(false);
                 } else {
-                  alert("Wprowadzono błędne dane. Spróbuj ponownie.")
+                  alert("Wprowadzono błędne dane. Spróbuj ponownie.");
+                  setLoading(false);
                 }
             })
             .catch((error) => {
@@ -97,7 +100,12 @@ const LoginScreen = props => {
                     onChange={(event) => setPassword(event.target.value)}
                 />
             </StyledEditExamInput>
-            <Button variant="success" style={{ marginTop: "1em", marginBottom: "0", width: "60%" }} onClick={submitLoginHandler}>Dalej</Button>
+            {!loading && (
+                <Button variant="success" style={{ marginTop: "1em", marginBottom: "0", width: "60%" }} onClick={submitLoginHandler}>Dalej</Button>
+            )}
+            {loading && (
+                <Spinner animation="border" variant="success" />
+            )}
         </div>
     )
 }

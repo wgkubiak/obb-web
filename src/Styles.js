@@ -82,6 +82,7 @@ export const StyledGlobal = createGlobalStyle`
     width: 49%;
     margin-top: 1em !important;
     margin-left: 1%;
+    margin-bottom: 1em;
   };
   .chartjs-render-monitor {
     margin-top: 0
@@ -264,7 +265,7 @@ export const StyledJumbotron = styled(Jumbotron)`
   margin-right: 1%;
   border-radius: 0.3em;
   padding: 1em;
-  margin-bottom: 0em;
+  margin-bottom: 1em;
 `;
 
 export const StyledJumbotronWhite = styled(Jumbotron)`
@@ -334,7 +335,6 @@ export const StyledUnitsContainer = styled.div`
 
 export const StyledUnitsTable = styled.div`
   position: relative;
-  top: 2em;
   padding-top: 0em;
   padding-bottom: 0em;
   margin: 0 auto;
@@ -555,7 +555,7 @@ export const StyledModalContent = styled(Modal)`
 
 export const StyledModalBody = styled(Modal.Body)`
   border-bottom: none;
-  background-color: #1b1b1b !important;
+  background-color: #424242 !important;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   border-radius: 0;
@@ -563,7 +563,7 @@ export const StyledModalBody = styled(Modal.Body)`
 `;
 
 export const StyledModalHeader = styled(Modal.Header)`
-  background-color: #424242 !important;
+background-color: #1b1b1b !important;
   border-radius: 0;
   color: rgba(255, 255, 255, 0.87);
 `;
@@ -587,7 +587,7 @@ export const StyledConfirmModalButton = styled(Button)`
 
 export const StyledModalFooter = styled(Modal.Footer)`
   border-top: none;
-  background-color: #1b1b1b !important;
+  background-color: #424242 !important;
   border-radius: 0;
 `;
 
@@ -812,7 +812,6 @@ export const StyledTableTD = styled.td`
 `;
 
 export const StyledTableTH = styled.th`
-font-family: 'Roboto', sans-serif;
   font-weight: 500;
   background-color: #424242 !important;
   color: rgba(255, 255, 255, 0.87); !important;
