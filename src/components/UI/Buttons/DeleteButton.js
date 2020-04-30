@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import {
   StyledDeleteButtonDiv,
@@ -32,10 +32,6 @@ const DeleteButton = (props) => {
       props.reloadHandler();
     }, 500);
   };
-
-  useEffect(() => {
-    console.log(props.url, props.id);
-  }, []);
 
   return (
     <div style={{width: "auto", height: "auto"}}>

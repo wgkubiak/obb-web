@@ -79,14 +79,10 @@ const AddExamForm = (props) => {
       },
       body: JSON.stringify(data),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-      })
       .then(props.toggleAddHandler())
       //   .then(props.sortedHandler(false))
       .catch((error) => {
-        console.error("Error:", error);
+        console.log("Error:", error);
       });
 
     setTimeout(() => {

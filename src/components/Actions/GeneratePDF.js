@@ -26,7 +26,6 @@ const GeneratePDF = (props) => {
 
   useEffect(() => {
     sort(props.unlData);
-    console.log(data);
   }, [sorted]);
 
   const generatePDF = (event) => {

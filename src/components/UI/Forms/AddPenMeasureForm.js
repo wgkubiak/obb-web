@@ -138,7 +138,6 @@ const AddPenMeasureForm = (props) => {
             placeholder="Wpisz ilość"
             defaultValue={forage}
             onChange={(event) => setForage(event.target.value)}
-            defaultValue={forage}
           />
         </Form.Group>
         <Form.Group controlId="exampleStyledFormControlShortInput1">
@@ -148,7 +147,6 @@ const AddPenMeasureForm = (props) => {
             placeholder="Wpisz ilość"
             defaultValue={forageQtyUsed}
             onChange={(event) => setForageQtyUsed(event.target.value)}
-            defaultValue={forageQtyUsed}
           />
         </Form.Group>
       </Form>
