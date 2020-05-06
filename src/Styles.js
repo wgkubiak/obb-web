@@ -432,12 +432,12 @@ export const StyledDatePicker = styled(DatePicker)`
 export const StyledSearch = styled.input`
   background-color: #424242;
   margin-top: 1em;
-  position: absolute;
+  position: relative;
   right: 0em;
   border: none;
   border-bottom: 1px solid #30d158;
   color: rgba(255, 255, 255, 0.87);
-  text-align: right;
+  text-align: center;
   padding-right: 0.5em;
 `;
 
