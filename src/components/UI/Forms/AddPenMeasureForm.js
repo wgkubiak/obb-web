@@ -54,7 +54,7 @@ const AddPenMeasureForm = (props) => {
     event.preventDefault();
     const token = localStorage.getItem("token");
 
-    fetch(`http://obb-api.herokuapp.com/add-pen-measure`, {
+    fetch(`https://obb-api.herokuapp.com/add-pen-measure`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -70,7 +70,7 @@ const EditGlobalForm = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     const token = localStorage.getItem("token");
-    fetch(`http://obb-api.herokuapp.com/edit-global/${props.id}`, {
+    fetch(`https://obb-api.herokuapp.com/edit-global/${props.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

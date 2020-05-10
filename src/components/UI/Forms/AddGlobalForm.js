@@ -44,7 +44,7 @@ const AddGlobalForm = (props) => {
     event.preventDefault();
     const token = localStorage.getItem("token");
 
-    fetch("http://obb-api.herokuapp.com/add-global", {
+    fetch("https://obb-api.herokuapp.com/add-global", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

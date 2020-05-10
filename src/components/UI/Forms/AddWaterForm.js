@@ -38,7 +38,7 @@ const AddWaterForm = (props) => {
 
     const token = localStorage.getItem("token");
 
-    fetch(`http://obb-api.herokuapp.com/water-add`, {
+    fetch(`https://obb-api.herokuapp.com/water-add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

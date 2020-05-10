@@ -47,7 +47,7 @@ const AddForm = (props) => {
       setValidationStyle({borderBottomColor: "#ff373b", color: "#ff373b"})
       setShowError(true);
     } else {
-      fetch("http://obb-api.herokuapp.com/add-pig", {
+      fetch("https://obb-api.herokuapp.com/add-pig", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

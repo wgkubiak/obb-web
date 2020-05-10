@@ -32,7 +32,7 @@ const LoginScreen = props => {
     // const submitHandler = (event) => {
     //     event.preventDefault();
 
-    //     fetch(`http://obb-api.herokuapp.com/register`, {
+    //     fetch(`https://obb-api.herokuapp.com/register`, {
     //         method: "POST",
     //         headers: {
     //             "Content-Type": "application/json",

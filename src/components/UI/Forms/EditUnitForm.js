@@ -46,7 +46,7 @@ const EditUnitForm = (props) => {
     const token = localStorage.getItem("token");
 
     fetch(
-      `http://obb-api.herokuapp.com/edit-pig/${props.idPig.replace(/ /g, "")}`,
+      `https://obb-api.herokuapp.com/edit-pig/${props.idPig.replace(/ /g, "")}`,
       {
         method: "PUT",
         headers: {

@@ -40,7 +40,7 @@ const SoldDeadEditForm = (props) => {
     const token = localStorage.getItem("token");
 
     fetch(
-      `http://obb-api.herokuapp.com/pig-${props.mode}/${props.id.replace(
+      `https://obb-api.herokuapp.com/pig-${props.mode}/${props.id.replace(
         / /g,
         ""
       )}`,

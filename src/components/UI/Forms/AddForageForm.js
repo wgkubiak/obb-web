@@ -41,7 +41,7 @@ const AddForageForm = (props) => {
     event.preventDefault();
     const token = localStorage.getItem("token");
 
-    fetch(`http://obb-api.herokuapp.com/add-forage`, {
+    fetch(`https://obb-api.herokuapp.com/add-forage`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

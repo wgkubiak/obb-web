@@ -69,7 +69,7 @@ const EditExamForm = (props) => {
     event.preventDefault();
     const token = localStorage.getItem("token");
 
-    fetch(`http://obb-api.herokuapp.com/edit-exam/${props.data.id}`, {
+    fetch(`https://obb-api.herokuapp.com/edit-exam/${props.data.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

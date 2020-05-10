@@ -20,7 +20,7 @@ const UndoneButton = (props) => {
     event.preventDefault();
 
     const token = localStorage.getItem("token");
-    fetch(`http://obb-api.herokuapp.com/pig-undone-${props.mode}/${props.id}`, {
+    fetch(`https://obb-api.herokuapp.com/pig-undone-${props.mode}/${props.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

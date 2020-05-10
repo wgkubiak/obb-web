@@ -35,7 +35,7 @@ const Exams = (props) => {
   
 
   const getData = async (id, func, url) => {
-    await fetch(`http://obb-api.herokuapp.com/exams-latest/${props.unitID}`)
+    await fetch(`https://obb-api.herokuapp.com/exams-latest/${props.unitID}`)
       .then((res) => res.json())
       .then((res) => setData(res))
       .then((res) => console.log(res.id))
@@ -43,7 +43,7 @@ const Exams = (props) => {
   };
 
   const getUnlimitedData = async (id, func, url) => {
-    await fetch(`http://obb-api.herokuapp.com/exams/${props.unitID}`)
+    await fetch(`https://obb-api.herokuapp.com/exams/${props.unitID}`)
       .then((res) => res.json())
       .then((res) => setUnlData(res))
       .then((res) => console.log(res.id))

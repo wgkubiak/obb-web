@@ -71,7 +71,7 @@ const AddExamForm = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     const token = localStorage.getItem("token");
-    fetch(`http://obb-api.herokuapp.com/add-exam`, {
+    fetch(`https://obb-api.herokuapp.com/add-exam`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
