@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { Button, Spinner } from "react-bootstrap";
+import { Button, Spinner, Form } from "react-bootstrap";
 import { StyledEditExamInput, StyledFormLabel, StyledFormControl, StyledHeaderH2 } from "./../Styles";
 
 const LoginScreen = props => {
@@ -84,6 +84,7 @@ const LoginScreen = props => {
     return (
         <div style={style}>
             <StyledHeaderH2 style={{ marginBottom: "0.5em" }}>Zaloguj</StyledHeaderH2>
+            <Form netlify netlify-honeypot="bot-field">
             <StyledEditExamInput style={{ width: "100%", margin: "0", padding: "1em" }}>
                 <StyledFormLabel>Login</StyledFormLabel>
                 <StyledFormControl
@@ -100,6 +101,7 @@ const LoginScreen = props => {
                     onChange={(event) => setPassword(event.target.value)}
                 />
             </StyledEditExamInput>
+            </Form>
             {!loading && (
                 <Button variant="success" style={{ marginTop: "1em", marginBottom: "0", width: "60%" }} onClick={submitLoginHandler}>Dalej</Button>
             )}
