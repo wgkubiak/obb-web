@@ -56,7 +56,7 @@ const LoginScreen = props => {
         event.preventDefault();
         setLoading(true);
 
-        fetch(`http://obb-api.herokuapp.com/login`, {
+        fetch(`https://obb-api.herokuapp.com/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
