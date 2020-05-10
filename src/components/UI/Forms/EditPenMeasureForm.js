@@ -60,7 +60,7 @@ const EditPenMeasureForm = (props) => {
   );
 
   const remove = () => {
-    const token = localStorage("token")
+    const token = localStorage.getItem("token")
     fetch(`https://obb-api.herokuapp.com/delete-pen-measure/${props.id}`, {
       method: "DELETE",
       headers: {
