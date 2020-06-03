@@ -75,7 +75,7 @@ As always, there is possibility to add, edit, delete data and to generate PDF wi
 
 <br />
 
-_ _At this moment I'm waiting for automatization of that process, which is huge part of logic behind this application. It's made by another person, working with microcontrollers._ _
+*At this moment I'm waiting for automatization of that process, which is huge part of logic behind this application. It's made by another person, working with microcontrollers.*
 
 <br />
 
