@@ -11,6 +11,8 @@
   <img src="https://img.shields.io/badge/react-16.12.0-informational"/>
 </p>
 
+## Other parts
+[API](https://github.com/wojciechkubiak/obb-api)
 
 ## Technologies used
 * ReactJS (React Hooks, React Router)
